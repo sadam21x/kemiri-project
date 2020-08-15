@@ -1,0 +1,95 @@
+#app {
+    position: relative;
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#content {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0;
+    position: absolute;
+    height: 85%;
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.image-side {
+    position: absolute;
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-side {
+    position: absolute;
+    background-color: white;
+    height: 100%;
+    left: 50% !important;
+}
+
+.form-component {
+    /* background-color: grey; */
+}
+
+.form-component .col {
+    display: flex;
+    justify-content: center;
+}
+
+.form-component .col * {
+    margin: 0;
+}
+
+.company-logo {
+    position: absolute;
+    height: 20%;
+    top: 10%;
+}
+
+.login-lable {
+    margin-top: 45%;
+}
+
+.input-field {
+    width: 90%;
+    display: flex;
+    margin-left: 5%;
+}
+
+.switch {
+    margin-left: auto;
+}
+
+button {
+    margin-top: 8%;
+    margin-left: 40%;
+    border-radius: 4px !important;
+}
+
+@media only screen and (max-width: 600px) {
+
+    #content {
+        width: 80%;
+    }
+
+    .image-side {
+    }
+
+    .form-side {
+        left: 0 !important;
+    }
+
+    .login-lable {
+        margin-top: 50%;
+    }
+
+}
