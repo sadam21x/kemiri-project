@@ -19,7 +19,7 @@
         }
 
         #app {
-            background-image: url("{{ asset('/assets/img/login-bg.jpg') }}");
+            background-image: url("{{ asset('/assets/img/login-bg-3.png') }}");
         }
 
         .image-side {
