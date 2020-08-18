@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {{-- CSRF Token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <title>Kemiri Water Solution | Login</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/assets/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/assets/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('/assets/favicon/site.webmanifest') }}">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('/assets/materialize-1.0.0/css/materialize.min.css') }}">
 
     <style>
         * {
@@ -50,7 +59,7 @@
 
                     {{-- Login form --}}
                     <div class="row">
-                        <form action="" class="col s12">
+                        <form action="{{ url('/aktor') }}" class="col s12">
                             @csrf
 
                             <div class="input-field">
@@ -74,7 +83,7 @@
                                 </div>
                             </div>
 
-                            <button type="button" class="btn waves-effect waves-light blue darken-2 rounded">LOGIN</button>
+                            <button type="submit" class="btn waves-effect waves-light blue darken-2 rounded">LOGIN</button>
                         </form>
                     </div>
                 </div>
@@ -82,7 +91,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ asset('/assets/materialize-1.0.0/js/materialize.min.js') }}"></script>
     <script src="{{ asset('/assets/js/login.js') }}"></script>
 </body>
 </html>

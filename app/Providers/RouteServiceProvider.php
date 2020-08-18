@@ -46,6 +46,30 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/owner_route.php'));
+        
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/sales_a_route.php'));
+
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/sales_b_route.php'));
+
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/manajer_marketing_route.php'));
+
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/admin_gudang_route.php'));
+
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/operator_mesin_route.php'));
+
         //
     }
 
