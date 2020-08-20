@@ -20,6 +20,7 @@
         }
 
         #app ul li {
+            border: none;
             width: 100%;
         }
 
@@ -35,22 +36,22 @@
 
         <ul class="list-group">
             <li class="list-group-item">
-                <a href="" class="btn btn-info btn-sm">Admin Gudang</a>
+                <a href="{{ url('/admin-gudang') }}" class="btn btn-info btn-sm">Admin Gudang</a>
             </li>
             <li class="list-group-item">
-                <a href="" class="btn btn-info btn-sm">Manajer Marketing</a>
+                <a href="{{ url('/manajer-marketing') }}" class="btn btn-info btn-sm">Manajer Marketing</a>
             </li>
             <li class="list-group-item">
-                <a href="" class="btn btn-info btn-sm">Operator Mesin</a>
+                <a href="{{ url('/operator-mesin') }}" class="btn btn-info btn-sm">Operator Mesin</a>
             </li>
             <li class="list-group-item">
-                <a href="" class="btn btn-info btn-sm">Owner</a>
+                <a href="{{ url('/owner') }}" class="btn btn-info btn-sm">Owner</a>
             </li>
             <li class="list-group-item">
-                <a href="" class="btn btn-info btn-sm">Sales A</a>
+                <a href="{{ url('/sales-a') }}" class="btn btn-info btn-sm">Sales A</a>
             </li>
             <li class="list-group-item">
-                <a href="" class="btn btn-info btn-sm">Sales B</a>
+                <a href="{{ url('/sales-b') }}" class="btn btn-info btn-sm">Sales B</a>
             </li>
         </ul>
     </div>

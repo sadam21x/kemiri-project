@@ -11,14 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/login');
-});
+Route::redirect('/', '/login');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::view('/login', 'login');
 
-Route::get('/aktor', function () {
+Route::any('/aktor', function () {
     return view('aktor');
 });

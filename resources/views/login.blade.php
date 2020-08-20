@@ -15,83 +15,61 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('/assets/favicon/site.webmanifest') }}">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/assets/materialize-1.0.0/css/materialize.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/login_util.css') }}">
 
     <style>
-        * {
-            margin: 0;
+        @font-face {
+            font-family: Ubuntu-Regular;
+            src: url('{{ asset('/assets/fonts/ubuntu/Ubuntu-Regular.ttf') }}'); 
         }
 
-        body, html {
-            height: 100%;
-        }
-
-        #app {
-            background-image: url("{{ asset('/assets/img/login-bg-3.png') }}");
-        }
-
-        .image-side {
-            background-image: url("{{ asset('/assets/img/login-employee.png') }}")
+        @font-face {
+            font-family: Ubuntu-Bold;
+            src: url('{{ asset('/assets/fonts/ubuntu/Ubuntu-Bold.ttf') }}'); 
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('/assets/css/login.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/css/login_main.css') }}">
 </head>
 <body>
-    <div id="app">
-        <div id="content">
-            <div class="row">
-                {{-- Vector image on the left side --}}
-                <div class="col m6 s0 image-side"></div>
 
-                {{-- Login on the right side --}}
-                <div class="col m6 s12 form-side container">
-                    <div class="row form-component">
-                        <div class="col s12">
-                        <img src="{{ asset('/assets/img/logo-kemiri.png') }}" alt="" class="company-logo">
-                        </div>
+	<div class="limiter">
+        <div class="container-login100" style="background-image: url('{{ asset('/assets/img/login-bg.jpg') }}');">
+			<div class="wrap-login100 p-t-30 p-b-50">
+				<span class="login100-form-title p-b-41">
+                    <img src="{{ asset('/assets/img/logo-kemiri.png') }}">
+				</span>
+                <form action="{{ url('/aktor') }}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
+                    @csrf
+
+					<div class="wrap-input100">
+                        <input class="input100" type="text" name="username" id="username" placeholder="Username">
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div>
+
+					<div class="wrap-input100">
+						<input class="input100" type="password" name="password" id="password" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
                     </div>
-                    <div class="row form-component login-lable">
-                        <div class="col s12">
-                            <h4>LOGIN</h4>
-                        </div>
+                    
+                    <div class="form-group form-check my-3 ml-4">
+                        <input type="checkbox" class="form-check-input mt-1" id="togglePassword">
+                        <label class="form-check-label" for="togglePassword">Show Password</label>
                     </div>
 
-                    {{-- Login form --}}
-                    <div class="row">
-                        <form action="{{ url('/aktor') }}" class="col s12">
-                            @csrf
+					<div class="container-login100-form-btn m-t-32">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
 
-                            <div class="input-field">
-                                <i class="small material-icons prefix">account_circle</i>
-                                <input id="username" name="username" type="text" class="validate">
-                                <label for="username">Username</label>
-                            </div>
-                            <div class="input-field">
-                                <i class="small material-icons prefix">vpn_key</i>
-                                <input id="password" name="password" type="password" class="validate">
-                                <label for="password">Password</label>
-                            </div>
-
-                            <div class="input-field">
-                                <div class="switch">
-                                    <label>
-                                        Show password
-                                        <input type="checkbox" id="togglePassword">
-                                        <span class="lever"></span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn waves-effect waves-light blue darken-2 rounded">LOGIN</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="{{ asset('/assets/materialize-1.0.0/js/materialize.min.js') }}"></script>
+				</form>
+			</div>
+		</div>
+	</div>
+    
     <script src="{{ asset('/assets/js/login.js') }}"></script>
 </body>
 </html>
