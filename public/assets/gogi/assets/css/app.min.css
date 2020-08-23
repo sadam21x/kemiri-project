@@ -6155,7 +6155,8 @@ body:not(.horizontal-navigation) .navigation .navigation-menu-body ul li.open > 
   margin-left: 280px;
   margin-right: 30px;
   border-radius: 15px;
-  background-color: #f4f5fd;
+  /* background-color: #f4f5fd; */
+  background-color: white;
   overflow: auto;
   height: calc(100vh - 70px - 50px);
 }

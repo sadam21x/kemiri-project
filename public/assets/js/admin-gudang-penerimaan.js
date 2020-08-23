@@ -1,27 +1,35 @@
 $(document).ready(function() {
 
     // Efek menu aktif pada navbar menu
-    var menu = document.getElementById("penerimaan-menu");
+    const menu = document.getElementById("penerimaan-menu");
     menu.classList.add("active");
+
+    // Mencegah submit form via tombol enter
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+          event.preventDefault();
+          return false;
+        }
+    });
  
     // Datatable
-    var penerimaanBahanBakuTable = document.getElementById("penerimaan-bahan-baku-table");
+    const penerimaanBahanBakuTable = document.getElementById("penerimaan-bahan-baku-table");
     $(penerimaanBahanBakuTable).DataTable();
     
-    // Datepicker untuk modal
-    var inputTanggal = document.getElementById("input-tanggal");
-    $(inputTanggal).daterangepicker({
+    // Datepicker
+    const dateComponent = document.getElementsByClassName("date-component");
+    $(dateComponent).daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
 
-    // Interactive select untuk modal
-    var inputSupplier = document.getElementById("input-supplier");
-    $(inputSupplier).select2({
+    // Select2
+    const selectComponent = document.getElementsByClassName("select-component");
+    $(selectComponent).select2({
         placeholder: 'Pilih supplier . . '
     });
 
-    // Hitung berat total bahan baku
+    // Hitung berat total bahan baku (input penerimaan)
     $('form :input').change(function() {
 
         let jumlahKarung = $('#input-jumlah-karung').val();
@@ -32,46 +40,14 @@ $(document).ready(function() {
 
     });
 
-    // Reset modal kembali seperti semula saat user menekan tombol input order masak
-    $('.tombol-input-penerimaan').click(function(){
-        $('#modal-form-label').html('Input Penerimaan Bahan Baku');
-        $('.modal-body form').attr('action', '/admin-gudang/input-penerimaan-bahan'); // action disesuaikan ke keadaan awal sesuai route input
-        $('#input-jumlah-karung').val('');
-        $('#input-berat-karung').val('');
-        $('#input-berat-total').val('');
-    });
+    // Hitung berat total bahan baku (edit penerimaan)
+    $('form :input').change(function() {
 
-    // Modifikasi modal input penerimaan bahan baku untuk edit data penerimaan
-    // Call data menggunakan ajax
-    $('.tombol-edit-penerimaan').click(function(){
-        $('#modal-form-label').html('Edit Penerimaan Bahan Baku');
-        $('.modal-body form').attr('action', '/admin-gudang/update-penerimaan-bahan'); // action disesuaikan ke route update penerimaan
-        
-        // id penerimaan yang mau dipanggil datanya, data id dikirim dari button edit
-        const id = $(this).data('id');
+        let jumlahKarung = $('#edit-jumlah-karung').val();
+        let beratKarung = $('#edit-berat-karung').val();
 
-        // csrf token
-        var token = $('meta[name="csrf-token"]').attr('content');
-        
-        // sesuaikan route ke function di controller yang menangani ajax req
-        var url = '/admin-gudang/edit-penerimaan-bahan';
-
-        $.ajax({
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': token
-            },
-            url: url,
-            cache: false,
-            data: {id : id},
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-
-                // sampel
-                // $('#input-id').val(data.id);
-            }
-        });
+        let beratTotal = jumlahKarung * beratKarung;
+        $('#edit-berat-total').val(beratTotal);
 
     });
 

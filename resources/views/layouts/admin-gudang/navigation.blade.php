@@ -31,6 +31,22 @@
                     <span>Pengiriman Barang</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ url('/admin-gudang/supplier') }}" id="supplier-menu" class="">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-industry"></i>
+                    </span>
+                    <span>Supplier</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/admin-gudang/customer') }}" id="customer-menu" class="">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span>Customer</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
