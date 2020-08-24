@@ -52,4 +52,7 @@ $app->singleton(
 |
 */
 
+// $app->withFacades();
+// $app->register(\KitLoong\MigrationsGenerator\MigrationsGeneratorServiceProvider::class);
+
 return $app;
