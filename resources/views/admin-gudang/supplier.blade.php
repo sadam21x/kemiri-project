@@ -39,7 +39,7 @@
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </a>
-                            <a href="" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-supplier">
+                            <a href="" class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal" data-target="#modal-edit-supplier">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
                             </a>
@@ -144,10 +144,11 @@
                             Provinsi
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-control select-component" id="input-provinsi" name="input-provinsi">
+                        <select class="form-control select-component select-provinsi" id="input-provinsi" name="input-provinsi">
                             <option>Pilih provinsi . . </option>
-                            <option value="Jawa Timur">Jawa Timur</option>
-                            <option value="Bali">Bali</option>
+                            @foreach ($provinsi as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -156,10 +157,8 @@
                             Kabupaten/Kota
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-control select-component" id="input-kota" name="input-kota">
+                        <select class="form-control select-component select-kota" id="input-kota" name="input-kota">
                             <option>Pilih kota . . </option>
-                            <option value="Banyuwangi">Banyuwangi</option>
-                            <option value="Kota Surabaya">Kota Surabaya</option>
                         </select>
                     </div>
 
@@ -226,10 +225,11 @@
                             Provinsi
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-control select-component" id="edit-provinsi" name="edit-provinsi">
+                        <select class="form-control select-component select-provinsi" id="edit-provinsi" name="edit-provinsi">
                             <option>Pilih provinsi . . </option>
-                            <option value="Jawa Timur">Jawa Timur</option>
-                            <option value="Bali">Bali</option>
+                            @foreach ($provinsi as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -238,10 +238,8 @@
                             Kabupaten/Kota
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-control select-component" id="edit-kota" name="edit-kota">
+                        <select class="form-control select-component select-kota" id="edit-kota" name="edit-kota">
                             <option>Pilih kota . . </option>
-                            <option value="Banyuwangi">Banyuwangi</option>
-                            <option value="Kota Surabaya">Kota Surabaya</option>
                         </select>
                     </div>
 
