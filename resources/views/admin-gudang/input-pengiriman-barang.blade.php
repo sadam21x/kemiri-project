@@ -11,7 +11,7 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h3>Input Pengiriman Barang</h3>
+        <h4>Input Pengiriman Barang</h4>
         <hr>
     </div>
 

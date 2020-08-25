@@ -9,18 +9,21 @@
 <!-- Start Content -->
 <div class="content ">
     <div class="page-header">
-        <h3>Pengiriman Barang</h3>
+        <h4>Pengiriman Barang</h4>
         <hr>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ url('/admin-gudang/pengiriman-barang/input') }}" class="btn bg-info-gradient btn-sm mb-3">
-                <i class="fas fa-plus-square mr-2"></i>
-                INPUT PENGIRIMAN BARANG
-            </a>
 
-            <h5 class="my-2">Riwayat Pengiriman Barang</h5>
+            <div class="judul-tabel mb-3">
+                <h5 class="">Riwayat Pengiriman Barang</h5>
+                <a href="{{ url('/admin-gudang/pengiriman-barang/input') }}" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
+                    <i class="fas fa-plus mr-1"></i>
+                    TAMBAH BARU
+                </a>
+            </div>
+
             <table id="pengiriman-barang-table" class="table table-striped table-bordered table-responsive-stack">
                 <thead class="thead-dark">
                     <tr>

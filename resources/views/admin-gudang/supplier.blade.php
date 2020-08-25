@@ -10,17 +10,20 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h3>Supplier</h3>
+        <h4>Supplier</h4>
         <hr>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <button type="button" class="btn bg-info-gradient btn-sm mb-3 tombol-tambah-supplier " data-toggle="modal"
-                data-target="#modal-tambah-supplier">
-                <i class="fas fa-plus-square mr-2"></i>
-                TAMBAH SUPPLIER
-            </button>
+
+            <div class="judul-tabel mb-3">
+                <h5 class="">Daftar Supplier</h5>
+                <button class="btn btn-sm btn-rounded bg-dribbble ml-auto tombol-tambah-supplier" data-toggle="modal" data-target="#modal-tambah-supplier">
+                    <i class="fas fa-plus mr-1"></i>
+                    TAMBAH BARU
+                </button>
+            </div>
 
             <table id="supplier-table" class="table table-bordered table-stripped table-responsive-stack">
                 <thead class="thead-dark">

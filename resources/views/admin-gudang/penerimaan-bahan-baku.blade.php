@@ -11,18 +11,21 @@
 <!-- Content -->
 <div class="content ">
     <div class="page-header">
-        <h3>Penerimaan Bahan Baku</h3>
+        <h4>Penerimaan Bahan Baku</h4>
         <hr>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <button type="button" class="btn bg-info-gradient btn-sm mb-3 tombol-input-penerimaan" data-toggle="modal"
-                data-target="#modal-input-penerimaan">
-                <i class="fas fa-plus-square mr-2"></i>
-                INPUT PENERIMAAN BAHAN BAKU
-            </button>
-            <h5 class="my-2">Riwayat Penerimaan Bahan Baku</h5>
+
+            <div class="judul-tabel mb-3">
+                <h5 class="">Riwayat Penerimaan Bahan Baku</h5>
+                <button class="btn btn-sm btn-rounded bg-dribbble ml-auto tombol-input-penerimaan" data-toggle="modal" data-target="#modal-input-penerimaan">
+                    <i class="fas fa-plus mr-1"></i>
+                    TAMBAH BARU
+                </button>
+            </div>
+            
             <table id="penerimaan-bahan-baku-table" class="table table-stripped table-bordered table-responsive-stack">
                 <thead class="thead-dark">
                     <tr>

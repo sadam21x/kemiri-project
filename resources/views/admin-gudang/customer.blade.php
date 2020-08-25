@@ -9,12 +9,16 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h3>Customer</h3>
+        <h4>Customer</h4>
         <hr>
     </div>
 
     <div class="row">
         <div class="col-md-12">
+
+            <div class="judul-tabel mb-3">
+                <h5 class="">Daftar Customer</h5>
+            </div>
 
             <table id="customer-table" class="table table-bordered table-stripped table-responsive-stack">
                 <thead class="thead-dark">
