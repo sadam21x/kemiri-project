@@ -217,7 +217,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Pengambilan Bahn Baku</h5>
+                <h5 class="modal-title" id="modal-form-label">Detail Pengambilan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -244,11 +244,6 @@
                     <div class="my-3">
                         <h5>Supplier Bahan Baku</h5>
                         <h6>UD. Permata Langit</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Kota/Kabupaten</h5>
-                        <h6>Solo</h6>
                     </div>
 
                     <div class="my-3">

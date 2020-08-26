@@ -28,6 +28,7 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/bundle.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/app.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/custom-global.css') }}" type="text/css">
 
     {{-- Extra CSS --}}
     @yield('extra-css')

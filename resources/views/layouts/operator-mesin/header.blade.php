@@ -11,13 +11,9 @@
                 <a href="{{ url('/') }}">
                     <img src="{{ asset('/assets/img/logo-kemiri.png') }}"
                         class="logo"
-                        style="height: 28px;"
                         alt="Logo Kemiri Water Solution"
                     >
-                    <span
-                        class="text-white ml-2"
-                        style="font-size: 1em; font-weight: bold;"
-                    >
+                    <span class="text-white ml-2">
                         KEMIRI WATER SOLUTION
                     </span>
                 </a>

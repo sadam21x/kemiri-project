@@ -55,10 +55,6 @@ p {
 
 @media only screen and (max-width: 600px) {
 
-    table {
-        font-size: 1em;
-    }
-
     .judul-tabel {
         display: block;
     }
