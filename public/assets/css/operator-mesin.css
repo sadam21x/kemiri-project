@@ -26,13 +26,31 @@ table {
   -moz-appearance: textfield;
 }
 
+.tombol-bulat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: none;
+    /* box-shadow: 2px 2px 8px #888888; */
+}
+
+.tombol-bulat:hover {
+    background-color: rgb(90, 8, 76) !important;
+}
+
 .judul-tabel {
     display: flex;
 }
 
-.judul-tabel button:hover,
-.judul-tabel a:hover {
+.judul-tabel button:hover {
     background-color: rgb(68, 8, 38) !important;
+}
+
+p {
+    text-align: justify;
 }
 
 @media only screen and (max-width: 600px) {

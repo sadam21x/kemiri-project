@@ -1,4 +1,4 @@
-@extends('layouts/admin-gudang/main')
+@extends('layouts/operator-mesin/main')
 @section('title', 'Dashboard')
 @section('extra-css')
     
@@ -28,5 +28,5 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/js/admin-gudang-dashboard.js') }}"></script>
+    <script src="{{ asset('/assets/js/operator-mesin-dashboard.js') }}"></script>
 @endsection
