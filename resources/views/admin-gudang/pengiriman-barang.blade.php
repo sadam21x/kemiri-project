@@ -27,14 +27,16 @@
             <table id="pengiriman-barang-table" class="table table-striped table-bordered table-responsive-stack">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Tanggal</th>
-                        <th>Pelanggan</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
+                        <th scope="col">ID Pengiriman</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Pelanggan</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>PGR00001</td>
                         <td>01/08/2020</td>
                         <td>Depo Air Minum Kertajaya Indah</td>
                         <td>
@@ -56,6 +58,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>PGR00002</td>
                         <td>02/08/2020</td>
                         <td>Depo Air Minum Surya</td>
                         <td>
@@ -97,6 +100,11 @@
             <div class="modal-body">
 
                 <div class="container">
+
+                    <div class="my-3">
+                        <h5>ID Pengiriman</h5>
+                        <h6>PGR00001</h6>
+                    </div>
 
                     <div class="my-3">
                         <h5>Tanggal Pengiriman</h5>

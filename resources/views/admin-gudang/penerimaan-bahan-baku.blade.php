@@ -29,13 +29,15 @@
             <table id="penerimaan-bahan-baku-table" class="table table-stripped table-bordered table-responsive-stack">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Tanggal</th>
-                        <th>Supplier</th>
-                        <th>Aksi</th>
+                        <th scope="col">ID Penerimaan</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Supplier</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>PNR00001</td>
                         <td>01/08/2020</td>
                         <td>UD. Pertama Jaya</td>
                         <td colspan="2">
@@ -52,6 +54,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>PNR00002</td>
                         <td>02/08/2020</td>
                         <td>CV. Permata Langit</td>
                         <td colspan="2">
@@ -90,8 +93,18 @@
                 <div class="container">
 
                     <div class="my-3">
+                        <h5>ID Penerimaan</h5>
+                        <h6>PNR00001</h6>
+                    </div>
+
+                    <div class="my-3">
                         <h5>Tanggal</h5>
                         <h6>01/08/2020</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Staff Gudang</h5>
+                        <h6>Ahmad Baihaqi</h6>
                     </div>
 
                     <div class="my-3">
