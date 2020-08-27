@@ -14,7 +14,8 @@ class AddForeignKeysToAdminGudangTable extends Migration
     public function up()
     {
         Schema::table('admin_gudang', function (Blueprint $table) {
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKI52270')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            // $table->foreign('KODE_KOTA', 'FK_MEMILIKI52270')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_KOTA', 'FK_MEMILIKI52270')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

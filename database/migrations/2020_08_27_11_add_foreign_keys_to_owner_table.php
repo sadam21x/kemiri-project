@@ -14,7 +14,8 @@ class AddForeignKeysToOwnerTable extends Migration
     public function up()
     {
         Schema::table('owner', function (Blueprint $table) {
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKI123')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            // $table->foreign('KODE_KOTA', 'FK_MEMILIKI123')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_KOTA', 'FK_MEMILIKI123')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

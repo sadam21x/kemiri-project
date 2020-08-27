@@ -14,7 +14,8 @@ class AddForeignKeysToManajerMarketingTable extends Migration
     public function up()
     {
         Schema::table('manajer_marketing', function (Blueprint $table) {
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKI8398')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            // $table->foreign('KODE_KOTA', 'FK_MEMILIKI8398')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_KOTA', 'FK_MEMILIKI8398')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

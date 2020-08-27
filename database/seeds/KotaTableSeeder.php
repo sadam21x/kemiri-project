@@ -12,11 +12,5 @@ class KotaTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
-        \DB::table('kota')->delete();
-        
-        
-        
     }
 }

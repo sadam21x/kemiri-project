@@ -12,11 +12,12 @@ class JenisBahanBakuTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $jenisBahanBaku = ['Plastik', 'Pewarna'];
 
-        \DB::table('jenis_bahan_baku')->delete();
-        
-        
-        
+    	foreach($jenisBahanBaku as $j){
+    		DB::table('jenis_bahan_baku')->insert([
+	            'nama_jenis_bahan_baku' => $j
+            ]);
+        }   
     }
 }

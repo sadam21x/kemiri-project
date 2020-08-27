@@ -14,7 +14,8 @@ class AddForeignKeysToSupplierTable extends Migration
     public function up()
     {
         Schema::table('supplier', function (Blueprint $table) {
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKI623')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            // $table->foreign('KODE_KOTA', 'FK_MEMILIKI623')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_KOTA', 'FK_MEMILIKI623')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

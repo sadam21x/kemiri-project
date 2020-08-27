@@ -19,7 +19,7 @@ class CreateOperatorMesinTable extends Migration
             $table->string('NAMA_OPERATOR_MESIN', 100);
             $table->string('ALAMAT_OPERATOR_MESIN', 150);
             $table->tinyInteger('JENIS_KELAMIN_OPERATOR_MESIN');
-            $table->string('NO_TELP_OPERATOR_MESIN', 13)->nullable();
+            $table->string('NO_TELP_OPERATOR_MESIN', 50)->nullable();
             $table->string('EMAIL_OPERATOR_MESIN', 75)->nullable();
         });
     }

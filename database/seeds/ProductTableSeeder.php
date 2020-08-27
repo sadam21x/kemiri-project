@@ -12,11 +12,6 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
-        \DB::table('product')->delete();
-        
-        
-        
+        $products = ['Tutup Galon', 'amdk'];
     }
 }

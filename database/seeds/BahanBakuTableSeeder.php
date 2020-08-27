@@ -12,11 +12,22 @@ class BahanBakuTableSeeder extends Seeder
      */
     public function run()
     {
-        
+    	DB::table('bahan_baku')->insert([
+            'id_jenis_bahan_baku' => 1,
+            'nama_bahan_baku' => 'Plastik Bekas',
+            'stok_bahan_baku' => 100
+        ]);  
 
-        \DB::table('bahan_baku')->delete();
-        
-        
-        
+        DB::table('bahan_baku')->insert([
+            'id_jenis_bahan_baku' => 1,
+            'nama_bahan_baku' => 'Plastik Virgin',
+            'stok_bahan_baku' => 200
+        ]);
+
+        DB::table('bahan_baku')->insert([
+            'id_jenis_bahan_baku' => 2,
+            'nama_bahan_baku' => 'Pewarna',
+            'stok_bahan_baku' => 50
+        ]);
     }
 }

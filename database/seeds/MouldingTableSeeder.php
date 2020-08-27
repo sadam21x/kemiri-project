@@ -12,11 +12,12 @@ class MouldingTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $mouldings = ['Tipe A', 'Tipe B'];
 
-        \DB::table('moulding')->delete();
-        
-        
-        
+    	foreach($mouldings as $m){
+    		DB::table('moulding')->insert([
+	            'nama_moulding' => $m
+            ]);
+        } 
     }
 }
