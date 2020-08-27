@@ -19,7 +19,7 @@ class CreateSalesBTable extends Migration
             $table->string('NAMA_SALES_B', 50);
             $table->string('ALAMAT_SALES_B', 150);
             $table->tinyInteger('JENIS_KELAMIN_SALES_B');
-            $table->string('NO_TELP_SALES_B', 13);
+            $table->string('NO_TELP_SALES_B', 50);
             $table->string('EMAIL_SALES_B', 50)->nullable();
         });
     }

@@ -12,11 +12,12 @@ class JabatanTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $jabatans = ['Owner','Admin Gudang','Manajer Marketing','Sales A', 'Sales B', 'Operator Mesin'];
 
-        \DB::table('jabatan')->delete();
-        
-        
-        
+    	foreach($jabatans as $j){
+    		DB::table('jabatan')->insert([
+	            'nama_jabatan' => $j
+            ]);
+        } 
     }
 }

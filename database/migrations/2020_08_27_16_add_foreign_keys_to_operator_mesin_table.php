@@ -14,7 +14,8 @@ class AddForeignKeysToOperatorMesinTable extends Migration
     public function up()
     {
         Schema::table('operator_mesin', function (Blueprint $table) {
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKI5345')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            // $table->foreign('KODE_KOTA', 'FK_MEMILIKI5345')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_KOTA', 'FK_MEMILIKI5345')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 

@@ -19,7 +19,7 @@ class CreateOwnerTable extends Migration
             $table->string('NAMA_OWNER', 50);
             $table->string('ALAMAT_OWNER', 150);
             $table->tinyInteger('JENIS_KELAMIN_OWNER');
-            $table->string('NO_TELP_OWNER', 13)->nullable();
+            $table->string('NO_TELP_OWNER', 50)->nullable();
             $table->string('EMAIL_OWNER', 75)->nullable();
         });
     }

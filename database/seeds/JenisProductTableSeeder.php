@@ -12,11 +12,12 @@ class JenisProductTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $jenisProduk = ['Tutup Galon A', 'Tutup Galon B', 'amdk A', 'amdk B'];
 
-        \DB::table('jenis_product')->delete();
-        
-        
-        
+    	foreach($jenisProduk as $j){
+    		DB::table('jenis_product')->insert([
+	            'nama_jenis_product' => $j
+            ]);
+        } 
     }
 }

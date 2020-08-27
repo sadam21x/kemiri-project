@@ -12,11 +12,24 @@ class MesinTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        DB::table('mesin')->insert([
+            'kode_moulding' => 1,
+            'nama_mesin' => 'Mesin 1'
+        ]);
 
-        \DB::table('mesin')->delete();
-        
-        
-        
+        DB::table('mesin')->insert([
+            'kode_moulding' => 2,
+            'nama_mesin' => 'Mesin 2'
+        ]);
+
+        DB::table('mesin')->insert([
+            'kode_moulding' => 3,
+            'nama_mesin' => 'Mesin 3'
+        ]);
+
+        DB::table('mesin')->insert([
+            'kode_moulding' => 4,
+            'nama_mesin' => 'Mesin 4'
+        ]);
     }
 }
