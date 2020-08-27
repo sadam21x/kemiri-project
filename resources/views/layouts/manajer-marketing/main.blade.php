@@ -26,13 +26,16 @@
     <link rel="stylesheet" href="{{ asset('/assets/fontawesome/css/all.min.css') }}">
 
     {{-- CSS --}}
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/bundle.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/app.min.css') }}" type="text/css">
+    {{-- <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/bundle.css') }}" type="text/css"> --}}
+    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/gogi-bundle.min.css') }}" type="text/css">
+    {{-- <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/app.min.css') }}" type="text/css"> --}}
+    <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/gogi-app.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/custom-global.css') }}" type="text/css">
 
     {{-- Extra CSS --}}
     @yield('extra-css')
 </head>
-<body>
+<body class="horizontal-navigation">
     {{-- Start Preloader --}}
     <div class="preloader">
         <div class="preloader-icon"></div>
@@ -41,19 +44,19 @@
     {{-- End of Preloader --}}
 
     {{-- Sidebar Group --}}
-    @include('layouts/sidebar-group')
+    {{-- @include('layouts/admin-gudang/sidebar-group') --}}
 
     {{-- Start Layout Wrapper --}}
     <div class="layout-wrapper">
 
         {{-- Header --}}
-        @include('layouts/header')
+        @include('layouts/admin-gudang/header')
 
         {{-- Start Content Wrapper --}}
         <div class="content-wrapper">
 
             {{-- Navigation --}}
-            @include('layouts/navigation')
+            @include('layouts/admin-gudang/navigation')
 
             {{-- Start Content Body --}}
             <div class="content-body">
@@ -73,8 +76,10 @@
     {{-- End of Layout Wrapper --}}
     
     {{-- Gogi Script --}}
-    <script src="{{ asset('/assets/gogi/vendors/bundle.js') }}"></script>
-    <script src="{{ asset('/assets/gogi/assets/js/app.min.js') }}"></script>
+    {{-- <script src="{{ asset('/assets/gogi/vendors/bundle.js') }}"></script> --}}
+    <script src="{{ asset('/assets/gogi/vendors/gogi-bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('/assets/gogi/assets/js/app.min.js') }}"></script> --}}
+    <script src="{{ asset('/assets/gogi/assets/js/gogi-app.min.js') }}"></script>
 
     {{-- Fontawesome --}}
     <script src="{{ asset('/assets/fontawesome/js/all.min.js') }}"></script>
