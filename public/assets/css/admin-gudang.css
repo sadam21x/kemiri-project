@@ -26,10 +26,27 @@ table {
   -moz-appearance: textfield;
 }
 
+.judul-tabel {
+    display: flex;
+}
+
+.judul-tabel button:hover,
+.judul-tabel a:hover {
+    background-color: rgb(68, 8, 38) !important;
+}
+
 @media only screen and (max-width: 600px) {
 
     table {
         font-size: 1em;
+    }
+
+    .judul-tabel {
+        display: block;
+    }
+
+    .judul-tabel button {
+        margin-top: 10px;
     }
 
 }

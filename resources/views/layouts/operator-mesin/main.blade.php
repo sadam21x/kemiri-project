@@ -28,11 +28,12 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/bundle.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/app.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/custom-global.css') }}" type="text/css">
 
     {{-- Extra CSS --}}
     @yield('extra-css')
 </head>
-<body>
+<body class="horizontal-navigation">
     {{-- Start Preloader --}}
     <div class="preloader">
         <div class="preloader-icon"></div>
@@ -41,19 +42,19 @@
     {{-- End of Preloader --}}
 
     {{-- Sidebar Group --}}
-    @include('layouts/sidebar-group')
+    {{-- @include('layouts/operator-mesin/sidebar-group') --}}
 
     {{-- Start Layout Wrapper --}}
     <div class="layout-wrapper">
 
         {{-- Header --}}
-        @include('layouts/header')
+        @include('layouts/operator-mesin/header')
 
         {{-- Start Content Wrapper --}}
         <div class="content-wrapper">
 
             {{-- Navigation --}}
-            @include('layouts/navigation')
+            @include('layouts/operator-mesin/navigation')
 
             {{-- Start Content Body --}}
             <div class="content-body">

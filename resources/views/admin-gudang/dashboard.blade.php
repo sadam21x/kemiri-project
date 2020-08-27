@@ -9,7 +9,7 @@
 <div class="content ">
 
     <div class="page-header">
-        <h3>Dashboard</h3>
+        <h4>Dashboard</h4>
         <hr>
     </div>
 
