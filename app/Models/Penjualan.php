@@ -48,7 +48,7 @@ class Penjualan extends Model
 
 	protected $dates = [
 		'TGL_PENJUALAN',
-		'TGL_KIIRM'
+		'TGL_KIRIM'
 	];
 
 	protected $fillable = [

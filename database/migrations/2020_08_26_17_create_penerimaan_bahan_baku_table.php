@@ -21,7 +21,6 @@ class CreatePenerimaanBahanBakuTable extends Migration
             $table->date('TGL_KEDATANGAN');
             $table->string('SATUAN', 25);
             $table->float('TOTAL_BERAT', 10, 0);
-            $table->float('STOK_BAHAN_BAKU', 10, 0);
             $table->float('JUMLAH_KARUNG_SAK', 10, 0);
             $table->float('ISI_KARUNG', 10, 0);
         });

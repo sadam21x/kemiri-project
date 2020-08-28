@@ -15,8 +15,7 @@ class UserTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i=0; $i < 30; $i++) {
-
+        for ($i=0; $i < 5; $i++) {
             // generate nama
             $namadepan = $faker->firstName;
             $namabelakang = $faker->lastName;
@@ -26,7 +25,7 @@ class UserTableSeeder extends Seeder
             $id_kota = $this->generate_id_kota();
 
             // memanggil function generate_id_jabatan
-            $id_jabatan = $this->generate_id_jabatan();
+            $id_jabatan = 6;
 
             // generate jenis kelamin
             $genders = $faker->randomElement($array = array('0', '1'));
@@ -36,7 +35,7 @@ class UserTableSeeder extends Seeder
                 'kode_kota' => $id_kota,
                 'kode_jabatan' => $id_jabatan,
                 'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
-                'password_user' => encrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
                 'nama_user' => $nama,
                 'alamat_user' => $faker->streetAddress,
                 'jenis_kelamin_user' => $genders,
@@ -44,61 +43,171 @@ class UserTableSeeder extends Seeder
                 'email_user' => $faker->email
             ]);
 
-            if($id_jabatan == 6){
-                // insert database operator mesin
-                DB::table('operator_mesin')->insert([
-                    'kode_kota' => $id_kota,
-                    'nama_operator_mesin' => $nama,
-                    'alamat_operator_mesin' => $faker->streetAddress,
-                    'jenis_kelamin_operator_mesin' => $genders,
-                    'no_telp_operator_mesin' => $faker->phoneNumber,
-                    'email_operator_mesin' => $faker->email
-                ]);
-            }
-            else if($id_jabatan == 5){
-                // insert database sales b
-                DB::table('sales_b')->insert([
-                    'kode_kota' => $id_kota,
-                    'nama_sales_b' => $nama,
-                    'alamat_sales_b' => $faker->streetAddress,
-                    'jenis_kelamin_sales_b' => $genders,
-                    'no_telp_sales_b' => $faker->phoneNumber,
-                    'email_sales_b' => $faker->email
-                ]);
-            }
-            else if($id_jabatan == 4){
-                // insert sales a
-                DB::table('sales_a')->insert([
-                    'kode_kota' => $id_kota,
-                    'nama_sales_a' => $nama,
-                    'alamat_sales_a' => $faker->streetAddress,
-                    'jenis_kelamin_sales_a' => $genders,
-                    'no_telp_sales_a' => $faker->phoneNumber,
-                    'email_sales_a' => $faker->email
-                ]);
-            }
-            else if($id_jabatan == 3){
-                // insert database manajer marketing
-                DB::table('manajer_marketing')->insert([
-                    'kode_kota' => $id_kota,
-                    'nama_manajer_marketing' => $nama,
-                    'alamat_manajer_marketing' => $faker->streetAddress,
-                    'jenis_kelamin_manajer_marketing' => $genders,
-                    'no_telp_manajer_marketing' => $faker->phoneNumber,
-                    'email_manajer_marketing' => $faker->email
-                ]);
-            }
-            else if($id_jabatan == 2){
-                // insert database admin gudang
-                DB::table('admin_gudang')->insert([
-                    'kode_kota' => $id_kota,
-                    'nama_admin_gudang' => $nama,
-                    'alamat_admin_gudang' => $faker->streetAddress,
-                    'jenis_kelamin_admin_gudang' => $genders,
-                    'no_telp_admin_gudang' => $faker->phoneNumber,
-                    'email_admin_gudang' => $faker->email
-                ]);
-            }
+            // insert database operator mesin
+            DB::table('operator_mesin')->insert([
+                'kode_kota' => $id_kota,
+                'nama_operator_mesin' =>$nama,
+                'alamat_operator_mesin' => $faker->streetAddress,
+                'jenis_kelamin_operator_mesin' => $genders,
+                'no_telp_operator_mesin' => $faker->phoneNumber,
+                'email_operator_mesin' => $faker->email
+            ]);
+        }
+
+        for ($i=0; $i < 5; $i++) {
+            // generate nama
+            $namadepan = $faker->firstName;
+            $namabelakang = $faker->lastName;
+            $nama = $namadepan." ".$namabelakang;
+
+            // memanggil function generate_id_kota
+            $id_kota = $this->generate_id_kota();
+
+            // memanggil function generate_id_jabatan
+            $id_jabatan = 5;
+
+            // generate jenis kelamin
+            $genders = $faker->randomElement($array = array('0', '1'));
+            
+            // insert database user
+            DB::table('user')->insert([
+                'kode_kota' => $id_kota,
+                'kode_jabatan' => $id_jabatan,
+                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'nama_user' => $nama,
+                'alamat_user' => $faker->streetAddress,
+                'jenis_kelamin_user' => $genders,
+                'no_telp_user' => $faker->phoneNumber,
+                'email_user' => $faker->email
+            ]);
+
+            // insert database sales b
+            DB::table('sales_b')->insert([
+                'kode_kota' => $id_kota,
+                'nama_sales_b' => $nama,
+                'alamat_sales_b' => $faker->streetAddress,
+                'jenis_kelamin_sales_b' => $genders,
+                'no_telp_sales_b' => $faker->phoneNumber,
+                'email_sales_b' => $faker->email
+            ]);
+        }
+
+        for ($i=0; $i < 5; $i++) {
+            // generate nama
+            $namadepan = $faker->firstName;
+            $namabelakang = $faker->lastName;
+            $nama = $namadepan." ".$namabelakang;
+
+            // memanggil function generate_id_kota
+            $id_kota = $this->generate_id_kota();
+
+            // memanggil function generate_id_jabatan
+            $id_jabatan = 4;
+
+            // generate jenis kelamin
+            $genders = $faker->randomElement($array = array('0', '1'));
+            
+            // insert database user
+            DB::table('user')->insert([
+                'kode_kota' => $id_kota,
+                'kode_jabatan' => $id_jabatan,
+                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'nama_user' => $nama,
+                'alamat_user' => $faker->streetAddress,
+                'jenis_kelamin_user' => $genders,
+                'no_telp_user' => $faker->phoneNumber,
+                'email_user' => $faker->email
+            ]);
+
+            // insert sales a
+            DB::table('sales_a')->insert([
+                'kode_kota' => $id_kota,
+                'nama_sales_a' => $nama,
+                'alamat_sales_a' => $faker->streetAddress,
+                'jenis_kelamin_sales_a' => $genders,
+                'no_telp_sales_a' => $faker->phoneNumber,
+                'email_sales_a' => $faker->email
+            ]);
+        }
+
+        for ($i=0; $i < 5; $i++) {
+            // generate nama
+            $namadepan = $faker->firstName;
+            $namabelakang = $faker->lastName;
+            $nama = $namadepan." ".$namabelakang;
+
+            // memanggil function generate_id_kota
+            $id_kota = $this->generate_id_kota();
+
+            // memanggil function generate_id_jabatan
+            $id_jabatan = 3;
+
+            // generate jenis kelamin
+            $genders = $faker->randomElement($array = array('0', '1'));
+            
+            // insert database user
+            DB::table('user')->insert([
+                'kode_kota' => $id_kota,
+                'kode_jabatan' => $id_jabatan,
+                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'nama_user' => $nama,
+                'alamat_user' => $faker->streetAddress,
+                'jenis_kelamin_user' => $genders,
+                'no_telp_user' => $faker->phoneNumber,
+                'email_user' => $faker->email
+            ]);
+
+            // insert database manajer marketing
+            DB::table('manajer_marketing')->insert([
+                'kode_kota' => $id_kota,
+                'nama_manajer_marketing' => $nama,
+                'alamat_manajer_marketing' => $faker->streetAddress,
+                'jenis_kelamin_manajer_marketing' => $genders,
+                'no_telp_manajer_marketing' => $faker->phoneNumber,
+                'email_manajer_marketing' => $faker->email
+            ]);
+        }
+
+        for ($i=0; $i < 5; $i++) {
+            // generate nama
+            $namadepan = $faker->firstName;
+            $namabelakang = $faker->lastName;
+            $nama = $namadepan." ".$namabelakang;
+
+            // memanggil function generate_id_kota
+            $id_kota = $this->generate_id_kota();
+
+            // memanggil function generate_id_jabatan
+            $id_jabatan = 5;
+
+            // generate jenis kelamin
+            $genders = $faker->randomElement($array = array('0', '1'));
+            
+            // insert database user
+            DB::table('user')->insert([
+                'kode_kota' => $id_kota,
+                'kode_jabatan' => $id_jabatan,
+                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'nama_user' => $nama,
+                'alamat_user' => $faker->streetAddress,
+                'jenis_kelamin_user' => $genders,
+                'no_telp_user' => $faker->phoneNumber,
+                'email_user' => $faker->email
+            ]);
+
+            // insert database admin gudang
+            DB::table('admin_gudang')->insert([
+                'kode_kota' => $id_kota,
+                'nama_admin_gudang' => $nama,
+                'alamat_admin_gudang' => $faker->streetAddress,
+                'jenis_kelamin_admin_gudang' => $genders,
+                'no_telp_admin_gudang' => $faker->phoneNumber,
+                'email_admin_gudang' => $faker->email
+            ]);
         }
 
         //faker owner
@@ -116,7 +225,7 @@ class UserTableSeeder extends Seeder
             'kode_kota' => $kota,
             'kode_jabatan' => 1,
             'username_user' => substr(str_replace(' ', '',strtolower($name)),0,20),
-            'password_user' => encrypt(substr(str_replace(' ', '',strtolower($name)),0,20)),
+            'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($name)),0,20)),
             'nama_user' => $name,
             'alamat_user' => $alamat,
             'jenis_kelamin_user' => $gender,
