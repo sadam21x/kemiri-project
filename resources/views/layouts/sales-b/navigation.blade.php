@@ -8,7 +8,7 @@
     <div class="navigation-menu-body">
         <ul>
             <li>
-                <a href="{{ url('/admin-gudang') }}" id="dashboard-menu" class="">
+                <a href="{{ url('/sales-b') }}" id="dashboard-menu" class="">
                     <span class="nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </span>
@@ -16,35 +16,19 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/penerimaan-bahan-baku') }}" id="penerimaan-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-truck-loading"></i>
-                    </span>
-                    <span>Penerimaan Bahan Baku</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin-gudang/pengiriman-barang') }}" id="pengiriman-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-truck"></i>
-                    </span>
-                    <span>Pengiriman Barang</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin-gudang/supplier') }}" id="supplier-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-industry"></i>
-                    </span>
-                    <span>Supplier</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin-gudang/customer') }}" id="customer-menu" class="">
+                <a href="{{ url('/sales-b/customer') }}" id="customer-menu" class="">
                     <span class="nav-link-icon">
                         <i class="fas fa-user"></i>
                     </span>
                     <span>Customer</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/sales-b/order-barang') }}" id="order-barang-menu" class="">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-cart-plus"></i>
+                    </span>
+                    <span>Order Barang</span>
                 </a>
             </li>
         </ul>

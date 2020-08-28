@@ -2,7 +2,7 @@
 
 /*
     == Note ==
-    Semua route ini bisa dialihkan ke controller. 
+    Semua proses di route ini bisa dialihkan ke controller. 
 */
 
 Route::view('/admin-gudang', 'admin-gudang/dashboard');
@@ -11,6 +11,7 @@ Route::view('/admin-gudang/pengiriman-barang', 'admin-gudang/pengiriman-barang')
 Route::view('/admin-gudang/pengiriman-barang/input', 'admin-gudang/input-pengiriman-barang');
 Route::view('/admin-gudang/pengiriman-barang/edit', 'admin-gudang/edit-pengiriman-barang');
 Route::view('/admin-gudang/customer', 'admin-gudang/customer');
+Route::view('/admin-gudang/order-barang', 'admin-gudang/order-barang');
 
 Route::get('/admin-gudang/supplier', function() {
     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
