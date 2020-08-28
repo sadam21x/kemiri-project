@@ -38,14 +38,14 @@
                         <td>UD. Prima Pertiwi</td>
                         <td>Jl. Slamet Riyadi No. 41, Solo</td>
                         <td colspan="2">
-                            <a href="" class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-supplier">
+                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-supplier">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
-                            </a>
-                            <a href="" class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal" data-target="#modal-edit-supplier">
+                            </button>
+                            <button class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal" data-target="#modal-edit-supplier">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -60,7 +60,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Supplier</h5>
+                <h5 class="modal-title">Detail Supplier</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -117,7 +117,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Tambah Supplier</h5>
+                <h5 class="modal-title">Tambah Supplier</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -127,24 +127,24 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="input-nama" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="input-nama" id="input-nama" class="form-control">
+                        <input type="text" name="" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="input-alamat" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="input-alamat" id="input-alamat" class="form-control">
+                        <input type="text" name="" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="input-provinsi" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="input-provinsi" name="input-provinsi">
+                        <select class="form-control select-component select-provinsi" id="" name="">
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
@@ -153,24 +153,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="input-kota" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="input-kota" name="input-kota">
+                        <select class="form-control select-component select-kota" id="" name="">
                             <option>Pilih kota . . </option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="input-telepon" class="col-form-label">
+                        <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="input-telepon" id="input-telepon" class="form-control num-without-style">
+                        <input type="number" name="" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
-                        <label for="input-email" class="col-form-label">Email</label>
-                        <input type="email" name="input-email" id="input-email" class="form-control">
+                        <label for="" class="col-form-label">Email</label>
+                        <input type="email" name="" id="" class="form-control">
                     </div>
 
                     <div class="modal-footer">
@@ -190,7 +190,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Edit Supplier</h5>
+                <h5 class="modal-title">Edit Supplier</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -200,27 +200,27 @@
                     @csrf
 
                     {{-- Hidden id supplier untuk update supplier --}}
-                    <input type="hidden" name="edit-id" id="edit-id" value="">
+                    <input type="hidden" name="" id="" value="">
 
                     <div class="form-group">
-                        <label for="edit-nama" class="col-form-label">
+                        <label for="a" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="edit-nama" id="edit-nama" class="form-control">
+                        <input type="text" name="a" id="a" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-alamat" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="edit-alamat" id="edit-alamat" class="form-control">
+                        <input type="text" name="" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-provinsi" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="edit-provinsi" name="edit-provinsi">
+                        <select class="form-control select-component select-provinsi" id="" name="">
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
@@ -229,24 +229,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-kota" class="col-form-label">
+                        <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="edit-kota" name="edit-kota">
+                        <select class="form-control select-component select-kota" id="" name="">
                             <option>Pilih kota . . </option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-telepon" class="col-form-label">
+                        <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="edit-telepon" id="edit-telepon" class="form-control num-without-style">
+                        <input type="number" name="" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-email" class="col-form-label">Email</label>
-                        <input type="email" name="edit-email" id="edit-email" class="form-control">
+                        <label for="" class="col-form-label">Email</label>
+                        <input type="email" name="" id="" class="form-control">
                     </div>
 
                     <div class="modal-footer">

@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="form-group col-md-4 mt-4 ml-2">
-                        <a class="btn btn-sm btn-secondary mt-2 text-white">Tambah</a>
+                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white">Tambah</button>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                                 125
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-youtube">
+                                <button type="button" class="btn btn-sm btn-youtube">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>

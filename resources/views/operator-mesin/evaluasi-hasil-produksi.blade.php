@@ -82,7 +82,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Evaluasi Hasil Produksi</h5>
+                <h5 class="modal-title">Evaluasi Hasil Produksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -92,7 +92,7 @@
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="input-id-pegawai" id="input-id-pegawai" value="">
+                    <input type="hidden" name="" id="" value="">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">ID Pengambilan Bahan Baku</label>
@@ -112,6 +112,11 @@
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier Bahan Baku</label>
                         <input type="text" name="" id="" value="UD. Permata Langit" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <input type="text" name="" id="" value="Plastik Virgin" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -156,7 +161,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Edit Evaluasi Hasil Produksi</h5>
+                <h5 class="modal-title">Edit Evaluasi Hasil Produksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -166,7 +171,7 @@
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="input-id-pegawai" id="input-id-pegawai" value="">
+                    <input type="hidden" name="" id="" value="">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">ID Pengambilan Bahan Baku</label>
@@ -186,6 +191,11 @@
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier Bahan Baku</label>
                         <input type="text" name="" id="" value="UD. Permata Langit" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <input type="text" name="" id="" value="Plastik Virgin" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -230,7 +240,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Produksi</h5>
+                <h5 class="modal-title">Detail Produksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -262,6 +272,11 @@
                     <div class="my-3">
                         <h5>Supplier Bahan Baku</h5>
                         <h6>UD. Permata Langit</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Bahan Baku</h5>
+                        <h6>Plastik Virgin</h6>
                     </div>
 
                     <div class="my-3">

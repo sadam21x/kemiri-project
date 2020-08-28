@@ -41,16 +41,16 @@
                         <td>01/08/2020</td>
                         <td>UD. Pertama Jaya</td>
                         <td colspan="2">
-                            <a href="" class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
+                            <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
                                 data-toggle="modal" data-target="#modal-detail-penerimaan">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
-                            </a>
-                            <a href="" class="btn btn-warning btn-sm tombol-edit-penerimaan"
+                            </button>
+                            <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
                                 data-toggle="modal" data-target="#modal-edit-penerimaan">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
-                            </a>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -58,16 +58,16 @@
                         <td>02/08/2020</td>
                         <td>CV. Permata Langit</td>
                         <td colspan="2">
-                            <a href="" class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
+                            <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
                                 data-toggle="modal" data-target="#modal-detail-penerimaan">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
-                            </a>
-                            <a href="" class="btn btn-warning btn-sm tombol-edit-penerimaan"
+                            </button>
+                            <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
                                 data-toggle="modal" data-target="#modal-edit-penerimaan">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -83,7 +83,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Penerimaan Bahan Baku</h5>
+                <h5 class="modal-title">Detail Penerimaan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -110,6 +110,11 @@
                     <div class="my-3">
                         <h5>Supplier</h5>
                         <h6>UD. Pertama Jaya</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Bahan Baku</h5>
+                        <h6>Plastik Virgin</h6>
                     </div>
 
                     <div class="my-3">
@@ -147,7 +152,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Input Penerimaan Bahan Baku</h5>
+                <h5 class="modal-title">Input Penerimaan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -157,16 +162,16 @@
                     @csrf
 
                     {{-- Hidden id admin gudang yang melakukan input data penerimaan --}}
-                    <input type="hidden" name="input-id-pegawai" id="input-id-pegawai" value="">
+                    <input type="hidden" name="" id="" value="">
 
                     <div class="form-group">
-                        <label for="input-tanggal" class="col-form-label">Tanggal</label>
-                        <input type="date" name="input-tanggal" id="input-tanggal" class="form-control date-component">
+                        <label for="" class="col-form-label">Tanggal</label>
+                        <input type="date" name="" id="" class="form-control date-component">
                     </div>
 
                     <div class="form-group">
-                        <label for="input-supplier" class="col-form-label">Supplier</label>
-                        <select class="form-control select-component" id="input-supplier" name="input-supplier">
+                        <label for="" class="col-form-label">Supplier</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
                             <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
@@ -177,20 +182,30 @@
                             <option value="Himasi">Himasi</option>
                         </select>
                     </div>
-
+                    
                     <div class="form-group">
-                        <label for="input-jumlah-karung" class="col-form-label">Jumlah Karung</label>
-                        <input type="number" name="input-jumlah-karung" id="input-jumlah-karung" class="form-control">
+                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="">
+                            <option>Pilih bahan baku . . </option>
+                            <option value="Plastik Bekas">Plastik Bekas</option>
+                            <option value="Plastik Virgin">Plastik Virgin</option>
+                            <option value="Pewarna">Pewarna</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="input-berat-karung" class="col-form-label">Berat per Karung (Kg)</label>
-                        <input type="number" name="input-berat-karung" id="input-berat-karung" class="form-control">
+                        <label for="" class="col-form-label">Jumlah Karung</label>
+                        <input type="number" name="" id="" class="form-control input-jumlah-karung">
                     </div>
 
                     <div class="form-group">
-                        <label for="input-berat-total" class="col-form-label">Berat Total (Kg)</label>
-                        <input type="number" name="input-berat-total" id="input-berat-total" class="form-control" placeholder="0">
+                        <label for="" class="col-form-label">Berat per Karung (Kg)</label>
+                        <input type="number" name="" id="" class="form-control input-berat-karung">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Berat Total (Kg)</label>
+                        <input type="number" name="" id="" class="form-control input-berat-total" placeholder="0">
                     </div>
 
                     <div class="modal-footer">
@@ -210,7 +225,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Edit Penerimaan Bahan Baku</h5>
+                <h5 class="modal-title">Edit Penerimaan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -220,16 +235,16 @@
                     @csrf
 
                     {{-- Hidden id penerimaan bahan baku untuk update penerimaan --}}
-                    <input type="hidden" name="edit-id-penerimaan" id="edit-id-penerimaan" value="">
+                    <input type="hidden" name="" id="" value="">
 
                     <div class="form-group">
-                        <label for="edit-tanggal" class="col-form-label">Tanggal</label>
-                        <input type="date" name="edit-tanggal" id="edit-tanggal" class="form-control date-component">
+                        <label for="" class="col-form-label">Tanggal</label>
+                        <input type="date" name="" id="" class="form-control date-component">
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-supplier" class="col-form-label">Supplier</label>
-                        <select class="form-control select-component" id="edit-supplier" name="edit-supplier">
+                        <label for="" class="col-form-label">Supplier</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
                             <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
@@ -242,18 +257,28 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-jumlah-karung" class="col-form-label">Jumlah Karung</label>
-                        <input type="number" name="edit-jumlah-karung" id="edit-jumlah-karung" class="form-control">
+                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="">
+                            <option>Pilih bahan baku . . </option>
+                            <option value="Plastik Bekas">Plastik Bekas</option>
+                            <option value="Plastik Virgin">Plastik Virgin</option>
+                            <option value="Pewarna">Pewarna</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-berat-karung" class="col-form-label">Berat per Karung (Kg)</label>
-                        <input type="number" name="edit-berat-karung" id="edit-berat-karung" class="form-control">
+                        <label for="" class="col-form-label">Jumlah Karung</label>
+                        <input type="number" name="" id="" class="form-control edit-jumlah-karung">
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-berat-total" class="col-form-label">Berat Total (Kg)</label>
-                        <input type="number" name="edit-berat-total" id="edit-berat-total" class="form-control" placeholder="0">
+                        <label for="" class="col-form-label">Berat per Karung (Kg)</label>
+                        <input type="number" name="" id="" class="form-control edit-berat-karung">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Berat Total (Kg)</label>
+                        <input type="number" name="" id="" class="form-control edit-berat-total" placeholder="0">
                     </div>
 
                     <div class="modal-footer">

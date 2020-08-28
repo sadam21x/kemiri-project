@@ -33,10 +33,10 @@
                         <td>Depo Air Minum Prima Pertiwi</td>
                         <td>Jl. Slamet Riyadi No. 41, Solo</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer">
+                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -51,7 +51,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Customer</h5>
+                <h5 class="modal-title">Detail Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>

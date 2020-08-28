@@ -78,7 +78,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Input Pengambilan Bahan Baku</h5>
+                <h5 class="modal-title">Input Pengambilan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -88,11 +88,11 @@
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="input-id-pegawai" id="input-id-pegawai" value="">
+                    <input type="hidden" name="" id="" value="">
 
                     <div class="form-group">
-                        <label for="input-supplier" class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component" id="input-supplier" name="input-supplier">
+                        <label for="" class="col-form-label">Supplier Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
                             <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
@@ -105,18 +105,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="input-jumlah-kg" class="col-form-label">Jumlah (Kg)</label>
-                        <input type="number" name="input-jumlah-kg" id="input-jumlah-kg" class="form-control">
+                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="">
+                            <option>Pilih bahan baku . . </option>
+                            <option value="Plastik Bekas">Plastik Bekas</option>
+                            <option value="Plastik Virgin">Plastik Virgin</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="input-jumlah-karung" class="col-form-label">Jumlah (Karung)</label>
-                        <input type="number" name="input-jumlah-karung" id="input-jumlah-karung" class="form-control">
+                        <label for="" class="col-form-label">Jumlah (Kg)</label>
+                        <input type="number" name="" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="input-jenis-produk" class="col-form-label">Barang Produksi</label>
-                        <select class="form-control select-component" id="input-jenis-produk" name="input-jenis-produk">
+                        <label for="" class="col-form-label">Jumlah (Karung)</label>
+                        <input type="number" name="" id="" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Barang Produksi</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih barang yang akan diproduksi . . </option>
                             <option value="Tutup Galon Tipe A">Tutup Galon Tipe A</option>
                             <option value="Tutup Galon Tipe B">Tutup Galon Tipe B</option>
@@ -124,8 +133,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="input-mesin" class="col-form-label">Mesin yang digunakan</label>
-                        <select class="form-control select-component" id="input-jenis-produk" name="input-jenis-produk">
+                        <label for="" class="col-form-label">Mesin yang digunakan</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih mesin . . </option>
                             <option value="Mesin A">Mesin A</option>
                             <option value="Mesin B">Mesin B</option>
@@ -149,7 +158,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Edit Pengambilan Bahan Baku</h5>
+                <h5 class="modal-title">Edit Pengambilan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -158,9 +167,12 @@
                 <form action="" method="POST">
                     @csrf
 
+                    {{-- Hidden id pengambilan bahan baku untuk update data --}}
+                    <input type="hidden" name="">
+
                     <div class="form-group">
-                        <label for="edit-supplier" class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component" id="edit-supplier" name="edit-supplier">
+                        <label for="" class="col-form-label">Supplier Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
                             <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
@@ -173,18 +185,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-jumlah-kg" class="col-form-label">Jumlah (Kg)</label>
-                        <input type="number" name="edit-jumlah-kg" id="edit-jumlah-kg" class="form-control">
+                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="">
+                            <option>Pilih bahan baku . . </option>
+                            <option value="Plastik Bekas">Plastik Bekas</option>
+                            <option value="Plastik Virgin">Plastik Virgin</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-jumlah-karung" class="col-form-label">Jumlah (Karung)</label>
-                        <input type="number" name="edit-jumlah-karung" id="edit-jumlah-karung" class="form-control">
+                        <label for="" class="col-form-label">Jumlah (Kg)</label>
+                        <input type="number" name="" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-jenis-produk" class="col-form-label">Barang Produksi</label>
-                        <select class="form-control select-component" id="edit-jenis-produk" name="edit-jenis-produk">
+                        <label for="" class="col-form-label">Jumlah (Karung)</label>
+                        <input type="number" name="" id="" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Barang Produksi</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih barang yang akan diproduksi . . </option>
                             <option value="Tutup Galon Tipe A">Tutup Galon Tipe A</option>
                             <option value="Tutup Galon Tipe B">Tutup Galon Tipe B</option>
@@ -192,8 +213,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-mesin" class="col-form-label">Mesin yang digunakan</label>
-                        <select class="form-control select-component" id="edit-jenis-produk" name="edit-jenis-produk">
+                        <label for="" class="col-form-label">Mesin yang digunakan</label>
+                        <select class="form-control select-component" id="" name="">
                             <option>Pilih mesin . . </option>
                             <option value="Mesin A">Mesin A</option>
                             <option value="Mesin B">Mesin B</option>
@@ -217,7 +238,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Pengambilan Bahan Baku</h5>
+                <h5 class="modal-title">Detail Pengambilan Bahan Baku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -244,6 +265,11 @@
                     <div class="my-3">
                         <h5>Supplier Bahan Baku</h5>
                         <h6>UD. Permata Langit</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Bahan Baku</h5>
+                        <h6>Plastik Virgin</h6>
                     </div>
 
                     <div class="my-3">

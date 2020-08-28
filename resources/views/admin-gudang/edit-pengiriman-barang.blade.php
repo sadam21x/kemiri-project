@@ -25,11 +25,11 @@
                     <div class="form-group col-md-3">
                         <label for="staff">Staff Gudang</label>
                         {{-- Id admin gudang --}}
-                        <input type="hidden" value="" name="user_id" id="user_id">
+                        <input type="hidden" value="" name="" id="">
                         <input type="text" class="form-control" readonly value="Ahmad Baihaqi">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="customer">Customer</label>
+                        <label for="">Customer</label>
                         <select name="" id="" class="select-component form-control">
                             <option value="Depo Air Minum Jaya Sakthi">Depo Air Minum Jaya Sakthi</option>
                             <option value="Depo Air Minum Kertajaya Indah">Depo Air Minum Kertajaya Indah</option>
@@ -48,8 +48,8 @@
 
                 <div class="form-row mt-2">
                     <div class="form-group mx-2">
-                        <label for="categories">Kategori</label>
-                        <select id="categories" name="categories" class="form-control">
+                        <label for="">Kategori</label>
+                        <select id="" name="" class="form-control">
                             <option value="semua">Semua</option>
                             <option value="Tutup Galon">Tutup Galon</option>
                             <option value="AMDK">AMDK</option>
@@ -57,8 +57,8 @@
                     </div>
 
                     <div class="form-group mx-2">
-                        <label for="product">Produk</label>
-                        <select id="product" name="product" class="form-control select-component">
+                        <label for="">Produk</label>
+                        <select id="" name="" class="form-control select-component">
                             <option value="Tutup Galon Tipe A">Tutup Galon Tipe A</option>
                             <option value="Tutup Galon Tipe B">Tutup Galon Tipe B</option>
                             <option value="Tutup Galon Tipe C">Tutup Galon Tipe C</option>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="form-group col-md-4 mt-4 ml-2">
-                        <a class="btn btn-sm btn-secondary mt-2 text-white">Tambah</a>
+                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white">Tambah</button>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                                 125
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-youtube">
+                                <button type="button" class="btn btn-sm btn-youtube">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>

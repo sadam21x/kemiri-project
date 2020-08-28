@@ -38,14 +38,14 @@
                         <td>Depo Air Minum Alam Sutera</td>
                         <td>Jl. Kusuma Bangsa, Tambaksari, Kota Surabaya</td>
                         <td colspan="2">
-                            <a href="" class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer">
+                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
-                            </a>
-                            <a href="" class="btn btn-sm btn-warning tombol-edit-customer" data-toggle="modal" data-target="#modal-edit-customer">
+                            </button>
+                            <button class="btn btn-sm btn-warning tombol-edit-customer" data-toggle="modal" data-target="#modal-edit-customer">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -61,7 +61,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Detail Customer</h5>
+                <h5 class="modal-title">Detail Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -123,7 +123,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Tambah Customer</h5>
+                <h5 class="modal-title">Tambah Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -133,7 +133,7 @@
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
-                    {{-- <input type="hidden" name=""> --}}
+                    <input type="hidden" name="">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
@@ -206,7 +206,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title" id="modal-form-label">Edit Customer</h5>
+                <h5 class="modal-title">Edit Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -214,6 +214,9 @@
             <div class="modal-body">
                 <form action="" method="POST">
                     @csrf
+
+                    {{-- Hidden id customer untuk update data --}}
+                    <input type="hidden" name="">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">

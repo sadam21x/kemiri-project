@@ -32,22 +32,22 @@ $(document).ready(function() {
     // Hitung berat total bahan baku (input penerimaan)
     $('form :input').change(function() {
 
-        let jumlahKarung = $('#input-jumlah-karung').val();
-        let beratKarung = $('#input-berat-karung').val();
+        let jumlahKarung = $('.input-jumlah-karung').val();
+        let beratKarung = $('.input-berat-karung').val();
 
         let beratTotal = jumlahKarung * beratKarung;
-        $('#input-berat-total').val(beratTotal);
+        $('.input-berat-total').val(beratTotal);
 
     });
 
     // Hitung berat total bahan baku (edit penerimaan)
     $('form :input').change(function() {
 
-        let jumlahKarung = $('#edit-jumlah-karung').val();
-        let beratKarung = $('#edit-berat-karung').val();
+        let jumlahKarung = $('.edit-jumlah-karung').val();
+        let beratKarung = $('.edit-berat-karung').val();
 
         let beratTotal = jumlahKarung * beratKarung;
-        $('#edit-berat-total').val(beratTotal);
+        $('.edit-berat-total').val(beratTotal);
 
     });
 
