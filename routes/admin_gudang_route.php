@@ -6,7 +6,6 @@
 */
 
 Route::view('/admin-gudang', 'admin-gudang/dashboard');
-);
 
 
 // Route Dea
@@ -21,7 +20,7 @@ Route::get('/admin-gudang/customer', 'AdminGudang\CustomerController@index');
 //Route Dimas
 Route::view('/admin-gudang/order-barang', 'admin-gudang/order-barang');
 
-Route::view('/admin-gudang/penerimaan-bahan-baku', 'admin-gudang/penerimaan-bahan-baku'
+Route::view('/admin-gudang/penerimaan-bahan-baku', 'admin-gudang/penerimaan-bahan-baku');
 Route::get('/admin-gudang/supplier', function() {
     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
 
