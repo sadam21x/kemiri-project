@@ -89,8 +89,8 @@ class Penjualan extends Model
 		return $this->hasMany(EvaluasiKinerjaSale::class, 'ID_PENJUALAN');
 	}
 
-	public function pembayaran_penjualans()
+	public function pembayaran_penjualan()
 	{
-		return $this->hasMany(PembayaranPenjualan::class, 'ID_PENJUALAN');
+		return $this->hasOne(PembayaranPenjualan::class, 'ID_PENJUALAN');
 	}
 }
