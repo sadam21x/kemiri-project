@@ -7,8 +7,11 @@
 
 Route::view('/admin-gudang', 'admin-gudang/dashboard');
 Route::view('/admin-gudang/penerimaan-bahan-baku', 'admin-gudang/penerimaan-bahan-baku');
-Route::view('/admin-gudang/pengiriman-barang', 'admin-gudang/pengiriman-barang');
-Route::view('/admin-gudang/pengiriman-barang/input', 'admin-gudang/input-pengiriman-barang');
+
+Route::get('/admin-gudang/pengiriman-barang','AdminGudang\PengirimanBarangController@index');
+Route::get('/admin-gudang/pengiriman-barang/input', 'AdminGudang\PengirimanBarangController@insert');
+Route::post('/admin-gudang/pengiriman-barang/store', 'AdminGudang\PengirimanBarangController@store');
+
 Route::view('/admin-gudang/pengiriman-barang/edit', 'admin-gudang/edit-pengiriman-barang');
 Route::view('/admin-gudang/customer', 'admin-gudang/customer');
 Route::view('/admin-gudang/order-barang', 'admin-gudang/order-barang');

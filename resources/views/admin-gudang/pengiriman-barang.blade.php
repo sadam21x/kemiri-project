@@ -35,50 +35,42 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
+                    @php $hari_ini = date("d/m/Y");
+                    $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RILL));
+                    @endphp
                     <tr>
-                        <td>PGR00001</td>
-                        <td>01/08/2020</td>
-                        <td>Depo Air Minum Kertajaya Indah</td>
+                        <td>{{$d->KODE_PENGIRIMAN}}</td>
+                        <td>{{$tglkirim}}</td>
+                        <td>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
                         <td>
+                            @if($tglkirim <= $hari_ini)
                             <a href="" class="badge badge-success">
                                 TERKIRIM
                                 <i class="fas fa-check ml-1"></i>
                             </a>
-                        </td>
-                        <td colspan="2">
-                            <button class="btn btn-linkedin btn-sm tombol-detail-pengiriman"
-                                data-toggle="modal" data-target="#modal-detail-pengiriman-barang">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                            <a href="{{ url('/admin-gudang/pengiriman-barang/edit') }}" class="disabled btn btn-warning btn-sm">
-                                <i class="fas fa-edit mr-1"></i>
-                                EDIT
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>PGR00002</td>
-                        <td>02/08/2020</td>
-                        <td>Depo Air Minum Surya</td>
-                        <td>
+                            @else
                             <a href="" class="badge badge-secondary">
                                 PENDING
                                 <i class="fas fa-exclamation-circle ml-1"></i>
                             </a>
+                            @endif
                         </td>
                         <td colspan="2">
                             <button class="btn btn-linkedin btn-sm tombol-detail-pengiriman"
-                                data-toggle="modal" data-target="#modal-detail-pengiriman-barang">
+                                data-toggle="modal" data-target="#modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
-                            <a href="{{ url('/admin-gudang/pengiriman-barang/edit') }}" class="btn btn-warning btn-sm">
+                            <a href="{{ url('/admin-gudang/pengiriman-barang/edit') }}" class="@if($tglkirim <= $hari_ini)
+                            disabled
+                            @endif btn btn-warning btn-sm">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -86,9 +78,9 @@
 
 </div>
 <!-- End of Content -->
-
+@foreach($data as $d)
 {{-- Start Detail Pengiriman Modal --}}
-<div class="modal fade" id="modal-detail-pengiriman-barang" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -103,27 +95,27 @@
 
                     <div class="my-3">
                         <h5>ID Pengiriman</h5>
-                        <h6>PGR00001</h6>
+                        <h6>{{$d->KODE_PENGIRIMAN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Tanggal Pengiriman</h5>
-                        <h6>01/08/2020</h6>
+                        <h6>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RILL))}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Staff Gudang</h5>
-                        <h6>Ahmad Baihaqi</h6>
+                        <h6>{{$d->admin_gudang->NAMA_ADMIN_GUDANG}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>Depo Air Minum Kertajaya Indah</h6>
+                        <h6>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Metode Pengiriman</h5>
-                        <h6>Truk Kontainer</h6>
+                        <h6>{{$d->pembayaran_penjualan->penjualan->METODE_KIRIM}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -134,36 +126,34 @@
                                 <th scope="col">Jumlah (pcs)</th>
                             </thead>
                             <tbody>
+                                @foreach($d->pembayaran_penjualan->penjualan->detil_penjualans as $detilp)
                                 <tr>
-                                    <td>Tutup Galon Tipe A</td>
-                                    <td>500</td>
+                                    <td>{{$detilp->product->NAMA_PRODUCT}}</td>
+                                    <td>{{$detilp->JUMLAH_PCS}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Tutup Galon Tipe B</td>
-                                    <td>500</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Item (pcs)</h5>
-                        <h6>1000</h6>
+                        <h6>{{ $d->pembayaran_penjualan->penjualan->detil_penjualans->sum('JUMLAH_PCS')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>125.000</h6>
+                        <h6>{{ number_format($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG'),2,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Ongkos Kirim (IDR)</h5>
-                        <h6>20.000</h6>
+                        <h6>@php $ongkir=20000; echo number_format($ongkir,2,',','.');@endphp</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>145.000</h6>
+                        <h6>{{ number_format(floatval($ongkir) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),2,',','.')}}</h6>
                     </div>
 
                     <div class="mt-5 d-flex justify-content-center">
@@ -180,6 +170,7 @@
     </div>
 </div>
 {{-- End of Detail Pengiriman Modal--}}
+@endforeach
 @endsection
 
 @section('extra-script')
