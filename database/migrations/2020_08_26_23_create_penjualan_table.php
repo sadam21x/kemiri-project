@@ -21,6 +21,7 @@ class CreatePenjualanTable extends Migration
             $table->dateTime('TGL_PENJUALAN');
             $table->date('TGL_KIRIM');
             $table->string('METODE_KIRIM', 50);
+            $table->integer('ONGKOS_KIRIM');
             $table->integer('TOTAL_PENJUALAN');
             $table->tinyInteger('STATUS_PENJUALAN');
         });
