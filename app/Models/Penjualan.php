@@ -43,7 +43,8 @@ class Penjualan extends Model
 		'ID_KONFIRMASI_PENJUALAN' => 'int',
 		'ID_SALES_B' => 'int',
 		'TOTAL_PENJUALAN' => 'int',
-		'STATUS_PENJUALAN' => 'bool'
+		'STATUS_PENJUALAN' => 'bool',
+		'ONGKOS_KIRIM' => 'int'
 	];
 
 	protected $dates = [
