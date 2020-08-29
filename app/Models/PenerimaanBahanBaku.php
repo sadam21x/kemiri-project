@@ -43,7 +43,6 @@ class PenerimaanBahanBaku extends Model
 		'KODE_BAHAN_BAKU' => 'int',
 		'ID_ADMIN_GUDANG' => 'int',
 		'TOTAL_BERAT' => 'float',
-		'STOK_BAHAN_BAKU' => 'float',
 		'JUMLAH_KARUNG_SAK' => 'float',
 		'ISI_KARUNG' => 'float'
 	];

@@ -1,32 +1,32 @@
-@extends('layouts/admin-gudang/main')
-@section('title', 'Input Pengiriman Barang')
+@extends('layouts/sales-b/main')
+@section('title', 'Edit Order Barang')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/admin-gudang.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
 @endsection
 
 @section('content')
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h4>Input Pengiriman Barang</h4>
+        <h4>Edit Order Barang</h4>
         <hr>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            {{-- Start form pengiriman barang --}}
+            {{-- Start form order barang --}}
             <form action="" method="post">
                 @csrf
 
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label for="staff">Staff Gudang</label>
-                        {{-- Id admin gudang --}}
+                        <label for="staff">Sales</label>
+                        {{-- Id sales --}}
                         <input type="hidden" value="" name="user_id" id="user_id">
-                        <input type="text" class="form-control" readonly value="Ahmad Baihaqi">
+                        <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="customer">Customer</label>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="form-group col-md-4 mt-4 ml-2">
-                        <a class="btn btn-sm btn-secondary mt-2 text-white">Tambah</a>
+                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white">Tambah</button>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                                 125
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-youtube">
+                                <button type="button" class="btn btn-sm btn-youtube">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -152,16 +152,10 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <h3>Metode Pengiriman</h3>
+                        <h3>Ongkos Kirim (IDR)</h3>
 
                         <div class="form-group">
-                            <select id="" name="" class="form-control select-component">
-                                <option value="">Truk Kontainer</option>
-                                <option value="">POS</option>
-                                <option value="">TIKI</option>
-                                <option value="">JNE</option>
-                                <option value="">J&T</option>
-                            </select>
+                            <input type="number" name="" id="" min="0" value="0" class="form-control num-without-style">
                         </div>
                     </div>
                 </div>
@@ -202,7 +196,7 @@
                 </div>
                 
             </form>
-            {{-- End of form pengiriman barang --}}
+            {{-- End of form order barang --}}
         </div>
     </div>
 </div>
@@ -213,5 +207,5 @@
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/admin-gudang-input-pengiriman-barang.js') }}"></script>
+    <script src="{{ asset('/assets/js/sales-b-input-order-barang.js') }}"></script>
 @endsection

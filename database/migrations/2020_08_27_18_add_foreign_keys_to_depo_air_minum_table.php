@@ -14,7 +14,7 @@ class AddForeignKeysToDepoAirMinumTable extends Migration
     public function up()
     {
         Schema::table('depo_air_minum', function (Blueprint $table) {
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKIE0R9')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_KOTA', 'FK_MEMILIKIE0R9')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('ID_SALES_A', 'FK_MENCATAT')->references('ID_SALES_A')->on('sales_a')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }

@@ -1,15 +1,15 @@
-@extends('layouts/admin-gudang/main')
-@section('title', 'Pengiriman Barang')
+@extends('layouts/sales-b/main')
+@section('title', 'Order Barang')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/admin-gudang.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
 @endsection
 
 @section('content')
 <!-- Start Content -->
 <div class="content ">
     <div class="page-header">
-        <h4>Pengiriman Barang</h4>
+        <h4>Order Barang</h4>
         <hr>
     </div>
 
@@ -17,13 +17,17 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Riwayat Pengiriman Barang</h5>
+                <h5 class="">Riwayat Order Barang</h5>
+                <a href="{{ url('/sales-b/order-barang/input') }}" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
+                    <i class="fas fa-plus mr-1"></i>
+                    TAMBAH BARU
+                </a>
             </div>
 
-            <table id="pengiriman-barang-table" class="table table-striped table-bordered table-responsive-stack">
+            <table id="order-barang-table" class="table table-striped table-bordered table-responsive-stack">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID Pengiriman</th>
+                        <th scope="col">ID Order</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Status</th>
@@ -31,36 +35,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data as $d)
-                    @php $hari_ini = date("d/m/Y");
-                    $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RILL));
-                    @endphp
                     <tr>
-                        <td>{{$d->KODE_PENGIRIMAN}}</td>
-                        <td>{{$tglkirim}}</td>
-                        <td>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
+                        <td>ORD00001</td>
+                        <td>01/08/2020</td>
+                        <td>Depo Air Minum Kertajaya Indah</td>
                         <td>
-                            @if($tglkirim <= $hari_ini)
                             <a href="" class="badge badge-success">
-                                TERKIRIM
+                                SELESAI
                                 <i class="fas fa-check ml-1"></i>
                             </a>
-                            @else
-                            <a href="" class="badge badge-secondary">
-                                PENDING
-                                <i class="fas fa-exclamation-circle ml-1"></i>
-                            </a>
-                            @endif
                         </td>
-                        <td>
-                            <button class="btn btn-linkedin btn-sm tombol-detail-pengiriman"
-                                data-toggle="modal" data-target="#modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}">
+                        <td colspan="2">
+                            <button class="btn btn-linkedin btn-sm"
+                                data-toggle="modal" data-target="#modal-detail-order-barang">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
+                            <a href="{{ url('/sales-b/order-barang/edit') }}" class="disabled btn btn-warning btn-sm">
+                                <i class="fas fa-edit mr-1"></i>
+                                EDIT
+                            </a>
                         </td>
                     </tr>
-                    @endforeach
+                    <tr>
+                        <td>ORD00002</td>
+                        <td>02/08/2020</td>
+                        <td>Depo Air Minum Surya</td>
+                        <td>
+                            <a href="" class="badge badge-secondary">
+                                SEDANG DIPROSES
+                                <i class="fas fa-exclamation-circle ml-1"></i>
+                            </a>
+                        </td>
+                        <td colspan="2">
+                            <button class="btn btn-linkedin btn-sm"
+                                data-toggle="modal" data-target="#modal-detail-order-barang">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                DETAIL
+                            </button>
+                            <a href="{{ url('/sales-b/order-barang/edit') }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit mr-1"></i>
+                                EDIT
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -68,13 +86,13 @@
 
 </div>
 <!-- End of Content -->
-@foreach($data as $d)
-{{-- Start Detail Pengiriman Modal --}}
-<div class="modal fade" id="modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}" tabindex="-1" role="dialog" aria-hidden="true">
+
+{{-- Start Detail Order Barang Modal --}}
+<div class="modal fade" id="modal-detail-order-barang" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title">Detail Pengiriman Barang</h5>
+                <h5 class="modal-title">Detail Order Barang</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -84,28 +102,23 @@
                 <div class="container">
 
                     <div class="my-3">
-                        <h5>ID Pengiriman</h5>
-                        <h6>{{$d->KODE_PENGIRIMAN}}</h6>
+                        <h5>ID Order</h5>
+                        <h6>ORD00001</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Tanggal Pengiriman</h5>
-                        <h6>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RILL))}}</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Staff Gudang</h5>
-                        <h6>{{$d->admin_gudang->NAMA_ADMIN_GUDANG}}</h6>
+                        <h5>Tanggal</h5>
+                        <h6>01/08/2020</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
+                        <h6>Depo Air Minum Kertajaya Indah</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Metode Pengiriman</h5>
-                        <h6>{{$d->pembayaran_penjualan->penjualan->METODE_KIRIM}}</h6>
+                        <h6>Truk Kontainer</h6>
                     </div>
 
                     <div class="my-3">
@@ -116,34 +129,43 @@
                                 <th scope="col">Jumlah (pcs)</th>
                             </thead>
                             <tbody>
-                                @foreach($d->pembayaran_penjualan->penjualan->detil_penjualans as $detilp)
                                 <tr>
-                                    <td>{{$detilp->product->NAMA_PRODUCT}}</td>
-                                    <td>{{$detilp->JUMLAH_PCS}}</td>
+                                    <td>Tutup Galon Tipe A</td>
+                                    <td>500</td>
                                 </tr>
-                                @endforeach
+                                <tr>
+                                    <td>Tutup Galon Tipe B</td>
+                                    <td>500</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Item (pcs)</h5>
-                        <h6>{{ $d->pembayaran_penjualan->penjualan->detil_penjualans->sum('JUMLAH_PCS')}}</h6>
+                        <h6>1000</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG'),2,',','.')}}</h6>
+                        <h6>125.000</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Ongkos Kirim (IDR)</h5>
-                        <h6>@php $ongkir=20000; echo number_format($ongkir,2,',','.');@endphp</h6>
+                        <h6>20.000</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>{{ number_format(floatval($ongkir) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),2,',','.')}}</h6>
+                        <h6>145.000</h6>
+                    </div>
+
+                    <div class="mt-5 d-flex justify-content-center">
+                        <a href="" class="btn btn-md btn-google">
+                            <i class="far fa-file-alt mr-2"></i>
+                            NOTA ORDER
+                        </a>
                     </div>
 
                 </div>
@@ -152,11 +174,10 @@
         </div>
     </div>
 </div>
-{{-- End of Detail Pengiriman Modal--}}
-@endforeach
+{{-- End of Detail Order Barang Modal--}}
 @endsection
 
 @section('extra-script')
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/admin-gudang-pengiriman-barang.js') }}"></script>
+    <script src="{{ asset('/assets/js/sales-b-order-barang.js') }}"></script>
 @endsection

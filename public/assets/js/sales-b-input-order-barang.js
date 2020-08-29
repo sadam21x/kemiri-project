@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Efek menu aktif pada navbar menu
-    const menu = document.getElementById("pengiriman-menu");
+    const menu = document.getElementById("order-barang-menu");
     menu.classList.add("active");
  
     // Mencegah submit form via tombol enter
