@@ -48,7 +48,7 @@
                                 DETAIL
                             </button>
                             <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
-                                data-toggle="modal" data-target="#modal-edit-penerimaan">
+                                data-toggle="modal" data-target="#modal-edit-penerimaan-{{$d->id_penerimaan}}">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
                             </button>
@@ -125,7 +125,6 @@
 </div>
 {{-- End of Detail Penerimaan Bahan Baku Modal--}}
 @endforeach
-@foreach($data as $d)
 {{-- Start Input Penerimaan Bahan Baku Modal --}}
 <div class="modal fade" id="modal-input-penerimaan" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -152,13 +151,9 @@
                         <label for="" class="col-form-label">Supplier</label>
                         <select class="form-control select-component" id="" name="id_supplier">
                             <option>Pilih supplier . . </option>
-                            <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
-                            <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
-                            <option value="Bapak Zainuri">Bapak Zainuri</option>
-                            <option value="Bapak Santoso">Bapak Santoso</option>
-                            <option value="UD. Dewata Indah">UD. Dewata Indah</option>
-                            <option value="Ibu Nur Aminah">Ibu Nur Aminah</option>
-                            <option value="Himasi">Himasi</option>
+                            @foreach ($supplier as $s)
+                                <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
+                            @endforeach
                         </select>
                     </div>
                     
@@ -166,9 +161,9 @@
                         <label for="" class="col-form-label">Bahan Baku</label>
                         <select class="form-control select-component" id="" name="kode_bahan_baku">
                             <option>Pilih bahan baku . . </option>
-                            <option value="Plastik Bekas">Plastik Bekas</option>
-                            <option value="Plastik Virgin">Plastik Virgin</option>
-                            <option value="Pewarna">Pewarna</option>
+                            @foreach ($bahanBaku as $b)
+                                <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -198,10 +193,9 @@
     </div>
 </div>
 {{-- End of Input Penerimaan Bahan Baku Modal --}}
-@endforeach
-
+@foreach($data as $d)
 {{-- Start Edit Penerimaan Bahan Baku Modal --}}
-<div class="modal fade" id="modal-edit-penerimaan" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-edit-penerimaan-{{$d->id_penerimaan}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -215,50 +209,46 @@
                     @csrf
 
                     {{-- Hidden id penerimaan bahan baku untuk update penerimaan --}}
-                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="id_penerimaan" id="" value="{{$d->id_penerimaan}}">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
-                        <input type="date" name="" id="" class="form-control date-component">
+                        <input type="date" name="tgl_penerimaan" id="" class="form-control date-component">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier</label>
-                        <select class="form-control select-component" id="" name="">
+                        <select class="form-control select-component" id="" name="id_supplier">
                             <option>Pilih supplier . . </option>
-                            <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
-                            <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
-                            <option value="Bapak Zainuri">Bapak Zainuri</option>
-                            <option value="Bapak Santoso">Bapak Santoso</option>
-                            <option value="UD. Dewata Indah">UD. Dewata Indah</option>
-                            <option value="Ibu Nur Aminah">Ibu Nur Aminah</option>
-                            <option value="Himasi">Himasi</option>
+                            @foreach ($supplier as $s)
+                                <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="">
+                        <select class="form-control select-component" id="" name="kode_bahan_baku">
                             <option>Pilih bahan baku . . </option>
-                            <option value="Plastik Bekas">Plastik Bekas</option>
-                            <option value="Plastik Virgin">Plastik Virgin</option>
-                            <option value="Pewarna">Pewarna</option>
+                            @foreach ($bahanBaku as $b)
+                                <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Karung</label>
-                        <input type="number" name="" id="" class="form-control edit-jumlah-karung">
+                        <input type="number" name="jumlah_karung_sak" id="karung" class="form-control edit-jumlah-karung">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Berat per Karung (Kg)</label>
-                        <input type="number" name="" id="" class="form-control edit-berat-karung">
+                        <input type="number" name="isi_karung" id="isi" class="form-control edit-berat-karung">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Berat Total (Kg)</label>
-                        <input type="number" name="" id="" class="form-control edit-berat-total" placeholder="0">
+                        <input type="number" name="total_berat" id="total_berat" class="form-control edit-berat-total" value="" placeholder="0" readonly>
                     </div>
 
                     <div class="modal-footer">
@@ -272,9 +262,16 @@
     </div>
 </div>
 {{-- End of Edit Penerimaan Bahan Baku Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')
+    <script>
+        var jml_karung = document.getElementById('karung').value;
+        var isi_karung = document.getElementById('isi').value;
+        var total_berat = document.getElementById('total_berat').value = jml_karung * isi_karung;
+    </script>
+
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
