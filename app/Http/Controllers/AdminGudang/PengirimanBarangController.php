@@ -4,6 +4,10 @@ namespace App\Http\Controllers\AdminGudang;
 use App\Http\Controllers\Controller;
 use App\Models\Pengiriman;
 use Illuminate\Http\Request;
+use App\Models\PembayaranPenjualan;
+use App\Models\AdminGudang;
+use App\Models\JenisProduct;
+use App\Models\Product;
 
 class PengirimanBarangController extends Controller
 {
@@ -15,7 +19,7 @@ class PengirimanBarangController extends Controller
     }
 
     public function insert(){
-    	$cust = PembayaranPenjualan::leftjoin('pengiriman as p','KODE_PEMBAYARAN_PENJUALAN','=','p.KODE_PEMBAYARAN_PENJUALAN')
+    	$cust = PembayaranPenjualan::leftjoin('pengiriman as p','pembayaran_penjualan.KODE_PEMBAYARAN_PENJUALAN','=','p.KODE_PEMBAYARAN_PENJUALAN')
     	->where('STATUS_PEMBAYARAN','=',1)
     	->whereNull('p.KODE_PENGIRIMAN')
     	->get();

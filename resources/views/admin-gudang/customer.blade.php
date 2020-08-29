@@ -28,26 +28,28 @@
                     <th scope="col">Aksi</th>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>CUST001</td>
-                        <td>Depo Air Minum Prima Pertiwi</td>
-                        <td>Jl. Slamet Riyadi No. 41, Solo</td>
+                        <td>{{$d->KODE_DEPO}}</td>
+                        <td>{{$d->NAMA_DEPO}}</td>
+                        <td>{{$d->ALAMAT_DEPO}}, {{$d->KOTA}}</td>
                         <td>
-                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer">
+                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer-{{$d->KODE_DEPO}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 {{-- End of Content --}}
-
+@foreach($data as $d)
 {{-- Start Detail Customer Modal --}}
-<div class="modal fade" id="modal-detail-customer" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-customer-{{$d->KODE_DEPO}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -62,37 +64,45 @@
 
                     <div class="my-3">
                         <h5>ID Customer</h5>
-                        <h6>CUST001</h6>
+                        <h6>{{$d->KODE_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nama Customer</h5>
-                        <h6>Depo Air Minum Prima Pertiwi</h6>
+                        <h6>{{$d->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Alamat</h5>
-                        <h6>Jl. Slamet Riyadi No. 41</h6>
+                        <h6>{{$d->ALAMAT_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Kota/Kabupaten</h5>
-                        <h6>Solo</h6>
+                        <h6>{{$d->KOTA}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Provinsi</h5>
-                        <h6>Jawa Tengah</h6>
+                        <h6>{{$d->PROVINSI}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nomor Telepon</h5>
-                        <h6>087762543221</h6>
+                        <h6>@if($d->NO_TELP_DEPO != null)
+                            {{$d->NO_TELP_DEPO}}
+                            @else
+                            N\A
+                            @endif</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Email</h5>
-                        <h6>N/A</h6>
+                        <h6>@if($d->EMAIL_DEPO != null)
+                            {{$d->EMAIL_DEPO}}
+                            @else
+                            N\A
+                            @endif</h6>
                     </div>
 
                 </div>
@@ -102,6 +112,7 @@
     </div>
 </div>
 {{-- End of Detail Customer Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')
