@@ -33,12 +33,13 @@
                     <th scope="col">Aksi</th>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>SUP001</td>
-                        <td>UD. Prima Pertiwi</td>
-                        <td>Jl. Slamet Riyadi No. 41, Solo</td>
+                        <td>{{$d->ID_SUPPLIER}}</td>
+                        <td>{{$d->NAMA_SUPPLIER}}</td>
+                        <td>{{$d->ALAMAT_SUPPLIER}}, {{$d->KOTA}}</td>
                         <td colspan="2">
-                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-supplier">
+                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-supplier-{{$d->ID_SUPPLIER}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
@@ -48,15 +49,16 @@
                             </button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 {{-- End of Content --}}
-
+@foreach($data as $d)
 {{-- Start Detail Supplier Modal --}}
-<div class="modal fade" id="modal-detail-supplier" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-supplier-{{$d->ID_SUPPLIER}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -71,46 +73,57 @@
 
                     <div class="my-3">
                         <h5>ID Supplier</h5>
-                        <h6>SUP001</h6>
+                        <h6>{{$d->ID_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nama Supplier</h5>
-                        <h6>UD. Prima Pertiwi</h6>
+                        <h6>{{$d->NAMA_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Alamat</h5>
-                        <h6>Jl. Slamet Riyadi No. 41</h6>
+                        <h6>{{$d->ALAMAT_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Kota/Kabupaten</h5>
-                        <h6>Solo</h6>
+                        <h6>{{$d->KOTA}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Provinsi</h5>
-                        <h6>Jawa Tengah</h6>
+                        <h6>{{$d->PROVINSI}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nomor Telepon</h5>
-                        <h6>087762543221</h6>
+                        <h6>
+                            @if($d->NO_TELP_SUPPLIER != null)
+                            {{$d->NO_TELP_SUPPLIER}}
+                            @else
+                            N\A
+                            @endif
+                        </h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Email</h5>
-                        <h6>N/A</h6>
+                        <h6>
+                            @if($d->EMAIL_SUPPLIER != null)
+                            {{$d->EMAIL_SUPPLIER}}
+                            @else
+                            N\A
+                            @endif
+                        </h6>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 {{-- End of Detail Supplier Modal --}}
+@endforeach
 
 {{-- Start Input Supplier Modal --}}
 <div class="modal fade" id="modal-tambah-supplier" tabindex="-1" role="dialog" aria-hidden="true">
@@ -130,21 +143,21 @@
                         <label for="" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="nama_supplier" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="alamat_supplier" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="">
+                        <select class="form-control select-component select-provinsi" id="" name="provinsi">
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
@@ -156,7 +169,7 @@
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="">
+                        <select class="form-control select-component select-kota" id="" name="kota">
                             <option>Pilih kota . . </option>
                         </select>
                     </div>
@@ -165,12 +178,12 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="" id="" class="form-control num-without-style">
+                        <input type="number" name="no_telp_supplier" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="" id="" class="form-control">
+                        <input type="email" name="email_supplier" id="" class="form-control">
                     </div>
 
                     <div class="modal-footer">
@@ -200,27 +213,27 @@
                     @csrf
 
                     {{-- Hidden id supplier untuk update supplier --}}
-                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="id_supplier" id="" value="" readonly>
 
                     <div class="form-group">
                         <label for="a" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="a" id="a" class="form-control">
+                        <input type="text" name="" id="a" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="alamat_supplier" id="" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="">
+                        <select class="form-control select-component select-provinsi" id="" name="provinsi">
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
@@ -232,7 +245,7 @@
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="">
+                        <select class="form-control select-component select-kota" id="" name="kota">
                             <option>Pilih kota . . </option>
                         </select>
                     </div>
@@ -241,12 +254,12 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="" id="" class="form-control num-without-style">
+                        <input type="number" name="no_telp_supplier" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="" id="" class="form-control">
+                        <input type="email" name="email_supplier" id="" class="form-control">
                     </div>
 
                     <div class="modal-footer">

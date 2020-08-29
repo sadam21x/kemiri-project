@@ -36,13 +36,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>PNR00001</td>
-                        <td>01/08/2020</td>
-                        <td>UD. Pertama Jaya</td>
+                        <td>{{$d->ID_PENERIMAAN}}</td>
+                        <td>{{$d->TGL_KEDATANGAN}}</td>
+                        <td>{{$d->SUPPLIER}}</td>
                         <td colspan="2">
                             <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
-                                data-toggle="modal" data-target="#modal-detail-penerimaan">
+                                data-toggle="modal" data-target="#modal-detail-penerimaan-{{$d->ID_PENERIMAAN}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
@@ -53,23 +54,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>PNR00002</td>
-                        <td>02/08/2020</td>
-                        <td>CV. Permata Langit</td>
-                        <td colspan="2">
-                            <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
-                                data-toggle="modal" data-target="#modal-detail-penerimaan">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                            <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
-                                data-toggle="modal" data-target="#modal-edit-penerimaan">
-                                <i class="fas fa-edit mr-1"></i>
-                                EDIT
-                            </button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -77,9 +62,9 @@
 
 </div>
 <!-- ./ Content -->
-
+@foreach($data as $d)
 {{-- Start Detail Penerimaan Bahan Baku Modal --}}
-<div class="modal fade" id="modal-detail-penerimaan" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-penerimaan-{{$d->ID_PENERIMAAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -94,12 +79,12 @@
 
                     <div class="my-3">
                         <h5>ID Penerimaan</h5>
-                        <h6>PNR00001</h6>
+                        <h6>{{$d->ID_PENERIMAAN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Tanggal</h5>
-                        <h6>01/08/2020</h6>
+                        <h6>{{$d->TGL_PENERIMAAN}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -109,7 +94,7 @@
 
                     <div class="my-3">
                         <h5>Supplier</h5>
-                        <h6>UD. Pertama Jaya</h6>
+                        <h6>{{$d->SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -139,7 +124,7 @@
     </div>
 </div>
 {{-- End of Detail Penerimaan Bahan Baku Modal--}}
-
+@endforeach
 {{-- Start Input Penerimaan Bahan Baku Modal --}}
 <div class="modal fade" id="modal-input-penerimaan" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
