@@ -63,7 +63,7 @@
                         <td>Depo Air Minum Surya</td>
                         <td>
                             <a href="" class="badge badge-secondary">
-                                SEDANG DIPROSES
+                                DIPROSES
                                 <i class="fas fa-exclamation-circle ml-1"></i>
                             </a>
                         </td>
