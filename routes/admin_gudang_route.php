@@ -20,12 +20,15 @@ Route::get('/admin-gudang/customer', 'AdminGudang\CustomerController@index');
 //Route Dimas
 Route::view('/admin-gudang/order-barang', 'admin-gudang/order-barang');
 
-Route::view('/admin-gudang/penerimaan-bahan-baku', 'admin-gudang/penerimaan-bahan-baku');
-Route::get('/admin-gudang/supplier', function() {
-    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+Route::get('/admin-gudang/penerimaan-bahan-baku', 'AdminGudang\PenerimaanBahanBakuController@index');
 
-    return view('admin-gudang/supplier', compact('provinsi'));
-});
+Route::get('/admin-gudang/supplier', 'AdminGudang\SupplierController@index');
+
+// Route::get('/admin-gudang/supplier', function() {
+//     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+
+//     return view('admin-gudang/supplier', compact('provinsi'));
+// });
 
 // handle ajax request data kota sesuai provinsi yang dipilih
 Route::post('/admin-gudang/req-data-kota', function() {
