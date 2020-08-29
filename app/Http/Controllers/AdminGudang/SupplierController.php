@@ -27,9 +27,17 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+        $supplier->no_telp_supplier = $request->no_telp_supplier;
+        $supplier->email_supplier = $request->email_supplier;
+        $supplier->jenis_kelamin_supplier = $request->jenis_kelamin_supplier;
+        $supplier->kode_kota = $request->kota;
+        $supplier->save();
+
+        return redirect('/admin-gudang/supplier');
     }
 
     /**
@@ -72,9 +80,17 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $supplier = Supplier::find($request->id_supplier);
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+        $supplier->no_telp_supplier = $request->no_telp_supplier;
+        $supplier->email_supplier = $request->email_supplier;
+        $supplier->kode_kota = $request->kota;
+        $supplier->save();
+
+        return redirect('/admin-gudang/supplier');
     }
 
     /**
