@@ -34,13 +34,13 @@ class Pengiriman extends Model
 	];
 
 	protected $dates = [
-		'TGL_KIRIM_RILL'
+		'TGL_KIRIM_RIIL'
 	];
 
 	protected $fillable = [
 		'KODE_PEMBAYARAN_PENJUALAN',
 		'ID_ADMIN_GUDANG',
-		'TGL_KIRIM_RILL'
+		'TGL_KIRIM_RIIL'
 	];
 
 	public function admin_gudang()

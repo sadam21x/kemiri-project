@@ -33,7 +33,7 @@
                 <tbody>
                     @foreach($data as $d)
                     @php $hari_ini = date("d/m/Y");
-                    $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RILL));
+                    $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL));
                     @endphp
                     <tr>
                         <td>{{$d->KODE_PENGIRIMAN}}</td>
@@ -90,7 +90,7 @@
 
                     <div class="my-3">
                         <h5>Tanggal Pengiriman</h5>
-                        <h6>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RILL))}}</h6>
+                        <h6>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL))}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -133,17 +133,17 @@
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG'),2,',','.')}}</h6>
+                        <h6>{{ number_format($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG'),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Ongkos Kirim (IDR)</h5>
-                        <h6>@php $ongkir=20000; echo number_format($ongkir,2,',','.');@endphp</h6>
+                        <h6>{{number_format($d->pembayaran_penjualan->penjualan->ONGKOS_KIRIM,0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>{{ number_format(floatval($ongkir) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),2,',','.')}}</h6>
+                        <h6>{{ number_format(floatval($d->pembayaran_penjualan->penjualan->ONGKOS_KIRIM) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
 
                 </div>

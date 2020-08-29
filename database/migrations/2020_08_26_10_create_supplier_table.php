@@ -18,7 +18,6 @@ class CreateSupplierTable extends Migration
             $table->string('KODE_KOTA', 13)->index('FK_MEMILIKI623');
             $table->string('NAMA_SUPPLIER', 50);
             $table->string('ALAMAT_SUPPLIER', 100);
-            $table->tinyInteger('JENIS_KELAMIN_SUPPLIER');
             $table->string('NO_TELP_SUPPLIER', 50);
             $table->string('EMAIL_SUPPLIER', 75)->nullable();
         });
