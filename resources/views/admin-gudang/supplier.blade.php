@@ -43,7 +43,7 @@
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
-                            <button class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal" data-target="#modal-edit-supplier">
+                            <button class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal" data-target="#modal-edit-supplier-{{$d->ID_SUPPLIER}}">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
                             </button>
@@ -136,9 +136,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/admin-gudang/supplier/insert')}}" method="POST">
                     @csrf
-
+                    
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Nama Supplier
@@ -197,9 +197,9 @@
     </div>
 </div>
 {{-- End of Input Supplier Modal --}}
-
+@foreach($data as $d)
 {{-- Start Edit Supplier Modal --}}
-<div class="modal fade" id="modal-edit-supplier" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-edit-supplier-{{$d->ID_SUPPLIER}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -209,17 +209,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/admin-gudang/supplier/edit')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id supplier untuk update supplier --}}
-                    <input type="hidden" name="id_supplier" id="" value="" readonly>
+                    <input type="hidden" name="id_supplier" id="" value="{{$d->ID_SUPPLIER}}" readonly>
 
                     <div class="form-group">
                         <label for="a" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="" id="a" class="form-control" readonly>
+                        <input type="text" name="nama_supplier" id="a" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -273,6 +273,7 @@
     </div>
 </div>
 {{-- End of Edit Supplier Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')

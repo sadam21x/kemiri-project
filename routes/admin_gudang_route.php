@@ -18,8 +18,12 @@ Route::post('/admin-gudang/pengiriman-barang/store', 'AdminGudang\OrderBarangCon
 
 //Route Dimas
 Route::get('/admin-gudang/penerimaan-bahan-baku', 'AdminGudang\PenerimaanBahanBakuController@index');
+Route::post('/admin-gudang/penerimaan-bahan-baku/edit', 'AdminGudang\PenerimaanBahanBakuController@update');
+Route::post('/admin-gudang/penerimaan-bahan-baku/insert', 'AdminGudang\PenerimaanBahanBakuController@create');
 
 Route::get('/admin-gudang/supplier', 'AdminGudang\SupplierController@index');
+Route::post('/admin-gudang/supplier/edit', 'AdminGudang\SupplierController@update');
+Route::post('/admin-gudang/supplier/insert', 'AdminGudang\SupplierController@create');
 
 // Route::get('/admin-gudang/supplier', function() {
 //     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');

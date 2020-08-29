@@ -30,7 +30,6 @@ class SupplierTableSeeder extends Seeder
                 'kode_kota' => $id_kota,
                 'nama_supplier' => $nama,
                 'alamat_supplier' => $faker->streetAddress,
-                'jenis_kelamin_supplier' => $faker->randomElement($array = array('0', '1')),
                 'no_telp_supplier' => $faker->phoneNumber,
                 'email_supplier' => $faker->companyEmail
             ]);
