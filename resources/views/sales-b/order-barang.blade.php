@@ -40,10 +40,10 @@
                         <td>01/08/2020</td>
                         <td>Depo Air Minum Kertajaya Indah</td>
                         <td>
-                            <a href="" class="badge badge-success">
+                            <div class="badge badge-success">
                                 SELESAI
                                 <i class="fas fa-check ml-1"></i>
-                            </a>
+                            </div>
                         </td>
                         <td colspan="2">
                             <button class="btn btn-linkedin btn-sm"
@@ -62,10 +62,10 @@
                         <td>02/08/2020</td>
                         <td>Depo Air Minum Surya</td>
                         <td>
-                            <a href="" class="badge badge-secondary">
+                            <div class="badge badge-secondary">
                                 DIPROSES
                                 <i class="fas fa-exclamation-circle ml-1"></i>
-                            </a>
+                            </div>
                         </td>
                         <td colspan="2">
                             <button class="btn btn-linkedin btn-sm"
