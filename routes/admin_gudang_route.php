@@ -11,7 +11,6 @@ Route::view('/admin-gudang', 'admin-gudang/dashboard');
 // Route Dea
 Route::get('/admin-gudang/pengiriman-barang','AdminGudang\PengirimanBarangController@index');
 Route::get('/admin-gudang/pengiriman-barang/edit', 'AdminGudang\PengirimanBarangController@edit');
-Route::post('/admin-gudang/pengiriman-barang/update', 'AdminGudang\PengirimanBarangController@update');
 Route::get('/admin-gudang/customer', 'AdminGudang\CustomerController@index');
 Route::get('/admin-gudang/order-barang', 'AdminGudang\OrderBarangController@index');
 Route::post('/admin-gudang/pengiriman-barang/store', 'AdminGudang\OrderBarangController@store');
