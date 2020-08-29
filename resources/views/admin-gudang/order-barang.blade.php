@@ -155,7 +155,7 @@
                     <div class="mt-5 d-flex justify-content-center">
                         <a href="" class="btn btn-md btn-google">
                             <i class="far fa-file-alt mr-2"></i>
-                            NOTA ORDER
+                            SURAT JALAN
                         </a>
                     </div>
 

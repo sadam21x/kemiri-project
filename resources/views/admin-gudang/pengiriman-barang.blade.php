@@ -146,13 +146,6 @@
                         <h6>{{ number_format(floatval($ongkir) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),2,',','.')}}</h6>
                     </div>
 
-                    <div class="mt-5 d-flex justify-content-center">
-                        <a href="{{ url('/admin-gudang/bukti-terima-barang') }}" class="btn btn-md btn-google">
-                            <i class="far fa-file-alt mr-2"></i>
-                            SURAT JALAN
-                        </a>
-                    </div>
-
                 </div>
 
             </div>
