@@ -132,13 +132,6 @@
                         <h6>60</h6>
                     </div>
 
-                    <div class="mt-4 d-flex justify-content-center">
-                        <a href="{{ url('/admin-gudang/bukti-terima-barang') }}" class="btn btn-md btn-google">
-                            <i class="far fa-file-alt mr-2"></i>
-                            BUKTI TERIMA
-                        </a>
-                    </div>
-
                 </div>
 
             </div>
