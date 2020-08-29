@@ -15,8 +15,10 @@ class PenerimaanBahanBakuController extends Controller
      */
     public function index()
     {
-        $data = PenerimaanBahanBaku::select('penerimaan_bahan_baku.*', 'supplier.nama_supplier AS SUPPLIER')
-                ->join('supplier', 'supplier.id_supplier', '=', 'penerimaan_bahan_baku.id_supplier')->get();
+        $data = PenerimaanBahanBaku::select('penerimaan_bahan_baku.*', 'supplier.nama_supplier AS SUPPLIER', 'ag.nama_admin_gudang as STAFF_GUDANG', 'bk.nama_bahan_baku')
+                ->join('supplier', 'supplier.id_supplier', '=', 'penerimaan_bahan_baku.id_supplier')
+                ->join('admin_gudang as ag', 'ag.id_admin_gudang', '=', 'penerimaan_bahan_baku.id_admin_gudang')
+                ->join('bahan_baku as bk', 'bk.kode_bahan_baku', '=', 'penerimaan_bahan_baku.kode_bahan_baku')->get();
         return view('/admin-gudang/penerimaan-bahan-baku')->with(compact("data"));
     }
 
@@ -25,9 +27,9 @@ class PenerimaanBahanBakuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $penerimaan_bahan_baku->id_supplier = $request->id_supplier;
     }
 
     /**
