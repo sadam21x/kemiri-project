@@ -6,16 +6,22 @@
 */
 
 Route::view('/admin-gudang', 'admin-gudang/dashboard');
-Route::view('/admin-gudang/penerimaan-bahan-baku', 'admin-gudang/penerimaan-bahan-baku');
+);
 
+
+// Route Dea
 Route::get('/admin-gudang/pengiriman-barang','AdminGudang\PengirimanBarangController@index');
 Route::get('/admin-gudang/pengiriman-barang/input', 'AdminGudang\PengirimanBarangController@insert');
 Route::post('/admin-gudang/pengiriman-barang/store', 'AdminGudang\PengirimanBarangController@store');
+Route::get('/admin-gudang/pengiriman-barang/edit', 'AdminGudang\PengirimanBarangController@edit');
+Route::post('/admin-gudang/pengiriman-barang/update', 'AdminGudang\PengirimanBarangController@update');
+Route::get('/admin-gudang/customer', 'AdminGudang\CustomerController@index');
+//End of Route dea
 
-Route::view('/admin-gudang/pengiriman-barang/edit', 'admin-gudang/edit-pengiriman-barang');
-Route::view('/admin-gudang/customer', 'admin-gudang/customer');
+//Route Dimas
 Route::view('/admin-gudang/order-barang', 'admin-gudang/order-barang');
 
+Route::view('/admin-gudang/penerimaan-bahan-baku', 'admin-gudang/penerimaan-bahan-baku'
 Route::get('/admin-gudang/supplier', function() {
     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
 
@@ -29,3 +35,5 @@ Route::post('/admin-gudang/req-data-kota', function() {
 
     return response()->json($kota);
 });
+
+// End of Route Dimas
