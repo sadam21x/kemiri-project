@@ -55,10 +55,12 @@
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
+                            @if($d->KODE_PENGIRIMAN == null)
                             <button class="btn btn-google btn-sm"
                                 data-toggle="modal" data-target="#modal-pengiriman-barang-{{$d->ID_PENJUALAN}}">
                                 PENGIRIMAN
                             </button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

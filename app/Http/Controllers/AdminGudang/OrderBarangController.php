@@ -10,7 +10,7 @@ use App\Models\Pengiriman;
 class OrderBarangController extends Controller
 {
     public function index(){
-    	$data = Penjualan::all();
+    	$data = Penjualan::select('penjualan.*','p.KODE_PENGIRIMAN')->join('pembayaran_penjualan as pp','penjualan.ID_PENJUALAN','=','pp.ID_PENJUALAN')->leftJoin('pengiriman as p','p.KODE_PEMBAYARAN_PENJUALAN','=','pp.KODE_PEMBAYARAN_PENJUALAN')->get();
     	return view('/admin-gudang/order-barang')->with(compact("data"));
     }
 
