@@ -19,7 +19,7 @@ class PenjualanTableSeeder extends Seeder
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-28")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-28")),
             'METODE_KIRIM' => "JNE",
-            'ONGKOS_KIRIM' => "20000",
+            'ONGKOS_KIRIM' => 20000,
             'TOTAL_PENJUALAN' => 1000000,
             'STATUS_PENJUALAN' => 1
         ]);
@@ -31,7 +31,7 @@ class PenjualanTableSeeder extends Seeder
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-29")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-29")),
             'METODE_KIRIM' => "JNE",
-            'ONGKOS_KIRIM' => "10000",
+            'ONGKOS_KIRIM' => 10000,
             'TOTAL_PENJUALAN' => 500000,
             'STATUS_PENJUALAN' => 1
         ]);
@@ -43,7 +43,7 @@ class PenjualanTableSeeder extends Seeder
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-30")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-30")),
             'METODE_KIRIM' => "POS",
-            'ONGKOS_KIRIM' => "22000",
+            'ONGKOS_KIRIM' => 22000,
             'TOTAL_PENJUALAN' => 1000000,
             'STATUS_PENJUALAN' => 1
         ]);
@@ -55,7 +55,7 @@ class PenjualanTableSeeder extends Seeder
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-31")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-31")),
             'METODE_KIRIM' => "TIKI",
-            'ONGKOS_KIRIM' => "15000",
+            'ONGKOS_KIRIM' => 15000,
             'TOTAL_PENJUALAN' => 1000000,
             'STATUS_PENJUALAN' => 1
         ]);
