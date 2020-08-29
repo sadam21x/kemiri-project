@@ -152,16 +152,10 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                        <h3>Metode Pengiriman</h3>
+                        <h3>Ongkos Kirim (IDR)</h3>
 
                         <div class="form-group">
-                            <select id="" name="" class="form-control select-component">
-                                <option value="">Truk Kontainer</option>
-                                <option value="">POS</option>
-                                <option value="">TIKI</option>
-                                <option value="">JNE</option>
-                                <option value="">J&T</option>
-                            </select>
+                            <input type="number" name="" id="" min="0" value="0" class="form-control num-without-style">
                         </div>
                     </div>
                 </div>
