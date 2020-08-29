@@ -56,10 +56,11 @@ class Penjualan extends Model
 		'ID_KONFIRMASI_PENJUALAN',
 		'ID_SALES_B',
 		'TGL_PENJUALAN',
-		'TGL_KIIRM',
+		'TGL_KIRIM',
 		'METODE_KIRIM',
 		'TOTAL_PENJUALAN',
-		'STATUS_PENJUALAN'
+		'STATUS_PENJUALAN',
+		'ONGKOS_KIRIM'
 	];
 
 	public function manajer_marketing()
