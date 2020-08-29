@@ -144,7 +144,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
-                        <input type="date" name="tgl_penerimaan" id="" class="form-control date-component">
+                        <input type="date" name="tgl_kedatangan" id="" class="form-control date-component">
                     </div>
 
                     <div class="form-group">
@@ -213,7 +213,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
-                        <input type="date" name="tgl_penerimaan" id="" class="form-control date-component">
+                        <input type="date" name="tgl_kedatangan" id="" class="form-control date-component">
                     </div>
 
                     <div class="form-group">
