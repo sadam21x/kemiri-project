@@ -28,5 +28,5 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/js/sales-a-dashboard.js') }}"></script>
+    <script src="{{ asset('/assets/js/manajer-marketing-dashboard.js') }}"></script>
 @endsection
