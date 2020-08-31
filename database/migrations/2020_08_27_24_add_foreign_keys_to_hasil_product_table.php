@@ -28,6 +28,7 @@ class AddForeignKeysToHasilProductTable extends Migration
     {
         Schema::table('hasil_product', function (Blueprint $table) {
             $table->dropForeign('FK_TERDAPAT999');
+            $table->dropForeign('FK_TERDAPAT93312');
         });
     }
 }
