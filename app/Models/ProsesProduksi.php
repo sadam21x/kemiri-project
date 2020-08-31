@@ -60,6 +60,6 @@ class ProsesProduksi extends Model
 
 	public function hasil_products()
 	{
-		return $this->hasMany(HasilProduct::class, 'KODE_PRODUKSI');
+		return $this->hasOne(HasilProduct::class, 'KODE_PRODUKSI');
 	}
 }

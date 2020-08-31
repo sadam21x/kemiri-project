@@ -40,13 +40,6 @@ class HasilProductTableSeeder extends Seeder
             'HASIL_BAGUS_PCS' => 100,
             'HASIL_RUSAK_PCS' => 7,
         ]);
-
-        DB::table('hasil_product')->insert([
-            'KODE_PRODUKSI' => 5,
-            'NAMA_PRODUCT' => "Tutup Galon" ,
-            'HASIL_BAGUS_PCS' => 110,
-            'HASIL_RUSAK_PCS' => 10,
-        ]);
         
     }
 }
