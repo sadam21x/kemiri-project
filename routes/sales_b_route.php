@@ -7,7 +7,7 @@
 
 Route::view('/sales-b', 'sales-b/dashboard');
 //route dimas
-Route::view('/sales-b/customer', 'sales-b/customer');
+Route::get('/sales-b/customer', 'SalesB\CustomerController@index');
 
 //route dea
 Route::view('/sales-b/order-barang', 'sales-b/order-barang');
