@@ -36,10 +36,6 @@
                             <option value="Depo Air Minum Pak Mahmud">Depo Air Minum Pak Mahmud</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="">Tanggal Pengiriman</label>
-                        <input type="date" name="" id="" class="form-control">
-                    </div>
                 </div>
 
                 <div class="form-row my-2">

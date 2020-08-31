@@ -44,19 +44,19 @@
     {{-- End of Preloader --}}
 
     {{-- Sidebar Group --}}
-    {{-- @include('layouts/admin-gudang/sidebar-group') --}}
+    {{-- @include('layouts/manajer-marketing/sidebar-group') --}}
 
     {{-- Start Layout Wrapper --}}
     <div class="layout-wrapper">
 
         {{-- Header --}}
-        @include('layouts/admin-gudang/header')
+        @include('layouts/manajer-marketing/header')
 
         {{-- Start Content Wrapper --}}
         <div class="content-wrapper">
 
             {{-- Navigation --}}
-            @include('layouts/admin-gudang/navigation')
+            @include('layouts/manajer-marketing/navigation')
 
             {{-- Start Content Body --}}
             <div class="content-body">

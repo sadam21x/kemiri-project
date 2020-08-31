@@ -15,13 +15,6 @@ $(document).ready(function() {
     // Datatable
     const penerimaanBahanBakuTable = document.getElementById("penerimaan-bahan-baku-table");
     $(penerimaanBahanBakuTable).DataTable();
-    
-    // Datepicker
-    const dateComponent = document.getElementsByClassName("date-component");
-    $(dateComponent).daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
 
     // Select2
     const selectComponent = document.getElementsByClassName("select-component");

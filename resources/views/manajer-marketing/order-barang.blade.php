@@ -1,8 +1,8 @@
-@extends('layouts/sales-b/main')
+@extends('layouts/manajer-marketing/main')
 @section('title', 'Order Barang')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/manajer-marketing.css') }}">
 @endsection
 
 @section('content')

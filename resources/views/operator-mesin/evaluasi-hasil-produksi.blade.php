@@ -130,18 +130,75 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Evaluasi Produk Hasil</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <label class="col-form-label">Evaluasi Produk Hasil</label>
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Evaluasi Mesin</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-produk" id="eval-produk-jelek"
+                                value="jelek">
+                            <label class="form-check-label" for="eval-produk-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-produk" id="eval-produk-sedang"
+                                value="sedang">
+                            <label class="form-check-label" for="eval-produk-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-produk" id="eval-produk-bagus"
+                                value="bagus">
+                            <label class="form-check-label" for="eval-produk-bagus">Bagus</label>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Evaluasi Bahan Baku</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <label class="col-form-label">Evaluasi Mesin</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-mesin" id="eval-mesin-jelek"
+                                value="jelek">
+                            <label class="form-check-label" for="eval-mesin-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-mesin" id="eval-mesin-sedang"
+                                value="sedang">
+                            <label class="form-check-label" for="eval-mesin-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-mesin" id="eval-mesin-bagus"
+                                value="bagus">
+                            <label class="form-check-label" for="eval-mesin-bagus">Bagus</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Evaluasi Bahan Baku</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="eval-bahan-baku-jelek"
+                                value="jelek">
+                            <label class="form-check-label" for="eval-bahan-baku-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="eval-bahan-baku-sedang"
+                                value="sedang">
+                            <label class="form-check-label" for="eval-bahan-baku-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="eval-bahan-baku-bagus"
+                                value="bagus">
+                            <label class="form-check-label" for="eval-bahan-baku-bagus">Bagus</label>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -209,18 +266,75 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Evaluasi Produk Hasil</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <label class="col-form-label">Evaluasi Produk Hasil</label>
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Evaluasi Mesin</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-produk" id="edit-eval-produk-jelek"
+                                value="jelek">
+                            <label class="form-check-label" for="edit-eval-produk-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-produk" id="edit-eval-produk-sedang"
+                                value="sedang">
+                            <label class="form-check-label" for="edit-eval-produk-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-produk" id="edit-eval-produk-bagus"
+                                value="bagus">
+                            <label class="form-check-label" for="edit-eval-produk-bagus">Bagus</label>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Evaluasi Bahan Baku</label>
-                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <label class="col-form-label">Evaluasi Mesin</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-mesin" id="edit-eval-mesin-jelek"
+                                value="jelek">
+                            <label class="form-check-label" for="edit-eval-mesin-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-mesin" id="edit-eval-mesin-sedang"
+                                value="sedang">
+                            <label class="form-check-label" for="edit-eval-mesin-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-mesin" id="edit-eval-mesin-bagus"
+                                value="bagus">
+                            <label class="form-check-label" for="edit-eval-mesin-bagus">Bagus</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Evaluasi Bahan Baku</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="edit-eval-bahan-baku-jelek"
+                                value="jelek">
+                            <label class="form-check-label" for="edit-eval-bahan-baku-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="edit-eval-bahan-baku-sedang"
+                                value="sedang">
+                            <label class="form-check-label" for="edit-eval-bahan-baku-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="edit-eval-bahan-baku-bagus"
+                                value="bagus">
+                            <label class="form-check-label" for="edit-eval-bahan-baku-bagus">Bagus</label>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -291,32 +405,17 @@
 
                     <div class="my-3">
                         <h5>Evaluasi Produk Hasil</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Eos debitis consequuntur
-                            quibusdam dolorum dolor animi quidem officia
-                            alias, doloribus tenetur?
-                        </p>
+                        <h6>Sedang</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Evaluasi Mesin</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Eos debitis consequuntur
-                            quibusdam dolorum dolor animi quidem officia
-                            alias, doloribus tenetur?
-                        </p>
+                        <h6>Bagus</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Evaluasi Bahan Baku</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Eos debitis consequuntur
-                            quibusdam dolorum dolor animi quidem officia
-                            alias, doloribus tenetur?
-                        </p>
+                        <h6>Sedang</h6>
                     </div>
 
                 </div>
