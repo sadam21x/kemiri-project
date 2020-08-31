@@ -49,6 +49,6 @@ class HasilProduct extends Model
 
 	public function products()
 	{
-		return $this->hasMany(Product::class, 'KODE_HASIL_PRODUCT');
+		return $this->hasOne(Product::class, 'KODE_HASIL_PRODUCT');
 	}
 }

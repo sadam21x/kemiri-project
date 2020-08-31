@@ -31,44 +31,29 @@
                     <th scope="col">Aksi</th>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>PGB00001</td>
-                        <td>01/08/2020 - 10:30</td>
-                        <td>Rudi Antara</td>
+                        <td>{{$d->KODE_PRODUKSI}}</td>
+                        <td>{{date('d/m/Y - h:i',strtotime($d->pengambilan_bahan_baku->WAKTU_PENGAMBILAN))}}</td>
+                        <td>{{$d->pengambilan_bahan_baku->operator_mesin->NAMA_OPERATOR_MESIN}}</td>
                         <td colspan="3">
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-evaluasi">
+                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-evaluasi-{{$d->KODE_PRODUKSI}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
-                            <button class="btn btn-sm btn-dribbble" data-toggle="modal" data-target="#modal-input-evaluasi">
+                            @if($d->EVALUASI_BAHAN_BAKU == null)
+                            <button class="btn btn-sm btn-dribbble" data-toggle="modal" data-target="#modal-input-evaluasi-{{$d->KODE_PRODUKSI}}">
                                 <i class="fas fa-pen mr-1"></i>
                                 EVALUASI
                             </button>
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-evaluasi">
+                            @endif
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-evaluasi-{{$d->KODE_PRODUKSI}}">
                                 <i class="fas fa-edit"></i>
                                 EDIT
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>PGB00002</td>
-                        <td>02/08/2020 - 06:15</td>
-                        <td>Rama Suastika</td>
-                        <td colspan="3">
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-evaluasi">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                            <button class="btn btn-sm btn-dribbble" data-toggle="modal" data-target="#modal-input-evaluasi">
-                                <i class="fas fa-pen mr-1"></i>
-                                EVALUASI
-                            </button>
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-evaluasi">
-                                <i class="fas fa-edit"></i>
-                                EDIT
-                            </button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -77,8 +62,9 @@
 </div>
 {{-- End of Content --}}
 
+@foreach($data as $d)
 {{-- Start Input Evaluasi Hasil Produksi Modal --}}
-<div class="modal fade" id="modal-input-evaluasi" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-input-evaluasi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -88,45 +74,45 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/operator-mesin/evaluasi-hasil-produksi/store')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="ID_OPERATOR_MESIN" id="" value="1">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">ID Pengambilan Bahan Baku</label>
-                        <input type="text" name="" id="" value="PGB00001" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jenis Barang Produksi</label>
-                        <input type="text" name="" id="" value="Tutup Galon A" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->hasil_products->products->jenis_product->NAMA_JENIS_PRODUCT}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Mesin</label>
-                        <input type="text" name="" id="" value="Mesin B12" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier Bahan Baku</label>
-                        <input type="text" name="" id="" value="UD. Permata Langit" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <input type="text" name="" id="" value="Plastik Virgin" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Produk Hasil Bagus (Kg)</label>
-                        <input type="number" name="" id="" min="0" class="form-control">
+                        <input type="number" name="JUMLAH_BAGUS_KG" id="" min="0" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Produk Hasil Rusak (Kg)</label>
-                        <input type="number" name="" id="" min="0" class="form-control">
+                        <input type="number" name="JUMLAH_RUSAK_KG" id="" min="0" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -213,8 +199,9 @@
 </div>
 {{-- End of Input Evaluasi Hasil Produksi Modall --}}
 
+
 {{-- Start Edit Evaluasi Hasil Produksi Modal --}}
-<div class="modal fade" id="modal-edit-evaluasi" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-edit-evaluasi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -224,45 +211,45 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/operator-mesin/evaluasi-hasil-produksi/update')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="ID_OPERATOR_MESIN" id="" value="1">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">ID Pengambilan Bahan Baku</label>
-                        <input type="text" name="" id="" value="PGB00001" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jenis Barang Produksi</label>
-                        <input type="text" name="" id="" value="Tutup Galon A" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->hasil_products->products->jenis_product->NAMA_JENIS_PRODUCT}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Mesin</label>
-                        <input type="text" name="" id="" value="Mesin B12" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier Bahan Baku</label>
-                        <input type="text" name="" id="" value="UD. Permata Langit" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <input type="text" name="" id="" value="Plastik Virgin" class="form-control" readonly>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Produk Hasil Bagus (Kg)</label>
-                        <input type="number" name="" id="" min="0" class="form-control">
+                        <input type="number" name="HASIL_BAGUS_KG" id="" min="0" class="form-control" value="{{$d->HASIL_BAGUS_KG}}">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Produk Hasil Rusak (Kg)</label>
-                        <input type="number" name="" id="" min="0" class="form-control">
+                        <input type="number" name="HASIL_RUSAK_KG" id="" min="0" class="form-control" value="{{$d->HASIL_RUSAK_KG}}">
                     </div>
 
                     <div class="form-group">
@@ -272,19 +259,22 @@
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-produk" id="edit-eval-produk-jelek"
-                                value="jelek">
+                                value="Jelek" @if($d->EVALUASI_PRODUCT == "Jelek")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-produk-jelek">Jelek</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-produk" id="edit-eval-produk-sedang"
-                                value="sedang">
+                                value="Sedang" @if($d->EVALUASI_PRODUCT == "Sedang")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-produk-sedang">Sedang</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-produk" id="edit-eval-produk-bagus"
-                                value="bagus">
+                                value="Bagus" @if($d->EVALUASI_PRODUCT == "Bagus")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-produk-bagus">Bagus</label>
                         </div>
                     </div>
@@ -296,19 +286,22 @@
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-mesin" id="edit-eval-mesin-jelek"
-                                value="jelek">
+                                value="Jelek" @if($d->EVALUASI_MESIN == "Jelek")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-mesin-jelek">Jelek</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-mesin" id="edit-eval-mesin-sedang"
-                                value="sedang">
+                                value="Sedang" @if($d->EVALUASI_MESIN == "Sedang")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-mesin-sedang">Sedang</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-mesin" id="edit-eval-mesin-bagus"
-                                value="bagus">
+                                value="Bagus" @if($d->EVALUASI_MESIN == "Bagus")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-mesin-bagus">Bagus</label>
                         </div>
                     </div>
@@ -320,19 +313,22 @@
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="edit-eval-bahan-baku-jelek"
-                                value="jelek">
+                                value="Jelek" @if($d->EVALUASI_BAHAN_BAKU == "Jelek")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-bahan-baku-jelek">Jelek</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="edit-eval-bahan-baku-sedang"
-                                value="sedang">
+                                value="Sedang" @if($d->EVALUASI_BAHAN_BAKU == "Sedang")
+                                checked @endif>
                             <label class="form-check-label" for="edit-eval-bahan-baku-sedang">Sedang</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="edit-eval-bahan-baku-bagus"
-                                value="bagus">
+                                value="Bagus" @if($d->EVALUASI_BAHAN_BAKU == "Bagus")
+                                checked="true" @endif>
                             <label class="form-check-label" for="edit-eval-bahan-baku-bagus">Bagus</label>
                         </div>
                     </div>
@@ -350,7 +346,7 @@
 {{-- End of Edit Evaluasi Hasil Produksi Modall --}}
 
 {{-- Start Detail Evaluasi Hasil Produksi Modal --}}
-<div class="modal fade" id="modal-detail-evaluasi" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-evaluasi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -365,57 +361,70 @@
 
                     <div class="my-3">
                         <h5>ID Pengambilan Bahan Baku</h5>
-                        <h6>PGB00001</h6>
+                        <h6>{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Operator Mesin</h5>
-                        <h6>Rudi Antara</h6>
+                        <h6>{{$d->pengambilan_bahan_baku->operator_mesin->NAMA_OPERATOR_MESIN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jenis Barang Produksi</h5>
-                        <h6>Tutup Galon A</h6>
+                        <h6>{{$d->hasil_products->products->jenis_product->NAMA_JENIS_PRODUCT}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Mesin</h5>
-                        <h6>Mesin B12</h6>
+                        <h6>{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Supplier Bahan Baku</h5>
-                        <h6>UD. Permata Langit</h6>
+                        <h6>{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Bahan Baku</h5>
-                        <h6>Plastik Virgin</h6>
+                        <h6>{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Produk Hasil Bagus (Kg)</h5>
-                        <h6>70</h6>
+                        <h6>{{$d->HASIL_BAGUS_KG}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Produk Hasil Rusak (Kg)</h5>
-                        <h6>3</h6>
+                        <h6>{{$d->HASIL_RUSAK_KG}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Evaluasi Produk Hasil</h5>
-                        <h6>Sedang</h6>
+                        <h6>
+                            @if($d->EVALUASI_PRODUCT != "")
+                            {{$d->EVALUASI_PRODUCT}}
+                            @else
+                            N/A
+                            @endif</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Evaluasi Mesin</h5>
-                        <h6>Bagus</h6>
+                        <h6>@if($d->EVALUASI_MESIN != "")
+                            {{$d->EVALUASI_MESIN}}
+                            @else
+                            N/A
+                            @endif</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Evaluasi Bahan Baku</h5>
-                        <h6>Sedang</h6>
+                        <h6>@if($d->EVALUASI_BAHAN_BAKU != "")
+                            {{$d->EVALUASI_BAHAN_BAKU}}
+                            @else
+                            N/A
+                            @endif</h6>
                     </div>
 
                 </div>
@@ -425,6 +434,9 @@
     </div>
 </div>
 {{-- End of Detail Evaluasi Hasil Produksi Modal --}}
+
+@endforeach
+
 @endsection
 
 @section('extra-script')

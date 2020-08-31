@@ -14,7 +14,7 @@ Route::view('/operator-mesin/pengambilan-bahan-baku', 'operator-mesin/pengambila
 
 
 //route dea
-Route::view('/operator-mesin/evaluasi-hasil-produksi', 'operator-mesin/evaluasi-hasil-produksi');
-
-
+Route::get('/operator-mesin/evaluasi-hasil-produksi', 'OperatorMesin\HasilProduksiController@index');
+Route::post('/operator-mesin/evaluasi-hasil-produksi/store', 'OperatorMesin\HasilProduksiController@store');
+Route::post('/operator-mesin/evaluasi-hasil-produksi/update', 'OperatorMesin\HasilProduksiController@update');
 
