@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="customer">Customer</label>
-                        <select name="" id="" class="select-component form-control">
+                        <select name="KODE_DEPO" id="" class="select-component form-control">
                             <option value="Depo Air Minum Jaya Sakthi">Depo Air Minum Jaya Sakthi</option>
                             <option value="Depo Air Minum Kertajaya Indah">Depo Air Minum Kertajaya Indah</option>
                             <option value="Depo Air Minum Pak Mahmud">Depo Air Minum Pak Mahmud</option>
