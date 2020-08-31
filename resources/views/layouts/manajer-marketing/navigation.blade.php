@@ -16,35 +16,19 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/penerimaan-bahan-baku') }}" id="penerimaan-menu" class="">
+                <a href="{{ url('/manajer-marketing/order-barang') }}" id="order-barang-menu" class="">
                     <span class="nav-link-icon">
-                        <i class="fas fa-truck-loading"></i>
+                        <i class="fas fa-cart-plus"></i>
                     </span>
-                    <span>Penerimaan Bahan Baku</span>
+                    <span>Order Barang</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/pengiriman-barang') }}" id="pengiriman-menu" class="">
+                <a href="{{ url('/manajer-marketing/sales') }}" id="sales-menu" class="">
                     <span class="nav-link-icon">
-                        <i class="fas fa-truck"></i>
+                        <i class="fas fa-users"></i>
                     </span>
-                    <span>Pengiriman Barang</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin-gudang/supplier') }}" id="supplier-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-industry"></i>
-                    </span>
-                    <span>Supplier</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin-gudang/customer') }}" id="customer-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-user"></i>
-                    </span>
-                    <span>Customer</span>
+                    <span>Sales</span>
                 </a>
             </li>
         </ul>
