@@ -10,8 +10,4 @@ $(document).ready(function() {
     const sales_bTable = document.getElementById("sales-b-table");
     $(sales_bTable).DataTable();
 
-    // Select2
-    const selectComponent = document.getElementsByClassName("select-component");
-    $(selectComponent).select2();
-
 });

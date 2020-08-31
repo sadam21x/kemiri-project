@@ -35,6 +35,12 @@ table {
     background-color: rgb(68, 8, 38) !important;
 }
 
+.container-evaluasi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
 
     table {
