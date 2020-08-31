@@ -17,8 +17,8 @@ class CreateHasilProductTable extends Migration
             $table->integer('KODE_HASIL_PRODUCT', true);
             $table->integer('KODE_PRODUKSI')->index('FK_TERDAPAT999');
             $table->string('NAMA_PRODUCT', 50);
-            $table->float('HASIL_BAGUS_PCS', 10, 0);
-            $table->float('HASIL_RUSAK_PCS', 10, 0);
+            $table->float('HASIL_BAGUS_PCS', 10, 0)->nullable();
+            $table->float('HASIL_RUSAK_PCS', 10, 0)->nullable();
         });
     }
 
