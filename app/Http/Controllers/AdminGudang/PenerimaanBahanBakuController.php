@@ -33,6 +33,7 @@ class PenerimaanBahanBakuController extends Controller
      */
     public function create(Request $request)
     {
+        $penerimaan_bahan_baku = new PenerimaanBahanBaku;
         $penerimaan_bahan_baku->id_supplier = $request->id_supplier;
         $penerimaan_bahan_baku->kode_bahan_baku = $request->kode_bahan_baku;
         $penerimaan_bahan_baku->id_admin_gudang = $request->id_admin_gudang;
@@ -88,6 +89,17 @@ class PenerimaanBahanBakuController extends Controller
      */
     public function update(Request $request)
     {
+        // $request->validate([
+        //     'id_supplier' => 'required',
+        //     'kode_bahan_baku' => 'required',
+        //     'id_admin_gudang' => 'required',
+        //     'tgl_kedatangan' => 'required',
+        //     'satuan' => 'required',
+        //     'total_berat' => 'required',
+        //     'jumlah_karung_sak' => 'required',
+        //     'isi_karung' => 'required'
+        // ]);
+
         $penerimaan_bahan_baku = PenerimaanBahanBaku::find($request->id_penerimaan);
         $penerimaan_bahan_baku->id_supplier = $request->id_supplier;
         $penerimaan_bahan_baku->kode_bahan_baku = $request->kode_bahan_baku;
