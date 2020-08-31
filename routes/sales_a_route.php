@@ -7,11 +7,9 @@
 
 Route::view('/sales-a', 'sales-a/dashboard');
 
-Route::get('/sales-a/customer', function() {
-    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
-
-    return view('sales-a/customer', compact('provinsi'));
-});
+Route::get('/sales-a/customer', 'SalesA\CustomerController@index');
+Route::post('/sales-a/customer/insert', 'SalesA\CustomerController@create');
+Route::post('/sales-a/customer/edit', 'SalesA\CustomerController@update');
 
 // handle ajax request data kota sesuai provinsi yang dipilih
 Route::post('/sales-a/req-data-kota', function() {

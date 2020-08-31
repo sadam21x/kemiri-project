@@ -144,12 +144,12 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
-                        <input type="date" name="tgl_kedatangan" id="" class="form-control">
+                        <input type="date" name="tgl_kedatangan" id="" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier</label>
-                        <select class="form-control select-component" id="" name="id_supplier">
+                        <select class="form-control select-component" id="" name="id_supplier" required>
                             <option>Pilih supplier . . </option>
                             @foreach ($supplier as $s)
                                 <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
@@ -159,7 +159,7 @@
                     
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="kode_bahan_baku">
+                        <select class="form-control select-component" id="" name="kode_bahan_baku" required>
                             <option>Pilih bahan baku . . </option>
                             @foreach ($bahanBaku as $b)
                                 <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
@@ -169,17 +169,17 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Karung</label>
-                        <input type="number" name="jumlah_karung_sak" id="" class="form-control input-jumlah-karung">
+                        <input type="number" name="jumlah_karung_sak" id="in_karung" class="form-control input-jumlah-karung" required>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Berat per Karung (Kg)</label>
-                        <input type="number" name="isi_karung" id="" class="form-control input-berat-karung">
+                        <input type="number" name="isi_karung" id="in_tiap_karung" class="form-control input-berat-karung" required>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Berat Total (Kg)</label>
-                        <input type="number" name="total_berat" id="" class="form-control input-berat-total" placeholder="0">
+                        <input type="number" name="total_berat" id="in_total" class="form-control input-berat-total" placeholder="0" readonly required>
                     </div>
 
                     <div class="modal-footer">
@@ -267,6 +267,12 @@
 
 @section('extra-script')
     <script>
+        // insert
+        var jml_karung = document.getElementById('in_karung').value;
+        var isi_karung = document.getElementById('in_tiap_karung').value;
+        var total_berat = document.getElementById('in_total').value = jml_karung * isi_karung;
+
+        // edit
         var jml_karung = document.getElementById('karung').value;
         var isi_karung = document.getElementById('isi').value;
         var total_berat = document.getElementById('total_berat').value = jml_karung * isi_karung;

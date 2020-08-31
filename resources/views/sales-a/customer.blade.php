@@ -33,21 +33,23 @@
                     <th scope="col">Aksi</th>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>CUST00001</td>
-                        <td>Depo Air Minum Alam Sutera</td>
-                        <td>Jl. Kusuma Bangsa, Tambaksari, Kota Surabaya</td>
+                        <td>{{$d->KODE_DEPO}}</td>
+                        <td>{{$d->NAMA_DEPO}}</td>
+                        <td>{{$d->ALAMAT_DEPO}}, {{$d->KOTA}}</td>
                         <td colspan="2">
-                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer">
+                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer-{{$d->KODE_DEPO}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
-                            <button class="btn btn-sm btn-warning tombol-edit-customer" data-toggle="modal" data-target="#modal-edit-customer">
+                            <button class="btn btn-sm btn-warning tombol-edit-customer" data-toggle="modal" data-target="#modal-edit-customer-{{$d->KODE_DEPO}}">
                                 <i class="fas fa-edit mr-1"></i>
                                 EDIT
                             </button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
 
@@ -55,9 +57,9 @@
     </div>
 </div>
 {{-- End of Content --}}
-
+@foreach($data as $d)
 {{-- Start Detail Customer Modal --}}
-<div class="modal fade" id="modal-detail-customer" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-customer-{{$d->KODE_DEPO}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -72,52 +74,62 @@
 
                     <div class="my-3">
                         <h5>ID Customer</h5>
-                        <h6>CUST00001</h6>
+                        <h6>{{$d->KODE_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nama Customer</h5>
-                        <h6>Depo Air Minum Alam Sutera</h6>
+                        <h6>{{$d->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Alamat</h5>
-                        <h6>Jl. Kusuma Bangsa, Tambaksari</h6>
+                        <h6>{{$d->ALAMAT_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Kota/Kabupaten</h5>
-                        <h6>Kota Surabaya</h6>
+                        <h6>{{$d->KOTA}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Provinsi</h5>
-                        <h6>Jawa Timur</h6>
+                        <h6>{{$d->PROVINSI}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Contact Person</h5>
-                        <h6>Rifat Najmi</h6>
+                        <h6>{{$d->NAMA_CUSTOMER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nomor Telepon</h5>
-                        <h6>087762543221</h6>
+                        <h6>
+                            @if($d->NO_TELP_DEPO != null)
+                            {{$d->NO_TELP_DEPO}}
+                            @else
+                            N\A
+                            @endif
+                        </h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Email</h5>
-                        <h6>N/A</h6>
+                        <h6>
+                            @if($d->EMAIL_DEPO != null)
+                            {{$d->EMAIL_DEPO}}
+                            @else
+                            N\A
+                            @endif
+                        </h6>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 {{-- End of Detail Customer Modal --}}
-
+@endforeach
 {{-- Start Input Customer Modal --}}
 <div class="modal fade" id="modal-tambah-customer" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -129,31 +141,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/sales-a/customer/insert')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
-                    <input type="hidden" name="">
+                    <input type="hidden" name="id_sales_a" value="1">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="nama_depo" id="" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="alamat_depo" id="" class="form-control"required>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="">
+                        <select class="form-control select-component select-provinsi" id="" name="provinsi" required>
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
@@ -165,7 +177,7 @@
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="">
+                        <select class="form-control select-component select-kota" id="" name="kota" required>
                             <option>Pilih kota . . </option>
                         </select>
                     </div>
@@ -174,19 +186,19 @@
                         <label for="" class="col-form-label">
                             Contact Person
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="nama_customer" id="" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="" id="" class="form-control num-without-style">
+                        <input type="number" name="no_telp_depo" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="" id="" class="form-control">
+                        <input type="email" name="email_depo" id="" class="form-control">
                     </div>
 
                     <div class="modal-footer">
@@ -200,9 +212,9 @@
     </div>
 </div>
 {{-- End of Input Customer Modal --}}
-
+@foreach($data as $d)
 {{-- Start Edit Customer Modal --}}
-<div class="modal fade" id="modal-edit-customer" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-edit-customer-{{$d->KODE_DEPO}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -212,33 +224,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/sales-a/customer/edit')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id customer untuk update data --}}
-                    <input type="hidden" name="">
+                    <input type="hidden" name="kode_depo" value="{{$d->KODE_DEPO}}">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="nama_depo" id="" class="form-control" value="{{$d->NAMA_DEPO}}">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="alamat_depo" id="" class="form-control" value="{{$d->ALAMAT_DEPO}}">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="">
-                            <option>Pilih provinsi . . </option>
+                        <select class="form-control select-component select-provinsi" id="" name="provinsi">
+                            <option>Pilih Provinsi . .</option>
                             @foreach ($provinsi as $id => $name)
+                                <!-- <option value="{{ $id }}" selected>{{$d->PROVINSI}}</option> -->
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
@@ -248,8 +261,8 @@
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="">
-                            <option>Pilih kota . . </option>
+                        <select class="form-control select-component select-kota" id="" name="kota">
+                            <option value="{{ $id }}">{{$d->KOTA}}</option>
                         </select>
                     </div>
 
@@ -257,19 +270,19 @@
                         <label for="" class="col-form-label">
                             Contact Person
                         </label>
-                        <input type="text" name="" id="" class="form-control">
+                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="" id="" class="form-control num-without-style">
+                        <input type="number" name="no_telp_depo" id="" value="{{$d->NO_TELP_DEPO}}" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="" id="" class="form-control">
+                        <input type="email" name="email_depo" value="{{$d->EMAIL_DEPO}}" id="" class="form-control">
                     </div>
 
                     <div class="modal-footer">
@@ -283,6 +296,7 @@
     </div>
 </div>
 {{-- End of Edit Customer Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')
