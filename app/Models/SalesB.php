@@ -16,11 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $KODE_KOTA
  * @property string $NAMA_SALES_B
  * @property string $ALAMAT_SALES_B
- * @property bool $JENIS_KELAMIN_SALES_B
+ * @property int $JENIS_KELAMIN_SALES_B
  * @property string $NO_TELP_SALES_B
  * @property string|null $EMAIL_SALES_B
  * 
- * @property Kotum $kotum
+ * @property IndonesiaCity $indonesia_city
  * @property Collection|EvaluasiKinerjaSalesb[] $evaluasi_kinerja_salesbs
  * @property Collection|KonfirmasiPenjualan[] $konfirmasi_penjualans
  * @property Collection|Penjualan[] $penjualans
@@ -34,7 +34,7 @@ class SalesB extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'JENIS_KELAMIN_SALES_B' => 'bool'
+		'JENIS_KELAMIN_SALES_B' => 'int'
 	];
 
 	protected $fillable = [
@@ -46,9 +46,9 @@ class SalesB extends Model
 		'EMAIL_SALES_B'
 	];
 
-	public function kotum()
+	public function indonesia_city()
 	{
-		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
 	}
 
 	public function evaluasi_kinerja_salesbs()

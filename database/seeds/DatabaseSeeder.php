@@ -37,9 +37,12 @@ class DatabaseSeeder extends Seeder
         $this->call(PenjualanTableSeeder::class);
         $this->call(HasilProductTableSeeder::class);
         $this->call(PembayaranPenjualanTableSeeder::class);
-        $this->call(EvaluasiKinerjaSalesTableSeeder::class);
+        // $this->call(EvaluasiKinerjaSalesTableSeeder::class);
         $this->call(PengirimanTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(DetilPenjualanTableSeeder::class);
+        $this->call(DetailPengambilanTableSeeder::class);
+        $this->call(EvaluasiKinerjaSalesaTableSeeder::class);
+        $this->call(EvaluasiKinerjaSalesbTableSeeder::class);
     }
 }

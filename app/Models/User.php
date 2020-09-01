@@ -18,11 +18,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $PASSWORD_USER
  * @property string $NAMA_USER
  * @property string $ALAMAT_USER
- * @property bool $JENIS_KELAMIN_USER
+ * @property int $JENIS_KELAMIN_USER
  * @property string|null $NO_TELP_USER
  * @property string $EMAIL_USER
  * 
- * @property Kotum $kotum
+ * @property IndonesiaCity $indonesia_city
  * @property Jabatan $jabatan
  *
  * @package App\Models
@@ -35,7 +35,7 @@ class User extends Model
 
 	protected $casts = [
 		'KODE_JABATAN' => 'int',
-		'JENIS_KELAMIN_USER' => 'bool'
+		'JENIS_KELAMIN_USER' => 'int'
 	];
 
 	protected $fillable = [
@@ -50,9 +50,9 @@ class User extends Model
 		'EMAIL_USER'
 	];
 
-	public function kotum()
+	public function indonesia_city()
 	{
-		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
 	}
 
 	public function jabatan()
