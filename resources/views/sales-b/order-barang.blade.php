@@ -18,10 +18,6 @@
 
             <div class="judul-tabel mb-3">
                 <h5 class="">Riwayat Order Barang</h5>
-                <a href="{{ url('/sales-b/order-barang/input') }}" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
-                    <i class="fas fa-plus mr-1"></i>
-                    TAMBAH BARU
-                </a>
             </div>
 
             <table id="order-barang-table" class="table table-striped table-bordered table-responsive-stack">
@@ -53,18 +49,12 @@
                             </div>
                             @endif
                         </td>
-                        <td colspan="2">
+                        <td>
                             <button class="btn btn-linkedin btn-sm"
                                 data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
-                            @if($d->KODE_PENGIRIMAN == null)
-                            <a href="{{ url('/sales-b/order-barang/edit') }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit mr-1"></i>
-                                EDIT
-                            </a>
-                            @endif
                         </td>
                     </tr>
                     @endforeach

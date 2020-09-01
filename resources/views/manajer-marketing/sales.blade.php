@@ -23,47 +23,47 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="sales-a-table" class="table table-bordered table-stripped table-md">
-                            <thead class="thead-dark">
-                                <th scope="col">ID Sales</th>
-                                <th scope="col">Nama Sales</th>
-                                <th scope="col">Aksi</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SLA00001</td>
-                                    <td>Rama Suastika</td>
-                                    <td colspan="2">
-                                        <a href="{{ url('/manajer-marketing/detail-sales') }}" class="btn btn-sm btn-linkedin mr-1">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            DETAIL
-                                        </a>
-                                        <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
-                                            class="btn btn-sm btn-secondary mr-1">
-                                            <i class="fas fa-book-open mr-2"></i>
-                                            EVALUASI
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>SLA00002</td>
-                                    <td>Devia Kirana</td>
-                                    <td colspan="2">
-                                        <a href="{{ url('/manajer-marketing/detail-sales') }}" class="btn btn-sm btn-linkedin mr-1">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            DETAIL
-                                        </a>
-                                        <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
-                                            class="btn btn-sm btn-secondary mr-1">
-                                            <i class="fas fa-book-open mr-2"></i>
-                                            EVALUASI
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="sales-a-table" class="table table-bordered table-stripped table-responsive-stack">
+                        <thead class="thead-dark">
+                            <th scope="col">ID Sales</th>
+                            <th scope="col">Nama Sales</th>
+                            <th scope="col">Aksi</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SLA00001</td>
+                                <td>Rama Suastika</td>
+                                <td colspan="2">
+                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
+                                        class="btn btn-sm btn-linkedin mr-1">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        DETAIL
+                                    </a>
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                        class="btn btn-sm btn-secondary mr-1">
+                                        <i class="fas fa-book-open mr-2"></i>
+                                        EVALUASI
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SLA00002</td>
+                                <td>Devia Kirana</td>
+                                <td colspan="2">
+                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
+                                        class="btn btn-sm btn-linkedin mr-1">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        DETAIL
+                                    </a>
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                        class="btn btn-sm btn-secondary mr-1">
+                                        <i class="fas fa-book-open mr-2"></i>
+                                        EVALUASI
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             {{-- End of Sales A --}}
@@ -75,47 +75,47 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="sales-b-table" class="table table-bordered table-stripped table-md">
-                            <thead class="thead-dark">
-                                <th scope="col">ID Sales</th>
-                                <th scope="col">Nama Sales</th>
-                                <th scope="col">Aksi</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SLB00001</td>
-                                    <td>Rama Suastika</td>
-                                    <td colspan="2">
-                                        <a href="{{ url('/manajer-marketing/detail-sales') }}" class="btn btn-sm btn-linkedin mr-1">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            DETAIL
-                                        </a>
-                                        <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
-                                            class="btn btn-sm btn-secondary mr-1">
-                                            <i class="fas fa-book-open mr-2"></i>
-                                            EVALUASI
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>SLB00002</td>
-                                    <td>Devia Kirana</td>
-                                    <td colspan="2">
-                                        <a href="{{ url('/manajer-marketing/detail-sales') }}" class="btn btn-sm btn-linkedin mr-1">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            DETAIL
-                                        </a>
-                                        <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
-                                            class="btn btn-sm btn-secondary mr-1">
-                                            <i class="fas fa-book-open mr-2"></i>
-                                            EVALUASI
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="sales-b-table" class="table table-bordered table-stripped table-responsive-stack">
+                        <thead class="thead-dark">
+                            <th scope="col">ID Sales</th>
+                            <th scope="col">Nama Sales</th>
+                            <th scope="col">Aksi</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SLB00001</td>
+                                <td>Rama Suastika</td>
+                                <td colspan="2">
+                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
+                                        class="btn btn-sm btn-linkedin mr-1">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        DETAIL
+                                    </a>
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                        class="btn btn-sm btn-secondary mr-1">
+                                        <i class="fas fa-book-open mr-2"></i>
+                                        EVALUASI
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SLB00002</td>
+                                <td>Devia Kirana</td>
+                                <td colspan="2">
+                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
+                                        class="btn btn-sm btn-linkedin mr-1">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        DETAIL
+                                    </a>
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                        class="btn btn-sm btn-secondary mr-1">
+                                        <i class="fas fa-book-open mr-2"></i>
+                                        EVALUASI
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             {{-- End of Sales B --}}

@@ -8,7 +8,7 @@
     <div class="navigation-menu-body">
         <ul>
             <li>
-                <a href="{{ url('/sales-b') }}" id="dashboard-menu" class="">
+                <a href="{{ url('/sales-b') }}" id="dashboard-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </span>
@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/sales-b/customer') }}" id="customer-menu" class="">
+                <a href="{{ url('/sales-b/customer') }}" id="customer-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-user"></i>
                     </span>
@@ -24,11 +24,19 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/sales-b/order-barang') }}" id="order-barang-menu" class="">
+                <a href="{{ url('/sales-b/order-barang') }}" id="order-barang-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-cart-plus"></i>
                     </span>
                     <span>Order Barang</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/sales-b/follow-up-customer') }}" id="follow-up-customer-menu">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </span>
+                    <span>Follow Up Customer</span>
                 </a>
             </li>
         </ul>
