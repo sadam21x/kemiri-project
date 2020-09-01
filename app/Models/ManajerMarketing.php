@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $EMAIL_MANAJER_MARKETING
  * 
  * @property Kotum $kotum
+ * @property Collection|EvaluasiKinerjaSalesa[] $evaluasi_kinerja_salesas
+ * @property Collection|EvaluasiKinerjaSalesb[] $evaluasi_kinerja_salesbs
  * @property Collection|Penjualan[] $penjualans
  *
  * @package App\Models
@@ -47,6 +49,16 @@ class ManajerMarketing extends Model
 	public function kotum()
 	{
 		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+	}
+
+	public function evaluasi_kinerja_salesas()
+	{
+		return $this->hasMany(EvaluasiKinerjaSalesa::class, 'ID_MANAJER_MARKETING');
+	}
+
+	public function evaluasi_kinerja_salesbs()
+	{
+		return $this->hasMany(EvaluasiKinerjaSalesb::class, 'ID_MANAJER_MARKETING');
 	}
 
 	public function penjualans()

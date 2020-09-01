@@ -8,7 +8,7 @@
 Route::view('/operator-mesin', 'operator-mesin/dashboard');
 
 //route dimas
-Route::view('/operator-mesin/pengambilan-bahan-baku', 'operator-mesin/pengambilan-bahan-baku');
+Route::get('/operator-mesin/pengambilan-bahan-baku', 'OperatorMesin\PengambilanBahanBakuController@index');
 
 
 

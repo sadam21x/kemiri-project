@@ -14,8 +14,8 @@ class AddForeignKeysToHasilProductTable extends Migration
     public function up()
     {
         Schema::table('hasil_product', function (Blueprint $table) {
-            $table->foreign('KODE_PRODUKSI', 'FK_TERDAPAT999')->references('KODE_PRODUKSI')->on('proses_produksi')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('KODE_PRODUCT', 'FK_TERDAPAT93312')->references('KODE_PRODUCT')->on('product')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_PRODUKSI', 'FK_TERDAPAT999')->references('KODE_PRODUKSI')->on('proses_produksi')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeysToHasilProductTable extends Migration
     public function down()
     {
         Schema::table('hasil_product', function (Blueprint $table) {
-            $table->dropForeign('FK_TERDAPAT999');
             $table->dropForeign('FK_TERDAPAT93312');
+            $table->dropForeign('FK_TERDAPAT999');
         });
     }
 }

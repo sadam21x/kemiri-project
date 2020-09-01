@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $TGL_PENJUALAN
  * @property Carbon $TGL_KIIRM
  * @property string $METODE_KIRIM
+ * @property int $ONGKOS_KIRIM
  * @property int $TOTAL_PENJUALAN
  * @property bool $STATUS_PENJUALAN
  * 
@@ -27,7 +28,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property SalesB $sales_b
  * @property KonfirmasiPenjualan $konfirmasi_penjualan
  * @property Collection|DetilPenjualan[] $detil_penjualans
- * @property Collection|EvaluasiKinerjaSale[] $evaluasi_kinerja_sales
  * @property Collection|PembayaranPenjualan[] $pembayaran_penjualans
  *
  * @package App\Models
@@ -42,14 +42,14 @@ class Penjualan extends Model
 		'ID_MANAJER_MARKETING' => 'int',
 		'ID_KONFIRMASI_PENJUALAN' => 'int',
 		'ID_SALES_B' => 'int',
+		'ONGKOS_KIRIM' => 'int',
 		'TOTAL_PENJUALAN' => 'int',
-		'STATUS_PENJUALAN' => 'bool',
-		'ONGKOS_KIRIM' => 'int'
+		'STATUS_PENJUALAN' => 'bool'
 	];
 
 	protected $dates = [
 		'TGL_PENJUALAN',
-		'TGL_KIRIM'
+		'TGL_KIIRM'
 	];
 
 	protected $fillable = [
@@ -57,11 +57,11 @@ class Penjualan extends Model
 		'ID_KONFIRMASI_PENJUALAN',
 		'ID_SALES_B',
 		'TGL_PENJUALAN',
-		'TGL_KIRIM',
+		'TGL_KIIRM',
 		'METODE_KIRIM',
+		'ONGKOS_KIRIM',
 		'TOTAL_PENJUALAN',
-		'STATUS_PENJUALAN',
-		'ONGKOS_KIRIM'
+		'STATUS_PENJUALAN'
 	];
 
 	public function manajer_marketing()
@@ -84,13 +84,8 @@ class Penjualan extends Model
 		return $this->hasMany(DetilPenjualan::class, 'ID_PENJUALAN');
 	}
 
-	public function evaluasi_kinerja_sales()
+	public function pembayaran_penjualans()
 	{
-		return $this->hasMany(EvaluasiKinerjaSale::class, 'ID_PENJUALAN');
-	}
-
-	public function pembayaran_penjualan()
-	{
-		return $this->hasOne(PembayaranPenjualan::class, 'ID_PENJUALAN');
+		return $this->hasMany(PembayaranPenjualan::class, 'ID_PENJUALAN');
 	}
 }
