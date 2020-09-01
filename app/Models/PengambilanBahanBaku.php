@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_OPERATOR_MESIN
  * @property int $KODE_MESIN
  * @property Carbon $WAKTU_PENGAMBILAN
- * @property int $STATUS_BAHAN_BAKU
  * @property string $HASIL_PRODUK
  * 
  * @property OperatorMesin $operator_mesin
@@ -36,7 +35,6 @@ class PengambilanBahanBaku extends Model
 	protected $casts = [
 		'ID_OPERATOR_MESIN' => 'int',
 		'KODE_MESIN' => 'int',
-		'STATUS_BAHAN_BAKU' => 'int'
 	];
 
 	protected $dates = [
@@ -47,7 +45,6 @@ class PengambilanBahanBaku extends Model
 		'ID_OPERATOR_MESIN',
 		'KODE_MESIN',
 		'WAKTU_PENGAMBILAN',
-		'STATUS_BAHAN_BAKU',
 		'HASIL_PRODUK'
 	];
 
