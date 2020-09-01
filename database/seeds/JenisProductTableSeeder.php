@@ -12,7 +12,7 @@ class JenisProductTableSeeder extends Seeder
      */
     public function run()
     {
-        $jenisProduk = ['Tutup Galon A', 'Tutup Galon B', 'amdk A', 'amdk B'];
+        $jenisProduk = ['Tutup Galon ORI', 'Tutup Galon Pendek', 'Tutup Galon Panjang', 'Tutup Botol Kecap', 'Tutup Botol Shortneck', 'Tutup Botol Longneck', 'Tutup Botol Flip Top'];
 
     	foreach($jenisProduk as $j){
     		DB::table('jenis_product')->insert([

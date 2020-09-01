@@ -15,19 +15,19 @@ class BahanBakuTableSeeder extends Seeder
     	DB::table('bahan_baku')->insert([
             'id_jenis_bahan_baku' => 1,
             'nama_bahan_baku' => 'Plastik Bekas',
-            'stok_bahan_baku' => 100
+            'stok_bahan_baku' => 0
         ]);  
 
         DB::table('bahan_baku')->insert([
             'id_jenis_bahan_baku' => 1,
             'nama_bahan_baku' => 'Plastik Virgin',
-            'stok_bahan_baku' => 200
+            'stok_bahan_baku' => 0
         ]);
 
         DB::table('bahan_baku')->insert([
             'id_jenis_bahan_baku' => 2,
             'nama_bahan_baku' => 'Pewarna',
-            'stok_bahan_baku' => 50
+            'stok_bahan_baku' => 0
         ]);
     }
 }
