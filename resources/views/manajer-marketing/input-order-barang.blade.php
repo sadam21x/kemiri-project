@@ -1,5 +1,5 @@
 @extends('layouts/sales-b/main')
-@section('title', 'Edit Order Barang')
+@section('title', 'Input Order Barang')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
@@ -11,7 +11,7 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h4>Edit Order Barang</h4>
+        <h4>Input Order Barang</h4>
         <hr>
     </div>
 
@@ -29,8 +29,12 @@
                         <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
                     </div>
                     <div class="form-group col-md-4">
-                        <label>Customer</label>
-                        <input type="text" class="form-control" readonly value="Depo Air Minum Kita">
+                        <label for="customer">Customer</label>
+                        <select name="KODE_DEPO" id="" class="select-component form-control">
+                            <option value="Depo Air Minum Jaya Sakthi">Depo Air Minum Jaya Sakthi</option>
+                            <option value="Depo Air Minum Kertajaya Indah">Depo Air Minum Kertajaya Indah</option>
+                            <option value="Depo Air Minum Pak Mahmud">Depo Air Minum Pak Mahmud</option>
+                        </select>
                     </div>
                 </div>
 
@@ -107,21 +111,6 @@
                 <div class="form-group row mt-5">
 
                     <div class="form-group col-md-6">
-                        <div class="form-group col-md-10 col-sm-12">
-                            <label class="col-form-label">Metode Kirim</label>
-                            <select name="" id="" class="form-control">
-                                <option>Ambil Sendiri</option>
-                                <option>Truk/Kontainer Kemiri</option>
-                                <option>POS Indonesia</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-10 col-sm-12">
-                            <label class="col-form-label">Ongkos Kirim (IDR)</label>
-                            <input type="number" name="" id="" min="0" value="0" class="form-control num-without-style">
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-6">
                         <h3>Pembayaran</h3>
 
                         <div class="form-group row">
@@ -158,6 +147,13 @@
 
                     </div>
 
+                    <div class="form-group col-md-4">
+                        <h3>Ongkos Kirim (IDR)</h3>
+
+                        <div class="form-group">
+                            <input type="number" name="" id="" min="0" value="0" class="form-control num-without-style">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group d-flex justify-content-center">

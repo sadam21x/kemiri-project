@@ -4,6 +4,7 @@
 
 .card-img-top {
     height: 200px;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,7 +31,7 @@ table {
     font-size: 0.9em;
 }
 
-table tr {
+.profil-table tr {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }

@@ -6,6 +6,7 @@
 */
 
 Route::view('/sales-b', 'sales-b/dashboard');
+Route::view('/sales-b/follow-up-customer', 'sales-b/follow-up-customer');
 //route dimas
 Route::get('/sales-b/customer', 'SalesB\CustomerController@index');
 

@@ -18,10 +18,6 @@
 
             <div class="judul-tabel mb-3">
                 <h5 class="">Riwayat Order Barang</h5>
-                <a href="{{ url('/sales-b/order-barang/input') }}" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
-                    <i class="fas fa-plus mr-1"></i>
-                    TAMBAH BARU
-                </a>
             </div>
 
             <table id="order-barang-table" class="table table-striped table-bordered table-responsive-stack">
