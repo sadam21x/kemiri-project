@@ -17,9 +17,9 @@ class CreatePenjualanTable extends Migration
             $table->integer('ID_PENJUALAN', true);
             $table->integer('ID_MANAJER_MARKETING')->index('FK_KONFIRMASI');
             $table->integer('ID_KONFIRMASI_PENJUALAN')->index('FK_TERDAPAT1123');
-            $table->integer('ID_SALES_B')->index('FK_MENGINPUTKAN');
+            $table->integer('ID_SALES_B')->nullable()->index('FK_MENGINPUTKAN');
             $table->dateTime('TGL_PENJUALAN');
-            $table->date('TGL_KIIRM');
+            $table->date('TGL_KIRIM');
             $table->string('METODE_KIRIM', 50);
             $table->integer('ONGKOS_KIRIM');
             $table->integer('TOTAL_PENJUALAN');

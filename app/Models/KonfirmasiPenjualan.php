@@ -15,9 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $ID_KONFIRMASI_PENJUALAN
  * @property int $KODE_DEPO
- * @property int $ID_SALES_B
+ * @property int|null $ID_SALES_B
  * @property Carbon $TGL_KONFIRMASI_PENJUALAN
- * @property bool $STATUS_KONFIRMASI_PENJUALAN
+ * @property int $STATUS_KONFIRMASI_PENJUALAN
+ * @property string|null $CATATAN
  * 
  * @property SalesB $sales_b
  * @property DepoAirMinum $depo_air_minum
@@ -34,7 +35,7 @@ class KonfirmasiPenjualan extends Model
 	protected $casts = [
 		'KODE_DEPO' => 'int',
 		'ID_SALES_B' => 'int',
-		'STATUS_KONFIRMASI_PENJUALAN' => 'bool'
+		'STATUS_KONFIRMASI_PENJUALAN' => 'int'
 	];
 
 	protected $dates = [
@@ -45,7 +46,8 @@ class KonfirmasiPenjualan extends Model
 		'KODE_DEPO',
 		'ID_SALES_B',
 		'TGL_KONFIRMASI_PENJUALAN',
-		'STATUS_KONFIRMASI_PENJUALAN'
+		'STATUS_KONFIRMASI_PENJUALAN',
+		'CATATAN'
 	];
 
 	public function sales_b()

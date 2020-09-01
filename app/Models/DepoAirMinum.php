@@ -17,11 +17,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_SALES_A
  * @property string $NAMA_CUSTOMER
  * @property string $NAMA_DEPO
- * @property string $ALAMAT_DEPO
+ * @property string|null $ALAMAT_DEPO
  * @property string|null $NO_TELP_DEPO
  * @property string|null $EMAIL_DEPO
  * 
- * @property Kotum $kotum
+ * @property IndonesiaCity $indonesia_city
  * @property SalesA $sales_a
  * @property Collection|KonfirmasiPenjualan[] $konfirmasi_penjualans
  *
@@ -47,9 +47,9 @@ class DepoAirMinum extends Model
 		'EMAIL_DEPO'
 	];
 
-	public function kotum()
+	public function indonesia_city()
 	{
-		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
 	}
 
 	public function sales_a()

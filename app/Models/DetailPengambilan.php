@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class DetailPengambilan
  * 
  * @property int $ID_PENERIMAAN
- * @property int $KODE_PENGAMBILAN_BAHAN_BAKU
+ * @property int $KODE_PENGAMBILAN
  * @property float|null $JUMLAH_KG
  * @property float|null $JUMLAH_SAK_KARUNG
  * 
@@ -29,7 +29,7 @@ class DetailPengambilan extends Model
 
 	protected $casts = [
 		'ID_PENERIMAAN' => 'int',
-		'KODE_PENGAMBILAN_BAHAN_BAKU' => 'int',
+		'KODE_PENGAMBILAN' => 'int',
 		'JUMLAH_KG' => 'float',
 		'JUMLAH_SAK_KARUNG' => 'float'
 	];
@@ -46,6 +46,6 @@ class DetailPengambilan extends Model
 
 	public function pengambilan_bahan_baku()
 	{
-		return $this->belongsTo(PengambilanBahanBaku::class, 'KODE_PENGAMBILAN_BAHAN_BAKU');
+		return $this->belongsTo(PengambilanBahanBaku::class, 'KODE_PENGAMBILAN');
 	}
 }

@@ -16,11 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $KODE_KOTA
  * @property string $NAMA_OWNER
  * @property string $ALAMAT_OWNER
- * @property bool $JENIS_KELAMIN_OWNER
+ * @property int $JENIS_KELAMIN_OWNER
  * @property string|null $NO_TELP_OWNER
  * @property string|null $EMAIL_OWNER
  * 
- * @property Kotum $kotum
+ * @property IndonesiaCity $indonesia_city
  * @property Collection|PembayaranPenerimaanBahanBaku[] $pembayaran_penerimaan_bahan_bakus
  * @property Collection|PembayaranPenjualan[] $pembayaran_penjualans
  *
@@ -33,7 +33,7 @@ class Owner extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'JENIS_KELAMIN_OWNER' => 'bool'
+		'JENIS_KELAMIN_OWNER' => 'int'
 	];
 
 	protected $fillable = [
@@ -45,9 +45,9 @@ class Owner extends Model
 		'EMAIL_OWNER'
 	];
 
-	public function kotum()
+	public function indonesia_city()
 	{
-		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
 	}
 
 	public function pembayaran_penerimaan_bahan_bakus()

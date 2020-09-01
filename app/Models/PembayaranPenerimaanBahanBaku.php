@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_PENERIMAAN
  * @property int $ID_OWNER
  * @property Carbon $TGL_PEMBAYARAN
- * @property bool $STATUS_PEMBAYARAN
+ * @property int $STATUS_PEMBAYARAN
  * 
  * @property Owner $owner
  * @property PenerimaanBahanBaku $penerimaan_bahan_baku
@@ -32,7 +32,7 @@ class PembayaranPenerimaanBahanBaku extends Model
 	protected $casts = [
 		'ID_PENERIMAAN' => 'int',
 		'ID_OWNER' => 'int',
-		'STATUS_PEMBAYARAN' => 'bool'
+		'STATUS_PEMBAYARAN' => 'int'
 	];
 
 	protected $dates = [

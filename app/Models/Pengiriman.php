@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $KODE_PENGIRIMAN
  * @property int $KODE_PEMBAYARAN_PENJUALAN
  * @property int $ID_ADMIN_GUDANG
- * @property Carbon $TGL_KIRIM_RILL
+ * @property Carbon $TGL_KIRIM_RIIL
  * 
  * @property AdminGudang $admin_gudang
  * @property PembayaranPenjualan $pembayaran_penjualan
@@ -34,13 +34,13 @@ class Pengiriman extends Model
 	];
 
 	protected $dates = [
-		'TGL_KIRIM_RILL'
+		'TGL_KIRIM_RIIL'
 	];
 
 	protected $fillable = [
 		'KODE_PEMBAYARAN_PENJUALAN',
 		'ID_ADMIN_GUDANG',
-		'TGL_KIRIM_RILL'
+		'TGL_KIRIM_RIIL'
 	];
 
 	public function admin_gudang()

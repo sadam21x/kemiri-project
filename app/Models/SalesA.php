@@ -16,11 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $KODE_KOTA
  * @property string $NAMA_SALES_A
  * @property string $ALAMAT_SALES_A
- * @property bool $JENIS_KELAMIN_SALES_A
+ * @property int $JENIS_KELAMIN_SALES_A
  * @property string $NO_TELP_SALES_A
  * @property string|null $EMAIL_SALES_A
  * 
- * @property Kotum $kotum
+ * @property IndonesiaCity $indonesia_city
  * @property Collection|DepoAirMinum[] $depo_air_minums
  * @property Collection|EvaluasiKinerjaSalesa[] $evaluasi_kinerja_salesas
  *
@@ -33,7 +33,7 @@ class SalesA extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'JENIS_KELAMIN_SALES_A' => 'bool'
+		'JENIS_KELAMIN_SALES_A' => 'int'
 	];
 
 	protected $fillable = [
@@ -45,9 +45,9 @@ class SalesA extends Model
 		'EMAIL_SALES_A'
 	];
 
-	public function kotum()
+	public function indonesia_city()
 	{
-		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
 	}
 
 	public function depo_air_minums()

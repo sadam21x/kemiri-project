@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $NO_TELP_SUPPLIER
  * @property string|null $EMAIL_SUPPLIER
  * 
- * @property Kotum $kotum
+ * @property IndonesiaCity $indonesia_city
  * @property Collection|PenerimaanBahanBaku[] $penerimaan_bahan_bakus
  *
  * @package App\Models
@@ -38,9 +38,9 @@ class Supplier extends Model
 		'EMAIL_SUPPLIER'
 	];
 
-	public function kotum()
+	public function indonesia_city()
 	{
-		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
 	}
 
 	public function penerimaan_bahan_bakus()

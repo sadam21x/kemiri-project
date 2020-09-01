@@ -16,13 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_PENJUALAN
  * @property int $ID_MANAJER_MARKETING
  * @property int $ID_KONFIRMASI_PENJUALAN
- * @property int $ID_SALES_B
+ * @property int|null $ID_SALES_B
  * @property Carbon $TGL_PENJUALAN
- * @property Carbon $TGL_KIIRM
+ * @property Carbon $TGL_KIRIM
  * @property string $METODE_KIRIM
  * @property int $ONGKOS_KIRIM
  * @property int $TOTAL_PENJUALAN
- * @property bool $STATUS_PENJUALAN
+ * @property int $STATUS_PENJUALAN
  * 
  * @property ManajerMarketing $manajer_marketing
  * @property SalesB $sales_b
@@ -44,12 +44,12 @@ class Penjualan extends Model
 		'ID_SALES_B' => 'int',
 		'ONGKOS_KIRIM' => 'int',
 		'TOTAL_PENJUALAN' => 'int',
-		'STATUS_PENJUALAN' => 'bool'
+		'STATUS_PENJUALAN' => 'int'
 	];
 
 	protected $dates = [
 		'TGL_PENJUALAN',
-		'TGL_KIIRM'
+		'TGL_KIRIM'
 	];
 
 	protected $fillable = [
@@ -57,7 +57,7 @@ class Penjualan extends Model
 		'ID_KONFIRMASI_PENJUALAN',
 		'ID_SALES_B',
 		'TGL_PENJUALAN',
-		'TGL_KIIRM',
+		'TGL_KIRIM',
 		'METODE_KIRIM',
 		'ONGKOS_KIRIM',
 		'TOTAL_PENJUALAN',
