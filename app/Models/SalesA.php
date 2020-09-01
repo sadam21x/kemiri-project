@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Kotum $kotum
  * @property Collection|DepoAirMinum[] $depo_air_minums
+ * @property Collection|EvaluasiKinerjaSalesa[] $evaluasi_kinerja_salesas
  *
  * @package App\Models
  */
@@ -52,5 +53,10 @@ class SalesA extends Model
 	public function depo_air_minums()
 	{
 		return $this->hasMany(DepoAirMinum::class, 'ID_SALES_A');
+	}
+
+	public function evaluasi_kinerja_salesas()
+	{
+		return $this->hasMany(EvaluasiKinerjaSalesa::class, 'ID_SALES_A');
 	}
 }

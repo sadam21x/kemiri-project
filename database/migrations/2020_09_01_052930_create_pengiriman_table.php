@@ -17,7 +17,7 @@ class CreatePengirimanTable extends Migration
             $table->integer('KODE_PENGIRIMAN', true);
             $table->integer('KODE_PEMBAYARAN_PENJUALAN')->index('FK_TERDAPAT51');
             $table->integer('ID_ADMIN_GUDANG')->index('FK_TERDAPAT123123');
-            $table->date('TGL_KIRIM_RIIL');
+            $table->date('TGL_KIRIM_RILL');
         });
     }
 

@@ -14,17 +14,15 @@ use Illuminate\Database\Eloquent\Model;
  * Class PengambilanBahanBaku
  * 
  * @property int $KODE_PENGAMBILAN_BAHAN_BAKU
- * @property int $ID_PENERIMAAN
  * @property int $ID_OPERATOR_MESIN
  * @property int $KODE_MESIN
  * @property Carbon $WAKTU_PENGAMBILAN
- * @property float $JUMLAH_KG
- * @property float $JUMLAH_SAK_KARUNG
+ * @property string $HASIL_PRODUK
  * @property bool $STATUS_BAHAN_BAKU
  * 
  * @property OperatorMesin $operator_mesin
  * @property Mesin $mesin
- * @property PenerimaanBahanBaku $penerimaan_bahan_baku
+ * @property Collection|DetailPengambilan[] $detail_pengambilans
  * @property Collection|ProsesProduksi[] $proses_produksis
  *
  * @package App\Models
@@ -36,11 +34,8 @@ class PengambilanBahanBaku extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'ID_PENERIMAAN' => 'int',
 		'ID_OPERATOR_MESIN' => 'int',
 		'KODE_MESIN' => 'int',
-		'JUMLAH_KG' => 'float',
-		'JUMLAH_SAK_KARUNG' => 'float',
 		'STATUS_BAHAN_BAKU' => 'bool'
 	];
 
@@ -49,12 +44,10 @@ class PengambilanBahanBaku extends Model
 	];
 
 	protected $fillable = [
-		'ID_PENERIMAAN',
 		'ID_OPERATOR_MESIN',
 		'KODE_MESIN',
 		'WAKTU_PENGAMBILAN',
-		'JUMLAH_KG',
-		'JUMLAH_SAK_KARUNG',
+		'HASIL_PRODUK',
 		'STATUS_BAHAN_BAKU'
 	];
 
@@ -68,9 +61,9 @@ class PengambilanBahanBaku extends Model
 		return $this->belongsTo(Mesin::class, 'KODE_MESIN');
 	}
 
-	public function penerimaan_bahan_baku()
+	public function detail_pengambilans()
 	{
-		return $this->belongsTo(PenerimaanBahanBaku::class, 'ID_PENERIMAAN');
+		return $this->hasMany(DetailPengambilan::class, 'KODE_PENGAMBILAN_BAHAN_BAKU');
 	}
 
 	public function proses_produksis()

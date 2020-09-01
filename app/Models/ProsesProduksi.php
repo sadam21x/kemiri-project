@@ -16,11 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $KODE_PRODUKSI
  * @property int $KODE_PENGAMBILAN_BAHAN_BAKU
  * @property Carbon $TGL_PRODUKSI
- * @property float $HASIL_BAGUS_KG
- * @property float $HASIL_RUSAK_KG
- * @property string $EVALUASI_PRODUCT
- * @property string $EVALUASI_MESIN
- * @property string $EVALUASI_BAHAN_BAKU
+ * @property float|null $HASIL_BAGUS_KG
+ * @property float|null $HASIL_RUSAK_KG
+ * @property string|null $EVALUASI_PRODUCT
+ * @property string|null $EVALUASI_MESIN
+ * @property string|null $EVALUASI_BAHAN_BAKU
  * 
  * @property PengambilanBahanBaku $pengambilan_bahan_baku
  * @property Collection|HasilProduct[] $hasil_products
@@ -60,6 +60,6 @@ class ProsesProduksi extends Model
 
 	public function hasil_products()
 	{
-		return $this->hasOne(HasilProduct::class, 'KODE_PRODUKSI');
+		return $this->hasMany(HasilProduct::class, 'KODE_PRODUKSI');
 	}
 }

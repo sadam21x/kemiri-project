@@ -20,15 +20,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $TGL_KEDATANGAN
  * @property string $SATUAN
  * @property float $TOTAL_BERAT
- * @property float $STOK_BAHAN_BAKU
  * @property float $JUMLAH_KARUNG_SAK
  * @property float $ISI_KARUNG
  * 
  * @property AdminGudang $admin_gudang
  * @property Supplier $supplier
  * @property BahanBaku $bahan_baku
+ * @property Collection|DetailPengambilan[] $detail_pengambilans
  * @property Collection|PembayaranPenerimaanBahanBaku[] $pembayaran_penerimaan_bahan_bakus
- * @property Collection|PengambilanBahanBaku[] $pengambilan_bahan_bakus
  *
  * @package App\Models
  */
@@ -58,7 +57,6 @@ class PenerimaanBahanBaku extends Model
 		'TGL_KEDATANGAN',
 		'SATUAN',
 		'TOTAL_BERAT',
-		'STOK_BAHAN_BAKU',
 		'JUMLAH_KARUNG_SAK',
 		'ISI_KARUNG'
 	];
@@ -78,13 +76,13 @@ class PenerimaanBahanBaku extends Model
 		return $this->belongsTo(BahanBaku::class, 'KODE_BAHAN_BAKU');
 	}
 
+	public function detail_pengambilans()
+	{
+		return $this->hasMany(DetailPengambilan::class, 'ID_PENERIMAAN');
+	}
+
 	public function pembayaran_penerimaan_bahan_bakus()
 	{
 		return $this->hasMany(PembayaranPenerimaanBahanBaku::class, 'ID_PENERIMAAN');
-	}
-
-	public function pengambilan_bahan_bakus()
-	{
-		return $this->hasMany(PengambilanBahanBaku::class, 'ID_PENERIMAAN');
 	}
 }

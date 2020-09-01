@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $EMAIL_SALES_B
  * 
  * @property Kotum $kotum
+ * @property Collection|EvaluasiKinerjaSalesb[] $evaluasi_kinerja_salesbs
  * @property Collection|KonfirmasiPenjualan[] $konfirmasi_penjualans
  * @property Collection|Penjualan[] $penjualans
  *
@@ -48,6 +49,11 @@ class SalesB extends Model
 	public function kotum()
 	{
 		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
+	}
+
+	public function evaluasi_kinerja_salesbs()
+	{
+		return $this->hasMany(EvaluasiKinerjaSalesb::class, 'ID_SALES_B');
 	}
 
 	public function konfirmasi_penjualans()

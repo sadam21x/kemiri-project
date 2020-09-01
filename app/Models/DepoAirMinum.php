@@ -49,7 +49,7 @@ class DepoAirMinum extends Model
 
 	public function kotum()
 	{
-		return $this->belongsTo('Laravolt\Indonesia\Models\City','KODE_KOTA');
+		return $this->belongsTo(Kotum::class, 'KODE_KOTA');
 	}
 
 	public function sales_a()
