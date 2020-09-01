@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="card-body card-body-profile">
-                    <table style="tab">
+                    <table class="profil-table">
                         <tr>
                             <td class="label-detail">ID Sales</td>
                             <td>SLA00001</td>
@@ -51,7 +51,7 @@
                             <td>Semarang</td>
                         </tr>
                         <tr>
-                            <td class="label-detail">Telepom</td>
+                            <td class="label-detail">Telepon</td>
                             <td>082265118092</td>
                         </tr>
                         <tr>
@@ -72,32 +72,31 @@
 
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered rekap-table datatable-component">
-                            <thead class="thead-dark">
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Customer</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>01/08/2020</td>
-                                    <td>Depo Sinar Mas Nusantara Bersatu</td>
-                                </tr>
-                                <tr>
-                                    <td>01/08/2020</td>
-                                    <td>Depo Sinar Mas</td>
-                                </tr>
-                                <tr>
-                                    <td>01/08/2020</td>
-                                    <td>Depo Sinar Mas</td>
-                                </tr>
-                                <tr>
-                                    <td>01/08/2020</td>
-                                    <td>Depo Sinar Mas</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table
+                        class="table table-striped table-bordered rekap-table table-responsive-stack">
+                        <thead class="thead-dark">
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Customer</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/08/2020</td>
+                                <td>Depo Sinar Mas Nusantara Bersatu</td>
+                            </tr>
+                            <tr>
+                                <td>01/08/2020</td>
+                                <td>Depo Sinar Mas</td>
+                            </tr>
+                            <tr>
+                                <td>01/08/2020</td>
+                                <td>Depo Sinar Mas</td>
+                            </tr>
+                            <tr>
+                                <td>01/08/2020</td>
+                                <td>Depo Sinar Mas</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

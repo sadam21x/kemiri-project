@@ -19,7 +19,7 @@ class CreateDepoAirMinumTable extends Migration
             $table->integer('ID_SALES_A')->index('FK_MENCATAT');
             $table->string('NAMA_CUSTOMER', 50);
             $table->string('NAMA_DEPO', 50);
-            $table->string('ALAMAT_DEPO', 100);
+            $table->string('ALAMAT_DEPO', 100)->nullable();
             $table->string('NO_TELP_DEPO', 50)->nullable();
             $table->string('EMAIL_DEPO', 50)->nullable();
         });

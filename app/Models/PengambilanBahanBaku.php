@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $KODE_MESIN
  * @property Carbon $WAKTU_PENGAMBILAN
  * @property string $HASIL_PRODUK
- * @property bool $STATUS_BAHAN_BAKU
  * 
  * @property OperatorMesin $operator_mesin
  * @property Mesin $mesin
@@ -36,7 +35,6 @@ class PengambilanBahanBaku extends Model
 	protected $casts = [
 		'ID_OPERATOR_MESIN' => 'int',
 		'KODE_MESIN' => 'int',
-		'STATUS_BAHAN_BAKU' => 'bool'
 	];
 
 	protected $dates = [
@@ -47,8 +45,7 @@ class PengambilanBahanBaku extends Model
 		'ID_OPERATOR_MESIN',
 		'KODE_MESIN',
 		'WAKTU_PENGAMBILAN',
-		'HASIL_PRODUK',
-		'STATUS_BAHAN_BAKU'
+		'HASIL_PRODUK'
 	];
 
 	public function operator_mesin()
@@ -63,7 +60,7 @@ class PengambilanBahanBaku extends Model
 
 	public function detail_pengambilans()
 	{
-		return $this->hasMany(DetailPengambilan::class, 'KODE_PENGAMBILAN_BAHAN_BAKU');
+		return $this->hasMany(DetailPengambilan::class, 'KODE_PENGAMBILAN');
 	}
 
 	public function proses_produksis()

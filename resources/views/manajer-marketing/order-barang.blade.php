@@ -18,60 +18,62 @@
 
             <div class="judul-tabel">
                 <h5>Riwayat Order Barang</h5>
+                <a href="#" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
+                    <i class="fas fa-plus mr-1"></i>
+                    TAMBAH BARU
+                </a>
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="order-barang-table" class="table table-striped table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">ID Order</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Konfirmasi Order</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ORD00001</td>
-                                    <td>01/08/2020</td>
-                                    <td>Depo Air Minum Kertajaya Indah</td>
-                                    <td>
-                                        <div>
-                                            <span>KONFIRMASI</span>
-                                            <i class="fas fa-check ml-1"></i>
-                                        </div>
-                                    </td>
-                                    <td colspan="2">
-                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal"
-                                            data-target="#modal-detail-order-barang">
-                                            <i class="fas fa-info-circle mr-1"></i>
-                                            DETAIL
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ORD00002</td>
-                                    <td>02/08/2020</td>
-                                    <td>Depo Air Minum Surya</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-success">
-                                            KONFIRMASI
-                                        </button>
-                                    </td>
-                                    <td colspan="2">
-                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal"
-                                            data-target="#modal-detail-order-barang">
-                                            <i class="fas fa-info-circle mr-1"></i>
-                                            DETAIL
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="order-barang-table" class="table table-bordered table-striped table-responsive-stack">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ID Order</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Konfirmasi Order</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ORD00001</td>
+                                <td>01/08/2020</td>
+                                <td>Depo Air Minum Kertajaya Indah</td>
+                                <td>
+                                    <div>
+                                        <span>KONFIRMASI</span>
+                                        <i class="fas fa-check ml-1"></i>
+                                    </div>
+                                </td>
+                                <td colspan="2">
+                                    <button class="btn btn-linkedin btn-sm" data-toggle="modal"
+                                        data-target="#modal-detail-order-barang">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        DETAIL
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ORD00002</td>
+                                <td>02/08/2020</td>
+                                <td>Depo Air Minum Surya</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success">
+                                        KONFIRMASI
+                                    </button>
+                                </td>
+                                <td colspan="2">
+                                    <button class="btn btn-linkedin btn-sm" data-toggle="modal"
+                                        data-target="#modal-detail-order-barang">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        DETAIL
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

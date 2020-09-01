@@ -1,5 +1,5 @@
 @extends('layouts/sales-b/main')
-@section('title', 'Edit Order Barang')
+@section('title', 'Input Order Barang')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
@@ -11,7 +11,7 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h4>Edit Order Barang</h4>
+        <h4>Input Order Barang</h4>
         <hr>
     </div>
 
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="customer">Customer</label>
-                        <select name="" id="" class="select-component form-control">
+                        <select name="KODE_DEPO" id="" class="select-component form-control">
                             <option value="Depo Air Minum Jaya Sakthi">Depo Air Minum Jaya Sakthi</option>
                             <option value="Depo Air Minum Kertajaya Indah">Depo Air Minum Kertajaya Indah</option>
                             <option value="Depo Air Minum Pak Mahmud">Depo Air Minum Pak Mahmud</option>
