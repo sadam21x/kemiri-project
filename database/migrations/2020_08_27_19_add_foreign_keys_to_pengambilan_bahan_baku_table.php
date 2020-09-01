@@ -16,7 +16,6 @@ class AddForeignKeysToPengambilanBahanBakuTable extends Migration
         Schema::table('pengambilan_bahan_baku', function (Blueprint $table) {
             $table->foreign('ID_OPERATOR_MESIN', 'FK_MELAKUKAN912931')->references('ID_OPERATOR_MESIN')->on('operator_mesin')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('KODE_MESIN', 'FK_TERDAPAT991')->references('KODE_MESIN')->on('mesin')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('ID_PENERIMAAN', 'FK_TERDAPAT999123')->references('ID_PENERIMAAN')->on('penerimaan_bahan_baku')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -30,7 +29,6 @@ class AddForeignKeysToPengambilanBahanBakuTable extends Migration
         Schema::table('pengambilan_bahan_baku', function (Blueprint $table) {
             $table->dropForeign('FK_MELAKUKAN912931');
             $table->dropForeign('FK_TERDAPAT991');
-            $table->dropForeign('FK_TERDAPAT999123');
         });
     }
 }

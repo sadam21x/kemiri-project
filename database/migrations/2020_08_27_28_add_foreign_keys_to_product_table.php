@@ -15,7 +15,6 @@ class AddForeignKeysToProductTable extends Migration
     {
         Schema::table('product', function (Blueprint $table) {
             $table->foreign('KODE_JENIS_PRODUCT', 'FK_TERDAPAT3454')->references('KODE_JENIS_PRODUCT')->on('jenis_product')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('KODE_HASIL_PRODUCT', 'FK_TERDAPAT93312')->references('KODE_HASIL_PRODUCT')->on('hasil_product')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -28,7 +27,6 @@ class AddForeignKeysToProductTable extends Migration
     {
         Schema::table('product', function (Blueprint $table) {
             $table->dropForeign('FK_TERDAPAT3454');
-            $table->dropForeign('FK_TERDAPAT93312');
         });
     }
 }

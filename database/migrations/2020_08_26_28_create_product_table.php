@@ -15,7 +15,6 @@ class CreateProductTable extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->integer('KODE_PRODUCT', true);
-            $table->integer('KODE_HASIL_PRODUCT')->index('FK_TERDAPAT93312');
             $table->integer('KODE_JENIS_PRODUCT')->index('FK_TERDAPAT3454');
             $table->string('NAMA_PRODUCT', 50);
             $table->float('HARGA_PRODUCT', 10, 0);

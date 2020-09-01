@@ -84,6 +84,9 @@
     {{-- Fontawesome --}}
     <script src="{{ asset('/assets/fontawesome/js/all.min.js') }}"></script>
 
+    {{-- TinyMCE --}}
+    <script src="https://cdn.tiny.cloud/1/3dafzz276jvy64huaztwshj60h0lfqkv1fm1q50hw63qbt75/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    
     {{-- Extra Script --}}
     @yield('extra-script')
 </body>
