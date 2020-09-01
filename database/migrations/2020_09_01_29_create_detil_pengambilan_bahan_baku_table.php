@@ -14,14 +14,10 @@ class CreateDetilPengambilanBahanBakuTable extends Migration
     public function up()
     {
         Schema::create('detil_pengambilan_bahan_baku', function (Blueprint $table) {
-            $table->integer('KODE_PENGAMBILAN_BAHAN_BAKU', true);
             $table->integer('ID_PENERIMAAN')->index('FK_TERDAPAT999123');
-            $table->integer('ID_OPERATOR_MESIN')->index('FK_MELAKUKAN912931');
-            $table->integer('KODE_MESIN')->index('FK_TERDAPAT991');
-            $table->dateTime('WAKTU_PENGAMBILAN');
+            $table->integer('KODE_PENGAMBILAN_BAHAN_BAKU')->index('FK_TERDAPAT0101');
             $table->float('JUMLAH_KG', 10, 0);
             $table->float('JUMLAH_SAK_KARUNG', 10, 0);
-            $table->tinyInteger('STATUS_BAHAN_BAKU');
         });
     }
 
