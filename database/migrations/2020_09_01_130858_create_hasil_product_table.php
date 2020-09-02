@@ -21,7 +21,15 @@ class CreateHasilProductTable extends Migration
             $table->float('HASIL_RUSAK_PCS', 10, 0)->nullable();
         });
         DB::unprepared(
-            "CREATE TRIGGER `hasil_produk` AFTER UPDATE ON `hasil_product`
+            "CREATE TRIGGER `update_hasil_produk` AFTER UPDATE ON `hasil_product`
+ FOR EACH ROW BEGIN
+UPDATE product SET STOK_PRODUCT=STOK_PRODUCT+NEW.HASIL_BAGUS_PCS
+WHERE KODE_PRODUCT=NEW.KODE_PRODUCT;
+END"
+        );
+        // SUPAYA SAAT DI SEED NGGAK MINUS STOCK PRODUCT NYA
+        DB::unprepared(
+            "CREATE TRIGGER `insert_hasil_produk` AFTER INSERT ON `hasil_product`
  FOR EACH ROW BEGIN
 UPDATE product SET STOK_PRODUCT=STOK_PRODUCT+NEW.HASIL_BAGUS_PCS
 WHERE KODE_PRODUCT=NEW.KODE_PRODUCT;
@@ -37,7 +45,7 @@ END"
     public function down()
     {
         Schema::dropIfExists('hasil_product');
-        DB::unprepared('DROP TRIGGER `hasil_produk`');
-
+        DB::unprepared('DROP TRIGGER `update_hasil_produk`');
+        DB::unprepared('DROP TRIGGER `insert_hasil_produk`');
     }
 }
