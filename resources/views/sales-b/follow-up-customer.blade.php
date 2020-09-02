@@ -23,57 +23,61 @@
 
             <table class="table table-bordered table-stripped datatable-component table-responsive-stack">
                 <thead class="thead-dark">
+                    <th scope="col">ID Konfirmasi Penjualan</th>
                     <th scope="col">ID Customer</th>
                     <th scope="col">Nama Customer</th>
                     <th scope="col">Status</th>
                     <th scope="col">Follow Up Order</th>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>CUST00001</td>
-                        <td>Depo Air Minum Bajra Sandhi</td>
-                        <td></td>
-                        <td colspan="2">
-                            <button class="btn btn-sm btn-success">
-                                ORDER
-                            </button>
-                            <button class="btn btn-sm btn-google" data-toggle="modal" data-target="#modal-follow-up">
-                                TIDAK ORDER
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>CUST00001</td>
-                        <td>Depo Air Minum Bajra Sandhi</td>
+                        <td>{{$d->ID_KONFIRMASI_PENJUALAN}}</td>
+                        <td>{{$d->KODE_DEPO}}</td>
+                        <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                         <td>
+                            @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
+                            <div class="btn btn-sm">
+                                BELUM KONFIRMASI
+                            </div>
+                            @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1 && $d->CATATAN == NULL)
                             <div class="btn btn-sm">
                                 ORDER
                                 <i class="fas fa-check ml-2"></i>
                             </div>
-                        </td>
-                        <td>
-                        <a href="{{ url('/sales-b/order-barang/input') }}" class="btn btn-sm bg-dribbble">
-                                <i class="fas fa-plus-circle mr-2"></i>
-                                INPUT
-                            </a> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>CUST00001</td>
-                        <td>Depo Air Minum Bajra Sandhi</td>
-                        <td>
+                            @else
                             <div class="btn btn-sm">
                                 TIDAK ORDER
                                 <i class="fas fa-times ml-2"></i>
                             </div>
+                            @endif
                         </td>
-                        <td>
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pembatalan-order">
+                        <td colspan="2">
+                            @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
+                            <button class="btn btn-sm btn-success btn-order" id="{{$d->ID_KONFIRMASI_PENJUALAN}}">
+                                ORDER
+                            </button>
+                            <button class="btn btn-sm btn-google" data-toggle="modal" data-target="#modal-follow-up-{{$d->ID_KONFIRMASI_PENJUALAN}}">
+                                TIDAK ORDER
+                            </button>
+                            @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1 && $d->CATATAN == NULL)
+                            <form action="{{ url('/sales-b/order-barang/input') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="KODE_DEPO" value="{{$d->KODE_DEPO}}">
+                                <button type="submit" class="btn btn-sm bg-dribbble">
+                                    <i class="fas fa-plus-circle mr-2"></i>
+                                    INPUT
+                                </button>
+                            </form>
+                            @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1)
+                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pembatalan-order-{{$d->ID_KONFIRMASI_PENJUALAN}}">
                                 <i class="fas fa-info-circle mr-2"></i>
                                 DETAIL
                             </button>
+                            @endif
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -81,9 +85,9 @@
 </div>
 {{-- End of Content --}}
 
-
+@foreach($data as $d)
 {{-- Start Detail Pembatalan Order Modal --}}
-<div class="modal fade" id="modal-detail-pembatalan-order" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-pembatalan-order-{{$d->ID_KONFIRMASI_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -99,7 +103,7 @@
                     <div class="mb-3">
                         <h5>Alasan</h5>
                         <p>
-                            Sudah membeli di tempat lain
+                            {{$d->CATATAN}}
                         </p>
                     </div>
 
@@ -112,7 +116,7 @@
 {{-- End of Detail Pembatalan Order Modal --}}
 
 {{-- Start Follow Up Modal --}}
-<div class="modal fade" id="modal-follow-up" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-follow-up-{{$d->ID_KONFIRMASI_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -123,37 +127,37 @@
             </div>
             <div class="modal-body">
 
-                <form action="" method="post">
+                <form action="{{ url('/sales-b/follow-up/tidak-order') }}" method="post">
                     @csrf
-
+                    <input type="hidden" name="ID_KONFIRMASI_PENJUALAN" value="{{$d->ID_KONFIRMASI_PENJUALAN}}">
                     <div class="form-group">
                         <label>Alasan Memilih Tidak Melakukan Order?</label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alasan" id="alasan-1" value="" checked>
+                            <input class="form-check-input" type="radio" name="alasan" id="alasan-1" value="Tidak/belum membutuhkan" checked>
                             <label class="form-check-label" for="alasan-1">
                                 Tidak/belum membutuhkan
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alasan" id="alasan-2" value="">
+                            <input class="form-check-input" type="radio" name="alasan" id="alasan-2" value="Sudah memesan di tempat lain">
                             <label class="form-check-label" for="alasan-2">
                                 Sudah memesan di tempat lain
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alasan" id="alasan-3" value="">
+                            <input class="form-check-input" type="radio" name="alasan" id="alasan-3" value="Kualitas meragukan">
                             <label class="form-check-label" for="alasan-3">
                                 Kualitas meragukan
                             </label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="alasan" id="alasan-4" value="">
+                            <input class="form-check-input" type="radio" name="alasan" id="alasan-4" value="Lainnya">
                             <label class="form-check-label" for="alasan-4">
-                                Lainyya
+                                Lainnya
                             </label>
                         </div>
                     </div>
@@ -170,6 +174,7 @@
     </div>
 </div>
 {{-- End of Follow Up Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')
