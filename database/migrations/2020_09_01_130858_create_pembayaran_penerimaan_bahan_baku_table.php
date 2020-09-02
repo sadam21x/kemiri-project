@@ -16,8 +16,8 @@ class CreatePembayaranPenerimaanBahanBakuTable extends Migration
         Schema::create('pembayaran_penerimaan_bahan_baku', function (Blueprint $table) {
             $table->integer('KODE_PEMBAYARAN', true);
             $table->integer('ID_PENERIMAAN')->index('FK_MEMILIKI99');
-            $table->integer('ID_OWNER')->index('FK_MELAKUKAN1123');
-            $table->date('TGL_PEMBAYARAN');
+            $table->integer('ID_OWNER')->index('FK_MELAKUKAN1123')->nullable();
+            $table->date('TGL_PEMBAYARAN')->nullable();
             $table->tinyInteger('STATUS_PEMBAYARAN');
         });
     }

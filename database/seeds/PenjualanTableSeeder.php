@@ -17,10 +17,10 @@ class PenjualanTableSeeder extends Seeder
             'ID_KONFIRMASI_PENJUALAN' => 1,
             'ID_SALES_B' => rand(1,5),
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-28")),
-            'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-28")),
+            'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-29")),
             'METODE_KIRIM' => "JNE",
             'ONGKOS_KIRIM' => 20000,
-            'TOTAL_PENJUALAN' => 1000000,
+            'TOTAL_PENJUALAN' => floatval((61*325)+(425*400)+20000),
             'STATUS_PENJUALAN' => 1
         ]);
 
@@ -30,9 +30,9 @@ class PenjualanTableSeeder extends Seeder
             'ID_SALES_B' => rand(1,5),
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-29")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-29")),
-            'METODE_KIRIM' => "JNE",
-            'ONGKOS_KIRIM' => 10000,
-            'TOTAL_PENJUALAN' => 500000,
+            'METODE_KIRIM' => "Ambil Sendiri",
+            'ONGKOS_KIRIM' => 0,
+            'TOTAL_PENJUALAN' => floatval((149*400)+0),
             'STATUS_PENJUALAN' => 1
         ]);
 
@@ -43,8 +43,8 @@ class PenjualanTableSeeder extends Seeder
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-30")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-30")),
             'METODE_KIRIM' => "POS",
-            'ONGKOS_KIRIM' => 22000,
-            'TOTAL_PENJUALAN' => 1000000,
+            'ONGKOS_KIRIM' => 12000,
+            'TOTAL_PENJUALAN' => floatval((564*350)+(291*230)+12000),
             'STATUS_PENJUALAN' => 1
         ]);
 
@@ -55,9 +55,9 @@ class PenjualanTableSeeder extends Seeder
             'TGL_PENJUALAN' => date("Y-m-d",strtotime("2020-08-31")),
             'TGL_KIRIM' => date("Y-m-d",strtotime("2020-08-31")),
             'METODE_KIRIM' => "TIKI",
-            'ONGKOS_KIRIM' => 15000,
-            'TOTAL_PENJUALAN' => 1000000,
-            'STATUS_PENJUALAN' => 1
+            'ONGKOS_KIRIM' => 30000,
+            'TOTAL_PENJUALAN' => floatval((493*325)+(783*400)+(63*400)+(878*350)+30000),
+            'STATUS_PENJUALAN' => 0
         ]);
     }
 }
