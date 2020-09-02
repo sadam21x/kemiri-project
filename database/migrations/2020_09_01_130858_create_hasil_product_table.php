@@ -20,6 +20,13 @@ class CreateHasilProductTable extends Migration
             $table->float('HASIL_BAGUS_PCS', 10, 0)->nullable();
             $table->float('HASIL_RUSAK_PCS', 10, 0)->nullable();
         });
+        DB::unprepared(
+            "CREATE TRIGGER `hasil_produk` AFTER UPDATE ON `hasil_product`
+ FOR EACH ROW BEGIN
+UPDATE product SET STOK_PRODUCT=STOK_PRODUCT+NEW.HASIL_BAGUS_PCS
+WHERE KODE_PRODUCT=NEW.KODE_PRODUCT;
+END"
+        );
     }
 
     /**
@@ -30,5 +37,7 @@ class CreateHasilProductTable extends Migration
     public function down()
     {
         Schema::dropIfExists('hasil_product');
+        DB::unprepared('DROP TRIGGER `hasil_produk`');
+
     }
 }

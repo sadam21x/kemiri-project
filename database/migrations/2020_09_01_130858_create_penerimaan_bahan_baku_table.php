@@ -24,6 +24,15 @@ class CreatePenerimaanBahanBakuTable extends Migration
             $table->float('JUMLAH_KARUNG_SAK', 10, 0);
             $table->float('ISI_KARUNG', 10, 0);
         });
+        DB::unprepared(
+            "CREATE TRIGGER `penerimaan_produk` AFTER INSERT ON `penerimaan_bahan_baku`
+                FOR EACH ROW 
+                BEGIN
+                UPDATE bahan_baku SET STOK_BAHAN_BAKU=STOK_BAHAN_BAKU+NEW.TOTAL_BERAT
+                WHERE KODE_BAHAN_BAKU=NEW.KODE_BAHAN_BAKU;
+                END"
+        );
+
     }
 
     /**
@@ -34,5 +43,6 @@ class CreatePenerimaanBahanBakuTable extends Migration
     public function down()
     {
         Schema::dropIfExists('penerimaan_bahan_baku');
+        DB::unprepared('DROP TRIGGER `penerimaan_produk`');
     }
 }
