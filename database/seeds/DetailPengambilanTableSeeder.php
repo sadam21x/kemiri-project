@@ -83,7 +83,7 @@ class DetailPengambilanTableSeeder extends Seeder
         ]);
 
         DB::table('detail_pengambilan')->insert([
-			'ID_PENERIMAAN' => 2,
+			'ID_PENERIMAAN' => 1,
 			'KODE_PENGAMBILAN' =>6,
 			'JUMLAH_KG' => 20,
 			'JUMLAH_SAK_KARUNG' => 2
@@ -97,7 +97,7 @@ class DetailPengambilanTableSeeder extends Seeder
         ]);
 
         DB::table('detail_pengambilan')->insert([
-			'ID_PENERIMAAN' => 2,
+			'ID_PENERIMAAN' => 1,
 			'KODE_PENGAMBILAN' =>7,
 			'JUMLAH_KG' => 20,
 			'JUMLAH_SAK_KARUNG' => 2
@@ -111,7 +111,7 @@ class DetailPengambilanTableSeeder extends Seeder
         ]);
 
         DB::table('detail_pengambilan')->insert([
-			'ID_PENERIMAAN' => 2,
+			'ID_PENERIMAAN' => 1,
 			'KODE_PENGAMBILAN' =>8,
 			'JUMLAH_KG' => 20,
 			'JUMLAH_SAK_KARUNG' => 2
@@ -125,7 +125,7 @@ class DetailPengambilanTableSeeder extends Seeder
         ]);
 
         DB::table('detail_pengambilan')->insert([
-			'ID_PENERIMAAN' => 1,
+			'ID_PENERIMAAN' => 2,
 			'KODE_PENGAMBILAN' =>9,
 			'JUMLAH_KG' => 20,
 			'JUMLAH_SAK_KARUNG' => 2
