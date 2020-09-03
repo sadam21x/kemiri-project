@@ -44,7 +44,7 @@ class PenerimaanBahanBaku extends Model
 		'TOTAL_BERAT' => 'float',
 		'JUMLAH_KARUNG_SAK' => 'float',
 		'ISI_KARUNG' => 'float',
-        'STOK_PENERIMAAN' => 'int'
+        'STOK_PENERIMAAN' => 'float'
 	];
 
 	protected $dates = [
