@@ -44,7 +44,7 @@ class PenerimaanBahanBaku extends Model
 		'TOTAL_BERAT' => 'float',
 		'JUMLAH_KARUNG_SAK' => 'float',
 		'ISI_KARUNG' => 'float',
-        'STOK_PENAMBAHAN' => 'int'
+        'STOK_PENERIMAAN' => 'int'
 	];
 
 	protected $dates = [
@@ -60,7 +60,7 @@ class PenerimaanBahanBaku extends Model
 		'TOTAL_BERAT',
 		'JUMLAH_KARUNG_SAK',
 		'ISI_KARUNG',
-        'STOK_PENAMBAHAN'
+        'STOK_PENERIMAAN'
 	];
 
 	public function admin_gudang()
