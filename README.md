@@ -35,3 +35,8 @@ php artisan migrate
 ```sh
 php artisan laravolt:indonesia:seed
 ```
+<h4>Jalankan seeder database utama</h4>
+
+```sh
+php artisan db:seed --class=DatabaseSeeder
+```

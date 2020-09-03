@@ -8,7 +8,7 @@
     <div class="navigation-menu-body">
         <ul>
             <li>
-                <a href="{{ url('/operator-mesin') }}" id="dashboard-menu" class="">
+                <a href="{{ url('/operator-mesin') }}" id="dashboard-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </span>
@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/operator-mesin/pengambilan-bahan-baku') }}" id="pengambilan-bahan-baku-menu" class="">
+                <a href="{{ url('/operator-mesin/pengambilan-bahan-baku') }}" id="pengambilan-bahan-baku-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-cubes"></i>
                     </span>
@@ -24,11 +24,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/operator-mesin/evaluasi-hasil-produksi') }}" id="evaluasi-hasil-produksi-menu" class="">
+                <a href="{{ url('/operator-mesin/evaluasi-hasil-produksi') }}" id="pencatatan-produksi-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-paste"></i>
                     </span>
-                    <span>Evaluasi Hasil Produksi</span>
+                    <span>Pencatatan Produksi</span>
                 </a>
             </li>
         </ul>

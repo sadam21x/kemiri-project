@@ -1,5 +1,5 @@
 @extends('layouts/operator-mesin/main')
-@section('title', 'Evaluasi Hasil Produksi')
+@section('title', 'Pencatatan Produksi')
 @section('extra-css')
 <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
@@ -12,7 +12,7 @@
 <div class="content">
 
     <div class="page-header">
-        <h4>Evaluasi Hasil Produksi</h4>
+        <h4>Pencatatan Produksi</h4>
         <hr>
     </div>
 
@@ -37,18 +37,18 @@
                         <td>{{date('d/m/Y - h:i',strtotime($d->pengambilan_bahan_baku->WAKTU_PENGAMBILAN))}}</td>
                         <td>{{$d->pengambilan_bahan_baku->operator_mesin->NAMA_OPERATOR_MESIN}}</td>
                         <td colspan="3">
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-evaluasi-{{$d->KODE_PRODUKSI}}">
-                                <i class="fas fa-info-circle mr-1"></i>
+                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-produksi-{{$d->KODE_PRODUKSI}}">
+                                <i class="fas fa-info-circle mr-2"></i>
                                 DETAIL
                             </button>
                             @if($d->EVALUASI_BAHAN_BAKU == null)
-                            <button class="btn btn-sm btn-dribbble" data-toggle="modal" data-target="#modal-input-evaluasi-{{$d->KODE_PRODUKSI}}">
-                                <i class="fas fa-pen mr-1"></i>
-                                EVALUASI
+                            <button class="btn btn-sm btn-dribbble" data-toggle="modal" data-target="#modal-pencatatan-produksi-{{$d->KODE_PRODUKSI}}">
+                                <i class="fas fa-book-open mr-2"></i>
+                                PENCATATAN
                             </button>
                             @endif
                             @if($d->EVALUASI_BAHAN_BAKU != null)
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-evaluasi-{{$d->KODE_PRODUKSI}}">
+                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-pencatatan-produksi-{{$d->KODE_PRODUKSI}}">
                                 <i class="fas fa-edit"></i>
                                 EDIT
                             </button>
@@ -65,12 +65,12 @@
 {{-- End of Content --}}
 
 @foreach($data as $d)
-{{-- Start Input Evaluasi Hasil Produksi Modal --}}
-<div class="modal fade" id="modal-input-evaluasi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
+{{-- Start Pencatatan Produksi Modal --}}
+<div class="modal fade" id="modal-pencatatan-produksi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title">Evaluasi Hasil Produksi</h5>
+                <h5 class="modal-title">Pencatatan Produksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -98,13 +98,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Supplier Bahan Baku</label>
-                        <input type="text" name="" id="" value="" class="form-control" readonly>
+                        <label for="" class="col-form-label">Bahan Baku 1</label>
+                        <input type="text" name="" id="" value="Plastik Virgin" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Bahan Baku</label>
-                        <input type="text" name="" id="" value="" class="form-control" readonly>
+                        <label for="" class="col-form-label">Supplier Bahan Baku 1</label>
+                        <input type="text" name="" id="" value="Toko Himasi" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Bahan Baku 2</label>
+                        <input type="text" name="" id="" value="Pewarna Tekstil E124" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Supplier Bahan Baku 2</label>
+                        <input type="text" name="" id="" value="Himasi Store" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -166,26 +176,50 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-form-label">Evaluasi Bahan Baku</label>
+                        <label class="col-form-label">Evaluasi Bahan Baku 1</label>
                     </div>
 
                     <div class="form-group">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="eval-bahan-baku-jelek"
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku-1" id="eval-bahan-baku-jelek-1"
                                 value="jelek">
-                            <label class="form-check-label" for="eval-bahan-baku-jelek">Jelek</label>
+                            <label class="form-check-label" for="eval-bahan-baku-jelek-1">Jelek</label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="eval-bahan-baku-sedang"
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku-1" id="eval-bahan-baku-sedang-1"
                                 value="sedang">
-                            <label class="form-check-label" for="eval-bahan-baku-sedang">Sedang</label>
+                            <label class="form-check-label" for="eval-bahan-baku-sedang-1">Sedang</label>
                         </div>
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku" id="eval-bahan-baku-bagus"
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku-1" id="eval-bahan-baku-bagus-1"
                                 value="bagus">
-                            <label class="form-check-label" for="eval-bahan-baku-bagus">Bagus</label>
+                            <label class="form-check-label" for="eval-bahan-baku-bagus-1">Bagus</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Evaluasi Bahan Baku 2</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku-2" id="eval-bahan-baku-jelek-2"
+                                value="jelek">
+                            <label class="form-check-label" for="eval-bahan-baku-jelek-2">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku-2" id="eval-bahan-baku-sedang-2"
+                                value="sedang">
+                            <label class="form-check-label" for="eval-bahan-baku-sedang-2">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="evaluasi-bahan-baku-2" id="eval-bahan-baku-bagus-2"
+                                value="bagus">
+                            <label class="form-check-label" for="eval-bahan-baku-bagus-2">Bagus</label>
                         </div>
                     </div>
 
@@ -199,15 +233,15 @@
         </div>
     </div>
 </div>
-{{-- End of Input Evaluasi Hasil Produksi Modall --}}
+{{-- End of Pencatatan Produksi Modall --}}
 
 
 {{-- Start Edit Evaluasi Hasil Produksi Modal --}}
-<div class="modal fade" id="modal-edit-evaluasi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-edit-pencatatan-produksi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <h5 class="modal-title">Edit Evaluasi Hasil Produksi</h5>
+                <h5 class="modal-title">Edit Pencatatan Produksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
@@ -347,8 +381,8 @@
 </div>
 {{-- End of Edit Evaluasi Hasil Produksi Modall --}}
 
-{{-- Start Detail Evaluasi Hasil Produksi Modal --}}
-<div class="modal fade" id="modal-detail-evaluasi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
+{{-- Start Detail Produksi Modal --}}
+<div class="modal fade" id="modal-detail-produksi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -373,22 +407,32 @@
 
                     <div class="my-3">
                         <h5>Jenis Barang Produksi</h5>
-                        <h6></h6>
+                        <h6>Tutup Galon Tipe A</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Mesin</h5>
-                        <h6></h6>
+                        <h6>Mesin A11</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Supplier Bahan Baku</h5>
-                        <h6></h6>
+                        <h5>Bahan Baku 1</h5>
+                        <h6>Plastik Virgin</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Bahan Baku</h5>
-                        <h6></h6>
+                        <h5>Supplier Bahan Baku 1</h5>
+                        <h6>Toko Himasi</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Bahan Baku 2</h5>
+                        <h6>Pewarna Tekstil E124</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Supplier Bahan Baku 2</h5>
+                        <h6>Himasi Store</h6>
                     </div>
 
                     <div class="my-3">
@@ -421,12 +465,17 @@
                     </div>
 
                     <div class="my-3">
-                        <h5>Evaluasi Bahan Baku</h5>
+                        <h5>Evaluasi Bahan Baku 1</h5>
                         <h6>@if($d->EVALUASI_BAHAN_BAKU != "")
                             {{$d->EVALUASI_BAHAN_BAKU}}
                             @else
                             N/A
                             @endif</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Evaluasi Bahan Baku 2</h5>
+                        <h6>N/A</h6>
                     </div>
 
                 </div>
@@ -435,7 +484,7 @@
         </div>
     </div>
 </div>
-{{-- End of Detail Evaluasi Hasil Produksi Modal --}}
+{{-- End of Detail Produksi Modal --}}
 
 @endforeach
 
@@ -445,5 +494,5 @@
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/operator-mesin-evaluasi-hasil-produksi.js') }}"></script>
+    <script src="{{ asset('/assets/js/operator-mesin-pencatatan-produksi.js') }}"></script>
 @endsection

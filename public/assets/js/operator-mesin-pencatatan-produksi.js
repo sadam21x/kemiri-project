@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Efek menu aktif pada navbar
-    const menu = document.getElementById("evaluasi-hasil-produksi-menu");
+    const menu = document.getElementById("pencatatan-produksi-menu");
     menu.classList.add("active");  
 
     // Datatable
