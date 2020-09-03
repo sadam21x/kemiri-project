@@ -1,9 +1,9 @@
-@extends('layouts/sales-a/main')
+@extends('layouts/manajer-marketing/main')
 @section('title', 'Customer')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/sales-a.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/manajer-marketing.css') }}">
 @endsection
 
 @section('content')
@@ -302,5 +302,5 @@
 @section('extra-script')
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/sales-a-customer.js') }}"></script>
+    <script src="{{ asset('/assets/js/manajer-marketing-customer.js') }}"></script>
 @endsection

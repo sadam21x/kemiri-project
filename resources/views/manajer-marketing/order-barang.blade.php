@@ -18,7 +18,7 @@
 
             <div class="judul-tabel">
                 <h5>Riwayat Order Barang</h5>
-                <a href="#" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
+                <a href="{{ url('/manajer-marketing/order-barang/input') }}" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
                     <i class="fas fa-plus mr-1"></i>
                     TAMBAH BARU
                 </a>
