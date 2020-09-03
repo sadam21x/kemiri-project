@@ -20,6 +20,13 @@ class CreateDetailPengambilanTable extends Migration
             $table->float('JUMLAH_SAK_KARUNG', 10, 0)->nullable();
             $table->primary(['ID_PENERIMAAN', 'KODE_PENGAMBILAN']);
         });
+        DB::unprepared(
+            "CREATE TRIGGER `stok_penerimaan` AFTER INSERT ON `detail_pengambilan`
+            FOR EACH ROW BEGIN
+            UPDATE penerimaan_bahan_baku SET STOK_PENERIMAAN=STOK_PENERIMAAN-NEW.JUMLAH_KG
+            WHERE ID_PENERIMAAN=NEW.ID_PENERIMAAN;
+            END"
+        );
     }
 
     /**

@@ -70,4 +70,26 @@ $(document).ready(function() {
         );
     });
 
+    // Ambil stok penerimaan
+    $(document).on("select","#supplier",function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ url('/pengambilan-bahan-baku/ambilPenerimaan') }}",
+            method: 'POST',
+            data: {
+                id_supplier : $("#supplier").val(),
+                kode_bahan_baku : $("#bahan_baku").val(),
+            },
+            success: function(result){
+                let data_p = result.penerimaan; 
+                $("#total_berat").val(data_p.total_berat);
+                $("#jumlah_karung_sak").val(data_p.jumlah_karung_sak);
+            }
+        });
+    });
+
 });

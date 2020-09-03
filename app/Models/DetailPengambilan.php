@@ -46,6 +46,6 @@ class DetailPengambilan extends Model
 
 	public function pengambilan_bahan_baku()
 	{
-		return $this->belongsTo(PengambilanBahanBaku::class, 'KODE_PENGAMBILAN');
+		return $this->belongsTo(PengambilanBahanBaku::class, 'KODE_PENGAMBILAN_BAHAN_BAKU');
 	}
 }

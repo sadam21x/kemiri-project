@@ -33,7 +33,7 @@ class CreatePenerimaanBahanBakuTable extends Migration
                 WHERE KODE_BAHAN_BAKU=NEW.KODE_BAHAN_BAKU;
                 END"
         );
-
+        
     }
 
     /**
