@@ -1,5 +1,5 @@
 @extends('layouts/operator-mesin/main')
-@section('title', 'Pengambilan Bahn Baku')
+@section('title', 'Pengambilan Bahan Baku')
 @section('extra-css')
 <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
@@ -35,28 +35,19 @@
                     <th scope="col">Aksi</th>
                 </thead>
                 <tbody>
+                    @foreach($data as $d)
                     <tr>
-                        <td>PGB00001</td>
-                        <td>01/08/2020 - 10:30</td>
-                        <td>Rudi Antara</td>
+                        <td>{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}</td>
+                        <td>{{$d->WAKTU_PENGAMBILAN}}</td>
+                        <td>{{$d->NAMA_OPERATOR_MESIN}}</td>
                         <td>
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pengambilan-bahan-baku">
+                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pengambilan-bahan-baku-{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>PGB00002</td>
-                        <td>01/08/2020 - 06:15</td>
-                        <td>Rama Suastika</td>
-                        <td>
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pengambilan-bahan-baku">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -76,11 +67,11 @@
                 </button>
             </div>
             <div class="modal-body modal-body-pengambilan-bahan-baku">
-                <form action="" method="POST">
+                <form action="{{url('/operator-mesin/pengambilan-bahan-baku/insert')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="" id="" value="">
+                    <input type="hidden" name="id_operator_mesin" id="" value="1">
 
                     <div class="form-group">
                         <button type="button" class="btn btn-sm rounded btn-twitter tambah-bahan-baku-btn">
@@ -93,8 +84,9 @@
                         <label for="" class="col-form-label">Barang Produksi</label>
                         <select class="form-control select-component" id="" name="">
                             <option>Pilih barang yang akan diproduksi . . </option>
-                            <option value="Tutup Galon Tipe A">Tutup Galon Tipe A</option>
-                            <option value="Tutup Galon Tipe B">Tutup Galon Tipe B</option>
+                            @foreach($product as $p)
+                            <option value="{{$p->kode_product}}">{{$p->nama_product}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -111,7 +103,7 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="">
+                        <select class="form-control select-component" id="bahan_baku" name="">
                             <option>Pilih bahan baku . . </option>
                             <option value="Plastik Bekas">Plastik Bekas</option>
                             <option value="Plastik Virgin">Plastik Virgin</option>
@@ -121,7 +113,7 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="">
+                        <select class="form-control select-component" id="supplier" name="">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
                             <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
@@ -135,12 +127,12 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Kg)</label>
-                        <input type="number" name="" id="" class="form-control">
+                        <input type="number" name="" id="total_berat" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Karung)</label>
-                        <input type="number" name="" id="" class="form-control">
+                        <input type="number" name="" id="jumlah_karung_sak" class="form-control">
                     </div>
 
                     <div class="modal-footer">
@@ -154,9 +146,9 @@
     </div>
 </div>
 {{-- End of Input Pengambilan Bahan Baku Modal --}}
-
+@foreach($detail as $dt)
 {{-- Start Detail Pengambilan Bahan Baku Modal --}}
-<div class="modal fade" id="modal-detail-pengambilan-bahan-baku" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-pengambilan-bahan-baku-{{$dt->KODE_PENGAMBILAN_BAHAN_BAKU}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -171,68 +163,51 @@
 
                     <div class="my-3">
                         <h5>ID Pengambilan</h5>
-                        <h6>PGB00001</h6>
+                        <h6>{{$dt->KODE_PENGAMBILAN_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Waktu Pengambilan</h5>
-                        <h6>01/08/2020 - 10:15</h6>
+                        <h6>{{$dt->WAKTU_PENGAMBILAN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Operator Mesin</h5>
-                        <h6>Adrian Kusuma</h6>
+                        <h6>{{$dt->NAMA_OPERATOR_MESIN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Barang yang diproduksi</h5>
-                        <h6>Tutup Galon Tipe B</h6>
+                        <h6>{{$dt->HASIL_PRODUKSI}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Mesin</h5>
-                        <h6>Mesin A211</h6>
+                        <h6>{{$dt->NAMA_MESIN}}</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Bahan Baku 1</h5>
-                        <h6>Plastik Virgin</h6>
+                        <h5>Bahan Baku {{$loop->iteration}}</h5>
+                        <h6>{{$dt->nama_bahan_baku}}</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Supplier Bahan Baku 1</h5>
-                        <h6>UD. Permata Langit</h6>
+                        <h5>Supplier Bahan Baku {{$loop->iteration}}</h5>
+                        <h6>{{$dt->nama_supplier}}</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Jumlah Bahan Baku 1</h5>
-                        <h6>110 Kg - 3 Karung</h6>
+                        <h5>Jumlah Bahan Baku {{$loop->iteration}}</h5>
+                        <h6>{{$dt->jumlah_kg}}</h6>
                     </div> 
-
-                    <div class="my-3">
-                        <h5>Bahan Baku 2</h5>
-                        <h6>Pewarna Tekstil</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Supplier Bahan Baku 2</h5>
-                        <h6>UD. Permata Langit</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Jumlah Bahan Baku 2</h5>
-                        <h6>110 Kg - 3 Karung</h6>
-                    </div>              
-
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 {{-- End of Detail Pengambilan Bahan Baku Modal --}}
+@endforeach
 @endsection
-
 @section('extra-script')
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>

@@ -266,18 +266,6 @@
 @endsection
 
 @section('extra-script')
-    <script>
-        // insert
-        var jml_karung = document.getElementById('in_karung').value;
-        var isi_karung = document.getElementById('in_tiap_karung').value;
-        var total_berat = document.getElementById('in_total').value = jml_karung * isi_karung;
-
-        // edit
-        var jml_karung = document.getElementById('karung').value;
-        var isi_karung = document.getElementById('isi').value;
-        var total_berat = document.getElementById('total_berat').value = jml_karung * isi_karung;
-    </script>
-
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
