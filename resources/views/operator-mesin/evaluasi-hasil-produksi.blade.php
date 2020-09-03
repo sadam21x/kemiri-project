@@ -47,10 +47,12 @@
                                 EVALUASI
                             </button>
                             @endif
+                            @if($d->EVALUASI_BAHAN_BAKU != null)
                             <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-evaluasi-{{$d->KODE_PRODUKSI}}">
                                 <i class="fas fa-edit"></i>
                                 EDIT
                             </button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -87,7 +89,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jenis Barang Produksi</label>
-                        <input type="text" name="" id="" value="{{$d->hasil_products->products->jenis_product->NAMA_JENIS_PRODUCT}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -97,12 +99,12 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier Bahan Baku</label>
-                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -224,22 +226,22 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jenis Barang Produksi</label>
-                        <input type="text" name="" id="" value="{{$d->hasil_products->products->jenis_product->NAMA_JENIS_PRODUCT}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Mesin</label>
-                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier Bahan Baku</label>
-                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}" class="form-control" readonly>
+                        <input type="text" name="" id="" value="" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -371,32 +373,32 @@
 
                     <div class="my-3">
                         <h5>Jenis Barang Produksi</h5>
-                        <h6>{{$d->hasil_products->products->jenis_product->NAMA_JENIS_PRODUCT}}</h6>
+                        <h6></h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Mesin</h5>
-                        <h6>{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}</h6>
+                        <h6></h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Supplier Bahan Baku</h5>
-                        <h6>{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</h6>
+                        <h6></h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Bahan Baku</h5>
-                        <h6>{{$d->pengambilan_bahan_baku->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}</h6>
+                        <h6></h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Produk Hasil Bagus (Kg)</h5>
-                        <h6>{{$d->HASIL_BAGUS_KG}}</h6>
+                        <h6></h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Produk Hasil Rusak (Kg)</h5>
-                        <h6>{{$d->HASIL_RUSAK_KG}}</h6>
+                        <h6></h6>
                     </div>
 
                     <div class="my-3">

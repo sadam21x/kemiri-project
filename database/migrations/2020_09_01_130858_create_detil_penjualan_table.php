@@ -21,6 +21,14 @@ class CreateDetilPenjualanTable extends Migration
             $table->float('HARGA_BARANG', 10, 0);
             $table->primary(['ID_PENJUALAN', 'KODE_PRODUCT']);
         });
+
+        DB::unprepared(
+            "CREATE TRIGGER `penjualan_barang` AFTER INSERT ON `detil_penjualan`
+             FOR EACH ROW BEGIN
+            UPDATE product SET STOK_PRODUCT=STOK_PRODUCT-NEW.JUMLAH_PCS
+            WHERE KODE_PRODUCT=NEW.KODE_PRODUCT;
+            END"
+        );
     }
 
     /**
@@ -31,5 +39,6 @@ class CreateDetilPenjualanTable extends Migration
     public function down()
     {
         Schema::dropIfExists('detil_penjualan');
+        DB::unprepared('DROP TRIGGER `penjualan_barang`');
     }
 }

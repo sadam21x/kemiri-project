@@ -172,7 +172,8 @@
 
                     {{-- Hidden id admin gudang yang bertugas --}}
                     <input type="hidden" name="ID_ADMIN_GUDANG" value="1">
-                    <input type="hidden" name="KODE_PEMBAYARAN_PENJUALAN" value="{{$d->pembayaran_penjualan->KODE_PEMBAYARAN_PENJUALAN}}">
+
+                    <input type="hidden" name="KODE_PEMBAYARAN_PENJUALAN" value="@if($d->pembayaran_penjualan != null){{$d->pembayaran_penjualan->KODE_PEMBAYARAN_PENJUALAN}} @endif">
 
 
                     <div class="form-group">
