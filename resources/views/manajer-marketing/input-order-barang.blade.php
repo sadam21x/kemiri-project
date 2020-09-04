@@ -1,10 +1,10 @@
-@extends('layouts/sales-b/main')
+@extends('layouts/manajer-marketing/main')
 @section('title', 'Input Order Barang')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/manajer-marketing.css') }}">
 @endsection
 
 @section('content')
@@ -21,13 +21,7 @@
             <form action="" method="post">
                 @csrf
 
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="staff">Sales</label>
-                        {{-- Id sales --}}
-                        <input type="hidden" value="" name="user_id" id="user_id">
-                        <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
-                    </div>
+                <div class="form-row row-customer">
                     <div class="form-group col-md-4">
                         <label for="customer">Customer</label>
                         <select name="KODE_DEPO" id="" class="select-component form-control">
@@ -35,6 +29,12 @@
                             <option value="Depo Air Minum Kertajaya Indah">Depo Air Minum Kertajaya Indah</option>
                             <option value="Depo Air Minum Pak Mahmud">Depo Air Minum Pak Mahmud</option>
                         </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <a href="{{ url('/manajer-marketing/customer') }}" class="btn btn-sm btn-secondary text-white tombol-tambah-customer">
+                            <i class="fas fa-plus-circle mr-2"></i>
+                            Customer
+                        </a>
                     </div>
                 </div>
 
@@ -203,5 +203,5 @@
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/sales-b-input-order-barang.js') }}"></script>
+    <script src="{{ asset('/assets/js/manajer-marketing-input-order-barang.js') }}"></script>
 @endsection

@@ -39,7 +39,7 @@
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
                                     </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales/input') }}"
                                         class="btn btn-sm btn-secondary mr-1">
                                         <i class="fas fa-book-open mr-2"></i>
                                         EVALUASI
@@ -55,7 +55,7 @@
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
                                     </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales/input') }}"
                                         class="btn btn-sm btn-secondary mr-1">
                                         <i class="fas fa-book-open mr-2"></i>
                                         EVALUASI
