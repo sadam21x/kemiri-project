@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Penjualan;
 use App\Models\DepoAirMinum;
 use App\Models\JenisProduct;
+use App\Models\Product;
 
 class OrderBarangController extends Controller
 {
@@ -16,15 +17,24 @@ class OrderBarangController extends Controller
     	return view('sales-b.order-barang')->with(compact("data"));
     }
 
-    public function insert()
+    public function insert(Request $request)
     {
-    	$customer = DepoAirMinum::all();
+    	$customer = DepoAirMinum::find($request->KODE_DEPO);
     	$jenis =  JenisProduct::all();
-    	return view('sales-b.input-order-barang');
+        $products = Product::all();
+        
+    	return view('sales-b.input-order-barang')->with(compact("customer","jenis","products"));
     }
 
-    public function getProduct(Request $request)
+    public function getProducts($jenis)
     {
+        $product = JenisProduct::find($jenis)->products()->get();
+        return response()->json(["success" => true, "data" => $product]);
+    }
 
+    public function getAllProduct()
+    {
+        $product = Product::all();
+        return response()->json(["success" => true, "data" => $product]);
     }
 }
