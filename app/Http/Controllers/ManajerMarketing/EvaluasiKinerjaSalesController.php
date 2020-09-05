@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\OperatorMesin;
+namespace App\Http\Controllers\ManajerMarketing;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\PengambilanBahanBaku;
-use App\Models\Mesin;
+use App\Models\EvaluasiKinerjaSalesa;
+use App\Models\EvaluasiKinerjaSalesb;
 
-class PengambilanBahanBakuController extends Controller
+class EvaluasiKinerjaSalesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,16 @@ class PengambilanBahanBakuController extends Controller
      */
     public function index()
     {
-        $mesin = Mesin::All();
-        $product = Product::select('kode_product', 'nama_product')->get();
-        $data = PengambilanBahanBaku::all();
-        
-        return view('/operator-mesin/pengambilan-bahan-baku')->with(compact('data', 'product', 'mesin'));
+        $salesA = EvaluasiKinerjaSalesa::select('evaluasi_kinerja_salesa.*', 'm.nama_manajer_marketing', 's.nama_sales_a')
+                ->join('manajer_marketing as m', 'm.id_manajer_marketing', '=', 'evaluasi_kinerja_salesa.id_manajer_marketing')
+                ->join('sales_a as s', 's.id_sales_a', '=', 'evaluasi_kinerja_salesa.id_sales_a')
+                ->get();
+        $salesB = EvaluasiKinerjaSalesb::select('evaluasi_kinerja_salesb.*', 'm.nama_manajer_marketing', 's.nama_sales_b')
+                ->join('manajer_marketing as m', 'm.id_manajer_marketing', '=', 'evaluasi_kinerja_salesb.id_manajer_marketing')
+                ->join('sales_b as s', 's.id_sales_b', '=', 'evaluasi_kinerja_salesb.id_sales_b')
+                ->get();
+
+        return view('/manajer-marketing/evaluasi-kinerja-sales')->with(compact('salesA', 'salesB'));
     }
 
     /**
@@ -31,19 +35,8 @@ class PengambilanBahanBakuController extends Controller
      */
     public function create()
     {
-        // $detail_pengambilan = new DetailPengambilan;
-        // $detail_pengambilan->
+        //
     }
-
-    /**
-     * Take stock penerimaan bahan baku
-     */
-    public function ambilDetail(Request $request){
-
-
-        
-        return response()->json(['success' => true,'penerimaan' => $penerimaan]);
-      }
 
     /**
      * Store a newly created resource in storage.

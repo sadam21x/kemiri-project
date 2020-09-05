@@ -39,9 +39,9 @@
                     <tr>
                         <td>{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}</td>
                         <td>{{$d->WAKTU_PENGAMBILAN}}</td>
-                        <td>{{$d->NAMA_OPERATOR_MESIN}}</td>
+                        <td>{{$d->operator_mesin->NAMA_OPERATOR_MESIN}}</td>
                         <td>
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pengambilan-bahan-baku-{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}">
+                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pengambilan-bahan-baku-{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}" id="detail">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 DETAIL
                             </button>
@@ -82,7 +82,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Barang Produksi</label>
-                        <select class="form-control select-component" id="" name="">
+                        <select class="form-control select-component" id="" name="product">
                             <option>Pilih barang yang akan diproduksi . . </option>
                             @foreach($product as $p)
                             <option value="{{$p->kode_product}}">{{$p->nama_product}}</option>
@@ -92,10 +92,11 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Mesin yang digunakan</label>
-                        <select class="form-control select-component" id="" name="">
+                        <select class="form-control select-component" id="" name="mesin">
                             <option>Pilih mesin . . </option>
-                            <option value="Mesin A">Mesin A</option>
-                            <option value="Mesin B">Mesin B</option>
+                            @foreach($mesin as $m)
+                            <option value="{{$m->KODE_MESIN}}">{{$m->NAMA_MESIN}} Moulding {{$m->moulding->NAMA_MOULDING}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -103,17 +104,17 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="bahan_baku" name="">
+                        <select class="form-control select-component" id="bahan_baku" name="bahan_baku">
                             <option>Pilih bahan baku . . </option>
-                            <option value="Plastik Bekas">Plastik Bekas</option>
-                            <option value="Plastik Virgin">Plastik Virgin</option>
-                            <option value="Pewarna">Pewarna</option>
+                            @foreach()
+                            <option value="{{$b->KODE_BAHAN_BAKU}}">{{$b->NAMA_BAHAN_BAKU}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component" id="supplier" name="">
+                        <select class="form-control select-component" id="supplier" name="supplier">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
                             <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
@@ -127,12 +128,12 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Kg)</label>
-                        <input type="number" name="" id="total_berat" class="form-control">
+                        <input type="number" name="jumlah_bahan_baku" id="total_berat" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Karung)</label>
-                        <input type="number" name="" id="jumlah_karung_sak" class="form-control">
+                        <input type="number" name="jumlah_karung_sak" id="jumlah_karung_sak" class="form-control">
                     </div>
 
                     <div class="modal-footer">
@@ -146,9 +147,10 @@
     </div>
 </div>
 {{-- End of Input Pengambilan Bahan Baku Modal --}}
-@foreach($detail as $dt)
+@endforeach
+@foreach($data as $d)
 {{-- Start Detail Pengambilan Bahan Baku Modal --}}
-<div class="modal fade" id="modal-detail-pengambilan-bahan-baku-{{$dt->KODE_PENGAMBILAN_BAHAN_BAKU}}" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-pengambilan-bahan-baku-{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -157,49 +159,51 @@
                     <i class="fas fa-times-circle text-danger"></i>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body detail-pengambilan-bahan-baku">
 
                 <div class="container">
 
                     <div class="my-3">
                         <h5>ID Pengambilan</h5>
-                        <h6>{{$dt->KODE_PENGAMBILAN_BAHAN_BAKU}}</h6>
+                        <h6>{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Waktu Pengambilan</h5>
-                        <h6>{{$dt->WAKTU_PENGAMBILAN}}</h6>
+                        <h6>{{$d->WAKTU_PENGAMBILAN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Operator Mesin</h5>
-                        <h6>{{$dt->NAMA_OPERATOR_MESIN}}</h6>
+                        <h6>{{$d->operator_mesin->NAMA_OPERATOR_MESIN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Barang yang diproduksi</h5>
-                        <h6>{{$dt->HASIL_PRODUKSI}}</h6>
+                        <h6>{{$d->HASIL_PRODUK}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Mesin</h5>
-                        <h6>{{$dt->NAMA_MESIN}}</h6>
+                        <h6>{{$d->mesin->NAMA_MESIN}}</h6>
                     </div>
 
+                    @foreach($d->detail_pengambilans as $dt)
                     <div class="my-3">
                         <h5>Bahan Baku {{$loop->iteration}}</h5>
-                        <h6>{{$dt->nama_bahan_baku}}</h6>
+                        <h6>{{$dt->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Supplier Bahan Baku {{$loop->iteration}}</h5>
-                        <h6>{{$dt->nama_supplier}}</h6>
+                        <h6>{{$dt->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Bahan Baku {{$loop->iteration}}</h5>
-                        <h6>{{$dt->jumlah_kg}}</h6>
-                    </div> 
+                        <h6>{{$dt->JUMLAH_KG}}</h6>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

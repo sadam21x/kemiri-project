@@ -141,7 +141,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/sales-a/customer/insert')}}" method="POST">
+                <form action="{{url('/manajer-marketing/customer/insert')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
@@ -224,7 +224,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/sales-a/customer/edit')}}" method="POST">
+                <form action="{{url('/manajer-marketing/customer/edit')}}" method="POST">
                     @csrf
 
                     {{-- Hidden id customer untuk update data --}}
