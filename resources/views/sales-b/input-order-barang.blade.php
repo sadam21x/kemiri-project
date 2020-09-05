@@ -67,7 +67,8 @@
                             <th scope="col">ID Produk</th>
                             <th scope="col">Nama Produk</th>
                             <th scope="col">Harga/pcs (IDR)</th>
-                            <th scope="col">Qty</th>
+                            <th scope="col">Qty (pcs)</th>
+                            <th scope="col">Qty (sak)</th>
                             <th scope="col">Diskon (%)</th>
                             <th scope="col">Harga Akhir (IDR)</th>
                             <th scope="col">Aksi</th>
@@ -102,7 +103,7 @@
                         <h3>Pembayaran</h3>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Total Item</label>
+                            <label class="col-sm-4 col-form-label">Jumlah Item (pcs)</label>
                             <div class="col-sm-4">
                                 <input type="text" readonly class="form-control-plaintext" id="total-item"
                                     name="" value="0">
@@ -110,7 +111,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
+                            <label class="col-sm-4 col-form-label">Jumlah Sak</label>
+                            <div class="col-sm-4">
+                                <input type="text" readonly class="form-control-plaintext" id=""
+                                    name="" value="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
                             <div class="col-sm-4">
                                 <input type="text" readonly class="form-control-plaintext" id="total-harga"
                                     name="" value="0">
@@ -118,7 +127,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
+                            <label class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
                             <div class="col-sm-4">
                                 <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim"
                                     value="0">
@@ -126,7 +135,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
+                            <label class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
                             <div class="col-sm-4">
                                 <input type="text" readonly class="form-control-plaintext" id="total-bayar"
                                     name="" value="0">
