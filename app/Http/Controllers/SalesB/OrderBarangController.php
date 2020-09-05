@@ -44,7 +44,7 @@ class OrderBarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ID_KONFIRMASI_PENJUALAN' => 'required',
+            'KODE_DEPO' => 'required',
             'ID_SALES_B' => 'required',
             'METODE_KIRIM' => 'required',
             'ONGKOS_KIRIM' => 'required',
@@ -53,7 +53,7 @@ class OrderBarangController extends Controller
 
         DB::transaction(function() use ($request){
             $penjualan = Penjualan::insertGetId([
-                'ID_KONFIRMASI_PENJUALAN' => $request->ID_KONFIRMASI_PENJUALAN,
+                'KODE_DEPO' => $request->KODE_DEPO,
                 'ID_SALES_B' => $request->ID_SALES_B,
                 'TGL_PENJUALAN' => date("Y-m-d"),
                 'TGL_KIRIM' => date("Y-m-d"),
@@ -64,7 +64,7 @@ class OrderBarangController extends Controller
             ]);
 
             $id = Penjualan::select("ID_PENJUALAN")->where([
-                'ID_KONFIRMASI_PENJUALAN' => $request->ID_KONFIRMASI_PENJUALAN,
+                'KODE_DEPO' => $request->KODE_DEPO,
                 'ID_SALES_B' => $request->ID_SALES_B,
                 'TGL_PENJUALAN' => date("Y-m-d"),
                 'TGL_KIRIM' => date("Y-m-d"),
@@ -73,7 +73,9 @@ class OrderBarangController extends Controller
                 'TOTAL_PENJUALAN' => $request->TOTAL_PENJUALAN,
                 'STATUS_PENJUALAN' => 0
             ])->first();
+
             $i = 0;
+
             foreach ($request->KODE_PRODUCT as $key) {
                 $detil = DetilPenjualan::insert([
                     'ID_PENJUALAN' => $id->ID_PENJUALAN,

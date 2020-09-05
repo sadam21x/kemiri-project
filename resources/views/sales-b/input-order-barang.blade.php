@@ -26,7 +26,7 @@
                         <label for="staff">Sales</label>
                         {{-- Id sales --}}
                         <input type="hidden" value="1" name="ID_SALES_B">
-                        <input type="hidden" value="{{$ID_KONFIRMASI_PENJUALAN}}" name="ID_KONFIRMASI_PENJUALAN">
+                        <input type="hidden" value="{{$customer->KODE_DEPO}}" name="KODE_DEPO">
                         <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
                     </div>
                     <div class="form-group col-md-4">
