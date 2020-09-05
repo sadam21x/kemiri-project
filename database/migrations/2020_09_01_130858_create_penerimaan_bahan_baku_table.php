@@ -33,6 +33,14 @@ class CreatePenerimaanBahanBakuTable extends Migration
                 WHERE KODE_BAHAN_BAKU=NEW.KODE_BAHAN_BAKU;
                 END"
         );
+        DB::unprepared(
+            "CREATE TRIGGER `tambah_stok_rusak` AFTER UPDATE ON `penerimaan_bahan_baku`
+                FOR EACH ROW 
+                BEGIN
+                UPDATE bahan_baku SET STOK_BAHAN_BAKU=STOK_BAHAN_BAKU-OLD.STOK_PENERIMAAN+NEW.STOK_PENERIMAAN
+                WHERE KODE_BAHAN_BAKU=NEW.KODE_BAHAN_BAKU;
+                END"
+        );
         
     }
 
@@ -45,5 +53,6 @@ class CreatePenerimaanBahanBakuTable extends Migration
     {
         Schema::dropIfExists('penerimaan_bahan_baku');
         DB::unprepared('DROP TRIGGER `penerimaan_produk`');
+        DB::unprepared('DROP TRIGGER `tambah_stok_rusak`');
     }
 }

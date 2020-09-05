@@ -64,6 +64,7 @@
                             <form action="{{ url('/sales-b/order-barang/input') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="KODE_DEPO" value="{{$d->KODE_DEPO}}">
+                                <input type="hidden" name="ID_KONFIRMASI_PENJUALAN" value="{{$d->ID_KONFIRMASI_PENJUALAN}}">
                                 <button type="submit" class="btn btn-sm bg-dribbble">
                                     <i class="fas fa-plus-circle mr-2"></i>
                                     INPUT

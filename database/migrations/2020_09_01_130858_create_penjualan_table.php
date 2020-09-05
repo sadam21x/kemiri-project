@@ -15,7 +15,7 @@ class CreatePenjualanTable extends Migration
     {
         Schema::create('penjualan', function (Blueprint $table) {
             $table->integer('ID_PENJUALAN', true);
-            $table->integer('ID_MANAJER_MARKETING')->index('FK_KONFIRMASI');
+            $table->integer('ID_MANAJER_MARKETING')->index('FK_KONFIRMASI')->nullable();
             $table->integer('ID_KONFIRMASI_PENJUALAN')->index('FK_TERDAPAT1123');
             $table->integer('ID_SALES_B')->nullable()->index('FK_MENGINPUTKAN');
             $table->dateTime('TGL_PENJUALAN');
