@@ -15,7 +15,6 @@
     </div>
 
     <div class="row">
-
         {{-- Start detail profil sales --}}
         <div class="col-md-4 col-sm-12 d-flex justify-content-center">
             <div class="card" style="">
@@ -24,15 +23,19 @@
                         <img src="{{ asset('/assets/img/ikan1-spongebob.png') }}" class="rounded-circle" alt="avatar">
                     </figure>
                     <div class="badge badge-dark nama-sales">
-                        Rama Suastika
+                        @if($jabatan == "Sales A")
+                        {{$data->NAMA_SALES_A}}
+                        @else
+                        {{$data->NAMA_SALES_B}}
+                        @endif
                     </div>
                 </div>
-
+                @if($jabatan == "Sales A")
                 <div class="card-body card-body-profile">
                     <table class="profil-table">
                         <tr>
                             <td class="label-detail">ID Sales</td>
-                            <td>SLA00001</td>
+                            <td>{{$data->ID_SALES_A}}</td>
                         </tr>
                         <tr>
                             <td class="label-detail">Jabatan</td>
@@ -40,26 +43,76 @@
                         </tr>
                         <tr>
                             <td class="label-detail">Jenis Kelamin</td>
-                            <td>Pria</td>
+                            <td>@if($data->JENIS_KELAMIN_SALES_A)
+                                Pria
+                                @else
+                                Wanita
+                                @endif</td>
                         </tr>
                         <tr>
                             <td class="label-detail">Alamat</td>
-                            <td>Jl. D.I Pandjaitan No. 14 avysvyvsyvsvysvy</td>
+                            <td>{{$data->ALAMAT_SALES_A}}</td>
                         </tr>
                         <tr>
                             <td class="label-detail">Kota/Kabupaten</td>
-                            <td>Semarang</td>
+                            <td>{{$data->indonesia_city->name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Provinsi</td>
+                            <td>{{$data->indonesia_city->indonesia_province->name}}</td>
                         </tr>
                         <tr>
                             <td class="label-detail">Telepon</td>
-                            <td>082265118092</td>
+                            <td>{{$data->NO_TELP_SALES_A}}</td>
                         </tr>
                         <tr>
                             <td class="label-detail">Email</td>
-                            <td>rama76@gmail.com</td>
+                            <td>{{$data->EMAIL_SALES_A}}</td>
                         </tr>
                     </table>
                 </div>
+                @else
+                <div class="card-body card-body-profile">
+                    <table class="profil-table">
+                        <tr>
+                            <td class="label-detail">ID Sales</td>
+                            <td>{{$data->ID_SALES_B}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Jabatan</td>
+                            <td>Sales B</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Jenis Kelamin</td>
+                            <td>@if($data->JENIS_KELAMIN_SALES_B)
+                                Pria
+                                @else
+                                Wanita
+                                @endif</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Alamat</td>
+                            <td>{{$data->ALAMAT_SALES_B}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Kota/Kabupaten</td>
+                            <td>{{$data->indonesia_city->name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Provinsi</td>
+                            <td>{{$data->indonesia_city->indonesia_province->name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Telepon</td>
+                            <td>{{$data->NO_TELP_SALES_B}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label-detail">Email</td>
+                            <td>{{$data->EMAIL_SALES_B}}</td>
+                        </tr>
+                    </table>
+                </div>
+                @endif
             </div>
         </div>
         {{-- End of detail profil sales --}}
@@ -67,7 +120,12 @@
         {{-- Start rekap kinerja --}}
         <div class="col-md-8 col-sm-12">
             <div class="card-title">
+                @if($jabatan == "Sales A")
                 Rekap Penginputan Customer
+                @else
+                Rekap Penginputan Order
+                @endif
+                
             </div>
 
             <div class="card">
@@ -79,22 +137,21 @@
                             <th scope="col">Customer</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>01/08/2020</td>
-                                <td>Depo Sinar Mas Nusantara Bersatu</td>
-                            </tr>
-                            <tr>
-                                <td>01/08/2020</td>
-                                <td>Depo Sinar Mas</td>
-                            </tr>
-                            <tr>
-                                <td>01/08/2020</td>
-                                <td>Depo Sinar Mas</td>
-                            </tr>
-                            <tr>
-                                <td>01/08/2020</td>
-                                <td>Depo Sinar Mas</td>
-                            </tr>
+                            @if($jabatan == "Sales A")
+                                @foreach($data->depo_air_minums as $d)
+                                <tr>
+                                    <td>{{$d->created_at}}</td>
+                                    <td>{{$d->NAMA_DEPO}}</td>
+                                </tr>
+                                @endforeach
+                            @else
+                                @foreach($data->penjualans as $d)
+                                <tr>
+                                    <td>{{$d->TGL_PENJUALAN}}</td>
+                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
+                                </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
