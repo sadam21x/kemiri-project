@@ -21,7 +21,7 @@ class CreateProsesProduksiTable extends Migration
             $table->float('HASIL_RUSAK_KG', 10, 0)->nullable();
             $table->string('EVALUASI_PRODUCT', 50)->nullable();
             $table->string('EVALUASI_MESIN', 50)->nullable();
-            $table->string('EVALUASI_BAHAN_BAKU', 50)->nullable();
+            $table->json('EVALUASI_BAHAN_BAKU')->nullable();
         });
     }
 
