@@ -121,7 +121,7 @@
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format($d->detil_penjualans->sum('HARGA_BARANG'),0,',','.')}}</h6>
+                        <h6>{{ number_format(floatval($d->TOTAL_PENJUALAN-$d->ONGKOS_KIRIM),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -131,7 +131,7 @@
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
+                        <h6>{{number_format($d->TOTAL_PENJUALAN,0,',','.')}}</h6>
                     </div>
 
                     <div class="mt-5 d-flex justify-content-center">

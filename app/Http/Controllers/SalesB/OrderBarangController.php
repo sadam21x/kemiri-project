@@ -15,7 +15,7 @@ class OrderBarangController extends Controller
 {
     public function index()
     {
-    	$data = Penjualan::select('penjualan.*','p.KODE_PENGIRIMAN')->join('pembayaran_penjualan as pp','penjualan.ID_PENJUALAN','=','pp.ID_PENJUALAN')->leftJoin('pengiriman as p','p.KODE_PEMBAYARAN_PENJUALAN','=','pp.KODE_PEMBAYARAN_PENJUALAN')->get();
+    	$data = Penjualan::select('penjualan.*','p.KODE_PENGIRIMAN')->leftjoin('pembayaran_penjualan as pp','penjualan.ID_PENJUALAN','=','pp.ID_PENJUALAN')->leftJoin('pengiriman as p','p.KODE_PEMBAYARAN_PENJUALAN','=','pp.KODE_PEMBAYARAN_PENJUALAN')->get();
     	return view('sales-b.order-barang')->with(compact("data"));
     }
 
