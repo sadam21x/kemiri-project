@@ -31,17 +31,19 @@
                             <th scope="col">Aksi</th>
                         </thead>
                         <tbody>
+                            @foreach($salesA as $a)
                             <tr>
-                                <td>EVA00001</td>
-                                <td>12/08/2020</td>
-                                <td>Aluna Sagita G.</td>
+                                <td>{{$a->ID_EVALUASI_KINERJA_SALESA}}</td>
+                                <td>{{$a->TGL_EVALUASI_KINERJA_SALESA}}</td>
+                                <td>{{$a->nama_sales_a}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-evaluasi-sales">
+                                    <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-evaluasi-salesa-{{$a->ID_EVALUASI_KINERJA_SALESA}}">
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -63,30 +65,31 @@
                             <th scope="col">Aksi</th>
                         </thead>
                         <tbody>
+                            @foreach($salesB as $b)
                             <tr>
-                                <td>EVB00001</td>
-                                <td>12/08/2020</td>
-                                <td>Lyodra Margaretha G.</td>
+                                <td>{{$b->ID_EVALUASI_KINERJA_SALESB}}</td>
+                                <td>{{$b->TGL_EVALUASI_KINERJA_SALESB}}</td>
+                                <td>{{$b->nama_sales_b}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-evaluasi-sales">
+                                    <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-evaluasi-salesb-{{$b->ID_EVALUASI_KINERJA_SALESB}}">
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
             {{-- End of Sales B --}}
-
         </div>
     </div>
 </div>
 {{-- End of Content --}}
-
-{{-- Start Detail Evaluasi Sales Modal --}}
-<div class="modal fade" id="modal-detail-evaluasi-sales" tabindex="-1" role="dialog" aria-hidden="true">
+@foreach($salesA as $a)
+{{-- Start Detail Evaluasi Sales A Modal --}}
+<div class="modal fade" id="modal-detail-evaluasi-salesa-{{$a->ID_EVALUASI_KINERJA_SALESA}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -101,27 +104,27 @@
 
                     <div class="mb-3">
                         <h5>ID Evaluasi</h5>
-                        <h6>EVA000001</h6>
+                        <h6>{{$a->ID_EVALUASI_KINERJA_SALESA}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Tanggal Evaluasi</h5>
-                        <h6>12/08/2020</h6>
+                        <h6>{{$a->TGL_EVALUASI_KINERJA_SALESA}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Manajer Marketing</h5>
-                        <h6>Adrian Napitupulu</h6>
+                        <h6>{{$a->nama_manajer_marketing}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>ID Sales</h5>
-                        <h6>SLA000001</h6>
+                        <h6>{{$a->ID_SALES_A}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Nama Sales</h5>
-                        <h6>Aluna Sagita G.</h6>
+                        <h6>{{$a->nama_sales_a}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -132,7 +135,7 @@
                     <div class="my-3">
                         <h5>Evaluasi</h5>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, vel ex sapiente optio dolor aut!
+                            {{$a->EVALUASI_SALESA}}
                         </p>
                     </div>
 
@@ -141,7 +144,67 @@
         </div>
     </div>
 </div>
-{{-- End of Detail Evaluasi Sales Modal --}}
+{{-- End of Detail Evaluasi Sales A Modal --}}
+@endforeach
+@foreach($salesB as $b)
+{{-- Start Detail Evaluasi Sales B Modal --}}
+<div class="modal fade" id="modal-detail-evaluasi-salesb-{{$b->ID_EVALUASI_KINERJA_SALESB}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Detail Evaluasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+
+                    <div class="mb-3">
+                        <h5>ID Evaluasi</h5>
+                        <h6>{{$b->ID_EVALUASI_KINERJA_SALESB}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Tanggal Evaluasi</h5>
+                        <h6>{{$b->TGL_EVALUASI_KINERJA_SALESB}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Manajer Marketing</h5>
+                        <h6>{{$b->nama_manajer_marketing}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>ID Sales</h5>
+                        <h6>{{$b->ID_SALES_A}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Nama Sales</h5>
+                        <h6>{{$b->nama_sales_b}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Jabatan</h5>
+                        <h6>Sales A</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Evaluasi</h5>
+                        <p>
+                            {{$b->EVALUASI_SALESB}}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Detail Evaluasi Sales B Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')
