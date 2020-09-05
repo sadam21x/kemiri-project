@@ -37,7 +37,7 @@
                         <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
                         <td>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
                         <td>
-                            @if($d->STATUS_PENJUALAN == 1)
+                            @if($d->STATUS_PENJUALAN == 1 && $d->KODE_PEMBAYARAN_PENJUALAN != "" && $d->KODE_PENGIRIMAN != "")
                             <div class="badge badge-success">
                                 SELESAI
                                 <i class="fas fa-check ml-1"></i>
