@@ -127,9 +127,8 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{ url('/sales-b/follow-up/tidak-order') }}" method="post">
+                <form action="" class="alasan" id="formalasan-{{$d->ID_KONFIRMASI_PENJUALAN}}">
                     @csrf
-                    <input type="hidden" name="ID_KONFIRMASI_PENJUALAN" value="{{$d->ID_KONFIRMASI_PENJUALAN}}">
                     <div class="form-group">
                         <label>Alasan Memilih Tidak Melakukan Order?</label>
 
@@ -163,7 +162,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-sm">
+                        <button type="submit" class="btn btn-primary btn-sm btn-submit-alasan" id="{{$d->ID_KONFIRMASI_PENJUALAN}}">
                             SIMPAN
                         </button>
                     </div>
@@ -181,4 +180,5 @@
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-b-follow-up-customer.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/js/examples/sweet-alert.js') }}"></script>
 @endsection

@@ -24,19 +24,47 @@ $(document).ready(function() {
 					ID_KONFIRMASI_PENJUALAN: id
 	            },
 	            success: function (results) {
-	     //            if (results.success === true) {
-	     //            	Swal.fire(
-						//   'Berhasil!',
-						//   'Status konfirmasi berhasil diubah',
-						//   'success'
-						// );
-	     //            } else {
-	     //                Swal.fire(
-						//   'Gagal!',
-						//   'Status konfirmasi tidak diubah',
-						//   'danger'
-						// )
-	     //            }
+	                if (results.success === true) {
+						swal("Berhasil!", 
+							"Status Konfirmasi berhasil disimpan!", 
+							"success");
+	                } else {
+						swal("Gagal!", 
+							"Status konfirmasi gagal disimpan!", 
+							"error");
+	                }
+
+	            }
+	        });
+    	});
+    });
+
+    $(".btn-submit-alasan").each(function(){
+    	$(this).on("click",function(e){
+    		e.preventDefault();
+    		let id = $(this).attr("id");
+    		$('#modal-follow-up-'+id).modal('toggle');
+    		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    		var alasan = $('#formalasan-'+id+' input[name="alasan"]:checked').val();
+	    	$.ajax({
+	            type: 'POST',
+	            url: "/sales-b/follow-up/tidak-order",
+	            data:{
+					_token: CSRF_TOKEN,
+					ID_KONFIRMASI_PENJUALAN: id,
+					alasan: alasan
+	            },
+	            success: function (results) {
+	                if (results.success === true) {
+						swal("Berhasil!", 
+							"Konfirmasi berhasil disimpan!", 
+							"success");
+	                } else {
+						swal("Gagal!", 
+							"Konfirmasi gagal disimpan!", 
+							"error");
+	                }
+
 	            }
 	        });
     	});
