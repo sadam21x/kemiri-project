@@ -23,7 +23,6 @@ class JenisProduct extends Model
 {
 	protected $table = 'jenis_product';
 	protected $primaryKey = 'KODE_JENIS_PRODUCT';
-	public $timestamps = false;
 
 	protected $fillable = [
 		'NAMA_JENIS_PRODUCT'

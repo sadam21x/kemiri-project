@@ -19,6 +19,7 @@ class CreateEvaluasiKinerjaSalesbTable extends Migration
             $table->integer('ID_MANAJER_MARKETING')->index('FK_MELAKUKAN5331');
             $table->date('TGL_EVALUASI_KINERJA_SALESB');
             $table->string('EVALUASI_SALESB', 300);
+            $table->timestamps();
         });
     }
 

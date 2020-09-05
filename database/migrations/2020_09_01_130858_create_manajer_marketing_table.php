@@ -21,6 +21,7 @@ class CreateManajerMarketingTable extends Migration
             $table->tinyInteger('JENIS_KELAMIN_MANAJER_MARKETING');
             $table->string('NO_TELP_MANAJER_MARKETING', 50);
             $table->string('EMAIL_MANAJER_MARKETING', 50)->nullable();
+            $table->timestamps();
         });
     }
 

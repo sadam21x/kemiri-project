@@ -30,7 +30,6 @@ class KonfirmasiPenjualan extends Model
 {
 	protected $table = 'konfirmasi_penjualan';
 	protected $primaryKey = 'ID_KONFIRMASI_PENJUALAN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_DEPO' => 'int',

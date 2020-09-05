@@ -24,6 +24,7 @@ class CreatePenerimaanBahanBakuTable extends Migration
             $table->float('JUMLAH_KARUNG_SAK', 10, 0);
             $table->float('ISI_KARUNG', 10, 0);
             $table->float('STOK_PENERIMAAN');
+            $table->timestamps();
         });
         DB::unprepared(
             "CREATE TRIGGER `penerimaan_produk` AFTER INSERT ON `penerimaan_bahan_baku`

@@ -19,6 +19,7 @@ class CreatePembayaranPenjualanTable extends Migration
             $table->integer('ID_OWNER')->index('FK_MELAKUKAN1233')->nullable();
             $table->date('TGL_PEMBAYARAN')->nullable();
             $table->tinyInteger('STATUS_PEMBAYARAN');
+            $table->timestamps();
         });
     }
 

@@ -31,7 +31,6 @@ class DepoAirMinum extends Model
 {
 	protected $table = 'depo_air_minum';
 	protected $primaryKey = 'KODE_DEPO';
-	public $timestamps = false;
 
 	protected $casts = [
 		'ID_SALES_A' => 'int'

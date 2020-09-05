@@ -20,6 +20,7 @@ class CreateSupplierTable extends Migration
             $table->string('ALAMAT_SUPPLIER', 100);
             $table->string('NO_TELP_SUPPLIER', 50);
             $table->string('EMAIL_SUPPLIER', 75)->nullable();
+            $table->timestamps();
         });
     }
 

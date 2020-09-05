@@ -23,7 +23,6 @@ class Moulding extends Model
 {
 	protected $table = 'moulding';
 	protected $primaryKey = 'KODE_MOULDING';
-	public $timestamps = false;
 
 	protected $fillable = [
 		'NAMA_MOULDING'

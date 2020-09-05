@@ -16,6 +16,7 @@ class CreateMouldingTable extends Migration
         Schema::create('moulding', function (Blueprint $table) {
             $table->integer('KODE_MOULDING', true);
             $table->string('NAMA_MOULDING', 50);
+            $table->timestamps();
         });
     }
 

@@ -26,7 +26,6 @@ class HasilProduct extends Model
 {
 	protected $table = 'hasil_product';
 	protected $primaryKey = 'KODE_HASIL_PRODUCT';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_PRODUKSI' => 'int',

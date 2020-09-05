@@ -19,6 +19,7 @@ class CreateProductTable extends Migration
             $table->string('NAMA_PRODUCT', 50);
             $table->float('HARGA_PRODUCT', 10, 0);
             $table->integer('STOK_PRODUCT');
+            $table->timestamps();
         });
     }
 

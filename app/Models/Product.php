@@ -28,7 +28,6 @@ class Product extends Model
 {
 	protected $table = 'product';
 	protected $primaryKey = 'KODE_PRODUCT';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_JENIS_PRODUCT' => 'int',

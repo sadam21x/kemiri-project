@@ -26,7 +26,6 @@ class BahanBaku extends Model
 {
 	protected $table = 'bahan_baku';
 	protected $primaryKey = 'KODE_BAHAN_BAKU';
-	public $timestamps = false;
 
 	protected $casts = [
 		'ID_JENIS_BAHAN_BAKU' => 'int',

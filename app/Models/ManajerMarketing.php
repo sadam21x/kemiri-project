@@ -31,7 +31,6 @@ class ManajerMarketing extends Model
 {
 	protected $table = 'manajer_marketing';
 	protected $primaryKey = 'ID_MANAJER_MARKETING';
-	public $timestamps = false;
 
 	protected $casts = [
 		'JENIS_KELAMIN_MANAJER_MARKETING' => 'int'

@@ -30,7 +30,6 @@ class Owner extends Model
 {
 	protected $table = 'owner';
 	protected $primaryKey = 'ID_OWNER';
-	public $timestamps = false;
 
 	protected $casts = [
 		'JENIS_KELAMIN_OWNER' => 'int'

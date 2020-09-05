@@ -20,6 +20,7 @@ class CreateKonfirmasiPenjualanTable extends Migration
             $table->date('TGL_KONFIRMASI_PENJUALAN');
             $table->tinyInteger('STATUS_KONFIRMASI_PENJUALAN');
             $table->string('CATATAN')->nullable();
+            $table->timestamps();
         });
     }
 

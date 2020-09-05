@@ -30,7 +30,6 @@ class AdminGudang extends Model
 {
 	protected $table = 'admin_gudang';
 	protected $primaryKey = 'ID_ADMIN_GUDANG';
-	public $timestamps = false;
 
 	protected $casts = [
 		'JENIS_KELAMIN_ADMIN_GUDANG' => 'int'

@@ -19,6 +19,7 @@ class CreateHasilProductTable extends Migration
             $table->integer('KODE_PRODUCT')->index('FK_TERDAPAT93312');
             $table->float('HASIL_BAGUS_PCS', 10, 0)->nullable();
             $table->float('HASIL_RUSAK_PCS', 10, 0)->nullable();
+            $table->timestamps();
         });
         DB::unprepared(
             "CREATE TRIGGER `update_hasil_produk` AFTER UPDATE ON `hasil_product`
