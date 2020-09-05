@@ -25,12 +25,12 @@
                     <div class="form-group col-md-3">
                         <label for="staff">Sales</label>
                         {{-- Id sales --}}
-                        <input type="hidden" value="" name="user_id" id="user_id">
+                        <input type="hidden" value="1" name="ID_SALES_B" id="user_id">
                         <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
                     </div>
                     <div class="form-group col-md-4">
                         <label>Customer</label>
-                        <input type="text" class="form-control" readonly value="Depo Air Minum Kita">
+                        <input type="text" class="form-control" readonly value="{{$customer->NAMA_DEPO}}">
                     </div>
                 </div>
 
@@ -42,33 +42,33 @@
                     <div class="form-group mx-2">
                         <label for="categories">Kategori</label>
                         <select id="categories" name="categories" class="form-control">
-                            <option value="semua">Semua</option>
-                            <option value="Tutup Galon">Tutup Galon</option>
-                            <option value="AMDK">AMDK</option>
+                            <option id="all" value="semua">Semua</option>
+                            @foreach($jenis as $j)
+                                <option value="{{$j->KODE_JENIS_PRODUCT}}">{{$j->NAMA_JENIS_PRODUCT}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group mx-2">
                         <label for="product">Produk</label>
                         <select id="product" name="product" class="form-control select-component">
-                            <option value="Tutup Galon Tipe A">Tutup Galon Tipe A</option>
-                            <option value="Tutup Galon Tipe B">Tutup Galon Tipe B</option>
-                            <option value="Tutup Galon Tipe C">Tutup Galon Tipe C</option>
+                            
                         </select>
                     </div>
 
                     <div class="form-group col-md-4 mt-4 ml-2">
-                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white">Tambah</button>
+                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white" id="add-btn">Tambah</button>
                     </div>
                 </div>
 
-                <table class="table table-hover my-4">
+                <table class="table table-hover my-4" id="keranjang">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID Produk</th>
                             <th scope="col">Nama Produk</th>
                             <th scope="col">Harga/pcs (IDR)</th>
-                            <th scope="col">Qty</th>
+                            <th scope="col">Qty (pcs)</th>
+                            <th scope="col">Qty (sak)</th>
                             <th scope="col">Diskon (%)</th>
                             <th scope="col">Harga Akhir (IDR)</th>
                             <th scope="col">Aksi</th>
@@ -76,31 +76,6 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>
-                                PRD001
-                            </td>
-                            <td>
-                                Tutup Galon Tipe A
-                            </td>
-                            <td>
-                                125
-                            </td>
-                            <td>
-                                <input type="number" name="" id="" value="1" min="1" class="input-num-sm">
-                            </td>
-                            <td>
-                                <input type="number" name="" id="" value="0" min="0" max="100" class="input-num-sm">
-                            </td>
-                            <td>
-                                125
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-youtube">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
 
@@ -113,11 +88,14 @@
                                 <option>Ambil Sendiri</option>
                                 <option>Truk/Kontainer Kemiri</option>
                                 <option>POS Indonesia</option>
+                                <option>JNE</option>
+                                <option>J&T</option>
+                                <option>TIKI</option>
                             </select>
                         </div>
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Ongkos Kirim (IDR)</label>
-                            <input type="number" name="" id="" min="0" value="0" class="form-control num-without-style">
+                            <input type="number" name="ongkos-kirim" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
                         </div>
                     </div>
 
@@ -125,34 +103,42 @@
                         <h3>Pembayaran</h3>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Total Item</label>
+                            <label class="col-sm-4 col-form-label">Jumlah Item (pcs)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="1000">
+                                <input type="text" readonly class="form-control-plaintext" id="total-item"
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
+                            <label class="col-sm-4 col-form-label">Jumlah Sak</label>
                             <div class="col-sm-4">
                                 <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="125.000">
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
+                            <label class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="20.000">
+                                <input type="text" readonly class="form-control-plaintext" id="total-harga"
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
+                            <label class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="145.000">
+                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim"
+                                    value="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
+                            <div class="col-sm-4">
+                                <input type="text" readonly class="form-control-plaintext" id="total-bayar"
+                                    name="" value="0">
                             </div>
                         </div>
 
@@ -208,4 +194,7 @@
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-b-input-order-barang.js') }}"></script>
+    <script type="text/javascript">
+        var products = <?php echo json_encode($products); ?>;
+    </script>
 @endsection

@@ -35,7 +35,7 @@ class FollowUpController extends Controller
     	]);
 
     	$konfirmasi = KonfirmasiPenjualan::find($request->ID_KONFIRMASI_PENJUALAN);
-    	$konfirmasi->STATUS_KONFIRMASI_PENJUALAN = 0;
+    	$konfirmasi->STATUS_KONFIRMASI_PENJUALAN = 1;
     	$konfirmasi->CATATAN = $request->alasan;
     	$konfirmasi->save();
 

@@ -35,7 +35,7 @@
     {{-- Extra CSS --}}
     @yield('extra-css')
 </head>
-<body class="horizontal-navigation">
+<body class="horizontal-navigation scrollable-layout">
     {{-- Start Preloader --}}
     <div class="preloader">
         <div class="preloader-icon"></div>
