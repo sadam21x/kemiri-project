@@ -80,7 +80,7 @@ $(document).ready(function() {
   });
 
   //KODE_PRODUCT 1 = INDEXNYA 0
-  // console.log(products[0]["KODE_PRODUCT"]);
+//   console.log(products[0]["KODE_PRODUCT"]);
 
   $('#add-btn').on('click',function(){
       let id = $("#product").val();
@@ -96,19 +96,19 @@ $(document).ready(function() {
 
           let row = '<tr id="'+product["KODE_PRODUCT"]+'">\
               <td>\
-                  '+product["KODE_PRODUCT"]+'\
+                  <input type="hidden" name="KODE_PRODUCT[]" value="'+product["KODE_PRODUCT"]+'">'+product["KODE_PRODUCT"]+'\
               </td>\
               <td>\
                   '+product["NAMA_PRODUCT"]+'\
               </td>\
               <td>\
-                  <input type="hidden" name="harga[]" id="price-'+product["KODE_PRODUCT"]+'" value="'+product["HARGA_PRODUCT"]+'">'+product["HARGA_PRODUCT"]+'\
+                  <input type="hidden" name="HARGA_BARANG[]" id="price-'+product["KODE_PRODUCT"]+'" value="'+product["HARGA_PRODUCT"]+'">'+product["HARGA_PRODUCT"]+'\
               </td>\
               <td>\
-                  <input type="number" name="quantity[]" id="qty-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm quantity">\
+                  <input type="number" name="JUMLAH_PCS[]" id="qty-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm quantity">\
               </td>\
               <td>\
-                  <input type="number" name="quantitysak[]" id="sak-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm sak">\
+                  <input type="number" name="JUMLAH_SAK[]" id="sak-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm sak">\
               </td>\
               <td>\
                   <input type="hidden" name="discount[]" id="disc-'+product["KODE_PRODUCT"]+'"> \
@@ -147,6 +147,11 @@ $(document).ready(function() {
       hitungTotalHargaProduk(id);
   });
 
+  $(document).on("input",".sak",function(){
+      let id = $(this).attr('id').slice(4);
+      hitungTotalHargaProduk(id);
+  });
+
   $(document).on("input",".discpersen",function(){
       let id = $(this).attr('id').slice(11);
       let percent = Number($(this).val());
@@ -168,8 +173,10 @@ $(document).ready(function() {
 
   function hitungSemuaTotal(){
       $("#total-item").val(new Intl.NumberFormat(['id']).format(hitungTotalItem()));
+      $("#total-sak").val(new Intl.NumberFormat(['id']).format(hitungTotalSak()));
       $("#total-harga").val(new Intl.NumberFormat(['id']).format(hitungTotalHarga()));
       $("#total-bayar").val(new Intl.NumberFormat(['id']).format(hitungTotalBayar()));
+      $("#total-bayar-num").val(hitungTotalBayar());
   }
 
   function hitungTotalItem(){
@@ -178,6 +185,14 @@ $(document).ready(function() {
           totalitem =  totalitem+Number($(this).val());
       });
       return totalitem;
+  }
+
+  function hitungTotalSak(){
+      let totalsak = 0;
+      $(".sak").each(function(){
+          totalsak =  totalsak+Number($(this).val());
+      });
+      return totalsak;
   }
 
   function hitungTotalHarga(){
@@ -194,14 +209,4 @@ $(document).ready(function() {
       let totalbayar = Number(totalharga+ongkir);
       return totalbayar;
   }
-
-  // ambil jumlah sak
-  $(document).on("input",".sak",function(){
-    let totalsak = 0;
-    $(".sak").each(function(){
-        totalsak =  totalsak+Number($(this).val());
-    });
-    $("#sak").val(totalsak);
-    console.log(totalsak);
-  });
 });
