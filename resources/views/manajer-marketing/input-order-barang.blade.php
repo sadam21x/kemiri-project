@@ -18,8 +18,10 @@
     <div class="row">
         <div class="col-md-12">
             {{-- Start form order barang --}}
-            <form action="{{url('/manajer-marketing/order-barang/input')}}" method="post">
+            <form action="{{url('/manajer-marketing/order-barang/input/store')}}" method="post">
                 @csrf
+
+                <input type="hidden" value="1" name="ID_MANAJER_MARKETING">
 
                 <div class="form-row row-customer">
                     <div class="form-group col-md-4">
@@ -87,57 +89,64 @@
                 <div class="form-group row mt-5">
 
                     <div class="form-group col-md-6">
+                        <div class="form-group col-md-10 col-sm-12">
+                            <label class="col-form-label">Metode Kirim</label>
+                            <select name="METODE_KIRIM" id="" class="form-control">
+                                <option>Ambil Sendiri</option>
+                                <option>Truk/Kontainer Kemiri</option>
+                                <option>POS Indonesia</option>
+                                <option>JNE</option>
+                                <option>J&T</option>
+                                <option>TIKI</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-10 col-sm-12">
+                            <label class="col-form-label">Ongkos Kirim (IDR)</label>
+                            <input type="number" name="ONGKOS_KIRIM" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
                         <h3>Pembayaran</h3>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Jumlah Item (pcs)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="total-item"
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="total-item" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Jumlah Sak</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="sak"
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="total-sak" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="total-harga"
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="total-harga" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim"
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="total-bayar"
-                                    name="" value="0">
+                                <input type="hidden" id="total-bayar-num" name="TOTAL_PENJUALAN">
+                                <input type="text" readonly class="form-control-plaintext" id="total-bayar" value="0">
                             </div>
                         </div>
 
                     </div>
-
-                    <div class="form-group col-md-4">
-                        <h3>Ongkos Kirim (IDR)</h3>
-
-                        <div class="form-group">
-                            <input type="number" name="ongkos_kirim" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
-                        </div>
-                    </div>
+     
                 </div>
 
                 <div class="form-group d-flex justify-content-center">

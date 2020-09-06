@@ -5,7 +5,7 @@ Route::get('/manajer-marketing/order-barang', 'ManajerMarketing\OrderBarangContr
 Route::get('/manajer-marketing/order-barang/input', 'ManajerMarketing\OrderBarangController@insert');
 Route::get('/manajer-marketing/order-barang/products/{jenis}', 'ManajerMarketing\OrderBarangController@getProducts');
 Route::get('/manajer-marketing/order-barang/products/', 'ManajerMarketing\OrderBarangController@getAllProduct');
-
+Route::post('/manajer-marketing/order-barang/input/store', 'ManajerMarketing\OrderBarangController@store');
 
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');
 Route::post('/manajer-marketing/customer/insert', 'ManajerMarketing\CustomerController@create');
