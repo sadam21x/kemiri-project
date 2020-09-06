@@ -6,7 +6,7 @@ Route::get('/manajer-marketing/order-barang/input', 'ManajerMarketing\OrderBaran
 Route::get('/manajer-marketing/order-barang/products/{jenis}', 'ManajerMarketing\OrderBarangController@getProducts');
 Route::get('/manajer-marketing/order-barang/products/', 'ManajerMarketing\OrderBarangController@getAllProduct');
 Route::post('/manajer-marketing/order-barang/input/store', 'ManajerMarketing\OrderBarangController@store');
-
+Route::post('/manajer-marketing/status-konfirmasi', 'ManajerMarketing\OrderBarangController@changeStatus');
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');
 Route::post('/manajer-marketing/customer/insert', 'ManajerMarketing\CustomerController@create');
 Route::post('/manajer-marketing/customer/edit', 'ManajerMarketing\CustomerController@update');

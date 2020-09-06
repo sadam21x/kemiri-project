@@ -43,15 +43,17 @@
                                 <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
                                 <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                 <td>
-                                @if($d->STATUS_PENJUALAN == 1 && $d->KODE_PEMBAYARAN_PENJUALAN != "" && $d->KODE_PENGIRIMAN != "")
+                                @if($d->STATUS_PENJUALAN == 1)
                                     <div>
                                         <span>KONFIRMASI</span>
                                         <i class="fas fa-check ml-1"></i>
                                     </div>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-success">
+                                    <div class="konfirmasi-" id="{{$d->ID_PENJUALAN}}">
+                                    <button type="button" class="btn btn-sm btn-success konfirmasi" id="{{$d->ID_PENJUALAN}}">
                                         KONFIRMASI
                                     </button>
+                                    </div>
                                 @endif
                                 </td>
                                 <td colspan="2">

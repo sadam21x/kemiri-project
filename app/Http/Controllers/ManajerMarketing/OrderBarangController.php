@@ -9,6 +9,7 @@ use App\Models\DepoAirMinum;
 use App\Models\JenisProduct;
 use App\Models\Product;
 use App\Models\DetilPenjualan;
+use App\Models\KonfirmasiPenjualan;
 
 use DB;
 
@@ -34,13 +35,13 @@ class OrderBarangController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'KODE_DEPO' => 'required',
-        //     'ID_SALES_B' => 'required',
-        //     'METODE_KIRIM' => 'required',
-        //     'ONGKOS_KIRIM' => 'required',
-        //     'TOTAL_PENJUALAN' => 'required'
-        // ]);
+        $request->validate([
+            'KODE_DEPO' => 'required',
+            'ID_MANAJER_MARKETING' => 'required',
+            'METODE_KIRIM' => 'required',
+            'ONGKOS_KIRIM' => 'required',
+            'TOTAL_PENJUALAN' => 'required'
+        ]);
 
         DB::transaction(function() use ($request){
             $penjualan = Penjualan::insertGetId([
@@ -51,7 +52,7 @@ class OrderBarangController extends Controller
                 'METODE_KIRIM' => $request->METODE_KIRIM,
                 'ONGKOS_KIRIM' => $request->ONGKOS_KIRIM,
                 'TOTAL_PENJUALAN' => $request->TOTAL_PENJUALAN,
-                'STATUS_PENJUALAN' => 0
+                'STATUS_PENJUALAN' => 1
             ]);
 
             $id = Penjualan::select("ID_PENJUALAN")->where([
@@ -62,7 +63,7 @@ class OrderBarangController extends Controller
                 'METODE_KIRIM' => $request->METODE_KIRIM,
                 'ONGKOS_KIRIM' => $request->ONGKOS_KIRIM,
                 'TOTAL_PENJUALAN' => $request->TOTAL_PENJUALAN,
-                'STATUS_PENJUALAN' => 0
+                'STATUS_PENJUALAN' => 1
             ])->first();
 
             $i = 0;
@@ -92,5 +93,23 @@ class OrderBarangController extends Controller
     {
         $product = Product::all();
         return response()->json(["success" => true, "data" => $product]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+    	$request->validate([
+    		'ID_KONFIRMASI_PENJUALAN' => 'required'
+    	]);
+
+    	$konfirmasi = KonfirmasiPenjualan::find($request->ID_KONFIRMASI_PENJUALAN);
+    	$konfirmasi->STATUS_KONFIRMASI_PENJUALAN = 1;
+        $konfirmasi->save();
+        
+        
+        $penjualan = Penjualan::find($request->ID_KONFIRMASI_PENJUALAN);
+        $penjualan->STATUS_PENJUALAN = 1;
+        $penjualan->save();
+
+        return response()->json(["success" => true]);
     }
 }
