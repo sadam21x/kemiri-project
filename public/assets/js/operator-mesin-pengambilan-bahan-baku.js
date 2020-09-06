@@ -12,39 +12,32 @@ $(document).ready(function() {
     const selectComponent = document.getElementsByClassName("select-component");
     $(selectComponent).select2();
 
-    // number
-    $no = 1;
-
     // Elemen bahan baku
     var input_bahan_baku = '<div class="form-group">' +
                                 '<label class="col-form-label">Bahan Baku</label>' +
-                                '<select class="form-control select-component" id="" name="bahan_baku'+$no+'">' +
+                                '<select class="form-control select-component" id="bahan_baku" name="bahan_baku">' +
                                     '<option>Pilih bahan baku . . </option>' +
-                                    
-                                    '<option value=""></option>' +
-                                    
                                 '</select>' +
                             '</div>';
 
     // Elemen supplier
     var input_supplier = '<div class="form-group">' +
                             '<label class="col-form-label">Supplier Bahan Baku</label>' +
-                            '<select class="form-control select-component" id="" name="supplier'+$no+'">' +
+                            '<select class="form-control select-component" id="supplier" name="supplier">' +
                                 '<option>Pilih supplier . . </option>' +
-                                '<option value=""></option>' +
                             '</select>' +
                         '</div>';
 
     // Elemen jumlah bahan baku (Kg)
     var input_jumlah_kg = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Kg)</label>' +
-                                '<input type="number" name="jumlah_bahan_baku'+$no+'" id="" class="form-control">' +
+                                '<input type="number" name="jumlah_bahan_baku" id="" class="form-control">' +
                             '</div>';
 
     // Elemen jumlah bahan baku (Karung)
     var input_jumlah_karung = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Karung)</label>' +
-                                '<input type="number" name="jumlah_karung_sak'+$no+'" id="" class="form-control">' +
+                                '<input type="number" name="jumlah_karung_sak" id="" class="form-control">' +
                             '</div>';
    
     // Elemen modal button
@@ -69,28 +62,68 @@ $(document).ready(function() {
             input_jumlah_karung,
             modal_button
         );
-    });
+    // });
 
-    // Ambil stok penerimaan
-    $(document).on("select","#supplier",function(){
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //ambil bahan baku
+
+        $.ajax({
+            type: 'GET',
+            url: "/operator-mesin/pengambilan-bahan-baku/getBahanBaku",
+            success: function (results) {
+                if (results.success === true) {
+                    // $("#bahan_baku").empty();
+                    results.data.forEach(addOption)
+                    function addOption(item, index, arr){
+                        let text = item.NAMA_BAHAN_BAKU;
+                        let val = item.KODE_BAHAN_BAKU;
+                        var o = new Option(text, val);
+                        $(o).html(text);
+                        $("#bahan_baku").append(o);
+                    }
+                }
             }
         });
         $.ajax({
-            url: "{{ url('/pengambilan-bahan-baku/ambilPenerimaan') }}",
-            method: 'POST',
-            data: {
-                id_supplier : $("#supplier").val(),
-                kode_bahan_baku : $("#bahan_baku").val(),
-            },
-            success: function(result){
-                let data_p = result.penerimaan; 
-                $("#total_berat").val(data_p.total_berat);
-                $("#jumlah_karung_sak").val(data_p.jumlah_karung_sak);
+            type: 'GET',
+            url: "/operator-mesin/pengambilan-bahan-baku/getSupplier",
+            success: function (results) {
+                if (results.success === true) {
+                    // $("#supplier").empty();
+                    results.data.forEach(addOption)
+                    function addOption(item, index, arr){
+                        let text = item.NAMA_SUPPLIER;
+                        let val = item.ID_SUPPLIER;
+                        var o = new Option(text, val);
+                        $(o).html(text);
+                        $("#supplier").append(o);
+                    }
+                }
             }
         });
     });
+
+
+    //ambil supplier ketika bahan_baku dipilih
+    // $('#bahan_baku').change(function(){
+    //     var jenis = $(this).val();
+    //     console.log(jenis);
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: "/operator-mesin/pengambilan-bahan-baku/getSupplier"+jenis,
+    //         success: function (results) {
+    //             if (results.success === true) {
+    //                 $("#supplier").empty();
+    //                 results.data.forEach(addOption)
+    //                 function addOption(item, index, arr){
+    //                     let text = item.NAMA_SUPPLIER;
+    //                     let val = item.ID_SUPPLIER;
+    //                     var o = new Option(text, val);
+    //                     $(o).html(text);
+    //                     $("#supplier").append(o);
+    //                 }
+    //             }
+    //         }
+    //     });
+    // });
 
 });
