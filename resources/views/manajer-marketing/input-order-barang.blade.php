@@ -18,16 +18,16 @@
     <div class="row">
         <div class="col-md-12">
             {{-- Start form order barang --}}
-            <form action="" method="post">
+            <form action="{{url('/manajer-marketing/order-barang/input')}}" method="post">
                 @csrf
 
                 <div class="form-row row-customer">
                     <div class="form-group col-md-4">
                         <label for="customer">Customer</label>
                         <select name="KODE_DEPO" id="" class="select-component form-control">
-                            <option value="Depo Air Minum Jaya Sakthi">Depo Air Minum Jaya Sakthi</option>
-                            <option value="Depo Air Minum Kertajaya Indah">Depo Air Minum Kertajaya Indah</option>
-                            <option value="Depo Air Minum Pak Mahmud">Depo Air Minum Pak Mahmud</option>
+                            @foreach($customer as $c)
+                            <option value="{{$c->KODE_DEPO}}">{{$c->NAMA_DEPO}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-2">
@@ -47,26 +47,25 @@
                         <label for="categories">Kategori</label>
                         <select id="categories" name="categories" class="form-control">
                             <option value="semua">Semua</option>
-                            <option value="Tutup Galon">Tutup Galon</option>
-                            <option value="AMDK">AMDK</option>
+                            @foreach($jenis as $j)
+                                <option value="{{$j->KODE_JENIS_PRODUCT}}">{{$j->NAMA_JENIS_PRODUCT}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group mx-2">
                         <label for="product">Produk</label>
                         <select id="product" name="product" class="form-control select-component">
-                            <option value="Tutup Galon Tipe A">Tutup Galon Tipe A</option>
-                            <option value="Tutup Galon Tipe B">Tutup Galon Tipe B</option>
-                            <option value="Tutup Galon Tipe C">Tutup Galon Tipe C</option>
+                            
                         </select>
                     </div>
 
                     <div class="form-group col-md-4 mt-4 ml-2">
-                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white">Tambah</button>
+                        <button type="button" class="btn btn-sm btn-secondary mt-2 text-white" id="add-btn">Tambah</button>
                     </div>
                 </div>
 
-                <table class="table table-hover my-4">
+                <table class="table table-hover my-4" id="keranjang">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">ID Produk</th>
@@ -81,34 +80,7 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>
-                                PRD001
-                            </td>
-                            <td>
-                                Tutup Galon Tipe A
-                            </td>
-                            <td>
-                                125
-                            </td>
-                            <td>
-                                <input type="number" name="" id="" value="1" min="1" class="input-num-sm">
-                            </td>
-                            <td>
-                                <input type="number" name="" id="" value="1" min="1" class="input-num-sm">
-                            </td>
-                            <td>
-                                <input type="number" name="" id="" value="0" min="0" max="100" class="input-num-sm">
-                            </td>
-                            <td>
-                                125
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-youtube">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
 
@@ -120,40 +92,40 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Jumlah Item (pcs)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="1000">
+                                <input type="text" readonly class="form-control-plaintext" id="total-item"
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Jumlah Sak</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="1000">
+                                <input type="text" readonly class="form-control-plaintext" id="sak"
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="125.000">
+                                <input type="text" readonly class="form-control-plaintext" id="total-harga"
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="20.000">
+                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim"
+                                    name="" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="145.000">
+                                <input type="text" readonly class="form-control-plaintext" id="total-bayar"
+                                    name="" value="0">
                             </div>
                         </div>
 
@@ -163,7 +135,7 @@
                         <h3>Ongkos Kirim (IDR)</h3>
 
                         <div class="form-group">
-                            <input type="number" name="" id="" min="0" value="0" class="form-control num-without-style">
+                            <input type="number" name="ongkos_kirim" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
                         </div>
                     </div>
                 </div>
@@ -212,6 +184,9 @@
 @endsection
 
 @section('extra-script')
+    <script type="text/javascript">
+        var products = <?php echo json_encode($products); ?>;
+    </script>
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>

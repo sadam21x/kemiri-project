@@ -12,38 +12,39 @@ $(document).ready(function() {
     const selectComponent = document.getElementsByClassName("select-component");
     $(selectComponent).select2();
 
+    // number
+    $no = 1;
+
     // Elemen bahan baku
     var input_bahan_baku = '<div class="form-group">' +
                                 '<label class="col-form-label">Bahan Baku</label>' +
-                                '<select class="form-control select-component" id="" name="">' +
+                                '<select class="form-control select-component" id="" name="bahan_baku'+$no+'">' +
                                     '<option>Pilih bahan baku . . </option>' +
-                                    '<option value="Plastik Bekas">Plastik Bekas</option>' +
-                                    '<option value="Plastik Virgin">Plastik Virgin</option>' +
-                                    '<option value="Pewarna">Pewarna</option>' +
+                                    '@foreach($bahan_baku as $b)' +
+                                    '<option value="{!!$b->KODE_BAHAN_BAKU!!}"></option>' +
+                                    '@endforeach'
                                 '</select>' +
                             '</div>';
 
     // Elemen supplier
     var input_supplier = '<div class="form-group">' +
                             '<label class="col-form-label">Supplier Bahan Baku</label>' +
-                            '<select class="form-control select-component" id="" name="">' +
+                            '<select class="form-control select-component" id="" name="supplier'+$no+'">' +
                                 '<option>Pilih supplier . . </option>' +
-                                '<option value="UD. Pertama Makmur">UD. Pertama Makmur</option>' +
-                                '<option value="UD. Dewata Indah">UD. Dewata Indah</option>' +
-                                '<option value="Himasi">Himasi</option>' +
+                                '<option value=""></option>' +
                             '</select>' +
                         '</div>';
 
     // Elemen jumlah bahan baku (Kg)
     var input_jumlah_kg = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Kg)</label>' +
-                                '<input type="number" name="" id="" class="form-control">' +
+                                '<input type="number" name="jumlah_bahan_baku'+$no+'" id="" class="form-control">' +
                             '</div>';
 
     // Elemen jumlah bahan baku (Karung)
     var input_jumlah_karung = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Karung)</label>' +
-                                '<input type="number" name="" id="" class="form-control">' +
+                                '<input type="number" name="jumlah_karung_sak'+$no+'" id="" class="form-control">' +
                             '</div>';
    
     // Elemen modal button

@@ -114,9 +114,9 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="bahan_baku" name="bahan_baku">
+                        <select class="form-control select-component" id="bahan_baku" name="bahan_baku1">
                             <option>Pilih bahan baku . . </option>
-                            @foreach()
+                            @foreach($bahan_baku as $b)
                             <option value="{{$b->KODE_BAHAN_BAKU}}">{{$b->NAMA_BAHAN_BAKU}}</option>
                             @endforeach
                         </select>
@@ -127,12 +127,6 @@
                         <select class="form-control select-component" id="supplier" name="supplier">
                             <option>Pilih supplier . . </option>
                             <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
-                            <option value="Toko Jaya Sakthi">Toko Jaya Sakthi</option>
-                            <option value="Bapak Zainuri">Bapak Zainuri</option>
-                            <option value="Bapak Santoso">Bapak Santoso</option>
-                            <option value="UD. Dewata Indah">UD. Dewata Indah</option>
-                            <option value="Ibu Nur Aminah">Ibu Nur Aminah</option>
-                            <option value="Himasi">Himasi</option>
                         </select>
                     </div>
 
@@ -157,7 +151,7 @@
     </div>
 </div>
 {{-- End of Input Pengambilan Bahan Baku Modal --}}
-@endforeach
+
 @foreach($data as $d)
 {{-- Start Detail Pengambilan Bahan Baku Modal --}}
 <div class="modal fade" id="modal-detail-pengambilan-bahan-baku-{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}" tabindex="-1" role="dialog" aria-hidden="true">
