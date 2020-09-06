@@ -9,6 +9,7 @@ use App\Models\DepoAirMinum;
 use App\Models\JenisProduct;
 use App\Models\Product;
 use App\Models\DetilPenjualan;
+use App\Models\KonfirmasiPenjualan;
 
 use DB;
 
@@ -102,7 +103,12 @@ class OrderBarangController extends Controller
 
     	$konfirmasi = KonfirmasiPenjualan::find($request->ID_KONFIRMASI_PENJUALAN);
     	$konfirmasi->STATUS_KONFIRMASI_PENJUALAN = 1;
-    	$konfirmasi->save();
+        $konfirmasi->save();
+        
+        
+        $penjualan = Penjualan::find($request->ID_KONFIRMASI_PENJUALAN);
+        $penjualan->STATUS_PENJUALAN = 1;
+        $penjualan->save();
 
         return response()->json(["success" => true]);
     }

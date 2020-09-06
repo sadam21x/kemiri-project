@@ -24,8 +24,6 @@ $(document).ready(function() {
 						swal("Berhasil!", 
 							"Status Konfirmasi berhasil disimpan!", 
                             "success");
-                        // $(".konfirmasi").remove();
-                        // $(".terkonfirmasi").add();
 	                } else {
 						swal("Gagal!", 
 							"Status konfirmasi gagal disimpan!", 
@@ -35,5 +33,28 @@ $(document).ready(function() {
 	            }
 	        });
     	});
+    });
+
+    // Element
+    var El = '<div>' +
+                '<span>KONFIRMASI</span>' +
+                 '<i class="fas fa-check ml-1"></i>' +
+            '</div>'
+
+    $(".konfirmasi").on("click", function(){
+        let id = $(this).attr("id");
+        let idb = $(".konfirmasi-").attr("id");
+        if(idb == id){
+            $(this).remove();
+        }
+        console.log(this);
+    });
+
+
+    $(".konfirmasi-").on("click", function(){
+        let id = $(this).attr("id")
+        if($(".konfirmasi-").attr("id") == id){
+            $(this).append(El);
+        }
     });
 });

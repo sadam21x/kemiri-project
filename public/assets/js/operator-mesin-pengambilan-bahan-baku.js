@@ -20,9 +20,9 @@ $(document).ready(function() {
                                 '<label class="col-form-label">Bahan Baku</label>' +
                                 '<select class="form-control select-component" id="" name="bahan_baku'+$no+'">' +
                                     '<option>Pilih bahan baku . . </option>' +
-                                    '@foreach($bahan_baku as $b)' +
-                                    '<option value="{!!$b->KODE_BAHAN_BAKU!!}"></option>' +
-                                    '@endforeach'
+                                    
+                                    '<option value=""></option>' +
+                                    
                                 '</select>' +
                             '</div>';
 
