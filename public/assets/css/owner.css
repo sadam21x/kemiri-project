@@ -40,6 +40,19 @@ table td {
     background-color: rgb(68, 8, 38) !important;
 }
 
+.page-header > .d-flex {
+    justify-content: space-between;
+}
+
+.form-tambah-sales-col {
+    margin: auto;
+}
+
+.select-avatar-nav img {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
 @media only screen and (max-width: 600px) {
 
     table {

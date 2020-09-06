@@ -9,7 +9,12 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h4>Sales</h4>
+        <div class="d-flex">
+            <h4>Sales</h4>
+            <a href="{{ url('/owner/sales/tambah') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah sales baru">
+                <i class="fas fa-user-plus fa-2x"></i>
+            </a>
+        </div>
         <hr>
     </div>
 
@@ -18,7 +23,7 @@
 
             {{-- Start Sales A --}}
             <div class="judul-tabel">
-                <h5 class="">Daftar Sales A</h5>
+                <h5>Daftar Sales A</h5>
             </div>
 
             <div class="card">
@@ -52,7 +57,7 @@
 
             {{-- Start Sales B --}}
             <div class="judul-tabel">
-                <h5 class="">Daftar Sales B</h5>
+                <h5>Daftar Sales B</h5>
             </div>
 
             <div class="card">
