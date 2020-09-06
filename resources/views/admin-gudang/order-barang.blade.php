@@ -106,7 +106,7 @@
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
+                        <h6>{{$d->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -201,7 +201,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Customer</label>
-                        <input type="text" value="{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}" class="form-control" readonly>
+                        <input type="text" value="{{$d->depo_air_minum->NAMA_DEPO}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">

@@ -108,7 +108,7 @@
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
+                        <h6>{{$d->pembayaran_penjualan->penjualan->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
