@@ -3,6 +3,9 @@
 Route::view('/manajer-marketing', 'manajer-marketing/dashboard');
 Route::get('/manajer-marketing/order-barang', 'ManajerMarketing\OrderBarangController@index');
 Route::get('/manajer-marketing/order-barang/input', 'ManajerMarketing\OrderBarangController@insert');
+Route::get('/manajer-marketing/order-barang/products/{jenis}', 'ManajerMarketing\OrderBarangController@getProducts');
+Route::get('/manajer-marketing/order-barang/products/', 'ManajerMarketing\OrderBarangController@getAllProduct');
+
 
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');
 Route::post('/manajer-marketing/customer/insert', 'ManajerMarketing\CustomerController@create');
