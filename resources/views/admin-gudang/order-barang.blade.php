@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{$d->ID_PENJUALAN}}</td>
                                     <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
-                                    <td>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
+                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                     <td>
                                         @if($d->STATUS_PENJUALAN == 1)
                                         <div class="badge badge-success">

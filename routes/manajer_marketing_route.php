@@ -20,9 +20,12 @@ Route::post('/manajer-marketing/req-data-kota', function() {
 
 //route dea
 Route::get('/manajer-marketing/sales', 'ManajerMarketing\SalesController@index');
+
 Route::get('/manajer-marketing/detail-sales-a/{id}', 'ManajerMarketing\SalesController@viewA');
 Route::get('/manajer-marketing/detail-sales-b/{id}', 'ManajerMarketing\SalesController@viewB');
+
 Route::get('/manajer-marketing/evaluasi-kinerja-sales-a/{id}/input', 'ManajerMarketing\SalesController@insertA');
 Route::get('/manajer-marketing/evaluasi-kinerja-sales-b/{id}/input', 'ManajerMarketing\SalesController@insertB');
+
 Route::post('/manajer-marketing/evaluasi-kinerja-sales-a/store', 'ManajerMarketing\SalesController@storeA');
 Route::post('/manajer-marketing/evaluasi-kinerja-sales-b/store', 'ManajerMarketing\SalesController@storeB');

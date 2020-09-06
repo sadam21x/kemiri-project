@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{$d->KODE_PENGIRIMAN}}</td>
                                     <td>{{$tglkirim}}</td>
-                                    <td>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}
+                                    <td>{{$d->pembayaran_penjualan->penjualan->depo_air_minum->NAMA_DEPO}}
                                     </td>
                                     <td>
                                         @if($tglkirim <= $hari_ini) <a href="" class="badge badge-success">
