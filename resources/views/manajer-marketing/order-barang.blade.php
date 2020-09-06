@@ -44,12 +44,12 @@
                                 <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                 <td>
                                 @if($d->STATUS_PENJUALAN == 1 && $d->KODE_PEMBAYARAN_PENJUALAN != "" && $d->KODE_PENGIRIMAN != "")
-                                    <div>
+                                    <div class="terkonfirmasi">
                                         <span>KONFIRMASI</span>
                                         <i class="fas fa-check ml-1"></i>
                                     </div>
                                 @else
-                                    <button type="button" class="btn btn-sm btn-success">
+                                    <button type="button" class="btn btn-sm btn-success konfirmasi" id="{{$d->ID_PENJUALAN}}">
                                         KONFIRMASI
                                     </button>
                                 @endif
