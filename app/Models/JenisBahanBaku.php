@@ -23,7 +23,6 @@ class JenisBahanBaku extends Model
 {
 	protected $table = 'jenis_bahan_baku';
 	protected $primaryKey = 'ID_JENIS_BAHAN_BAKU';
-	public $timestamps = false;
 
 	protected $fillable = [
 		'NAMA_JENIS_BAHAN_BAKU'

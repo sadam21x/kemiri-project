@@ -30,7 +30,6 @@ class SalesA extends Model
 {
 	protected $table = 'sales_a';
 	protected $primaryKey = 'ID_SALES_A';
-	public $timestamps = false;
 
 	protected $casts = [
 		'JENIS_KELAMIN_SALES_A' => 'int'

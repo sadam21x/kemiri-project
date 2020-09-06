@@ -38,7 +38,7 @@
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
-                            <span class="ml-2 d-sm-inline d-none">Ahmad Baihaqi</span>
+                            <span class="ml-2 d-sm-inline d-none">Kartono</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
                             <div class="text-center py-4">
@@ -46,8 +46,8 @@
                                     <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}"
                                          class="rounded-circle" alt="image">
                                 </figure>
-                                <h5 class="text-center">Ahmad Baihaqi</h5>
-                                <div class="mb-3 small text-center text-muted">ADMIN GUDANG</div>
+                                <h5 class="text-center">Kartono</h5>
+                                <div class="mb-3 small text-center text-muted">OWNER</div>
                             </div>
                             <div class="list-group">
                                 <a href="" class="list-group-item">

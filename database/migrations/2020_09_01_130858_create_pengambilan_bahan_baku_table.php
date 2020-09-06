@@ -19,6 +19,7 @@ class CreatePengambilanBahanBakuTable extends Migration
             $table->integer('KODE_MESIN')->index('FK_TERDAPAT991');
             $table->dateTime('WAKTU_PENGAMBILAN');
             $table->string('HASIL_PRODUK', 100);
+            $table->timestamps();
         });
     }
 

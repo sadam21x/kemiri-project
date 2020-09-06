@@ -1,7 +1,7 @@
 @extends('layouts/admin-gudang/main')
 @section('title', 'Penerimaan Bahan Baku')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/admin-gudang.css') }}">
@@ -19,44 +19,54 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Riwayat Penerimaan Bahan Baku</h5>
+                <h5>Riwayat Penerimaan Bahan Baku</h5>
                 <button class="btn btn-sm btn-rounded bg-dribbble ml-auto tombol-input-penerimaan" data-toggle="modal" data-target="#modal-input-penerimaan">
                     <i class="fas fa-plus mr-1"></i>
                     TAMBAH BARU
                 </button>
             </div>
             
-            <table id="penerimaan-bahan-baku-table" class="table table-stripped table-bordered table-responsive-stack">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID Penerimaan</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Supplier</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->ID_PENERIMAAN}}</td>
-                        <td>{{$d->TGL_KEDATANGAN}}</td>
-                        <td>{{$d->SUPPLIER}}</td>
-                        <td colspan="2">
-                            <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
-                                data-toggle="modal" data-target="#modal-detail-penerimaan-{{$d->ID_PENERIMAAN}}">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                            <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
-                                data-toggle="modal" data-target="#modal-edit-penerimaan-{{$d->id_penerimaan}}">
-                                <i class="fas fa-edit mr-1"></i>
-                                EDIT
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="penerimaan-bahan-baku-table"
+                            class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID Penerimaan</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->ID_PENERIMAAN}}</td>
+                                    <td>{{$d->TGL_KEDATANGAN}}</td>
+                                    <td>{{$d->SUPPLIER}}</td>
+                                    <td colspan="2">
+                                        <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
+                                            data-toggle="modal"
+                                            data-target="#modal-detail-penerimaan-{{$d->ID_PENERIMAAN}}">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            DETAIL
+                                        </button>
+                                        <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
+                                            data-toggle="modal"
+                                            data-target="#modal-edit-penerimaan-{{$d->id_penerimaan}}">
+                                            <i class="fas fa-edit mr-1"></i>
+                                            EDIT
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -266,7 +276,7 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-penerimaan.js') }}"></script>

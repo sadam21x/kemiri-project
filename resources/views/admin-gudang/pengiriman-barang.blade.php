@@ -1,7 +1,7 @@
 @extends('layouts/admin-gudang/main')
 @section('title', 'Pengiriman Barang')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/admin-gudang.css') }}">
 @endsection
 
@@ -17,52 +17,60 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Riwayat Pengiriman Barang</h5>
+                <h5>Riwayat Pengiriman Barang</h5>
             </div>
 
-            <table id="pengiriman-barang-table" class="table table-striped table-bordered table-responsive-stack">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID Pengiriman</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    @php $hari_ini = date("d/m/Y");
-                    $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL));
-                    @endphp
-                    <tr>
-                        <td>{{$d->KODE_PENGIRIMAN}}</td>
-                        <td>{{$tglkirim}}</td>
-                        <td>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
-                        <td>
-                            @if($tglkirim <= $hari_ini)
-                            <a href="" class="badge badge-success">
-                                TERKIRIM
-                                <i class="fas fa-check ml-1"></i>
-                            </a>
-                            @else
-                            <a href="" class="badge badge-secondary">
-                                PENDING
-                                <i class="fas fa-exclamation-circle ml-1"></i>
-                            </a>
-                            @endif
-                        </td>
-                        <td>
-                            <button class="btn btn-linkedin btn-sm tombol-detail-pengiriman"
-                                data-toggle="modal" data-target="#modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="pengiriman-barang-table" class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID Pengiriman</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                @php $hari_ini = date("d/m/Y");
+                                $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL));
+                                @endphp
+                                <tr>
+                                    <td>{{$d->KODE_PENGIRIMAN}}</td>
+                                    <td>{{$tglkirim}}</td>
+                                    <td>{{$d->pembayaran_penjualan->penjualan->depo_air_minum->NAMA_DEPO}}
+                                    </td>
+                                    <td>
+                                        @if($tglkirim <= $hari_ini) <a href="" class="badge badge-success">
+                                            TERKIRIM
+                                            <i class="fas fa-check ml-1"></i>
+                                            </a>
+                                            @else
+                                            <a href="" class="badge badge-secondary">
+                                                PENDING
+                                                <i class="fas fa-exclamation-circle ml-1"></i>
+                                            </a>
+                                            @endif
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-linkedin btn-sm tombol-detail-pengiriman"
+                                            data-toggle="modal"
+                                            data-target="#modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            DETAIL
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -100,7 +108,7 @@
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>{{$d->pembayaran_penjualan->penjualan->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
+                        <h6>{{$d->pembayaran_penjualan->penjualan->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -157,6 +165,6 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-pengiriman-barang.js') }}"></script>
 @endsection

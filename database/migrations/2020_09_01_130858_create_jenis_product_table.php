@@ -16,6 +16,7 @@ class CreateJenisProductTable extends Migration
         Schema::create('jenis_product', function (Blueprint $table) {
             $table->integer('KODE_JENIS_PRODUCT', true);
             $table->string('NAMA_JENIS_PRODUCT', 50);
+            $table->timestamps();
         });
     }
 

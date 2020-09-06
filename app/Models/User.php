@@ -31,7 +31,6 @@ class User extends Model
 {
 	protected $table = 'user';
 	protected $primaryKey = 'ID_USER';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_JABATAN' => 'int',

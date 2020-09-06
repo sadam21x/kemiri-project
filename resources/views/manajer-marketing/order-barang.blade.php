@@ -97,7 +97,7 @@
 
                 <div class="container">
 
-                    <div class="my-3">
+                    <div class="mb-3">
                         <h5>ID Order</h5>
                         <h6>ORD00001</h6>
                     </div>

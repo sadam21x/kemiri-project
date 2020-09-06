@@ -3,6 +3,11 @@ table {
     font-weight: 500;
 }
 
+table td {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
 .input-num-sm {
     width: 50%;
     text-align: center;

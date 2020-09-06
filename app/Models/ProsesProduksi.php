@@ -31,7 +31,6 @@ class ProsesProduksi extends Model
 {
 	protected $table = 'proses_produksi';
 	protected $primaryKey = 'KODE_PRODUKSI';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_PENGAMBILAN_BAHAN_BAKU' => 'int',

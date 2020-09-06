@@ -21,6 +21,7 @@ class CreateOperatorMesinTable extends Migration
             $table->tinyInteger('JENIS_KELAMIN_OPERATOR_MESIN');
             $table->string('NO_TELP_OPERATOR_MESIN', 50)->nullable();
             $table->string('EMAIL_OPERATOR_MESIN', 75)->nullable();
+            $table->timestamps();
         });
     }
 

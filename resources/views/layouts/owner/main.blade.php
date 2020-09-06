@@ -19,7 +19,6 @@
     <link rel="manifest" href="{{ asset('/assets/favicon/site.webmanifest') }}">
 
     {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     {{-- Fontawesome --}}
@@ -44,19 +43,19 @@
     {{-- End of Preloader --}}
 
     {{-- Sidebar Group --}}
-    {{-- @include('layouts/admin-gudang/sidebar-group') --}}
+    {{-- @include('layouts/owner/sidebar-group') --}}
 
     {{-- Start Layout Wrapper --}}
     <div class="layout-wrapper">
 
         {{-- Header --}}
-        @include('layouts/admin-gudang/header')
+        @include('layouts/owner/header')
 
         {{-- Start Content Wrapper --}}
         <div class="content-wrapper">
 
             {{-- Navigation --}}
-            @include('layouts/admin-gudang/navigation')
+            @include('layouts/owner/navigation')
 
             {{-- Start Content Body --}}
             <div class="content-body">

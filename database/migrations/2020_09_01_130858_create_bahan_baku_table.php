@@ -18,6 +18,7 @@ class CreateBahanBakuTable extends Migration
             $table->integer('ID_JENIS_BAHAN_BAKU')->index('FK_TERDAPAT');
             $table->string('NAMA_BAHAN_BAKU', 75);
             $table->float('STOK_BAHAN_BAKU', 10, 0);
+            $table->timestamps();
         });
     }
 

@@ -1,7 +1,7 @@
 @extends('layouts/operator-mesin/main')
 @section('title', 'Pencatatan Produksi')
 @section('extra-css')
-<link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/operator-mesin.css') }}">
@@ -20,44 +20,57 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Riwayat Produksi</h5>
+                <h5>Riwayat Produksi</h5>
             </div>
 
-            <table id="pengambilan-bahan-baku-table" class="table table-bordered table-stripped table-responsive-stack">
-                <thead class="thead-dark">
-                    <th scope="col">ID Pengambilan Bahan Baku</th>
-                    <th scope="col">Waktu Pengambilan Bahan Baku</th>
-                    <th scope="col">Operator Mesin</th>
-                    <th scope="col">Aksi</th>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->KODE_PRODUKSI}}</td>
-                        <td>{{date('d/m/Y - H:i:s',strtotime($d->pengambilan_bahan_baku->WAKTU_PENGAMBILAN))}}</td>
-                        <td>{{$d->pengambilan_bahan_baku->operator_mesin->NAMA_OPERATOR_MESIN}}</td>
-                        <td colspan="3">
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-produksi-{{$d->KODE_PRODUKSI}}">
-                                <i class="fas fa-info-circle mr-2"></i>
-                                DETAIL
-                            </button>
-                            @if($d->EVALUASI_BAHAN_BAKU == null && $d->EVALUASI_PRODUKSI == null && $d->EVALUASI_MESIN == null)
-                            <button class="btn btn-sm btn-dribbble" data-toggle="modal" data-target="#modal-pencatatan-produksi-{{$d->KODE_PRODUKSI}}">
-                                <i class="fas fa-book-open mr-2"></i>
-                                PENCATATAN
-                            </button>
-                            @endif
-                            @if($d->EVALUASI_BAHAN_BAKU != null)
-                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-pencatatan-produksi-{{$d->KODE_PRODUKSI}}">
-                                <i class="fas fa-edit"></i>
-                                EDIT
-                            </button>
-                            @endif
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="pengambilan-bahan-baku-table"
+                            class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <th scope="col">ID Pengambilan Bahan Baku</th>
+                                <th scope="col">Waktu Pengambilan Bahan Baku</th>
+                                <th scope="col">Operator Mesin</th>
+                                <th scope="col">Aksi</th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->KODE_PRODUKSI}}</td>
+                                    <td>{{date('d/m/Y - H:i:s',strtotime($d->pengambilan_bahan_baku->WAKTU_PENGAMBILAN))}}
+                                    </td>
+                                    <td>{{$d->pengambilan_bahan_baku->operator_mesin->NAMA_OPERATOR_MESIN}}</td>
+                                    <td colspan="3">
+                                        <button class="btn btn-sm btn-linkedin" data-toggle="modal"
+                                            data-target="#modal-detail-produksi-{{$d->KODE_PRODUKSI}}">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            DETAIL
+                                        </button>
+                                        @if($d->EVALUASI_BAHAN_BAKU == null && $d->EVALUASI_PRODUKSI == null &&
+                                        $d->EVALUASI_MESIN == null)
+                                        <button class="btn btn-sm btn-dribbble" data-toggle="modal"
+                                            data-target="#modal-pencatatan-produksi-{{$d->KODE_PRODUKSI}}">
+                                            <i class="fas fa-book-open mr-2"></i>
+                                            PENCATATAN
+                                        </button>
+                                        @endif
+                                        @if($d->EVALUASI_BAHAN_BAKU != null)
+                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                            data-target="#modal-edit-pencatatan-produksi-{{$d->KODE_PRODUKSI}}">
+                                            <i class="fas fa-edit"></i>
+                                            EDIT
+                                        </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -460,7 +473,7 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/operator-mesin-pencatatan-produksi.js') }}"></script>

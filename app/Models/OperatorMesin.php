@@ -29,7 +29,6 @@ class OperatorMesin extends Model
 {
 	protected $table = 'operator_mesin';
 	protected $primaryKey = 'ID_OPERATOR_MESIN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'JENIS_KELAMIN_OPERATOR_MESIN' => 'int'

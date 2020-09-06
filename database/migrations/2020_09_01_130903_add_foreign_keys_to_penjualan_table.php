@@ -16,7 +16,7 @@ class AddForeignKeysToPenjualanTable extends Migration
         Schema::table('penjualan', function (Blueprint $table) {
             $table->foreign('ID_MANAJER_MARKETING', 'FK_KONFIRMASI')->references('ID_MANAJER_MARKETING')->on('manajer_marketing')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('ID_SALES_B', 'FK_MENGINPUTKAN')->references('ID_SALES_B')->on('sales_b')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('ID_KONFIRMASI_PENJUALAN', 'FK_TERDAPAT1123')->references('ID_KONFIRMASI_PENJUALAN')->on('konfirmasi_penjualan')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('KODE_DEPO', 'FK_TERDAPAT959123')->references('KODE_DEPO')->on('depo_air_minum')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -31,6 +31,7 @@ class AddForeignKeysToPenjualanTable extends Migration
             $table->dropForeign('FK_KONFIRMASI');
             $table->dropForeign('FK_MENGINPUTKAN');
             $table->dropForeign('FK_TERDAPAT1123');
+            $table->dropForeign('FK_TERDAPAT959123');
         });
     }
 }

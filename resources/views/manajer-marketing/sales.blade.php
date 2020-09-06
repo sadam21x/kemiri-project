@@ -30,38 +30,24 @@
                             <th scope="col">Aksi</th>
                         </thead>
                         <tbody>
+                            @foreach($data_sales_a as $d)
                             <tr>
-                                <td>SLA00001</td>
-                                <td>Rama Suastika</td>
+                                <td>{{$d->ID_SALES_A}}</td>
+                                <td>{{$d->NAMA_SALES_A}}</td>
                                 <td colspan="2">
-                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
+                                    <a href="{{ url('/manajer-marketing/detail-sales-a/'.$d->ID_SALES_A) }}"
                                         class="btn btn-sm btn-linkedin mr-1">
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
                                     </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales/input') }}"
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/'.$d->ID_SALES_A.'/input') }}"
                                         class="btn btn-sm btn-secondary mr-1">
                                         <i class="fas fa-book-open mr-2"></i>
                                         EVALUASI
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>SLA00002</td>
-                                <td>Devia Kirana</td>
-                                <td colspan="2">
-                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
-                                        class="btn btn-sm btn-linkedin mr-1">
-                                        <i class="fas fa-info-circle mr-2"></i>
-                                        DETAIL
-                                    </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales/input') }}"
-                                        class="btn btn-sm btn-secondary mr-1">
-                                        <i class="fas fa-book-open mr-2"></i>
-                                        EVALUASI
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -82,38 +68,24 @@
                             <th scope="col">Aksi</th>
                         </thead>
                         <tbody>
+                            @foreach($data_sales_b as $d)
                             <tr>
-                                <td>SLB00001</td>
-                                <td>Rama Suastika</td>
+                                <td>{{$d->ID_SALES_B}}</td>
+                                <td>{{$d->NAMA_SALES_B}}</td>
                                 <td colspan="2">
-                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
+                                    <a href="{{ url('/manajer-marketing/detail-sales-b/'.$d->ID_SALES_B) }}"
                                         class="btn btn-sm btn-linkedin mr-1">
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
                                     </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
+                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/'.$d->ID_SALES_B.'/input') }}"
                                         class="btn btn-sm btn-secondary mr-1">
                                         <i class="fas fa-book-open mr-2"></i>
                                         EVALUASI
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>SLB00002</td>
-                                <td>Devia Kirana</td>
-                                <td colspan="2">
-                                    <a href="{{ url('/manajer-marketing/detail-sales') }}"
-                                        class="btn btn-sm btn-linkedin mr-1">
-                                        <i class="fas fa-info-circle mr-2"></i>
-                                        DETAIL
-                                    </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales') }}"
-                                        class="btn btn-sm btn-secondary mr-1">
-                                        <i class="fas fa-book-open mr-2"></i>
-                                        EVALUASI
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -29,7 +29,6 @@ class PembayaranPenjualan extends Model
 {
 	protected $table = 'pembayaran_penjualan';
 	protected $primaryKey = 'KODE_PEMBAYARAN_PENJUALAN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'ID_PENJUALAN' => 'int',

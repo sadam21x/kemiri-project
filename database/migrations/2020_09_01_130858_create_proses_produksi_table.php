@@ -22,6 +22,7 @@ class CreateProsesProduksiTable extends Migration
             $table->string('EVALUASI_PRODUCT', 50)->nullable();
             $table->string('EVALUASI_MESIN', 50)->nullable();
             $table->json('EVALUASI_BAHAN_BAKU')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -21,6 +21,7 @@ class CreateOwnerTable extends Migration
             $table->tinyInteger('JENIS_KELAMIN_OWNER');
             $table->string('NO_TELP_OWNER', 50)->nullable();
             $table->string('EMAIL_OWNER', 75)->nullable();
+            $table->timestamps();
         });
     }
 

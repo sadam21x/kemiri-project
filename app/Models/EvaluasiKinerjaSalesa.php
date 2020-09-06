@@ -27,7 +27,6 @@ class EvaluasiKinerjaSalesa extends Model
 {
 	protected $table = 'evaluasi_kinerja_salesa';
 	protected $primaryKey = 'ID_EVALUASI_KINERJA_SALESA';
-	public $timestamps = false;
 
 	protected $casts = [
 		'ID_MANAJER_MARKETING' => 'int',
