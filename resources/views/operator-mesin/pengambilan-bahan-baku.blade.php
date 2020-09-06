@@ -114,7 +114,7 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="bahan_baku" name="bahan_baku1">
+                        <select class="form-control select-component" id="" name="bahan_baku">
                             <option>Pilih bahan baku . . </option>
                             @foreach($bahan_baku as $b)
                             <option value="{{$b->KODE_BAHAN_BAKU}}">{{$b->NAMA_BAHAN_BAKU}}</option>
@@ -124,9 +124,11 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component" id="supplier" name="supplier">
+                        <select class="form-control select-component" id="" name="supplier">
                             <option>Pilih supplier . . </option>
-                            <option value="UD. Pertama Makmur">UD. Pertama Makmur</option>
+                            @foreach($supplier as $s)
+                            <option value="{{$s->ID_SUPPLIER}}">{{$s->NAMA_SUPPLIER}}</option>
+                            @endforeach
                         </select>
                     </div>
 
