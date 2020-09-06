@@ -8,7 +8,7 @@
     <div class="navigation-menu-body">
         <ul>
             <li>
-                <a href="{{ url('/admin-gudang') }}" id="dashboard-menu" class="">
+                <a href="{{ url('/owner') }}" id="dashboard-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </span>
@@ -16,35 +16,27 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/penerimaan-bahan-baku') }}" id="penerimaan-menu" class="">
+                <a href="{{ url('/owner/pembayaran-supplier') }}" id="pembayaran-supplier-menu">
                     <span class="nav-link-icon">
-                        <i class="fas fa-truck-loading"></i>
+                        <i class="fas fa-file-invoice"></i>
                     </span>
-                    <span>Penerimaan Bahan Baku</span>
+                    <span>Pembayaran ke Supplier</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/pengiriman-barang') }}" id="pengiriman-menu" class="">
+                <a href="{{ url('/owner/pembayaran-customer') }}" id="pembayaran-customer-menu">
                     <span class="nav-link-icon">
-                        <i class="fas fa-truck"></i>
+                        <i class="fas fa-file-invoice"></i>
                     </span>
-                    <span>Pengiriman Barang</span>
+                    <span>Pembayaran Customer</span>
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/supplier') }}" id="supplier-menu" class="">
+                <a href="{{ url('/owner/sales') }}" id="sales-menu">
                     <span class="nav-link-icon">
-                        <i class="fas fa-industry"></i>
+                        <i class="fas fa-users"></i>
                     </span>
-                    <span>Supplier</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/admin-gudang/customer') }}" id="customer-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-user"></i>
-                    </span>
-                    <span>Customer</span>
+                    <span>Sales</span>
                 </a>
             </li>
         </ul>

@@ -26,7 +26,6 @@ class Pengiriman extends Model
 {
 	protected $table = 'pengiriman';
 	protected $primaryKey = 'KODE_PENGIRIMAN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_PEMBAYARAN_PENJUALAN' => 'int',

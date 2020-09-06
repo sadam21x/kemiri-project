@@ -1,7 +1,7 @@
 @extends('layouts/admin-gudang/main')
 @section('title', 'Supplier')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/admin-gudang.css') }}">
 @endsection
@@ -18,40 +18,49 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Daftar Supplier</h5>
+                <h5>Daftar Supplier</h5>
                 <button class="btn btn-sm btn-rounded bg-dribbble ml-auto tombol-tambah-supplier" data-toggle="modal" data-target="#modal-tambah-supplier">
                     <i class="fas fa-plus mr-1"></i>
                     TAMBAH BARU
                 </button>
             </div>
 
-            <table id="supplier-table" class="table table-bordered table-stripped table-responsive-stack">
-                <thead class="thead-dark">
-                    <th scope="col">ID Supplier</th>
-                    <th scope="col">Nama Supplier</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">Aksi</th>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->ID_SUPPLIER}}</td>
-                        <td>{{$d->NAMA_SUPPLIER}}</td>
-                        <td>{{$d->ALAMAT_SUPPLIER}}, {{$d->KOTA}}</td>
-                        <td colspan="2">
-                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-supplier-{{$d->ID_SUPPLIER}}">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                            <button class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal" data-target="#modal-edit-supplier-{{$d->ID_SUPPLIER}}">
-                                <i class="fas fa-edit mr-1"></i>
-                                EDIT
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="supplier-table" class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <th scope="col">ID Supplier</th>
+                                <th scope="col">Nama Supplier</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">Aksi</th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->ID_SUPPLIER}}</td>
+                                    <td>{{$d->NAMA_SUPPLIER}}</td>
+                                    <td>{{$d->ALAMAT_SUPPLIER}}, {{$d->KOTA}}</td>
+                                    <td colspan="2">
+                                        <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal"
+                                            data-target="#modal-detail-supplier-{{$d->ID_SUPPLIER}}">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            DETAIL
+                                        </button>
+                                        <button class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal"
+                                            data-target="#modal-edit-supplier-{{$d->ID_SUPPLIER}}">
+                                            <i class="fas fa-edit mr-1"></i>
+                                            EDIT
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -277,7 +286,7 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-supplier.js') }}"></script>
 @endsection

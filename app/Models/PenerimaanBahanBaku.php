@@ -35,7 +35,6 @@ class PenerimaanBahanBaku extends Model
 {
 	protected $table = 'penerimaan_bahan_baku';
 	protected $primaryKey = 'ID_PENERIMAAN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'ID_SUPPLIER' => 'int',

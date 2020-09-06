@@ -88,7 +88,7 @@
 
                 <div class="container">
 
-                    <div class="my-3">
+                    <div class="mb-3">
                         <h5>ID Order</h5>
                         <h6>{{$d->ID_PENJUALAN}}</h6>
                     </div>

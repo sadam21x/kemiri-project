@@ -18,14 +18,15 @@
     <div class="row">
         <div class="col-md-12">
             {{-- Start form order barang --}}
-            <form action="" method="post">
+            <form action="{{url('/sales-b/order-barang/store')}}" method="post">
                 @csrf
 
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="staff">Sales</label>
                         {{-- Id sales --}}
-                        <input type="hidden" value="1" name="ID_SALES_B" id="user_id">
+                        <input type="hidden" value="1" name="ID_SALES_B">
+                        <input type="hidden" value="{{$customer->KODE_DEPO}}" name="KODE_DEPO">
                         <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
                     </div>
                     <div class="form-group col-md-4">
@@ -41,7 +42,7 @@
                 <div class="form-row mt-2">
                     <div class="form-group mx-2">
                         <label for="categories">Kategori</label>
-                        <select id="categories" name="categories" class="form-control">
+                        <select id="categories" class="form-control">
                             <option id="all" value="semua">Semua</option>
                             @foreach($jenis as $j)
                                 <option value="{{$j->KODE_JENIS_PRODUCT}}">{{$j->NAMA_JENIS_PRODUCT}}</option>
@@ -51,9 +52,7 @@
 
                     <div class="form-group mx-2">
                         <label for="product">Produk</label>
-                        <select id="product" name="product" class="form-control select-component">
-                            
-                        </select>
+                        <select id="product" class="form-control select-component"></select>
                     </div>
 
                     <div class="form-group col-md-4 mt-4 ml-2">
@@ -84,7 +83,7 @@
                     <div class="form-group col-md-6">
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Metode Kirim</label>
-                            <select name="" id="" class="form-control">
+                            <select name="METODE_KIRIM" id="" class="form-control">
                                 <option>Ambil Sendiri</option>
                                 <option>Truk/Kontainer Kemiri</option>
                                 <option>POS Indonesia</option>
@@ -95,7 +94,7 @@
                         </div>
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Ongkos Kirim (IDR)</label>
-                            <input type="number" name="ongkos-kirim" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
+                            <input type="number" name="ONGKOS_KIRIM" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
                         </div>
                     </div>
 
@@ -105,40 +104,36 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Jumlah Item (pcs)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="total-item"
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="total-item" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Jumlah Sak</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id=""
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="total-sak" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Total Harga Produk (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="total-harga"
-                                    name="" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="total-harga" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim"
-                                    value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim" value="0">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Total Bayar (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="total-bayar"
-                                    name="" value="0">
+                                <input type="hidden" id="total-bayar-num" name="TOTAL_PENJUALAN">
+                                <input type="text" readonly class="form-control-plaintext" id="total-bayar" value="0">
                             </div>
                         </div>
 

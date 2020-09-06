@@ -36,11 +36,10 @@ class Penjualan extends Model
 {
 	protected $table = 'penjualan';
 	protected $primaryKey = 'ID_PENJUALAN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'ID_MANAJER_MARKETING' => 'int',
-		'ID_KONFIRMASI_PENJUALAN' => 'int',
+		'KODE_DEPO' => 'int',
 		'ID_SALES_B' => 'int',
 		'ONGKOS_KIRIM' => 'int',
 		'TOTAL_PENJUALAN' => 'int',
@@ -54,7 +53,7 @@ class Penjualan extends Model
 
 	protected $fillable = [
 		'ID_MANAJER_MARKETING',
-		'ID_KONFIRMASI_PENJUALAN',
+		'KODE_DEPO',
 		'ID_SALES_B',
 		'TGL_PENJUALAN',
 		'TGL_KIRIM',
@@ -74,9 +73,9 @@ class Penjualan extends Model
 		return $this->belongsTo(SalesB::class, 'ID_SALES_B');
 	}
 
-	public function konfirmasi_penjualan()
+	public function depo_air_minum()
 	{
-		return $this->belongsTo(KonfirmasiPenjualan::class, 'ID_KONFIRMASI_PENJUALAN');
+		return $this->belongsTo(DepoAirMinum::class, 'KODE_DEPO');
 	}
 
 	public function detil_penjualans()

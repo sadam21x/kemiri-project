@@ -21,6 +21,7 @@ class CreateAdminGudangTable extends Migration
             $table->tinyInteger('JENIS_KELAMIN_ADMIN_GUDANG');
             $table->string('NO_TELP_ADMIN_GUDANG', 50)->nullable();
             $table->string('EMAIL_ADMIN_GUDANG', 75)->nullable();
+            $table->timestamps();
         });
     }
 

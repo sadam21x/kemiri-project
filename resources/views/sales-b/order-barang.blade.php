@@ -35,9 +35,9 @@
                     <tr>
                         <td>{{$d->ID_PENJUALAN}}</td>
                         <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
-                        <td>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
+                        <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                         <td>
-                            @if($d->STATUS_PENJUALAN == 1)
+                            @if($d->STATUS_PENJUALAN == 1 && $d->KODE_PEMBAYARAN_PENJUALAN != "" && $d->KODE_PENGIRIMAN != "")
                             <div class="badge badge-success">
                                 SELESAI
                                 <i class="fas fa-check ml-1"></i>
@@ -93,7 +93,7 @@
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
+                        <h6>{{$d->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -121,7 +121,7 @@
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format($d->detil_penjualans->sum('HARGA_BARANG'),0,',','.')}}</h6>
+                        <h6>{{ number_format(floatval($d->TOTAL_PENJUALAN-$d->ONGKOS_KIRIM),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -131,7 +131,7 @@
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
+                        <h6>{{number_format($d->TOTAL_PENJUALAN,0,',','.')}}</h6>
                     </div>
 
                     <div class="mt-5 d-flex justify-content-center">

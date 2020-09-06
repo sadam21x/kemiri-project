@@ -16,6 +16,7 @@ class CreateJenisBahanBakuTable extends Migration
         Schema::create('jenis_bahan_baku', function (Blueprint $table) {
             $table->integer('ID_JENIS_BAHAN_BAKU', true);
             $table->string('NAMA_JENIS_BAHAN_BAKU', 75);
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ class CreateMesinTable extends Migration
             $table->integer('KODE_MESIN', true);
             $table->integer('KODE_MOULDING')->index('FK_TERDAPAT123');
             $table->string('NAMA_MESIN', 50);
+            $table->timestamps();
         });
     }
 

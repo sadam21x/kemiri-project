@@ -23,7 +23,6 @@ class Jabatan extends Model
 {
 	protected $table = 'jabatan';
 	protected $primaryKey = 'KODE_JABATAN';
-	public $timestamps = false;
 
 	protected $fillable = [
 		'NAMA_JABATAN'

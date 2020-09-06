@@ -19,6 +19,7 @@ class CreateEvaluasiKinerjaSalesaTable extends Migration
             $table->integer('ID_SALES_A')->index('FK_MEMILIKI5232');
             $table->date('TGL_EVALUASI_KINERJA_SALESA');
             $table->string('EVALUASI_SALESA', 300);
+            $table->timestamps();
         });
     }
 

@@ -25,7 +25,6 @@ class Mesin extends Model
 {
 	protected $table = 'mesin';
 	protected $primaryKey = 'KODE_MESIN';
-	public $timestamps = false;
 
 	protected $casts = [
 		'KODE_MOULDING' => 'int'

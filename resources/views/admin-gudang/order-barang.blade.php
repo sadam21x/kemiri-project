@@ -1,7 +1,7 @@
 @extends('layouts/admin-gudang/main')
 @section('title', 'Order Barang')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/admin-gudang.css') }}">
 @endsection
 
@@ -17,55 +17,63 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Riwayat Order Barang</h5>
+                <h5>Riwayat Order Barang</h5>
             </div>
 
-            <table id="order-barang-table" class="table table-striped table-bordered table-responsive-stack">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID Order</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->ID_PENJUALAN}}</td>
-                        <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
-                        <td>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
-                        <td>
-                            @if($d->STATUS_PENJUALAN == 1)
-                            <div class="badge badge-success">
-                                SELESAI
-                                <i class="fas fa-check ml-1"></i>
-                            </div>
-                            @else
-                            <div class="badge badge-secondary">
-                                DIPROSES
-                                <i class="fas fa-exclamation-circle ml-1"></i>
-                            </div>
-                            @endif
-                        </td>
-                        <td colspan="2">
-                            <button class="btn btn-linkedin btn-sm"
-                                data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                            @if($d->KODE_PENGIRIMAN == null)
-                            <button class="btn btn-google btn-sm"
-                                data-toggle="modal" data-target="#modal-pengiriman-barang-{{$d->ID_PENJUALAN}}">
-                                PENGIRIMAN
-                            </button>
-                            @endif
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="order-barang-table"
+                            class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID Order</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->ID_PENJUALAN}}</td>
+                                    <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
+                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
+                                    <td>
+                                        @if($d->STATUS_PENJUALAN == 1)
+                                        <div class="badge badge-success">
+                                            SELESAI
+                                            <i class="fas fa-check ml-1"></i>
+                                        </div>
+                                        @else
+                                        <div class="badge badge-secondary">
+                                            DIPROSES
+                                            <i class="fas fa-exclamation-circle ml-1"></i>
+                                        </div>
+                                        @endif
+                                    </td>
+                                    <td colspan="2">
+                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal"
+                                            data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            DETAIL
+                                        </button>
+                                        @if($d->KODE_PENGIRIMAN == null)
+                                        <button class="btn btn-google btn-sm" data-toggle="modal"
+                                            data-target="#modal-pengiriman-barang-{{$d->ID_PENJUALAN}}">
+                                            PENGIRIMAN
+                                        </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -98,7 +106,7 @@
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
+                        <h6>{{$d->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -193,7 +201,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Customer</label>
-                        <input type="text" value="{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}" class="form-control" readonly>
+                        <input type="text" value="{{$d->depo_air_minum->NAMA_DEPO}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
@@ -249,6 +257,6 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-order-barang.js') }}"></script>
 @endsection

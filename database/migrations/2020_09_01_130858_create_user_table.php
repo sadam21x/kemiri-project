@@ -24,6 +24,7 @@ class CreateUserTable extends Migration
             $table->tinyInteger('JENIS_KELAMIN_USER');
             $table->string('NO_TELP_USER', 50)->nullable();
             $table->string('EMAIL_USER', 75);
+            $table->timestamps();
         });
     }
 

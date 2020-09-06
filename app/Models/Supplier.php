@@ -28,7 +28,6 @@ class Supplier extends Model
 {
 	protected $table = 'supplier';
 	protected $primaryKey = 'ID_SUPPLIER';
-	public $timestamps = false;
 
 	protected $fillable = [
 		'KODE_KOTA',
