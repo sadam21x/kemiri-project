@@ -1,8 +1,8 @@
 <?php
 
 Route::view('/manajer-marketing', 'manajer-marketing/dashboard');
-Route::view('/manajer-marketing/order-barang', 'manajer-marketing/order-barang');
-Route::view('/manajer-marketing/order-barang/input', 'manajer-marketing/input-order-barang');
+Route::get('/manajer-marketing/order-barang', 'ManajerMarketing\OrderBarangController@index');
+Route::get('/manajer-marketing/order-barang/input', 'ManajerMarketing\OrderBarangController@insert');
 
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');
 Route::post('/manajer-marketing/customer/insert', 'ManajerMarketing\CustomerController@create');

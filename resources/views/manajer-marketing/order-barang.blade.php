@@ -37,41 +37,32 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($data as $d)
                             <tr>
-                                <td>ORD00001</td>
-                                <td>01/08/2020</td>
-                                <td>Depo Air Minum Kertajaya Indah</td>
+                                <td>{{$d->ID_PENJUALAN}}</td>
+                                <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
+                                <td>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</td>
                                 <td>
+                                @if($d->STATUS_PENJUALAN == 1)
                                     <div>
                                         <span>KONFIRMASI</span>
                                         <i class="fas fa-check ml-1"></i>
                                     </div>
-                                </td>
-                                <td colspan="2">
-                                    <button class="btn btn-linkedin btn-sm" data-toggle="modal"
-                                        data-target="#modal-detail-order-barang">
-                                        <i class="fas fa-info-circle mr-1"></i>
-                                        DETAIL
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ORD00002</td>
-                                <td>02/08/2020</td>
-                                <td>Depo Air Minum Surya</td>
-                                <td>
+                                @else
                                     <button type="button" class="btn btn-sm btn-success">
                                         KONFIRMASI
                                     </button>
+                                @endif
                                 </td>
                                 <td colspan="2">
                                     <button class="btn btn-linkedin btn-sm" data-toggle="modal"
-                                        data-target="#modal-detail-order-barang">
+                                        data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
                                         <i class="fas fa-info-circle mr-1"></i>
                                         DETAIL
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -82,9 +73,9 @@
 
 </div>
 <!-- End of Content -->
-
+@foreach($data as $d)
 {{-- Start Detail Order Barang Modal --}}
-<div class="modal fade" id="modal-detail-order-barang" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-order-barang-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -99,22 +90,28 @@
 
                     <div class="my-3">
                         <h5>ID Order</h5>
-                        <h6>ORD00001</h6>
+                        <h6>{{$d->ID_PENJUALAN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Tanggal</h5>
-                        <h6>01/08/2020</h6>
+                        <h6>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Staff Sales</h5>
-                        <h6>Dewangga Ari Wicaksana</h6>
+                        <h6>
+                            @if($d->ID_SALES_B != null)
+                            {{$d->sales_b->NAMA_SALES_B}}
+                            @else
+                            N\A
+                            @endif
+                        </h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>Depo Air Minum Kertajaya Indah</h6>
+                        <h6>{{$d->konfirmasi_penjualan->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -125,45 +122,42 @@
                                 <th scope="col">Jumlah (pcs)</th>
                             </thead>
                             <tbody>
+                                @foreach($d->detil_penjualans as $detilp)
                                 <tr>
-                                    <td>Tutup Galon Tipe A</td>
-                                    <td>500</td>
+                                    <td>{{$detilp->product->NAMA_PRODUCT}}</td>
+                                    <td>{{$detilp->JUMLAH_PCS}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Tutup Galon Tipe B</td>
-                                    <td>500</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Item (pcs)</h5>
-                        <h6>1000</h6>
+                        <h6>{{ $d->detil_penjualans->sum('JUMLAH_PCS')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>125.000</h6>
+                        <h6>{{ number_format($d->detil_penjualans->sum('HARGA_BARANG'),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Ongkos Kirim (IDR)</h5>
-                        <h6>20.000</h6>
+                        <h6>{{number_format($d->ONGKOS_KIRIM,0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>145.000</h6>
+                        <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 {{-- End of Detail Order Barang Modal--}}
+@endforeach
 @endsection
 
 @section('extra-script')

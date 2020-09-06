@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OperatorMesin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\BahanBaku;
 use App\Models\PengambilanBahanBaku;
 use App\Models\Mesin;
 
@@ -18,10 +19,11 @@ class PengambilanBahanBakuController extends Controller
     public function index()
     {
         $mesin = Mesin::All();
+        $bahan_baku = BahanBaku::all();
         $product = Product::select('kode_product', 'nama_product')->get();
         $data = PengambilanBahanBaku::all();
         
-        return view('/operator-mesin/pengambilan-bahan-baku')->with(compact('data', 'product', 'mesin'));
+        return view('/operator-mesin/pengambilan-bahan-baku')->with(compact('data', 'product', 'mesin', 'bahan_baku'));
     }
 
     /**
