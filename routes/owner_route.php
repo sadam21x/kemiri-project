@@ -1,8 +1,10 @@
 <?php
 
 Route::view('/owner', 'owner/dashboard');
-Route::view('/owner/sales', 'owner/sales');
-Route::view('/owner/sales/detail', 'owner/detail-sales');
+
+Route::get('/owner/sales', 'Owner\SalesController@index');
+Route::get('/owner/sales-a/detail/{id}', 'Owner\SalesController@viewA');
+Route::get('/owner/sales-b/detail/{id}', 'Owner\SalesController@viewB');
 
 //route dimas
 Route::get('/owner/pembayaran-supplier', 'Owner\PembayaranSupplierController@index');

@@ -20,7 +20,6 @@
 
     <div class="row">
         <div class="col-md-12">
-
             {{-- Start Sales A --}}
             <div class="judul-tabel">
                 <h5>Daftar Sales A</h5>
@@ -38,16 +37,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data_sales_a as $d)
                                 <tr>
-                                    <td>SLA00001</td>
-                                    <td>Bayu Sandhi Pratama</td>
+                                    <td>{{$d->ID_SALES_A}}</td>
+                                    <td>{{$d->NAMA_SALES_A}}</td>
                                     <td>
-                                        <a href="{{ url('/owner/sales/detail') }}" class="btn btn-sm btn-linkedin">
+                                        <a href="{{ url('/owner/sales-a/detail/'.$d->ID_SALES_A) }}" class="btn btn-sm btn-linkedin">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -72,16 +73,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data_sales_b as $d)
                                 <tr>
-                                    <td>SLB00001</td>
-                                    <td>Made Handy Bijaksana</td>
+                                    <td>{{$d->ID_SALES_B}}</td>
+                                    <td>{{$d->NAMA_SALES_B}}</td>
                                     <td>
-                                        <a href="{{ url('/manajer-marketing/sales/detail') }}" class="btn btn-sm btn-linkedin">
+                                        <a href="{{ url('/owner/sales-b/detail/'.$d->ID_SALES_B) }}" class="btn btn-sm btn-linkedin">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
