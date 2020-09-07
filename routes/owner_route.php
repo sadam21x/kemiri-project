@@ -23,4 +23,5 @@ Route::post('/owner/req-data-kota', function() {
 });
 
 //route dea
-Route::view('/owner/pembayaran-customer', 'owner/pembayaran-customer');
+Route::get('/owner/pembayaran-customer', 'Owner\PembayaranCustomerController@index');
+Route::post('/owner/pembayaran-customer/update', 'Owner\PembayaranCustomerController@update');

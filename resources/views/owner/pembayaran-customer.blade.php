@@ -34,22 +34,34 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data as $d)
                                 <tr>
-                                    <td>20/08/2020</td>
-                                    <td>Depo Air Minum Prima Mukti</td>
+                                    <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                    <td>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</td>
                                     <td>
+                                        @if($d->STATUS_PEMBAYARAN)
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar">
-                                            <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar">Belum Bayar</label>
+                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" checked>
+                                            <label class="custom-control-label label-bayar text-success" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Sudah Bayar
+                                            </label>
                                         </div>
+                                        @else
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
+                                            <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Belum Bayar
+                                            </label>
+                                        </div>
+                                        @endif
+                                        
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-order-barang">
+                                        <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -61,8 +73,8 @@
 
 </div>
 <!-- ./ Content -->
-
-<div class="modal fade" id="modal-detail-order-barang" tabindex="-1" role="dialog" aria-hidden="true">
+@foreach($data as $d)
+<div class="modal fade" id="modal-detail-order-barang-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -77,22 +89,22 @@
 
                     <div class="mb-3">
                         <h5>ID Order</h5>
-                        <h6>ORD00001</h6>
+                        <h6>{{$d->penjualan->ID_PENJUALAN}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Tanggal</h5>
-                        <h6>01/08/2020</h6>
+                        <h6>{{date("d/m/Y",strtotime($d->penjualan->TGL_PENJUALAN))}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Staff Sales</h5>
-                        <h6>Dewangga Ari Wicaksana</h6>
+                        <h6>{{$d->penjualan->sales_b->NAMA_SALES_B}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>Depo Air Minum Kertajaya Indah</h6>
+                        <h6>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -103,36 +115,34 @@
                                 <th scope="col">Jumlah (pcs)</th>
                             </thead>
                             <tbody>
+                                @foreach($d->penjualan->detil_penjualans as $detilp)
                                 <tr>
-                                    <td>Tutup Galon Tipe A</td>
-                                    <td>500</td>
+                                    <td>{{$detilp->product->NAMA_PRODUCT}}</td>
+                                    <td>{{$detilp->JUMLAH_PCS}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Tutup Galon Tipe B</td>
-                                    <td>500</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Item (pcs)</h5>
-                        <h6>1000</h6>
+                        <h6>{{ $d->penjualan->detil_penjualans->sum('JUMLAH_PCS')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>125.000</h6>
+                        <h6>{{ number_format(floatval($d->penjualan->TOTAL_PENJUALAN-$d->ONGKOS_KIRIM),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Ongkos Kirim (IDR)</h5>
-                        <h6>20.000</h6>
+                        <h6>{{number_format($d->penjualan->ONGKOS_KIRIM,0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>145.000</h6>
+                        <h6>{{number_format($d->penjualan->TOTAL_PENJUALAN,0,',','.')}}</h6>
                     </div>
 
                 </div>
@@ -141,9 +151,11 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/owner-pembayaran-customer.js') }}"></script>
+    <script src="{{ asset('/assets/sweetalert/sweetalert2.all.js') }}"></script>
 @endsection
