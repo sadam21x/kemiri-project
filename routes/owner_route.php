@@ -1,9 +1,11 @@
 <?php
 
 Route::view('/owner', 'owner/dashboard');
-Route::view('/owner/pembayaran-supplier', 'owner/pembayaran-supplier');
-Route::view('/owner/pembayaran-customer', 'owner/pembayaran-customer');
 Route::view('/owner/sales', 'owner/sales');
+
+//route dimas
+Route::view('/owner/pembayaran-supplier', 'owner/pembayaran-supplier');
+
 
 // Route::view('/owner/sales/tambah', 'owner/tambah-sales');
 Route::get('/owner/sales/tambah', function() {
@@ -19,3 +21,6 @@ Route::post('/owner/req-data-kota', function() {
 
     return response()->json($kota);
 });
+
+//route dea
+Route::view('/owner/pembayaran-customer', 'owner/pembayaran-customer');
