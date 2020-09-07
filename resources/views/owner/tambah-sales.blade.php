@@ -70,6 +70,19 @@
                     </div>
                 </div>
 
+                <label>Jabatan</label>
+                <div class="form-group">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="jabatn_sales" id="jb_sales_a" value="">
+                        <label class="form-check-label" for="jb_sales_a">Sales A</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="jabatn_sales" id="jb_sales_b" value="">
+                        <label class="form-check-label" for="jb_sales_b">Sales B</label>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Alamat</label>
                     <input type="text" class="form-control">
