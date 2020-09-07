@@ -34,22 +34,33 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data as $d)
                                 <tr>
-                                    <td>20/08/2020</td>
-                                    <td>HIMASI Store</td>
+                                    <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                    <td>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
                                     <td>
+                                    @if($d->STATUS_PEMBAYARAN)
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar">
-                                            <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar">Belum Bayar</label>
+                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" checked>
+                                            <label class="custom-control-label label-bayar text-success" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Sudah Bayar
+                                            </label>
                                         </div>
+                                        @else
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}">
+                                            <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Belum Bayar
+                                            </label>
+                                        </div>
+                                        @endif
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-penerimaan-bahan-baku">
+                                        <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-penerimaan-bahan-baku-{{$d->KODE_PEMBAYARAN}}">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -61,8 +72,8 @@
 
 </div>
 <!-- ./ Content -->
-
-<div class="modal fade" id="modal-detail-penerimaan-bahan-baku" tabindex="-1" role="dialog" aria-hidden="true">
+@foreach($data as $d)
+<div class="modal fade" id="modal-detail-penerimaan-bahan-baku-{{$d->KODE_PEMBAYARAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -77,42 +88,42 @@
 
                     <div class="mb-3">
                         <h5>ID Penerimaan</h5>
-                        <h6>PNR00001</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->ID_PENERIMAAN}}</h6>
                     </div>
 
                     <div class="my-3">
-                        <h5>Tanggal</h5>
-                        <h6>20/08/2020</h6>
+                        <h5>Tanggal Penerimaan</h5>
+                        <h6>{{date("d/m/Y",strtotime($d->penerimaan_bahan_baku->TGL_KEDATANGAN))}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Staff Gudang</h5>
-                        <h6>Ari Astina</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->admin_gudang->NAMA_ADMIN_GUDANG}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Supplier</h5>
-                        <h6>HIMASI Store</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Bahan Baku</h5>
-                        <h6>Plastik Virgin</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Karung</h5>
-                        <h6>10</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->JUMLAH_KARUNG_SAK}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Berat per Karung (Kg)</h5>
-                        <h6>2</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->ISI_KARUNG}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Berat Total (Kg)</h5>
-                        <h6>20</h6>
+                        <h6>{{$d->penerimaan_bahan_baku->TOTAL_BERAT}}</h6>
                     </div>
 
                 </div>
@@ -121,9 +132,11 @@
         </div>
     </div>
 </div>
+@endforeach
 @endsection
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/owner-pembayaran-supplier.js') }}"></script>
+    <script src="{{ asset('/assets/sweetalert/sweetalert2.all.js') }}"></script>
 @endsection
