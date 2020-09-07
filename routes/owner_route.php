@@ -2,6 +2,7 @@
 
 Route::view('/owner', 'owner/dashboard');
 Route::view('/owner/sales', 'owner/sales');
+Route::view('/owner/sales/detail', 'owner/detail-sales');
 
 //route dimas
 Route::view('/owner/pembayaran-supplier', 'owner/pembayaran-supplier');

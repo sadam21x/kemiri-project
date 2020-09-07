@@ -42,7 +42,7 @@
                                     <td>SLA00001</td>
                                     <td>Bayu Sandhi Pratama</td>
                                     <td>
-                                        <a href="{{ url('/owner/detail-sales') }}" class="btn btn-sm btn-linkedin">
+                                        <a href="{{ url('/owner/sales/detail') }}" class="btn btn-sm btn-linkedin">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
@@ -76,8 +76,7 @@
                                     <td>SLB00001</td>
                                     <td>Made Handy Bijaksana</td>
                                     <td>
-                                        <a href="{{ url('/manajer-marketing/detail-sales/') }}"
-                                            class="btn btn-sm btn-linkedin">
+                                        <a href="{{ url('/manajer-marketing/sales/detail') }}" class="btn btn-sm btn-linkedin">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
