@@ -11,7 +11,7 @@
     <div class="page-header">
         <div class="d-flex">
             <h4>Sales</h4>
-            <a href="{{ url('/owner/sales/tambah') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah sales baru">
+            <a href="{{ url('/owner/sales/insert') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah sales baru">
                 <i class="fas fa-user-plus fa-2x"></i>
             </a>
         </div>
