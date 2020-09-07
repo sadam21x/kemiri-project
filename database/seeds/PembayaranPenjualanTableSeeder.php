@@ -28,6 +28,8 @@ class PembayaranPenjualanTableSeeder extends Seeder
 
         DB::table('pembayaran_penjualan')->insert([
             'ID_PENJUALAN' => 3,
+            'STATUS_PEMBAYARAN' => 0,
+            'TGL_PEMBAYARAN' => date("Y-m-d",strtotime("2020-08-30")),
             'STATUS_PEMBAYARAN' => 0
         ]);
     }

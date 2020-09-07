@@ -83,6 +83,8 @@
     {{-- Fontawesome --}}
     <script src="{{ asset('/assets/fontawesome/js/all.min.js') }}"></script>
 
+    <script src="{{ asset('/assets/js/custom-global.js') }}"></script>
+    
     {{-- Extra Script --}}
     @yield('extra-script')
 </body>

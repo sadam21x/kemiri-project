@@ -9,7 +9,12 @@
 {{-- Start Content --}}
 <div class="content">
     <div class="page-header">
-        <h4>Sales</h4>
+        <div class="d-flex">
+            <h4>Sales</h4>
+            <a href="{{ url('/owner/sales/tambah') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah sales baru">
+                <i class="fas fa-user-plus fa-2x"></i>
+            </a>
+        </div>
         <hr>
     </div>
 
@@ -18,7 +23,7 @@
 
             {{-- Start Sales A --}}
             <div class="judul-tabel">
-                <h5 class="">Daftar Sales A</h5>
+                <h5>Daftar Sales A</h5>
             </div>
 
             <div class="card">
@@ -37,7 +42,7 @@
                                     <td>SLA00001</td>
                                     <td>Bayu Sandhi Pratama</td>
                                     <td>
-                                        <a href="{{ url('/owner/detail-sales') }}" class="btn btn-sm btn-linkedin">
+                                        <a href="{{ url('/owner/sales/detail') }}" class="btn btn-sm btn-linkedin">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
@@ -52,7 +57,7 @@
 
             {{-- Start Sales B --}}
             <div class="judul-tabel">
-                <h5 class="">Daftar Sales B</h5>
+                <h5>Daftar Sales B</h5>
             </div>
 
             <div class="card">
@@ -71,8 +76,7 @@
                                     <td>SLB00001</td>
                                     <td>Made Handy Bijaksana</td>
                                     <td>
-                                        <a href="{{ url('/manajer-marketing/detail-sales/') }}"
-                                            class="btn btn-sm btn-linkedin">
+                                        <a href="{{ url('/manajer-marketing/sales/detail') }}" class="btn btn-sm btn-linkedin">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
