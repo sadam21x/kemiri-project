@@ -19,7 +19,7 @@ class CreateSalesATable extends Migration
             $table->string('NAMA_SALES_A', 50);
             $table->string('ALAMAT_SALES_A', 150);
             $table->tinyInteger('JENIS_KELAMIN_SALES_A');
-            $table->string('NO_TELP_SALES_A', 50);
+            $table->string('NO_TELP_SALES_A', 50)->nullable();
             $table->string('EMAIL_SALES_A', 75)->nullable();
             $table->timestamps();
         });
