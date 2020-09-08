@@ -1,7 +1,7 @@
 @extends('layouts/sales-b/main')
 @section('title', 'Follow Up Customer')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
 @endsection
@@ -18,68 +18,78 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Daftar Customer</h5>
+                <h5>Daftar Customer</h5>
             </div>
 
-            <table class="table table-bordered table-stripped datatable-component table-responsive-stack">
-                <thead class="thead-dark">
-                    <th scope="col">ID Konfirmasi Penjualan</th>
-                    <th scope="col">ID Customer</th>
-                    <th scope="col">Nama Customer</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Follow Up Order</th>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->ID_KONFIRMASI_PENJUALAN}}</td>
-                        <td>{{$d->KODE_DEPO}}</td>
-                        <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
-                        <td>
-                            @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
-                            <div class="btn btn-sm">
-                                BELUM KONFIRMASI
-                            </div>
-                            @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1 && $d->CATATAN == NULL)
-                            <div class="btn btn-sm">
-                                ORDER
-                                <i class="fas fa-check ml-2"></i>
-                            </div>
-                            @else
-                            <div class="btn btn-sm">
-                                TIDAK ORDER
-                                <i class="fas fa-times ml-2"></i>
-                            </div>
-                            @endif
-                        </td>
-                        <td colspan="2">
-                            @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
-                            <button class="btn btn-sm btn-success btn-order" id="{{$d->ID_KONFIRMASI_PENJUALAN}}">
-                                ORDER
-                            </button>
-                            <button class="btn btn-sm btn-google" data-toggle="modal" data-target="#modal-follow-up-{{$d->ID_KONFIRMASI_PENJUALAN}}">
-                                TIDAK ORDER
-                            </button>
-                            @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1 && $d->CATATAN == NULL)
-                            <form action="{{ url('/sales-b/order-barang/input') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="KODE_DEPO" value="{{$d->KODE_DEPO}}">
-                                <button type="submit" class="btn btn-sm bg-dribbble">
-                                    <i class="fas fa-plus-circle mr-2"></i>
-                                    INPUT
-                                </button>
-                            </form>
-                            @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1)
-                            <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pembatalan-order-{{$d->ID_KONFIRMASI_PENJUALAN}}">
-                                <i class="fas fa-info-circle mr-2"></i>
-                                DETAIL
-                            </button>
-                            @endif
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered datatable-component table-responsive-stack">
+                            <thead class="thead-dark">
+                                <th scope="col">ID Konfirmasi Penjualan</th>
+                                <th scope="col">ID Customer</th>
+                                <th scope="col">Nama Customer</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Follow Up Order</th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->ID_KONFIRMASI_PENJUALAN}}</td>
+                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
+                                    <td>
+                                        @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
+                                        <div class="btn btn-sm">
+                                            BELUM KONFIRMASI
+                                        </div>
+                                        @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1 && $d->CATATAN == NULL)
+                                        <div class="btn btn-sm">
+                                            ORDER
+                                            <i class="fas fa-check ml-2"></i>
+                                        </div>
+                                        @else
+                                        <div class="btn btn-sm">
+                                            TIDAK ORDER
+                                            <i class="fas fa-times ml-2"></i>
+                                        </div>
+                                        @endif
+                                    </td>
+                                    <td colspan="2">
+                                        @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
+                                        <button class="btn btn-sm btn-success btn-order my-2"
+                                            id="{{$d->ID_KONFIRMASI_PENJUALAN}}">
+                                            ORDER
+                                        </button>
+                                        <button class="btn btn-sm btn-google my-2" data-toggle="modal"
+                                            data-target="#modal-follow-up-{{$d->ID_KONFIRMASI_PENJUALAN}}">
+                                            TIDAK ORDER
+                                        </button>
+                                        @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1 && $d->CATATAN == NULL)
+                                        <form action="{{ url('/sales-b/order-barang/input') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="KODE_DEPO" value="{{$d->KODE_DEPO}}">
+                                            <button type="submit" class="btn btn-sm bg-dribbble">
+                                                <i class="fas fa-plus-circle mr-2"></i>
+                                                INPUT
+                                            </button>
+                                        </form>
+                                        @elseif($d->STATUS_KONFIRMASI_PENJUALAN == 1)
+                                        <button class="btn btn-sm btn-linkedin" data-toggle="modal"
+                                            data-target="#modal-detail-pembatalan-order-{{$d->ID_KONFIRMASI_PENJUALAN}}">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            DETAIL
+                                        </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -177,7 +187,7 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-b-follow-up-customer.js') }}"></script>
     <script src="{{ asset('/assets/gogi/js/examples/sweet-alert.js') }}"></script>

@@ -1,7 +1,7 @@
 @extends('layouts/sales-b/main')
 @section('title', 'Customer')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
 @endsection
@@ -18,32 +18,42 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Daftar Customer</h5>
+                <h5>Daftar Customer</h5>
             </div>
 
-            <table id="customer-table" class="table table-bordered table-stripped table-responsive-stack">
-                <thead class="thead-dark">
-                    <th scope="col">ID Customer</th>
-                    <th scope="col">Nama Customer</th>
-                    <th scope="col">Alamat</th>
-                    <th scope="col">Aksi</th>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->KODE_DEPO}}</td>
-                        <td>{{$d->NAMA_DEPO}}</td>
-                        <td>{{$d->ALAMAT_DEPO}}, {{$d->KOTA}}</td>
-                        <td>
-                            <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer-{{$d->KODE_DEPO}}">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID Customer</th>
+                                    <th scope="col">Nama Customer</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td>{{$d->NAMA_DEPO}}</td>
+                                    <td>{{$d->ALAMAT_DEPO}}, {{$d->KOTA}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal"
+                                            data-target="#modal-detail-customer-{{$d->KODE_DEPO}}">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            DETAIL
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -124,7 +134,7 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-b-customer.js') }}"></script>
 @endsection

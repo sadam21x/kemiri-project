@@ -1,7 +1,7 @@
 @extends('layouts/sales-b/main')
 @section('title', 'Order Barang')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/sales-b.css') }}">
 @endsection
 
@@ -17,49 +17,58 @@
         <div class="col-md-12">
 
             <div class="judul-tabel mb-3">
-                <h5 class="">Riwayat Order Barang</h5>
+                <h5>Riwayat Order Barang</h5>
             </div>
 
-            <table id="order-barang-table" class="table table-striped table-bordered table-responsive-stack">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID Order</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($data as $d)
-                    <tr>
-                        <td>{{$d->ID_PENJUALAN}}</td>
-                        <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
-                        <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
-                        <td>
-                            @if($d->STATUS_PENJUALAN == 1 && $d->KODE_PEMBAYARAN_PENJUALAN != "" && $d->KODE_PENGIRIMAN != "")
-                            <div class="badge badge-success">
-                                SELESAI
-                                <i class="fas fa-check ml-1"></i>
-                            </div>
-                            @else
-                            <div class="badge badge-secondary">
-                                DIPROSES
-                                <i class="fas fa-exclamation-circle ml-1"></i>
-                            </div>
-                            @endif
-                        </td>
-                        <td>
-                            <button class="btn btn-linkedin btn-sm"
-                                data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
-                                <i class="fas fa-info-circle mr-1"></i>
-                                DETAIL
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="order-barang-table"
+                            class="table table-bordered table-responsive-stack">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">ID Order</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                <tr>
+                                    <td>{{$d->ID_PENJUALAN}}</td>
+                                    <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
+                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
+                                    <td>
+                                        @if($d->STATUS_PENJUALAN == 1 && $d->KODE_PEMBAYARAN_PENJUALAN != "" &&
+                                        $d->KODE_PENGIRIMAN != "")
+                                        <div class="badge badge-success">
+                                            SELESAI
+                                            <i class="fas fa-check ml-1"></i>
+                                        </div>
+                                        @else
+                                        <div class="badge badge-secondary">
+                                            DIPROSES
+                                            <i class="fas fa-exclamation-circle ml-1"></i>
+                                        </div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal"
+                                            data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            DETAIL
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -81,7 +90,7 @@
 
                 <div class="container">
 
-                    <div class="my-3">
+                    <div class="mb-3">
                         <h5>ID Order</h5>
                         <h6>{{$d->ID_PENJUALAN}}</h6>
                     </div>
@@ -152,6 +161,6 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-b-order-barang.js') }}"></script>
 @endsection
