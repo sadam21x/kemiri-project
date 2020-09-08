@@ -1,5 +1,5 @@
 @extends('layouts/owner/main')
-@section('title', 'Admin Gudang')
+@section('title', 'Manajer Marketing')
 @section('extra-css')
     <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/owner.css') }}">
@@ -11,7 +11,7 @@
 <div class="content">
     <div class="page-header">
         <div class="d-flex">
-            <h4>Admin Gudang</h4>
+            <h4>Manajer Marketing</h4>
             <a href="{{ url('/owner/tambah-pegawai') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah pegawai baru">
                 <i class="fas fa-user-plus fa-2x"></i>
             </a>
@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="judul-tabel">
-                <h5>Daftar Admin Gudang</h5>
+                <h5>Daftar Manajer Marketing</h5>
             </div>
 
             <div class="card">
@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>AG00001</td>
+                                    <td>MKT00001</td>
                                     <td>Viladimir Putin</td>
                                     <td>
                                         <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pegawai">

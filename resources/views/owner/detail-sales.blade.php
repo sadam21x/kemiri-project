@@ -1,7 +1,7 @@
 @extends('layouts/owner/main')
 @section('title', 'Detail Sales')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/owner.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/owner-detail-sales.css') }}">
 @endsection
@@ -17,10 +17,10 @@
     <div class="row">
         {{-- Start detail profil sales --}}
         <div class="col-md-4 col-sm-12 d-flex justify-content-center">
-            <div class="card" style="">
+            <div class="card">
                 <div class="card-img-top" style="background-image: url({{ asset('/assets/img/login-bg-3.png') }});">
                     <figure class="avatar avatar-xl">
-                        <img src="{{ asset('/assets/img/ikan1-spongebob.png') }}" class="rounded-circle" alt="avatar">
+                        <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="avatar">
                     </figure>
                     <div class="badge badge-dark nama-sales">
                         @if($jabatan == "Sales A")
@@ -130,30 +130,33 @@
 
             <div class="card">
                 <div class="card-body">
-                    <table
-                        class="table table-striped table-bordered rekap-table table-responsive-stack">
-                        <thead class="thead-dark">
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Customer</th>
-                        </thead>
-                        <tbody>
-                            @if($jabatan == "Sales A")
-                                @foreach($data->depo_air_minums as $d)
+                    <div class="table-responsiv">
+                        <table class="table table-bordered rekap-table table-responsive-stack datatable-component">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td>{{$d->created_at}}</td>
-                                    <td>{{$d->NAMA_DEPO}}</td>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Customer</th>
                                 </tr>
-                                @endforeach
-                            @else
-                                @foreach($data->penjualans as $d)
-                                <tr>
-                                    <td>{{$d->TGL_PENJUALAN}}</td>
-                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
-                                </tr>
-                                @endforeach
-                            @endif
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @if($jabatan == "Sales A")
+                                    @foreach($data->depo_air_minums as $d)
+                                    <tr>
+                                        <td>{{$d->created_at}}</td>
+                                        <td>{{$d->NAMA_DEPO}}</td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    @foreach($data->penjualans as $d)
+                                    <tr>
+                                        <td>{{$d->TGL_PENJUALAN}}</td>
+                                        <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -166,6 +169,6 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/owner-detail-sales.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/owner-pegawai.js') }}"></script>
 @endsection

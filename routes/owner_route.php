@@ -4,6 +4,11 @@ Route::view('/owner', 'owner/dashboard');
 Route::view('/owner/admin-gudang', 'owner/admin-gudang');
 Route::view('/owner/manajer-marketing', 'owner/manajer-marketing');
 Route::view('/owner/operator-mesin', 'owner/operator-mesin');
+Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
+Route::get('/owner/tambah-pegawai', function() {
+    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+    return view('owner/tambah-pegawai', compact('provinsi'));
+});
 
 // route dea
 Route::get('/owner/sales', 'Owner\SalesController@index');
