@@ -1,6 +1,9 @@
 <?php
 
 Route::view('/owner', 'owner/dashboard');
+Route::view('/owner/admin-gudang', 'owner/admin-gudang');
+Route::view('/owner/manajer-marketing', 'owner/manajer-marketing');
+Route::view('/owner/operator-mesin', 'owner/operator-mesin');
 
 // route dea
 Route::get('/owner/sales', 'Owner\SalesController@index');

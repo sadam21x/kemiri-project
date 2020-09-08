@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // Efek menu aktif
-    const menu = document.getElementById("sales-menu");
+    const menu = document.getElementById("pegawai-menu");
     menu.classList.add("active");
 
     // Mencegah submit form via tombol enter

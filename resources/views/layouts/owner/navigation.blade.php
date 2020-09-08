@@ -32,12 +32,29 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/owner/sales') }}" id="sales-menu">
+                <a href="#" id="pegawai-menu" class="">
                     <span class="nav-link-icon">
                         <i class="fas fa-users"></i>
                     </span>
-                    <span>Sales</span>
+                    <span>Pegawai</span>
                 </a>
+                <ul>
+                    <li>
+                        <a href="{{ url('/owner/admin-gudang') }}" id="admin-gudang-menu">Admin Gudang</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/owner/manajer-marketing') }}" id="manajer-marketing-menu">Manajer Marketing</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/owner/operator-mesin') }}" id="operator-mesin-menu">Operator Mesin</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/owner/sales') }}" id="sales-menu" class="">Sales</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
