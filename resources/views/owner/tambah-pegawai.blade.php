@@ -55,7 +55,7 @@
 
                 <div class="form-group">
                     <label>Nama Lengkap</label>
-                    <input type="text" class="form-control" name="NAMA_SALES" required>
+                    <input type="text" class="form-control" name="NAMA" required>
                 </div>
 
                 <label>Jenis Kelamin</label>
@@ -73,18 +73,18 @@
 
                 <div class="form-group">
                     <label>Jabatan</label>
-                    <select class="form-control">
-                        <option>Admin Gudang</option>
-                        <option>Manajer Marketing</option>
-                        <option>Operator Mesin</option>
-                        <option>Sales A</option>
-                        <option>Sales B</option>
+                    <select class="form-control" name="KODE_JABATAN">
+                        <option value="2">Admin Gudang</option>
+                        <option value="3">Manajer Marketing</option>
+                        <option value="6">Operator Mesin</option>
+                        <option value="4">Sales A</option>
+                        <option value="5">Sales B</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control" name="ALAMAT_SALES" required>
+                    <input type="text" class="form-control" name="ALAMAT" required>
                 </div>
 
                 <div class="form-group">
@@ -106,12 +106,12 @@
 
                 <div class="form-group">
                     <label>Nomor Telepon</label>
-                    <input type="number" min="0" class="form-control num-without-style" name="NO_TELP_SALES" required>
+                    <input type="number" min="0" class="form-control num-without-style" name="NO_TELP">
                 </div>
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" name="EMAIL_SALES" required>
+                    <input type="email" class="form-control" name="EMAIL">
                 </div>
 
                 <div class="form-group">
