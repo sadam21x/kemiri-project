@@ -37,16 +37,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data as $d)
                                 <tr>
-                                    <td>MKT00001</td>
-                                    <td>Viladimir Putin</td>
+                                    <td>{{$d->ID_MANAJER_MARKETING}}</td>
+                                    <td>{{$d->NAMA_MANAJER_MARKETING}}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pegawai">
+                                        <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pegawai-{{$d->ID_MANAJER_MARKETING}}">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -56,9 +58,9 @@
     </div>
 </div>
 {{-- End of Content --}}
-
+@foreach($data as $d)
 {{-- Start Detail Pegawai Modal --}}
-<div class="modal fade" id="modal-detail-pegawai" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-pegawai-{{$d->ID_MANAJER_MARKETING}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -77,7 +79,7 @@
                                 <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="avatar">
                             </figure>
                             <div class="badge badge-dark nama-sales">
-                                Ananda Rizky
+                                {{$d->NAMA_MANAJER_MARKETING}}
                             </div>
                         </div>
 
@@ -85,35 +87,41 @@
                             <table class="profil-table">
                                 <tr>
                                     <td class="label-detail">ID Pegawai</td>
-                                    <td>ADM00001</td>
+                                    <td>{{$d->ID_MANAJER_MARKETING}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Jabatan</td>
-                                    <td>Admin Gudang</td>
+                                    <td>Manajer Marketing</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Jenis Kelamin</td>
-                                    <td>Pria</td>
+                                    <td>
+                                        @if($d->JENIS_KELAMIN_OPERATOR_MESIN)
+                                            Pria
+                                        @else
+                                            Wanita
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Alamat</td>
-                                    <td>Jl. Tukad Pakerisan 17x</td>
+                                    <td>{{$d->ALAMAT_MANAJER_MARKETING}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Kota/Kabupaten</td>
-                                    <td>Kota Denpasar</td>
+                                    <td>{{$d->indonesia_city->name}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Provinsi</td>
-                                    <td>Bali</td>
+                                    <td>{{$d->indonesia_city->indonesia_province->name}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Telepon</td>
-                                    <td>083117621550</td>
+                                    <td>{{$d->NO_TELP_MANAJER_MARKETING}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Email</td>
-                                    <td>ananda@gmail.com</td>
+                                    <td>{{$d->EMAIL_MANAJER_MARKETING}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -125,6 +133,7 @@
     </div>
 </div>
 {{-- End of Detail Pegawai Modal --}}
+@endforeach
 @endsection
 
 @section('extra-script')

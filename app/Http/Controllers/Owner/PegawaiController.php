@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SalesA;
 use App\Models\SalesB;
+use App\Models\OperatorMesin;
+use App\Models\ManajerMarketing;
+use App\Models\AdminGudang;
 use App\Models\User;
 
 class PegawaiController extends Controller
@@ -29,6 +32,21 @@ class PegawaiController extends Controller
     	$data = SalesB::find($id);
     	$jabatan = "Sales B";
     	return view('/owner/detail-sales')->with(compact("data","jabatan"));
+    }
+
+    public function indexOperatorMesin(){
+        $data = OperatorMesin::all();
+        return view('/owner/operator-mesin')->with(compact("data"));
+    }
+
+    public function indexAdminGudang(){
+        $data = AdminGudang::all();
+        return view('/owner/admin-gudang')->with(compact("data"));
+    }
+
+    public function indexManajerMarketing(){
+        $data = ManajerMarketing::all();
+        return view('/owner/manajer-marketing')->with(compact("data"));
     }
 
     public function store(Request $request)
@@ -58,7 +76,7 @@ class PegawaiController extends Controller
             ]);
 
         }
-
+        // input ke sales B
         elseif($request->KODE_JABATAN == 5){
 
             $pegawai = SalesB::insert([
@@ -126,7 +144,18 @@ class PegawaiController extends Controller
         ]);
 
 
-        return redirect('/owner/sales');
+        if($request->KODE_JABATAN == 4 || $request->KODE_JABATAN == 5){
+            return redirect('/owner/sales');
+        }
+        elseif($request->KODE_JABATAN == 6){
+            return redirect('/owner/operator-mesin');
+        }
+        elseif($request->KODE_JABATAN == 3){
+            return redirect('/owner/manajer-marketing');
+        }
+        elseif($request->KODE_JABATAN == 2){
+            return redirect('/owner/admin-gudang');
+        }
     }
 
 }
