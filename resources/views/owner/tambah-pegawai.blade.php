@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-5 col-sm-12 form-tambah-sales-col">
 
-            <form action="{{url('/owner/sales/store')}}" method="post">
+            <form action="{{url('/owner/pegawai/store')}}" method="post">
                 @csrf
                 <div class="form-group mb-5">
                     <label>Pilih Avatar</label>
