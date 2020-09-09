@@ -11,7 +11,7 @@
     <div class="page-header">
         <div class="d-flex">
             <h4>Sales</h4>
-            <a href="{{ url('/owner/sales/insert') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah sales baru">
+            <a href="{{ url('/owner/tambah-pegawai') }}" data-toggle="tooltip" data-placement="bottom" title="Tambah pegawai baru">
                 <i class="fas fa-user-plus fa-2x"></i>
             </a>
         </div>
@@ -31,8 +31,8 @@
                         <table class="table table-bordered table-responsive-stack datatable-component">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">ID Sales</th>
-                                    <th scope="col">Nama Sales</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -67,8 +67,8 @@
                         <table class="table table-bordered table-responsive-stack datatable-component">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">ID Sales</th>
-                                    <th scope="col">Nama Sales</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -100,5 +100,5 @@
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/owner-sales.js') }}"></script>
+    <script src="{{ asset('/assets/js/owner-pegawai.js') }}"></script>
 @endsection
