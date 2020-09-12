@@ -61,7 +61,10 @@ class PegawaiController extends Controller
             'USERNAME_USER' => 'required',
             'PASSWORD_USER' => 'required',
             'KONFIRMASI_PASSWORD' => 'required',
+            'FOTO_PROFILE' => 'required'
         ]);
+
+        $foto = '/assets/img/avatar/avatar-'.$request->FOTO_PROFILE.'.png';
 
         // input ke sales A
         if($request->KODE_JABATAN == 4){
@@ -73,6 +76,7 @@ class PegawaiController extends Controller
                 'JENIS_KELAMIN_SALES_A' => $request->JENIS_KELAMIN,
                 'NO_TELP_SALES_A' => $request->NO_TELP,
                 'EMAIL_SALES_A' => $request->EMAIL,
+                'FOTO_PROFILE' => $foto
             ]);
 
         }
@@ -86,6 +90,7 @@ class PegawaiController extends Controller
                 'JENIS_KELAMIN_SALES_B' => $request->JENIS_KELAMIN,
                 'NO_TELP_SALES_B' => $request->NO_TELP,
                 'EMAIL_SALES_B' => $request->EMAIL,
+                'FOTO_PROFILE' => $foto
             ]);
 
         }
@@ -100,6 +105,7 @@ class PegawaiController extends Controller
                 'JENIS_KELAMIN_OPERATOR_MESIN' => $request->JENIS_KELAMIN,
                 'NO_TELP_OPERATOR_MESIN' => $request->NO_TELP,
                 'EMAIL_OPERATOR_MESIN' => $request->EMAIL,
+                'FOTO_PROFILE' => $foto
             ]);
 
         }
@@ -114,6 +120,7 @@ class PegawaiController extends Controller
                 'JENIS_KELAMIN_MANAJER_MARKETING' => $request->JENIS_KELAMIN,
                 'NO_TELP_MANAJER_MARKETING' => $request->NO_TELP,
                 'EMAIL_MANAJER_MARKETING' => $request->EMAIL,
+                'FOTO_PROFILE' => $foto
             ]);
 
         }
@@ -127,6 +134,7 @@ class PegawaiController extends Controller
                 'JENIS_KELAMIN_ADMIN_GUDANG' => $request->JENIS_KELAMIN,
                 'NO_TELP_ADMIN_GUDANG' => $request->NO_TELP,
                 'EMAIL_ADMIN_GUDANG' => $request->EMAIL,
+                'FOTO_PROFILE' => $foto
             ]);
 
         }
@@ -141,6 +149,7 @@ class PegawaiController extends Controller
             'JENIS_KELAMIN_USER' => $request->JENIS_KELAMIN,
             'NO_TELP_USER' => $request->NO_TELP,
             'EMAIL_USER' => $request->EMAIL,
+            'FOTO_PROFILE' => $foto
         ]);
 
 
