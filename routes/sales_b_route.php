@@ -4,7 +4,7 @@
     == Note ==
     Semua proses di route ini bisa dialihkan ke controller. 
 */
-
+// Route dashboard
 Route::view('/sales-b', 'sales-b/dashboard');
 
 //route customer

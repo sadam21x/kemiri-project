@@ -1,7 +1,9 @@
 <?php
 
+// Route dashboard
 Route::view('/owner', 'owner/dashboard');
 
+// Route pegawai
 Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
 
 Route::get('/owner/tambah-pegawai', function() {
@@ -9,7 +11,6 @@ Route::get('/owner/tambah-pegawai', function() {
     return view('owner/tambah-pegawai', compact('provinsi'));
 });
 
-// route pegawai
 Route::get('/owner/sales', 'Owner\PegawaiController@indexSales');
 Route::get('/owner/sales-a/detail/{id}', 'Owner\PegawaiController@viewSalesA');
 Route::get('/owner/sales-b/detail/{id}', 'Owner\PegawaiController@viewSalesB');
@@ -18,7 +19,7 @@ Route::get('/owner/manajer-marketing', 'Owner\PegawaiController@indexManajerMark
 Route::get('/owner/operator-mesin', 'Owner\PegawaiController@indexOperatorMesin');
 Route::post('/owner/pegawai/store', 'Owner\PegawaiController@store');
 
-//route pembayaran
+// Route pembayaran
 Route::get('/owner/pembayaran-supplier', 'Owner\PembayaranSupplierController@index');
 Route::post('/owner/pembayaran-supplier/update', 'Owner\PembayaranSupplierController@update');
 
