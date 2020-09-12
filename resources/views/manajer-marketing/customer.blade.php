@@ -145,7 +145,7 @@
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
-                    <input type="hidden" name="id_sales_a" value="1">
+                    <input type="hidden" name="id_manajer_marketing" value="1">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">

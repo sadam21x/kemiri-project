@@ -228,14 +228,14 @@
                         <label for="a" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="nama_supplier" id="a" class="form-control">
+                        <input type="text" name="nama_supplier" id="a" class="form-control" value="{{$d->NAMA_SUPPLIER}}">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_supplier" id="" class="form-control">
+                        <input type="text" name="alamat_supplier" id="" class="form-control" value="{{$d->ALAMAT_SUPPLIER}}">
                     </div>
 
                     <div class="form-group">
@@ -263,12 +263,12 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_supplier" id="" class="form-control num-without-style">
+                        <input type="number" name="no_telp_supplier" id="" class="form-control num-without-style" value="{{$d->NO_TELP_SUPPLIER}}">
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="email_supplier" id="" class="form-control">
+                        <input type="email" name="email_supplier" id="" class="form-control" value="{{$d->EMAIL_SUPPLIER}}">
                     </div>
 
                     <div class="modal-footer">

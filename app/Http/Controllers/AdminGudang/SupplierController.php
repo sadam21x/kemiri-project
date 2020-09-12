@@ -29,11 +29,17 @@ class SupplierController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+            'nama_supplier' => 'required',
+            'alamat_supplier' => 'required',
+            'kota' => 'required'
+        ]);
+
+        $supplier = new Supplier;
         $supplier->nama_supplier = $request->nama_supplier;
         $supplier->alamat_supplier = $request->alamat_supplier;
         $supplier->no_telp_supplier = $request->no_telp_supplier;
         $supplier->email_supplier = $request->email_supplier;
-        $supplier->jenis_kelamin_supplier = $request->jenis_kelamin_supplier;
         $supplier->kode_kota = $request->kota;
         $supplier->save();
 
@@ -82,6 +88,12 @@ class SupplierController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'nama_supplier' => 'required',
+            'alamat_supplier' => 'required',
+            'kota' => 'required'
+        ]);
+
         $supplier = Supplier::find($request->id_supplier);
         $supplier->nama_supplier = $request->nama_supplier;
         $supplier->alamat_supplier = $request->alamat_supplier;
