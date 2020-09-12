@@ -30,15 +30,13 @@ class CustomerController extends Controller
      */
     public function create(Request $r)
     {
-        // $r->validate([
-        //     'kode_kota' => 'required',
-        //     'id_sales_a' => 'required',
-        //     'nama_customer' => 'required',
-        //     'nama_depo' => 'required',
-        //     'alamat_depo' => 'required',
-        //     'no_telp_depo' => 'required',
-        //     'email_depo' =>'required'
-        // ]);
+        $r->validate([
+            'kota' => 'required',
+            'id_sales_a' => 'required',
+            'nama_customer' => 'required',
+            'nama_depo' => 'required',
+            'alamat_depo' => 'required'
+        ]);
 
         $depo_air_minum = new DepoAirMinum;
         $depo_air_minum->id_sales_a = $r->id_sales_a;
@@ -95,15 +93,13 @@ class CustomerController extends Controller
      */
     public function update(Request $r)
     {
-        // $r->validate([
-        //     'kode_kota' => 'required',
-        //     'id_sales_a' => 'required',
-        //     'nama_customer' => 'required',
-        //     'nama_depo' => 'required',
-        //     'alamat_depo' => 'required',
-        //     'no_telp_depo' => 'required',
-        //     'email_depo' =>'required'
-        // ]);
+        $r->validate([
+            'kota' => 'required',
+            'id_sales_a' => 'required',
+            'nama_customer' => 'required',
+            'nama_depo' => 'required',
+            'alamat_depo' => 'required'
+        ]);
 
         $depo_air_minum = DepoAirMinum::find($r->kode_depo);
         $depo_air_minum->nama_depo = $r->nama_depo;

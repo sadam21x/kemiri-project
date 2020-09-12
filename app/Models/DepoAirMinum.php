@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $KODE_DEPO
  * @property string $KODE_KOTA
  * @property int $ID_SALES_A
+ * @property int $ID_MANAJER_MARKETING
  * @property string $NAMA_CUSTOMER
  * @property string $NAMA_DEPO
  * @property string|null $ALAMAT_DEPO
@@ -39,6 +40,7 @@ class DepoAirMinum extends Model
 	protected $fillable = [
 		'KODE_KOTA',
 		'ID_SALES_A',
+		'ID_MANAJER_MARKETING',
 		'NAMA_CUSTOMER',
 		'NAMA_DEPO',
 		'ALAMAT_DEPO',
@@ -54,6 +56,11 @@ class DepoAirMinum extends Model
 	public function sales_a()
 	{
 		return $this->belongsTo(SalesA::class, 'ID_SALES_A');
+	}
+
+	public function manajer_marketing()
+	{
+		return $this->belongsTo(ManajerMarketing::class, 'ID_MANAJER_MARKETING');
 	}
 
 	public function konfirmasi_penjualans()

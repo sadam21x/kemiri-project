@@ -33,15 +33,26 @@ class PenerimaanBahanBakuController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+            'id_supplier' => 'required',
+            'kode_bahan_baku' => 'required',
+            'id_admin_gudang' => 'required',
+            'tgl_kedatangan' => 'required',
+            'total_berat' => 'required',
+            'jumlah_karung_sak' => 'required',
+            'isi_karung' => 'required'
+        ]);
+
         $penerimaan_bahan_baku = new PenerimaanBahanBaku;
         $penerimaan_bahan_baku->id_supplier = $request->id_supplier;
         $penerimaan_bahan_baku->kode_bahan_baku = $request->kode_bahan_baku;
         $penerimaan_bahan_baku->id_admin_gudang = $request->id_admin_gudang;
         $penerimaan_bahan_baku->tgl_kedatangan = $request->tgl_kedatangan;
-        $penerimaan_bahan_baku->satuan = $request->satuan;
+        $penerimaan_bahan_baku->satuan = "kg";
         $penerimaan_bahan_baku->total_berat = $request->total_berat;
         $penerimaan_bahan_baku->jumlah_karung_sak = $request->jumlah_karung_sak;
         $penerimaan_bahan_baku->isi_karung = $request->isi_karung;
+        $penerimaan_bahan_baku->stok_penerimaan = $request->total_berat;
         $penerimaan_bahan_baku->save();
 
         return redirect('/admin-gudang/penerimaan-bahan-baku');
@@ -89,26 +100,24 @@ class PenerimaanBahanBakuController extends Controller
      */
     public function update(Request $request)
     {
-        // $request->validate([
-        //     'id_supplier' => 'required',
-        //     'kode_bahan_baku' => 'required',
-        //     'id_admin_gudang' => 'required',
-        //     'tgl_kedatangan' => 'required',
-        //     'satuan' => 'required',
-        //     'total_berat' => 'required',
-        //     'jumlah_karung_sak' => 'required',
-        //     'isi_karung' => 'required'
-        // ]);
+        $request->validate([
+            'id_supplier' => 'required',
+            'kode_bahan_baku' => 'required',
+            'tgl_kedatangan' => 'required',
+            'total_berat' => 'required',
+            'jumlah_karung_sak' => 'required',
+            'isi_karung' => 'required'
+        ]);
 
         $penerimaan_bahan_baku = PenerimaanBahanBaku::find($request->id_penerimaan);
         $penerimaan_bahan_baku->id_supplier = $request->id_supplier;
         $penerimaan_bahan_baku->kode_bahan_baku = $request->kode_bahan_baku;
         $penerimaan_bahan_baku->id_admin_gudang = $request->id_admin_gudang;
         $penerimaan_bahan_baku->tgl_kedatangan = $request->tgl_kedatangan;
-        $penerimaan_bahan_baku->satuan = $request->satuan;
         $penerimaan_bahan_baku->total_berat = $request->total_berat;
         $penerimaan_bahan_baku->jumlah_karung_sak = $request->jumlah_karung_sak;
         $penerimaan_bahan_baku->isi_karung = $request->isi_karung;
+        $penerimaan_bahan_baku->stok_penerimaan = $request->total_berat;
         $penerimaan_bahan_baku->save();
 
         return redirect('/admin-gudang/penerimaan-bahan-baku');

@@ -16,7 +16,8 @@ class CreateDepoAirMinumTable extends Migration
         Schema::create('depo_air_minum', function (Blueprint $table) {
             $table->integer('KODE_DEPO', true);
             $table->string('KODE_KOTA', 13)->index('FK_MEMILIKIE0R9');
-            $table->integer('ID_SALES_A')->index('FK_MENCATAT');
+            $table->integer('ID_SALES_A')->nullable()->index('FK_MENCATAT');
+            $table->integer('ID_MANAJER_MARKETING')->nullable()->index('FK_MENCATAT1234');
             $table->string('NAMA_CUSTOMER', 50);
             $table->string('NAMA_DEPO', 50);
             $table->string('ALAMAT_DEPO', 100)->nullable();

@@ -150,7 +150,7 @@
                     @csrf
 
                     {{-- Hidden id admin gudang yang melakukan input data penerimaan --}}
-                    <input type="hidden" name="id_admin_gudang" id="" value="">
+                    <input type="hidden" name="id_admin_gudang" id="" value="1">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
