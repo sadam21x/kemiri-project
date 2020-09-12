@@ -17,7 +17,7 @@ $(document).ready(function() {
     $(selectComponent).select2();
 
     // Slick (pilih avatar)
-    $('.select-avatar-show').slick({
+    var slick = $('.select-avatar-show').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
@@ -76,6 +76,25 @@ $(document).ready(function() {
                 });
             }
         });
+    });
+
+    $(document).on("click",".slick-slide",function(){
+        let src = Number($(".slick-current").attr('data-slick-index'));
+        if(src > 0){
+            if(src == 11){
+                src = 1;
+            }
+            else if(src >= 12){
+                src = src-9;
+            }
+            else{
+                src = src+2;
+            }
+        }
+        else{
+            src = 1;
+        }
+        $("#foto-profile").val(src);
     });
 
 });

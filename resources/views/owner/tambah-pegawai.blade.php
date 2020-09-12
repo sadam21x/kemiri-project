@@ -22,6 +22,7 @@
             <form action="{{url('/owner/pegawai/store')}}" method="post">
                 @csrf
                 <div class="form-group mb-5">
+                    <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
                     <label>Pilih Avatar</label>
 
                     <div class="select-avatar-show my-3">

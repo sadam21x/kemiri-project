@@ -21,6 +21,7 @@ class CreateSalesATable extends Migration
             $table->tinyInteger('JENIS_KELAMIN_SALES_A');
             $table->string('NO_TELP_SALES_A', 50)->nullable();
             $table->string('EMAIL_SALES_A', 75)->nullable();
+            $table->string('FOTO_PROFILE')->nullable();
             $table->timestamps();
         });
     }
