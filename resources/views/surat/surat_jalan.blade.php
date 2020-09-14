@@ -29,29 +29,29 @@
 
     <div class="nomor-surat-container">
         <h6 class="">SURAT JALAN</h6>
-        <h6 class="nomor-surat">No. 102987585</h6>
+        <h6 class="nomor-surat">No. {{$data->pembayaran_penjualans->pengirimen->KODE_PENGIRIMAN}}</h6>
     </div>
 
     <table class="detail-customer">
         <tr>
             <td>Tanggal</td>
-            <td>&nbsp; : 21/08/2020</td>
+            <td>&nbsp; : {{$data->pembayaran_penjualans->pengirimen->TGL_KIRIM_RIIL}}</td>
         </tr>
         <tr>
             <td>Yth</td>
-            <td>&nbsp; : Depo Air Minum Sempidi</td>
+            <td>&nbsp; : {{$data->depo_air_minum->NAMA_DEPO}}</td>
         </tr>
         <tr>
             <td>Alamat</td>
-            <td>&nbsp; : Jl. Raya Nginden 27, Surabaya</td>
+            <td>&nbsp; : {{$data->depo_air_minum->ALAMAT_DEPO}}, {{$data->depo_air_minum->indonesia_city->name}}, {{$data->depo_air_minum->indonesia_city->indonesia_province->name}}</td>
         </tr>
     </table>
 
     <p class="pendahuluan">
         Kami kirimkan barang-barang tersebut dibawah ini dengan kendaraan
-        <span>Pick Up</span>,
+        <span>{{$data->pembayaran_penjualans->pengirimen->TIPE_KENDARAAN}}</span>,
         nomor polisi
-        <span>W 2275 DV</span>
+        <span>{{$data->pembayaran_penjualans->pengirimen->NOPOL}}</span>
     </p>
 
     <table class="table table-striped table-bordered detail-barang">
@@ -63,21 +63,13 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($data->detil_penjualans as $d)
             <tr>
-                <td>TG001</td>
-                <td>Tutup Galon Tipe A</td>
-                <td>1000</td>
+                <td>{{$d->KODE_PRODUCT}}</td>
+                <td>{{$d->product->NAMA_PRODUCT}}</td>
+                <td>{{$d->JUMLAH_PCS}}</td>
             </tr>
-            <tr>
-                <td>TG002</td>
-                <td>Tutup Galon Tipe B</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>TG003</td>
-                <td>Tutup Galon Tipe C</td>
-                <td>1000</td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 
@@ -101,7 +93,7 @@
 
         <tr>
             <td>.......................</td>
-            <td>Ardian Permana</td>
+            <td>{{$data->pembayaran_penjualans->pengirimen->admin_gudang->NAMA_ADMIN_GUDANG}}</td>
         </tr>
     </table>
 </body>

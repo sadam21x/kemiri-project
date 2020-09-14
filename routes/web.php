@@ -20,4 +20,4 @@ Route::any('/aktor', function () {
 });
 
 Route::get('/nota-penjualan', 'SuratController@nota_penjualan');
-Route::get('/surat-jalan', 'SuratController@surat_jalan');
+Route::get('/surat-jalan/{id}', 'SuratController@surat_jalan');

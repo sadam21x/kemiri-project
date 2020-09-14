@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PDF;
+use App\Models\Penjualan;
 
 class SuratController extends Controller
 {
@@ -13,9 +14,10 @@ class SuratController extends Controller
         return $nota_penjualan->stream();
     }
 
-    public function surat_jalan()
+    public function surat_jalan($id)
     {
-        $surat_jalan = PDF::loadView('surat/surat_jalan');
+        $data = Penjualan::find($id);
+        $surat_jalan = PDF::loadView('surat/surat_jalan',compact("data"));
         return $surat_jalan->stream();
     }
 }
