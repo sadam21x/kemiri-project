@@ -44,11 +44,11 @@ class OrderBarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'KODE_DEPO' => 'required',
-            'ID_SALES_B' => 'required',
-            'METODE_KIRIM' => 'required',
-            'ONGKOS_KIRIM' => 'required',
-            'TOTAL_PENJUALAN' => 'required'
+            'KODE_DEPO' => 'required|exists:App\Models\DepoAirMinum,KODE_DEPO|integer',
+            'ID_SALES_B' => 'required|exists:App\Models\SalesB,ID_SALES_B|integer',
+            'METODE_KIRIM' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'ONGKOS_KIRIM' => 'nullable|integer',
+            'TOTAL_PENJUALAN' => 'required|integer'
         ]);
 
         DB::transaction(function() use ($request){
@@ -57,7 +57,7 @@ class OrderBarangController extends Controller
                 'ID_SALES_B' => $request->ID_SALES_B,
                 'TGL_PENJUALAN' => date("Y-m-d"),
                 'TGL_KIRIM' => date("Y-m-d"),
-                'METODE_KIRIM' => $request->METODE_KIRIM,
+                'METODE_KIRIM' => ucwords($request->METODE_KIRIM),
                 'ONGKOS_KIRIM' => $request->ONGKOS_KIRIM,
                 'TOTAL_PENJUALAN' => $request->TOTAL_PENJUALAN,
                 'STATUS_PENJUALAN' => 0
@@ -77,6 +77,14 @@ class OrderBarangController extends Controller
             $i = 0;
 
             foreach ($request->KODE_PRODUCT as $key) {
+
+                $request->validate([
+                    'JUMLAH_SAK.$i' => 'required|numeric',
+                    'JUMLAH_PCS.$i' => 'required|numeric',
+                    'HARGA_BARANG.$i' => 'required|numeric',
+                    $key => 'required|exists:App\Models\Product,KODE_PRODUCT|integer',
+                ]);
+
                 $detil = DetilPenjualan::insert([
                     'ID_PENJUALAN' => $id->ID_PENJUALAN,
                     'KODE_PRODUCT' => $key,

@@ -39,56 +39,68 @@ class PengambilanBahanBakuController extends Controller
      */
     public function create(Request $r)
     {
+        
         $r->validate([
-            'id_operator_mesin' => 'required',
-            'mesin' => 'required',
-            'product' => 'required' 
+            'id_operator_mesin' => 'required|exists:App\Models\OperatorMesin,KODE_PRODUKSI|integer',
+            'mesin' => 'required|exists:App\Models\Mesin,KODE_MESIN|integer',
+            'product' => 'required|exists:App\Models\Product,KODE_PRODUCT|integer',
+            'supplier' => 'required|exists:App\Models\Supplier,ID_SUPPLIER|integer'
         ]);
 
-        PengambilanBahanBaku::insert([
-            'id_operator_mesin' => $r->id_operator_mesin,
-            'kode_mesin' => $r->mesin,
-            'waktu_pengambilan' => date("Y-m-d h:i:s"),
-            'hasil_produk' => $r->product
-        ]);
+        DB::transaction(function() use ($r){
 
-        $nama_produk = Product::select('NAMA_PRODUCT')->where(['kode_product' => $r->product])->first();
-
-        $id = PengambilanBahanBaku::select("KODE_PENGAMBILAN_BAHAN_BAKU")->where([
+            PengambilanBahanBaku::insert([
                 'id_operator_mesin' => $r->id_operator_mesin,
                 'kode_mesin' => $r->mesin,
                 'waktu_pengambilan' => date("Y-m-d h:i:s"),
-                'hasil_produk' => $nama_produk
-                ])->first();
-        
-        $idp = PenerimaanBahanBaku::select("ID_PENERIMAAN")->where([
-                'id_supplier' => $r->supplier,
-                'kode_bahan_baku' => $r->bahan_baku
-                ])->first();
-
-        $i = 0;
-
-        foreach($r->bahan_baku as $key){
-            DetailPengambilan::insert([
-                'id_penerimaan' => $idp->ID_PENERIMAAN,
-                'kode_pengambilan' => $id->KODE_PENGAMBILAN_BAHAN_BAKU,
-                'jumlah_kg' => $r->jumlah_bahan_baku,
-                'jumlah_sak_karung' => $r->jumlah_karung_sak
+                'hasil_produk' => $r->product
             ]);
-            $i++;
-        }
 
-        ProsesProduksi::insert([
-            'kode_pengambilan_bahan_baku' => $id,
-            'tgl_produksi' => date("Y-m-d")
-        ]);
+            $nama_produk = Product::select('NAMA_PRODUCT')->where(['kode_product' => $r->product])->first();
 
-        $kode_produksi = ProsesProduksi::select('KODE_PRODUKSI')->where(['kode_pengambilan_bahan_baku' => $id])->first();
+            $id = PengambilanBahanBaku::select("KODE_PENGAMBILAN_BAHAN_BAKU")->where([
+                    'id_operator_mesin' => $r->id_operator_mesin,
+                    'kode_mesin' => $r->mesin,
+                    'waktu_pengambilan' => date("Y-m-d h:i:s"),
+                    'hasil_produk' => $nama_produk
+                    ])->first();
+            
+            $idp = PenerimaanBahanBaku::select("ID_PENERIMAAN")->where([
+                    'id_supplier' => $r->supplier,
+                    'kode_bahan_baku' => $r->bahan_baku
+                    ])->first();
 
-        HasilProduct::insert([
-            'kode_produksi' => $kode_produksi,
-            'kode_product' => $r->product
-        ]);
+            $i = 0;
+
+            foreach($r->bahan_baku as $key){
+
+                $r->validate([
+                    'jumlah_bahan_baku' => 'required|numeric',
+                    'jumlah_sak_karung' => 'required|numeric'
+                ]);
+
+                DetailPengambilan::insert([
+                    'id_penerimaan' => $idp->ID_PENERIMAAN,
+                    'kode_pengambilan' => $id->KODE_PENGAMBILAN_BAHAN_BAKU,
+                    'jumlah_kg' => $r->jumlah_bahan_baku,
+                    'jumlah_sak_karung' => $r->jumlah_karung_sak
+                ]);
+                $i++;
+            }
+
+            ProsesProduksi::insert([
+                'kode_pengambilan_bahan_baku' => $id,
+                'tgl_produksi' => date("Y-m-d H:i:s")
+            ]);
+
+            $kode_produksi = ProsesProduksi::select('KODE_PRODUKSI')->where(['kode_pengambilan_bahan_baku' => $id])->orderBy('tgl_produksi','DESC')->first();
+
+            HasilProduct::insert([
+                'kode_produksi' => $kode_produksi,
+                'kode_product' => $r->product
+            ]);
+
+        });
     }
 
     /**
@@ -111,59 +123,4 @@ class PengambilanBahanBakuController extends Controller
         return response()->json(['success' => true,'data' => $supplier]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
