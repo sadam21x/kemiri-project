@@ -30,6 +30,8 @@ class PembayaranCustomerController extends Controller
         	else{
         		$data->STATUS_PEMBAYARAN = 1;
         	}
+            $data->ID_OWNER = 1;
+            $data->TGL_PEMBAYARAN = date("Y-m-d");
         	$data->save();
         });
 
