@@ -31,13 +31,19 @@ $(document).ready(function() {
     // Elemen jumlah bahan baku (Kg)
     var input_jumlah_kg = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Kg)</label>' +
-                                '<input type="number" name="jumlah_bahan_baku" id="" class="form-control">' +
+                                '<input type="number" name="jumlah_bahan_baku[]" id="" class="form-control">' +
+                                '<div class="invalid-feedback">\
+                                    Mohon isi jumlah bahan baku dengan benar.\
+                                </div>'+
                             '</div>';
 
     // Elemen jumlah bahan baku (Karung)
     var input_jumlah_karung = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Karung)</label>' +
-                                '<input type="number" name="jumlah_karung_sak" id="" class="form-control">' +
+                                '<input type="number" name="jumlah_karung_sak[]" id="" class="form-control">' +
+                                '<div class="invalid-feedback">\
+                                    Mohon isi jumlah bahan baku dengan benar.\
+                                </div>'+
                             '</div>';
    
     // Elemen modal button

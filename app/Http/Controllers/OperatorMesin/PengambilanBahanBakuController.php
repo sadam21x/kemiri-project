@@ -39,13 +39,14 @@ class PengambilanBahanBakuController extends Controller
      */
     public function create(Request $r)
     {
-        
-        $r->validate([
-            'id_operator_mesin' => 'required|exists:App\Models\OperatorMesin,KODE_PRODUKSI|integer',
-            'mesin' => 'required|exists:App\Models\Mesin,KODE_MESIN|integer',
-            'product' => 'required|exists:App\Models\Product,KODE_PRODUCT|integer',
-            'supplier' => 'required|exists:App\Models\Supplier,ID_SUPPLIER|integer'
-        ]);
+        // $r->validate([
+        //     'id_operator_mesin' => 'required|exists:App\Models\OperatorMesin,KODE_PRODUKSI|integer',
+        //     'mesin' => 'required|exists:App\Models\Mesin,KODE_MESIN|integer',
+        //     'product' => 'required|exists:App\Models\Product,KODE_PRODUCT|integer',
+        //     'supplier' => 'required|exists:App\Models\Supplier,ID_SUPPLIER|integer',
+        //     'jumlah_bahan_baku' => 'required|array|min:1',
+        //     'jumlah_sak_karung' => 'required|array|min:1'
+        // ]);
 
         DB::transaction(function() use ($r){
 
@@ -73,11 +74,6 @@ class PengambilanBahanBakuController extends Controller
             $i = 0;
 
             foreach($r->bahan_baku as $key){
-
-                $r->validate([
-                    'jumlah_bahan_baku' => 'required|numeric',
-                    'jumlah_sak_karung' => 'required|numeric'
-                ]);
 
                 DetailPengambilan::insert([
                     'id_penerimaan' => $idp->ID_PENERIMAAN,

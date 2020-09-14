@@ -48,10 +48,19 @@ class OrderBarangController extends Controller
             'ID_SALES_B' => 'required|exists:App\Models\SalesB,ID_SALES_B|integer',
             'METODE_KIRIM' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
             'ONGKOS_KIRIM' => 'nullable|integer',
-            'TOTAL_PENJUALAN' => 'required|integer'
+            'TOTAL_PENJUALAN' => 'required|integer',
+            'KODE_PRODUCT' => 'required|array|min:1',
+            'JUMLAH_SAK' => 'required|array|min:1',
+            'JUMLAH_PCS' => 'required|array|min:1',
+            'HARGA_BARANG' => 'required|array|min:1',
         ]);
 
         DB::transaction(function() use ($request){
+
+            if($request->ONGKOS_KIRIM == null){
+                $request->ONGKOS_KIRIM = 0;
+            }
+
             $penjualan = Penjualan::insertGetId([
                 'KODE_DEPO' => $request->KODE_DEPO,
                 'ID_SALES_B' => $request->ID_SALES_B,
@@ -77,13 +86,6 @@ class OrderBarangController extends Controller
             $i = 0;
 
             foreach ($request->KODE_PRODUCT as $key) {
-
-                $request->validate([
-                    'JUMLAH_SAK.$i' => 'required|numeric',
-                    'JUMLAH_PCS.$i' => 'required|numeric',
-                    'HARGA_BARANG.$i' => 'required|numeric',
-                    $key => 'required|exists:App\Models\Product,KODE_PRODUCT|integer',
-                ]);
 
                 $detil = DetilPenjualan::insert([
                     'ID_PENJUALAN' => $id->ID_PENJUALAN,

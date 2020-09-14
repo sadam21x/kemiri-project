@@ -59,7 +59,7 @@ class PegawaiController extends Controller
             'ALAMAT' => 'required|string|min:8|max:100',
             'PROVINSI' => 'required|exists:App\Models\IndonesiaProvince,id|integer',
             'KODE_KOTA' => 'required|exists:App\Models\IndonesiaCity,id|integer',
-            'USERNAME_USER' => 'required|string|min:5',
+            'USERNAME_USER' => 'required|string|min:5|max:100',
             'PASSWORD_USER' => 'required|string|min:8',
             'KONFIRMASI_PASSWORD' => 'required|same:PASSWORD_USER',
             'FOTO_PROFILE' => 'required|integer|min:1|max:12',
@@ -148,7 +148,7 @@ class PegawaiController extends Controller
             }
 
             //tested by dea (14/9/2020 16:40)
-            
+
             $user = User::insert([
                 'KODE_KOTA' => $request->KODE_KOTA,
                 'KODE_JABATAN' => $request->KODE_JABATAN,

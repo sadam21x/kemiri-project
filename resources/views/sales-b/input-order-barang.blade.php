@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-12">
             {{-- Start form order barang --}}
-            <form action="{{url('/sales-b/order-barang/store')}}" method="post">
+            <form action="{{url('/sales-b/order-barang/store')}}" method="post" class="needs-validation" novalidate>
                 @csrf
 
                 <div class="form-row">
@@ -73,17 +73,18 @@
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
-
                     <tbody>
+                        
                     </tbody>
                 </table>
+                <span class="text-center text-danger" id="warning-produk">Anda belum menambahkan produk.</span>
 
                 <div class="form-group row mt-5">
 
                     <div class="form-group col-md-6">
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Metode Kirim</label>
-                            <select name="METODE_KIRIM" id="" class="form-control">
+                            <select name="METODE_KIRIM" class="form-control @error('METODE_KIRIM') is-invalid @enderror" required>
                                 <option>Ambil Sendiri</option>
                                 <option>Truk/Kontainer Kemiri</option>
                                 <option>POS Indonesia</option>
@@ -91,10 +92,16 @@
                                 <option>J&T</option>
                                 <option>TIKI</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Mohon pilih metode kirim.
+                            </div>
                         </div>
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Ongkos Kirim (IDR)</label>
-                            <input type="number" name="ONGKOS_KIRIM" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style">
+                            <input type="number" name="ONGKOS_KIRIM" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style @error('ONGKOS_KIRIM') is-invalid @enderror">
+                            <div class="invalid-feedback">
+                                Mohon isi ongkos kirim dengan benar.
+                            </div>
                         </div>
                     </div>
 
