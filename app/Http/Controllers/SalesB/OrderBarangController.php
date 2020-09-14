@@ -96,6 +96,10 @@ class OrderBarangController extends Controller
                 ]);
                 $i++;
             }
+
+            PembayaranPenjualan::insert([
+                'ID_PENJUALAN' => $id->ID_PENJUALAN,
+            ]);
         });
 
         return redirect('/sales-b/order-barang');
