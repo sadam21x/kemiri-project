@@ -147,6 +147,16 @@
                         <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
 
+                    <div class="my-3">
+                        <h5>Kendaraan Pengirim</h5>
+                        <h6>Pick Up</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Nomor Polisi</h5>
+                        <h6>W 2275 DV</h6>
+                    </div>
+
                     <div class="mt-5 d-flex justify-content-center">
                         <a href="" class="btn btn-md btn-google">
                             <i class="far fa-file-alt mr-2"></i>
@@ -185,8 +195,19 @@
 
 
                     <div class="form-group">
-                        <label for="">Tanggal Pengiriman</label>
+                        <label>Tanggal Pengiriman</label>
                         <input type="date" name="TGL_KIRIM" id="" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kendaraan Pengirim</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor Polisi</label>
+                        <input type="text" class="form-control">
+                        <small class="form-text text-muted">contoh: W 2275 DV</small>
                     </div>
 
                     <div class="form-group">
