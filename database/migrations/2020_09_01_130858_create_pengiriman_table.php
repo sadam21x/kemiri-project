@@ -18,6 +18,8 @@ class CreatePengirimanTable extends Migration
             $table->integer('KODE_PEMBAYARAN_PENJUALAN')->index('FK_TERDAPAT51');
             $table->integer('ID_ADMIN_GUDANG')->index('FK_TERDAPAT123123');
             $table->date('TGL_KIRIM_RIIL');
+            $table->string('TIPE_KENDARAAN',75);
+            $table->string('NOPOL',13);
             $table->timestamps();
         });
     }

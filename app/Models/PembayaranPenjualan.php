@@ -59,6 +59,6 @@ class PembayaranPenjualan extends Model
 
 	public function pengirimen()
 	{
-		return $this->hasMany(Pengiriman::class, 'KODE_PEMBAYARAN_PENJUALAN');
+		return $this->hasOne(Pengiriman::class, 'KODE_PEMBAYARAN_PENJUALAN');
 	}
 }

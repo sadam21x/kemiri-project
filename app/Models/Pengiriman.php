@@ -39,7 +39,9 @@ class Pengiriman extends Model
 	protected $fillable = [
 		'KODE_PEMBAYARAN_PENJUALAN',
 		'ID_ADMIN_GUDANG',
-		'TGL_KIRIM_RIIL'
+		'TGL_KIRIM_RIIL',
+        'TIPE_KENDARAAN',
+        'NOPOL'
 	];
 
 	public function admin_gudang()

@@ -77,7 +77,7 @@
                 </button>
             </div>
             <div class="modal-body modal-body-pengambilan-bahan-baku">
-                <form action="{{url('/operator-mesin/pengambilan-bahan-baku/insert')}}" method="POST">
+                <form action="{{url('/operator-mesin/pengambilan-bahan-baku/insert')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
@@ -134,12 +134,18 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Kg)</label>
-                        <input type="number" name="jumlah_bahan_baku" id="total_berat" class="form-control">
+                        <input type="number" name="jumlah_bahan_baku[]" id="total_berat" class="form-control">
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah bahan baku dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Karung)</label>
-                        <input type="number" name="jumlah_karung_sak" id="jumlah_karung_sak" class="form-control">
+                        <input type="number" name="jumlah_karung_sak[]" id="jumlah_karung_sak" class="form-control">
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah bahan baku dengan benar.
+                        </div>
                     </div>
 
                     <div class="modal-footer">

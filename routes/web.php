@@ -18,3 +18,6 @@ Route::view('/login', 'login');
 Route::any('/aktor', function () {
     return view('aktor');
 });
+
+Route::get('/nota-penjualan', 'SuratController@nota_penjualan');
+Route::get('/surat-jalan/{id}', 'SuratController@surat_jalan');

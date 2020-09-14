@@ -79,10 +79,9 @@ $(document).ready(function() {
         }
     });
 
-    //KODE_PRODUCT 1 = INDEXNYA 0
-    console.log(products[0]["KODE_PRODUCT"]);
-
+    keranjangKosong();
     $('#add-btn').on('click',function(){
+        keranjangBerisi();
         let id = $("#product").val();
 
         if($("#keranjang tbody tr#"+id).length){
@@ -135,6 +134,9 @@ $(document).ready(function() {
         let id = $(this).attr('id').slice(4);
         $('#'+id).remove();
         hitungSemuaTotal();
+        if(!$("#keranjang tbody tr").length){
+            keranjangKosong();
+        }
     });
 
     $("#input-ongkos-kirim").on("input",function(){
@@ -144,12 +146,22 @@ $(document).ready(function() {
 
     $(document).on("input",".quantity",function(){
         let id = $(this).attr('id').slice(4);
-        hitungTotalHargaProduk(id);
+        if($(this).val() < 1){
+           $(this).val(1);
+        }
+        else{
+            hitungTotalHargaProduk(id);
+        }
     });
 
     $(document).on("input",".sak",function(){
         let id = $(this).attr('id').slice(4);
-        hitungTotalHargaProduk(id);
+        if($(this).val() < 1){
+           $(this).val(1); 
+        }
+        else{
+           hitungTotalHargaProduk(id); 
+        }
     });
 
     $(document).on("input",".discpersen",function(){
@@ -158,6 +170,12 @@ $(document).ready(function() {
         let harga = Number($("#price-"+id).val());
         let qty = Number($("#qty-"+id).val());
         $("#disc-"+id).val(parseFloat(percent/100*harga*qty));
+        if($(this).val() < 0){
+           $(this).val(0); 
+        }
+        else if($(this).val() > 100){
+           $(this).val(0); 
+        }
         hitungTotalHargaProduk(id);
     });
 
@@ -209,4 +227,31 @@ $(document).ready(function() {
         let totalbayar = Number(totalharga+ongkir);
         return totalbayar;
     }
+
+    function keranjangKosong(){
+        $("#warning-produk").show();
+        $(".btn-linkedin").attr('disabled',true);
+    }
+
+    function keranjangBerisi(){
+        $("#warning-produk").hide();
+        $(".btn-linkedin").attr('disabled',false);
+    }
 });
+
+//validation
+'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);

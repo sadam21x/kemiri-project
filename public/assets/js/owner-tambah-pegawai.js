@@ -77,7 +77,7 @@ $(document).ready(function() {
             }
         });
     });
-
+    //mengambil angka terakhir di nama file avatar
     $(document).on("click",".slick-slide",function(){
         let src = Number($(".slick-current").attr('data-slick-index'));
         if(src > 0){
@@ -96,5 +96,20 @@ $(document).ready(function() {
         }
         $("#foto-profile").val(src);
     });
-
 });
+//validation
+'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);

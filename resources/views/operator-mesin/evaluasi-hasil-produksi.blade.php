@@ -89,7 +89,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/operator-mesin/evaluasi-hasil-produksi/store')}}" method="POST">
+                <form action="{{url('/operator-mesin/evaluasi-hasil-produksi/store')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     <input type="hidden" name="KODE_PRODUKSI" id="" value="{{$d->KODE_PRODUKSI}}">
 
@@ -122,12 +122,18 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Produk Hasil Bagus (Kg)</label>
-                        <input type="number" name="HASIL_BAGUS_KG" id="" min="1" class="form-control" required>
+                        <input type="number" name="HASIL_BAGUS_KG" min="1" class="form-control @error('HASIL_BAGUS_KG') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah hasil bagus dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Produk Hasil Rusak (Kg)</label>
-                        <input type="number" name="HASIL_RUSAK_KG" id="" min="0" class="form-control" required>
+                        <input type="number" name="HASIL_RUSAK_KG" min="0" class="form-control @error('HASIL_RUSAK_KG') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah hasil rusak dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">

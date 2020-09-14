@@ -44,16 +44,17 @@
                                     <td>{{$d->pembayaran_penjualan->penjualan->depo_air_minum->NAMA_DEPO}}
                                     </td>
                                     <td>
-                                        @if($tglkirim <= $hari_ini) <a href="" class="badge badge-success">
+                                        @if($tglkirim <= $hari_ini)
+                                        <a href="" class="badge badge-success">
                                             TERKIRIM
                                             <i class="fas fa-check ml-1"></i>
                                             </a>
-                                            @else
-                                            <a href="" class="badge badge-secondary">
-                                                PENDING
-                                                <i class="fas fa-exclamation-circle ml-1"></i>
-                                            </a>
-                                            @endif
+                                        @else
+                                        <a href="" class="badge badge-secondary">
+                                            PENDING
+                                            <i class="fas fa-exclamation-circle ml-1"></i>
+                                        </a>
+                                        @endif
                                     </td>
                                     <td>
                                         <button class="btn btn-linkedin btn-sm tombol-detail-pengiriman"

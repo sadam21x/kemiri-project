@@ -38,18 +38,23 @@
                                 @foreach($data as $d)
                                 <tr>
                                     <td>{{$d->ID_PENJUALAN}}</td>
-                                    <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
+                                    <td>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL))}}</td>
                                     <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                     <td>
-                                        @if($d->STATUS_PENJUALAN == 1)
-                                        <div class="badge badge-success">
-                                            SELESAI
-                                            <i class="fas fa-check ml-1"></i>
-                                        </div>
-                                        @else
+                                        @if($d->STATUS_PEMBAYARAN == 1 && $d->KODE_PENGIRIMAN == null)
                                         <div class="badge badge-secondary">
-                                            DIPROSES
+                                            PERLU DIPROSES
                                             <i class="fas fa-exclamation-circle ml-1"></i>
+                                        </div>
+                                        @elseif($d->STATUS_PEMBAYARAN == 1 && $d->KODE_PENGIRIMAN != null && (date("Y-m-d") < date("Y-m-d",strtotime($d->TGL_KIRIM_RIIL))))
+                                        <div class="badge badge-secondary">
+                                            MENUNGGU PENGIRIMAN
+                                            <i class="fas fa-exclamation-circle ml-1"></i>
+                                        </div>
+                                        @elseif(date("Y-m-d") > date("Y-m-d",strtotime($d->TGL_KIRIM_RIIL)))
+                                        <div class="badge badge-success">
+                                            TELAH DIKIRIM
+                                            <i class="fas fa-check ml-1"></i>
                                         </div>
                                         @endif
                                     </td>
@@ -147,8 +152,18 @@
                         <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
 
+                    <div class="my-3">
+                        <h5>Kendaraan Pengirim</h5>
+                        <h6>{{ $d->TIPE_KENDARAAN}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Nomor Polisi</h5>
+                        <h6>{{ $d->NOPOL}}</h6>
+                    </div>
+
                     <div class="mt-5 d-flex justify-content-center">
-                        <a href="" class="btn btn-md btn-google">
+                        <a href="{{url('/surat-jalan/'.$d->ID_PENJUALAN)}}" class="btn btn-md btn-google">
                             <i class="far fa-file-alt mr-2"></i>
                             SURAT JALAN
                         </a>
@@ -185,8 +200,19 @@
 
 
                     <div class="form-group">
-                        <label for="">Tanggal Pengiriman</label>
-                        <input type="date" name="TGL_KIRIM" id="" class="form-control">
+                        <label>Tanggal Pengiriman</label>
+                        <input type="date" name="TGL_KIRIM" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kendaraan Pengirim</label>
+                        <input type="text" class="form-control" name="TIPE_KENDARAAN" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nomor Polisi</label>
+                        <input type="text" class="form-control" name="NOPOL" required>
+                        <small class="form-text text-muted">contoh: W 2275 DV</small>
                     </div>
 
                     <div class="form-group">

@@ -44,20 +44,29 @@ class OrderBarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'KODE_DEPO' => 'required',
-            'ID_SALES_B' => 'required',
-            'METODE_KIRIM' => 'required',
-            'ONGKOS_KIRIM' => 'required',
-            'TOTAL_PENJUALAN' => 'required'
+            'KODE_DEPO' => 'required|exists:App\Models\DepoAirMinum,KODE_DEPO|integer',
+            'ID_SALES_B' => 'required|exists:App\Models\SalesB,ID_SALES_B|integer',
+            'METODE_KIRIM' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'ONGKOS_KIRIM' => 'nullable|integer',
+            'TOTAL_PENJUALAN' => 'required|integer',
+            'KODE_PRODUCT' => 'required|array|min:1',
+            'JUMLAH_SAK' => 'required|array|min:1',
+            'JUMLAH_PCS' => 'required|array|min:1',
+            'HARGA_BARANG' => 'required|array|min:1',
         ]);
 
         DB::transaction(function() use ($request){
+
+            if($request->ONGKOS_KIRIM == null){
+                $request->ONGKOS_KIRIM = 0;
+            }
+
             $penjualan = Penjualan::insertGetId([
                 'KODE_DEPO' => $request->KODE_DEPO,
                 'ID_SALES_B' => $request->ID_SALES_B,
                 'TGL_PENJUALAN' => date("Y-m-d"),
                 'TGL_KIRIM' => date("Y-m-d"),
-                'METODE_KIRIM' => $request->METODE_KIRIM,
+                'METODE_KIRIM' => ucwords($request->METODE_KIRIM),
                 'ONGKOS_KIRIM' => $request->ONGKOS_KIRIM,
                 'TOTAL_PENJUALAN' => $request->TOTAL_PENJUALAN,
                 'STATUS_PENJUALAN' => 0
@@ -77,6 +86,7 @@ class OrderBarangController extends Controller
             $i = 0;
 
             foreach ($request->KODE_PRODUCT as $key) {
+
                 $detil = DetilPenjualan::insert([
                     'ID_PENJUALAN' => $id->ID_PENJUALAN,
                     'KODE_PRODUCT' => $key,
@@ -86,6 +96,10 @@ class OrderBarangController extends Controller
                 ]);
                 $i++;
             }
+
+            PembayaranPenjualan::insert([
+                'ID_PENJUALAN' => $id->ID_PENJUALAN,
+            ]);
         });
 
         return redirect('/sales-b/order-barang');
