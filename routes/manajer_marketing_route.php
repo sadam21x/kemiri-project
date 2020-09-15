@@ -2,6 +2,7 @@
 
 // Route dashboard
 Route::view('/manajer-marketing', 'manajer-marketing/dashboard');
+Route::view('/manajer-marketing/profil', 'manajer-marketing/profil');
 
 // Route customer
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');
