@@ -35,7 +35,7 @@
     <table class="detail-customer">
         <tr>
             <td>Tanggal</td>
-            <td>&nbsp; : {{$data->pembayaran_penjualans->pengirimen->TGL_KIRIM_RIIL}}</td>
+            <td>&nbsp; : {{date("Y-m-d",strtotime($data->pembayaran_penjualans->pengirimen->TGL_KIRIM_RIIL))}}</td>
         </tr>
         <tr>
             <td>Yth</td>

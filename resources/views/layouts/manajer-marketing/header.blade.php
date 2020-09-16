@@ -50,7 +50,7 @@
                                 <div class="mb-3 small text-center text-muted">MANAJER MARKETING</div>
                             </div>
                             <div class="list-group">
-                                <a href="" class="list-group-item">
+                                <a href="{{ url('/manajer-marketing/profil') }}" class="list-group-item">
                                     <i class="fas fa-user mr-1"></i>
                                     Profil Saya
                                 </a>
