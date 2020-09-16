@@ -2,7 +2,14 @@
 
 // Route dashboard
 Route::view('/manajer-marketing', 'manajer-marketing/dashboard');
-Route::view('/manajer-marketing/profil', 'manajer-marketing/profil');
+
+// Route baru, bisa dimodif
+Route::get('/manajer-marketing/edit-profil', function() {
+    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+
+    return view('manajer-marketing/edit-profil', compact('provinsi'));
+});
+// End Route baru, bisa dimodif
 
 // Route customer
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');

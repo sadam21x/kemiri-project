@@ -3,6 +3,14 @@
 // Route dashboard
 Route::view('/owner', 'owner/dashboard');
 
+// Route baru, bisa dimodif
+Route::get('/owner/edit-profil', function() {
+    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+
+    return view('owner/edit-profil', compact('provinsi'));
+});
+// End Route baru, bisa dimodif
+
 // Route pegawai
 Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
 

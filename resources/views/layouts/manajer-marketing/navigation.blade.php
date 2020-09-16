@@ -8,7 +8,7 @@
     <div class="navigation-menu-body">
         <ul>
             <li>
-                <a href="{{ url('/admin-gudang') }}" id="dashboard-menu">
+                <a href="{{ url('/manajer-marketing') }}" id="dashboard-menu">
                     <span class="nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </span>

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                <a href="{{ url('/manajer-marketing/edit-profil') }}" data-toggle="tooltip" data-placement="bottom" title="Edit">
+                <a href="{{ url('/operator-mesin/edit-profil') }}" data-toggle="tooltip" data-placement="bottom" title="Edit">
                     <i class="fas fa-pen fa-lg text-white"></i>
                 </a>
                 <h5 class="modal-title">Profil Saya</h5>
@@ -33,7 +33,7 @@
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Jabatan</td>
-                                    <td>Manajer Marketing</td>
+                                    <td>Operator Mesin</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Jenis Kelamin</td>

@@ -1,11 +1,15 @@
 <?php
 
-/*
-    == Note ==
-    Semua proses di route ini bisa dialihkan ke controller. 
-*/
 // Route dashboard
 Route::view('/admin-gudang', 'admin-gudang/dashboard');
+
+// Route baru, bisa dimodif
+Route::get('/admin-gudang/edit-profil', function() {
+    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+
+    return view('admin-gudang/edit-profil', compact('provinsi'));
+});
+// End Route baru, bisa dimodif
 
 // Route penerimaan
 Route::get('/admin-gudang/penerimaan-bahan-baku', 'AdminGudang\PenerimaanBahanBakuController@index');
