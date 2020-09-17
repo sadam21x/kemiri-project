@@ -49,10 +49,10 @@ class SalesController extends Controller
     public function storeA(Request $request)
     {
         $request->validate([
-            'ID_MANAJER_MARKETING' => 'required',
-            'TGL_EVALUASI_KINERJA_SALESA' => 'required',
-            'ID_SALES_A' => 'required',
-            'EVALUASI_SALESA' => 'required',
+            'ID_MANAJER_MARKETING' => 'required|exist:App\Models\ManajerMarketing,ID_MANAJER_MARKETING|integer',
+            'TGL_EVALUASI_KINERJA_SALESA' => 'required|date_format:Y-m-d',
+            'ID_SALES_A' => 'required|exist:App\Models\SalesA,ID_SALES_A|integer',
+            'EVALUASI_SALESA' => 'required|string|max:300|regex:/^[a-zA-Z ]+$/',
         ]);
 
         $data = EvaluasiKinerjaSalesa::insert([
@@ -68,10 +68,10 @@ class SalesController extends Controller
     public function storeB(Request $request)
     {
         $request->validate([
-            'ID_MANAJER_MARKETING' => 'required',
-            'TGL_EVALUASI_KINERJA_SALESB' => 'required',
-            'ID_SALES_B' => 'required',
-            'EVALUASI_SALESB' => 'required',
+            'ID_MANAJER_MARKETING' => 'required|exist:App\Models\ManajerMarketing,ID_MANAJER_MARKETING|integer',
+            'TGL_EVALUASI_KINERJA_SALESB' => 'required|date_format:Y-m-d',
+            'ID_SALES_B' => 'required|exist:App\Models\SalesB,ID_SALES_B|integer',
+            'EVALUASI_SALESB' => 'required|string|max:300|regex:/^[a-zA-Z ]+$/',
         ]);
 
         $data = EvaluasiKinerjaSalesb::insert([

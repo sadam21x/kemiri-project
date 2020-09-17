@@ -30,9 +30,11 @@ class SupplierController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'nama_supplier' => 'required',
-            'alamat_supplier' => 'required',
-            'kota' => 'required'
+            'nama_supplier' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'alamat_supplier' => 'required|string|max:100',
+            'no_telp_supplier' => 'nullable|string|regex:/^[0-9+]+$/',
+            'email_supplier' => 'nullable|string|email',
+            'kota' => 'required|exists:App\Models\IndonesiaCity,id|integer'
         ]);
 
         $supplier = new Supplier;

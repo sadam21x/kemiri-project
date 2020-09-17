@@ -29,7 +29,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">265</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$StockPlastikBekas->STOK_BAHAN_BAKU}}</div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">80</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$StockPlastikVirgin->STOK_BAHAN_BAKU}}</div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">30</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$StockPewarna->STOK_BAHAN_BAKU}}</div>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h6 class="card-title mb-4 text-center">Total Penjualan Bulan ini</h6>
-                        <h2 class="font-size-35 font-weight-bold text-center">Rp 10.000.000</h2>
+                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{$PenjualanBulanan->TOTAL}}</h2>
                         <p>Angka diatas menunjukkan total penjualan barang pada bulan ini</p>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h6 class="card-title mb-4 text-center">Total Penjualan Minggu Ini</h6>
-                        <h2 class="font-size-35 font-weight-bold text-center">Rp 3.500.000</h2>
+                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{$PenjualanMingguan->TOTAL}}</h2>
                         <p>Angka diatas menunjukkan total penjualan barang pada minggu ini</p>
                     </div>
                 </div>
@@ -132,10 +132,12 @@
                                 <th scope="col">Customer</th>
                             </thead>
                             <tbody>
+                                @foreach($Order as $o)
                                 <tr>
-                                    <td>Tgl</td>
-                                    <td>Nama</td>
+                                    <td>{{$o->TANGGAL}}</td>
+                                    <td>{{$o->depo_air_minum->NAMA_CUSTOMER}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -181,10 +183,12 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
+                                @foreach($supplier as $s)
                                 <tr>
-                                    <td>Nama</td>
-                                    <td>Alamat</td>
+                                    <td>{{$s->NAMA_SUPPLIER}}</td>
+                                    <td>{{$s->ALAMAT_SUPPLIER}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -204,10 +208,12 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
+                                @foreach($customer as $c)
                                 <tr>
-                                    <td>Nama</td>
-                                    <td>Alamat</td>
+                                    <td>{{$c->NAMA_CUSTOMER}}</td>
+                                    <td>{{$c->ALAMAT_DEPO}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
