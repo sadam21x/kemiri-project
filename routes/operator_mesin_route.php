@@ -1,7 +1,7 @@
 <?php
 
 // Route dashboard
-Route::view('/operator-mesin', 'operator-mesin/dashboard');
+Route::get('/operator-mesin', 'OperatorMesin\DashboardController@index');
 
 // Route baru, bisa dimodif
 Route::get('/operator-mesin/edit-profil', function() {

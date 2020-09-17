@@ -36,11 +36,15 @@ class OrderBarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'KODE_DEPO' => 'required',
-            'ID_MANAJER_MARKETING' => 'required',
-            'METODE_KIRIM' => 'required',
-            'ONGKOS_KIRIM' => 'required',
-            'TOTAL_PENJUALAN' => 'required'
+            'KODE_DEPO' => 'required|exists:App\Models\DepoAirMinum,KODE_DEPO|integer',
+            'ID_MANAJER_MARKETING' => 'required|exists:App\Models\ManajerMarketing,ID_MANAJER_MARKETING|integer',
+            'METODE_KIRIM' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'ONGKOS_KIRIM' => 'nullable|integer',
+            'TOTAL_PENJUALAN' => 'required|integer',
+            'KODE_PRODUCT' => 'required|array|min:1',
+            'JUMLAH_SAK' => 'required|array|min:1',
+            'JUMLAH_PCS' => 'required|array|min:1',
+            'HARGA_BARANG' => 'required|array|min:1',
         ]);
 
         DB::transaction(function() use ($request){
@@ -98,7 +102,7 @@ class OrderBarangController extends Controller
     public function changeStatus(Request $request)
     {
     	$request->validate([
-    		'ID_KONFIRMASI_PENJUALAN' => 'required'
+    		'ID_KONFIRMASI_PENJUALAN' => 'required|exist:App\Models\KonfirmasiPenjualan,ID_KONFIRMASI_PENJUALAN|integer'
     	]);
 
     	$konfirmasi = KonfirmasiPenjualan::find($request->ID_KONFIRMASI_PENJUALAN);

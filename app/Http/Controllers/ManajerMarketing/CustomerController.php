@@ -31,11 +31,13 @@ class CustomerController extends Controller
     public function create(Request $r)
     {
         $r->validate([
-            'kota' => 'required',
-            'id_manajer_marketing' => 'required',
-            'nama_customer' => 'required',
-            'nama_depo' => 'required',
-            'alamat_depo' => 'required'
+            'kota' => 'required|exists:App\Models\IndonesiaCity,id|integer',
+            'id_manajer_marketing' => 'required|exist:App\Models\ManajerMarketing,id_manajer_marketing|integer',
+            'nama_customer' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'nama_depo' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'alamat_depo' => 'required|string|max:100',
+            'no_telp_depo' => 'nullable|string|max:50|regex:/^[0-9 ]+$/',
+            'email_depo' => 'nullable|string|email'
         ]);
 
         $depo_air_minum = new DepoAirMinum;
@@ -94,10 +96,13 @@ class CustomerController extends Controller
     public function update(Request $r)
     {
         $r->validate([
-            'kota' => 'required',
-            'nama_customer' => 'required',
-            'nama_depo' => 'required',
-            'alamat_depo' => 'required'
+            'kota' => 'required|exists:App\Models\IndonesiaCity,id|integer',
+            'id_manajer_marketing' => 'required|exist:App\Models\ManajerMarketing,id_manajer_marketing|integer',
+            'nama_customer' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'nama_depo' => 'required|string|max:50',
+            'alamat_depo' => 'required|string|max:100',
+            'no_telp_depo' => 'nullable|string|max:50|regex:/^[0-9 ]+$/',
+            'email_depo' => 'nullable|string|email'
         ]);
 
         $depo_air_minum = DepoAirMinum::find($r->kode_depo);

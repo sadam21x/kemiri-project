@@ -16,11 +16,11 @@ class OrderBarangController extends Controller
 
     public function store(Request $request){
     	$request->validate([
-    		'ID_ADMIN_GUDANG' => 'required',
-			'TGL_KIRIM' => 'required',
-			'KODE_PEMBAYARAN_PENJUALAN' => 'required',
-            'TIPE_KENDARAAN' => 'required',
-            'NOPOL' => 'required'
+    		'ID_ADMIN_GUDANG' => 'required|exist:App\Models\AdminGudang,ID_ADMIN_GUDANG|integer',
+			'TGL_KIRIM' => 'required|date_format:Y-m-d',
+			'KODE_PEMBAYARAN_PENJUALAN' => 'required|exist:App\Models\PembayaranPenjualan,KODE_PEMBAYARAN_PENJUALAN|integer',
+            'TIPE_KENDARAAN' => 'required|string|max:75',
+            'NOPOL' => 'required|string|max:13'
     	]);
     	Pengiriman::insert([
     		'KODE_PEMBAYARAN_PENJUALAN' => $request->KODE_PEMBAYARAN_PENJUALAN,

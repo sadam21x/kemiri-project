@@ -29,14 +29,14 @@
                                     <h5>Sudah Selesai</h5>
                                     <div>Jumlah transaksi yang telah selesai dilakukan pencatatan hasil produksi</div>
                                 </div>
-                                <h1 class="text-primary mb-0">1</h1>
+                                <h1 class="text-primary mb-0">{{$Selesai}}</h1>
                             </div>
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <div>
                                     <h5>Belum Selesai</h5>
                                     <div>Jumlah transaksi yang belum dilakukan pencatatan hasil produksi</div>
                                 </div>
-                                <h1 class="text-dark mb-0">9</h1>
+                                <h1 class="text-dark mb-0">{{$BelumSelesai}}</h1>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">265</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$StockPlastikBekas->STOK_BAHAN_BAKU}}</div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">80</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$StockPlastikVirgin->STOK_BAHAN_BAKU}}</div>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">30</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$StockPewarna->STOK_BAHAN_BAKU}}</div>
                             </div>
                         </div>
                     </div>
@@ -113,11 +113,13 @@
                                 <th scope="col">OPERATOR MESIN</th>
                             </thead>
                             <tbody>
+                                @foreach($data as $d)
                                 <tr>
-                                    <td>ID</td>
-                                    <td>WAKTU</td>
-                                    <td>NAMA</td>
+                                    <td>{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}</td>
+                                    <td>{{$d->pengambilan_bahan_baku->WAKTU_PENGAMBILAN}}</td>
+                                    <td>{{$d->pengambilan_bahan_baku->operator_mesin->NAMA_OPERATOR_MESIN}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
