@@ -21,3 +21,11 @@ Route::any('/aktor', function () {
 
 Route::get('/nota-penjualan', 'SuratController@nota_penjualan');
 Route::get('/surat-jalan/{id}', 'SuratController@surat_jalan');
+
+// (Global) - handle ajax request data kota sesuai provinsi yang dipilih
+Route::post('/req-data-kota', function() {
+    $id_provinsi = $_POST['id'];
+    $kota = \Laravolt\Indonesia\Models\City::where('province_id', $id_provinsi)->pluck('name', 'id');
+
+    return response()->json($kota);
+});

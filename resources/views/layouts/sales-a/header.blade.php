@@ -50,12 +50,11 @@
                                 <div class="mb-3 small text-center text-muted">SALES A</div>
                             </div>
                             <div class="list-group">
-                                <a href="" class="list-group-item">
+                                <a href="" class="list-group-item" data-toggle="modal" data-target="#modal-profile">
                                     <i class="fas fa-user mr-1"></i>
                                     Profil Saya
                                 </a>
-                                <a href="" class="list-group-item text-danger"
-                                   data-sidebar-target="#settings">
+                                <a href="" class="list-group-item text-danger">
                                    <i class="fas fa-sign-out-alt mr-1"></i>
                                    Logout
                                 </a>

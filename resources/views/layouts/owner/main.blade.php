@@ -30,6 +30,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/app.min.css') }}" type="text/css"> --}}
     <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/gogi-app.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('/assets/css/custom-global.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/user-profile.css') }}" type="text/css">
 
     {{-- Extra CSS --}}
     @yield('extra-css')
@@ -62,6 +63,9 @@
 
                 {{-- Content --}}
                 @yield('content')
+
+                {{-- User Profile --}}
+                @include('owner/profil');
 
                 {{-- Footer --}}
                 @include('layouts/footer')

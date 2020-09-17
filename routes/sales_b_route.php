@@ -1,11 +1,15 @@
 <?php
 
-/*
-    == Note ==
-    Semua proses di route ini bisa dialihkan ke controller. 
-*/
 // Route dashboard
 Route::view('/sales-b', 'sales-b/dashboard');
+
+// Route baru, bisa dimodif
+Route::get('/sales-b/edit-profil', function() {
+    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+
+    return view('sales-b/edit-profil', compact('provinsi'));
+});
+// End Route baru, bisa dimodif
 
 //route customer
 Route::get('/sales-b/customer', 'SalesB\CustomerController@index');

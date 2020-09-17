@@ -19,7 +19,6 @@
     <link rel="manifest" href="{{ asset('/assets/favicon/site.webmanifest') }}">
 
     {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     {{-- Fontawesome --}}
@@ -31,6 +30,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/app.min.css') }}" type="text/css"> --}}
     <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/gogi-app.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('/assets/css/custom-global.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/user-profile.css') }}" type="text/css">
 
     {{-- Extra CSS --}}
     @yield('extra-css')
@@ -63,6 +63,9 @@
 
                 {{-- Content --}}
                 @yield('content')
+
+                {{-- User Profile --}}
+                @include('operator-mesin/profil');
 
                 {{-- Footer --}}
                 @include('layouts/footer')
