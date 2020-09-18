@@ -1,7 +1,7 @@
 <?php
 
 // Route dashboard
-Route::view('/sales-b', 'sales-b/dashboard');
+Route::get('/sales-b', 'DashboardController@salesB');
 
 // Route baru, bisa dimodif
 Route::get('/sales-b/edit-profil', function() {

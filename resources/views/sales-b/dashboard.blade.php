@@ -27,7 +27,7 @@
                                     <h5>Order Selesai</h5>
                                     <div>Jumlah transaksi order barang yang selesai</div>
                                 </div>
-                                <h3 class="text-primary mb-0">2</h3>
+                                <h3 class="text-primary mb-0">{{$data_order[0]}}</h3>
                             </div>
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <div>
@@ -35,7 +35,7 @@
                                     <div>Jumlah transaksi order barang yang masih di proses</div>
                                 </div>
                                 <div>
-                                    <h3 class="text-dark mb-0">2</h3>
+                                    <h3 class="text-dark mb-0">{{$data_order[1]}}</h3>
                                 </div>
                             </div>
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
@@ -44,7 +44,7 @@
                                     <div>Jumlah transaksi order yang telah masuk</div>
                                 </div>
                                 <div>
-                                    <h3 class="text-danger mb-0">4</h3>
+                                    <h3 class="text-danger mb-0">{{$data_order[2]}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                     <h5>Order</h5>
                                     <div>Jumlah depo yang jadi order hasil follow up</div>
                                 </div>
-                                <h3 class="text-primary mb-0">4</h3>
+                                <h3 class="text-primary mb-0">{{$data_konfirmasi[0]}}</h3>
                             </div>
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
                                 <div>
@@ -74,7 +74,7 @@
                                     <div>Jumlah depo yang tidak jadi order hasil follow up</div>
                                 </div>
                                 <div>
-                                    <h3 class="text-dark mb-0">1</h3>
+                                    <h3 class="text-dark mb-0">{{$data_konfirmasi[1]}}</h3>
                                 </div>
                             </div>
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
@@ -83,7 +83,7 @@
                                     <div>Jumlah depo yang belum di follow up status ordernya</div>
                                 </div>
                                 <div>
-                                    <h3 class="text-danger mb-0">1</h3>
+                                    <h3 class="text-danger mb-0">{{$data_konfirmasi[2]}}</h3>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h6 class="card-title mb-4 text-center">Total Penjualan Bulan ini</h6>
-                        <h2 class="font-size-35 font-weight-bold text-center">Rp 10.000.000</h2>
+                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{ number_format($data_order[3],'0',',','.') }}</h2>
                         <p>Angka diatas menunjukkan total penjualan barang pada bulan ini</p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h6 class="card-title mb-4 text-center">Total Penjualan Minggu Ini</h6>
-                        <h2 class="font-size-35 font-weight-bold text-center">Rp 3.500.000</h2>
+                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{ number_format($data_order[4],'0',',','.') }}</h2>
                         <p>Angka diatas menunjukkan total penjualan barang pada minggu ini</p>
                     </div>
                 </div>
@@ -133,11 +133,13 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
+                                @foreach($data_konfirmasi[3] as $d)
                                 <tr>
-                                    <td>Kode Depo</td>
-                                    <td>Nama Depo</td>
-                                    <td>Alamat Depo, Kota</td>
+                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td>{{$d->NAMA_DEPO}}</td>
+                                    <td>{{$d->ALAMAT_DEPO}}, {{$d->name}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -158,11 +160,13 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
+                                @foreach($data_konfirmasi[4] as $d)
                                 <tr>
-                                    <td>Kode Depo</td>
-                                    <td>Nama Depo</td>
-                                    <td>Alamat Depo, Kota</td>
+                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td>{{$d->NAMA_DEPO}}</td>
+                                    <td>{{$d->ALAMAT_DEPO}}, {{$d->name}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -188,11 +192,13 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
+                                @foreach($data_customer as $d)
                                 <tr>
-                                    <td>Kode Depo</td>
-                                    <td>Nama Depo</td>
-                                    <td>Alamat Depo, Kota</td>
+                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td>{{$d->NAMA_DEPO}}</td>
+                                    <td>{{$d->ALAMAT_DEPO}}, {{$d->indonesia_city->name}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
