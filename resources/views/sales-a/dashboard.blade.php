@@ -31,11 +31,13 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
+                                @foreach($data as $d)
                                 <tr>
-                                    <td>Kode Depo</td>
-                                    <td>Nama Depo</td>
-                                    <td>Alamat Depo, Kota</td>
+                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td>{{$d->NAMA_DEPO}}</td>
+                                    <td>{{$d->ALAMAT_DEPO}}, {{$d->indonesia_city->name}}</td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
