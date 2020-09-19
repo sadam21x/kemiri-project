@@ -45,15 +45,15 @@
                                     </td>
                                     <td>
                                         @if($tglkirim <= $hari_ini)
-                                        <a href="" class="badge badge-success">
-                                            TERKIRIM
-                                            <i class="fas fa-check ml-1"></i>
-                                            </a>
-                                        @else
-                                        <a href="" class="badge badge-secondary">
-                                            PENDING
+                                        <div class="badge badge-secondary">
+                                            MENUNGGU PENGIRIMAN
                                             <i class="fas fa-exclamation-circle ml-1"></i>
-                                        </a>
+                                        </div>
+                                        @elseif($tglkirim > $hari_ini)
+                                        <div class="badge badge-success">
+                                            TELAH DIKIRIM
+                                            <i class="fas fa-check ml-1"></i>
+                                        </div>
                                         @endif
                                     </td>
                                     <td>
