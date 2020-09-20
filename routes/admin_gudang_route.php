@@ -1,7 +1,7 @@
 <?php
 
 // Route dashboard
-Route::get('/admin-gudang', 'DashboardController@AdminGudang');
+Route::get('/admin-gudang', 'AdminGudang\DashboardController@index');
 
 // Route baru, bisa dimodif
 Route::get('/admin-gudang/edit-profil', function() {

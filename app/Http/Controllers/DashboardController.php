@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\DepoAirMinum;
 use App\Models\Penjualan;
 use App\Models\KonfirmasiPenjualan;
-use App\Models\BahanBaku;
-use App\Models\ProsesProduksi;
-use App\Models\PembayaranPenjualan;
-use App\Models\PenerimaanBahanBaku;
-use App\Models\Supplier;
 use Illuminate\Support\Carbon;
 use DB;
 
@@ -70,81 +65,5 @@ class DashboardController extends Controller
     	$data_konfirmasi[4] = KonfirmasiPenjualan::join('depo_air_minum as d','d.KODE_DEPO','=','konfirmasi_penjualan.KODE_DEPO')->join('indonesia_cities as c','c.id','=','d.KODE_KOTA')->where('STATUS_KONFIRMASI_PENJUALAN','=','1')->whereNotNull('CATATAN')->get();
     	
     	return view('sales-b/dashboard')->with(compact("data_customer","data_konfirmasi","data_order"));
-	}
-	
-	public function OperatorMesin(){
-        $StockPlastikBekas = BahanBaku::select('STOK_BAHAN_BAKU')
-                            ->where('NAMA_BAHAN_BAKU', '=', 'Plastik Bekas')
-                            ->first();
-        $StockPlastikVirgin = BahanBaku::select('STOK_BAHAN_BAKU')
-                            ->where('NAMA_BAHAN_BAKU', '=', 'Plastik Virgin')
-                            ->first();
-        $StockPewarna = BahanBaku::select('STOK_BAHAN_BAKU')
-                            ->where('NAMA_BAHAN_BAKU', '=', 'Pewarna')
-                            ->first();
-        $BelumSelesai = ProsesProduksi::select('*')
-                        ->where(DB::Raw('IFNULL( EVALUASI_PRODUCT, null )', 'IFNULL( EVALUASI_MESIN, null )', 'IFNULL( EVALUASI_BAHAN_BAKU, null )'))
-                        ->count();
-        $Check = ProsesProduksi::select('*')->count();
-        $Selesai = $Check - $BelumSelesai;
-
-        $data = ProsesProduksi::select('*')
-                        ->where(DB::Raw('IFNULL( EVALUASI_PRODUCT, null )', 'IFNULL( EVALUASI_MESIN, null )', 'IFNULL( EVALUASI_BAHAN_BAKU, null )'))
-                        ->get();
-
-        return view('operator-mesin.dashboard')->with(compact('data', 'StockPlastikBekas', 'StockPlastikVirgin', 'StockPewarna', 'Selesai', 'BelumSelesai'));
-	}
-	
-	public function AdminGudang(){
-        $StockPlastikBekas = BahanBaku::select('STOK_BAHAN_BAKU')
-                            ->where('NAMA_BAHAN_BAKU', '=', 'Plastik Bekas')
-                            ->first();
-        $StockPlastikVirgin = BahanBaku::select('STOK_BAHAN_BAKU')
-                            ->where('NAMA_BAHAN_BAKU', '=', 'Plastik Virgin')
-                            ->first();
-        $StockPewarna = BahanBaku::select('STOK_BAHAN_BAKU')
-                            ->where('NAMA_BAHAN_BAKU', '=', 'Pewarna')
-                            ->first();
-
-    	$date_month = Carbon::now()->startOfMonth();
-
-	    $date_month_end = Carbon::now()->endOfMonth();
-
-    	$date_week = Carbon::now()->startOfWeek();
-
-		$date_week_end = Carbon::now()->endOfWeek();
-
-		$data_penjualan = [];
-		
-        $data_penjualan[1] = PembayaranPenjualan::select('p.TOTAL_PENJUALAN')
-                            ->join('penjualan as p', 'p.ID_PENJUALAN', '=', 'pembayaran_penjualan.ID_PENJUALAN')
-                            ->where('pembayaran_penjualan.STATUS_PEMBAYARAN', '=', 1)
-                            ->whereBetween(DB::raw('DATE(pembayaran_penjualan.TGL_PEMBAYARAN)'), [$date_month, $date_month_end])
-							->sum('p.TOTAL_PENJUALAN');
-        $data_penjualan[2] = PembayaranPenjualan::select('p.TOTAL_PENJUALAN')
-                            ->join('penjualan as p', 'p.ID_PENJUALAN', '=', 'pembayaran_penjualan.ID_PENJUALAN')
-                            ->where('pembayaran_penjualan.STATUS_PEMBAYARAN', '=', 1)
-                            ->whereBetween(DB::raw('DATE(pembayaran_penjualan.TGL_PEMBAYARAN)'), [$date_week, $date_week_end])
-							->sum('p.TOTAL_PENJUALAN');
-						
-		$supplier = [];
-		$supplier[1] = PenerimaanBahanBaku::whereBetween(DB::raw('DATE(TGL_KEDATANGAN)'), [$date_week, $date_week_end])
-							->get();
-        
-        $Order = Penjualan::select(DB::raw('DATE_FORMAT(TGL_PENJUALAN, "%d/%m/%Y") AS TANGGAL'), 'KODE_DEPO')
-                ->where('STATUS_PENJUALAN', '=', 0)
-				->get();
-
-		$pengiriman = Penjualan::select('penjualan.*','p.*','pp.*')
-					->join('pembayaran_penjualan as pp','penjualan.ID_PENJUALAN','=','pp.ID_PENJUALAN')
-					->leftJoin('pengiriman as p','p.KODE_PEMBAYARAN_PENJUALAN','=','pp.KODE_PEMBAYARAN_PENJUALAN')
-					->where('pp.STATUS_PEMBAYARAN', '=', 1)
-					->whereNull('p.KODE_PENGIRIMAN')
-					->get();
-
-        $supplier[2] = Supplier::select('NAMA_SUPPLIER', 'ALAMAT_SUPPLIER')->get();
-        $customer = DepoAirMinum::select('NAMA_CUSTOMER', 'ALAMAT_DEPO')->get();
-        
-        return view('admin-gudang.dashboard')->with(compact('StockPlastikBekas', 'StockPlastikVirgin', 'StockPewarna', 'data_penjualan', 'Order', 'supplier', 'customer', 'pengiriman'));
     }
 }

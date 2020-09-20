@@ -76,7 +76,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h6 class="card-title mb-4 text-center">Total Penjualan Bulan ini</h6>
-                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{$data_penjualan[1]}}</h2>
+                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{$PenjualanBulanan->TOTAL}}</h2>
                         <p>Angka diatas menunjukkan total penjualan barang pada bulan ini</p>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h6 class="card-title mb-4 text-center">Total Penjualan Minggu Ini</h6>
-                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{$data_penjualan[2]}}</h2>
+                        <h2 class="font-size-35 font-weight-bold text-center">Rp {{$PenjualanMingguan->TOTAL}}</h2>
                         <p>Angka diatas menunjukkan total penjualan barang pada minggu ini</p>
                     </div>
                 </div>
@@ -109,12 +109,10 @@
                                 <th scope="col">Supplier</th>
                             </thead>
                             <tbody>
-                                @foreach($supplier[1] as $s)
                                 <tr>
-                                    <td>{{$s->TGL_KEDATANGAN}}</td>
-                                    <td>{{$s->supplier->NAMA_SUPPLIER}}</td>
+                                    <td>Tgl</td>
+                                    <td>Nama</td>
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -159,12 +157,10 @@
                                 <th scope="col">Customer</th>
                             </thead>
                             <tbody>
-                                @foreach($pengiriman as $p)
                                 <tr>
-                                    <td>{{$p->TGL_KIRIM_RIIL}}</td>
-                                    <td>{{$p->depo_air_minum->NAMA_CUSTOMER}}</td>
+                                    <td>Tgl</td>
+                                    <td>Nama</td>
                                 </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -187,7 +183,7 @@
                                 <th scope="col">Alamat</th>
                             </thead>
                             <tbody>
-                                @foreach($supplier[2] as $s)
+                                @foreach($supplier as $s)
                                 <tr>
                                     <td>{{$s->NAMA_SUPPLIER}}</td>
                                     <td>{{$s->ALAMAT_SUPPLIER}}</td>
