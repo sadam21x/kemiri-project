@@ -82,7 +82,7 @@
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
                     <input type="hidden" name="id_operator_mesin" id="" value="1">
-
+                    
                     <div class="form-group">
                         <button type="button" class="btn btn-sm rounded btn-twitter tambah-bahan-baku-btn">
                             <i class="fas fa-plus mr-2"></i>
@@ -111,10 +111,10 @@
                     </div>
 
                     <hr>
-
+                    
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="bahan_baku">
+                        <select class="form-control select-component kode-bahan-baku" id="bahan-baku0" name="bahan_baku">
                             <option>Pilih bahan baku . . </option>
                             @foreach($bahan_baku as $b)
                             <option value="{{$b->KODE_BAHAN_BAKU}}">{{$b->NAMA_BAHAN_BAKU}}</option>
@@ -124,17 +124,14 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="supplier">
+                        <select class="form-control select-component id-supplier" id="nama-supplier0" name="supplier">
                             <option>Pilih supplier . . </option>
-                            @foreach($supplier as $s)
-                            <option value="{{$s->ID_SUPPLIER}}">{{$s->NAMA_SUPPLIER}}</option>
-                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Kg)</label>
-                        <input type="number" name="jumlah_bahan_baku[]" id="total_berat" class="form-control">
+                        <input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control">
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku dengan benar.
                         </div>
@@ -142,12 +139,11 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Karung)</label>
-                        <input type="number" name="jumlah_karung_sak[]" id="jumlah_karung_sak" class="form-control">
+                        <input type="number" name="jumlah_karung_sak[]" id="total_sak0" class="form-control">
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku dengan benar.
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-google" data-dismiss="modal">BATAL</button>
                         <button type="submit" class="btn btn-sm btn-linkedin">SIMPAN</button>
@@ -228,5 +224,6 @@
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/assets/jquery/jquery.repeater.min.js') }}"></script>
     <script src="{{ asset('/assets/js/operator-mesin-pengambilan-bahan-baku.js') }}"></script>
 @endsection

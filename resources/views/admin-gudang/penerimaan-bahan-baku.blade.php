@@ -146,7 +146,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/insert')}}" method="POST">
+                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/insert')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id admin gudang yang melakukan input data penerimaan --}}
@@ -154,37 +154,52 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
-                        <input type="date" name="tgl_kedatangan" id="" class="form-control" required>
+                        <input type="date" name="tgl_kedatangan" id="" class="form-control @error('tgl_kedatangan') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi tanggal kedatangan.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Supplier</label>
-                        <select class="form-control select-component" id="" name="id_supplier" required>
+                        <select class="form-control select-component @error('id_supplier') is-invalid @enderror" id="" name="id_supplier" required>
                             <option>Pilih supplier . . </option>
                             @foreach ($supplier as $s)
                                 <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih supplier dengan benar.
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="" class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="kode_bahan_baku" required>
+                        <select class="form-control select-component @error('kode_bahan_baku') is-invalid @enderror" id="" name="kode_bahan_baku" required>
                             <option>Pilih bahan baku . . </option>
                             @foreach ($bahanBaku as $b)
                                 <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih bahan baku dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Karung</label>
-                        <input type="number" name="jumlah_karung_sak" id="in_karung" class="form-control input-jumlah-karung" required>
+                        <input type="number" name="jumlah_karung_sak" id="in_karung" class="form-control input-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah karung dengan benar.
+                        </div> 
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Berat per Karung (Kg)</label>
-                        <input type="number" name="isi_karung" id="in_tiap_karung" class="form-control input-berat-karung" required>
+                        <input type="number" name="isi_karung" id="in_tiap_karung" class="form-control input-berat-karung @error('isi_karung') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi berat karung dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -215,7 +230,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/edit')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id penerimaan bahan baku untuk update penerimaan --}}
@@ -223,7 +238,10 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Tanggal</label>
-                        <input type="date" name="tgl_kedatangan" id="" class="form-control">
+                        <input type="date" name="tgl_kedatangan" id="" class="form-control @error('tgl_kedatangan') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi tanggal kedatangan.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -248,12 +266,18 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Jumlah Karung</label>
-                        <input type="number" name="jumlah_karung_sak" id="karung" class="form-control edit-jumlah-karung">
+                        <input type="number" name="jumlah_karung_sak" id="karung" class="form-control edit-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah karung dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Berat per Karung (Kg)</label>
-                        <input type="number" name="isi_karung" id="isi" class="form-control edit-berat-karung">
+                        <input type="number" name="isi_karung" id="isi" class="form-control edit-berat-karung @error('isi_karung') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi berat karung dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">

@@ -14,6 +14,8 @@ use App\Models\PenerimaanBahanBaku;
 use App\Models\ProsesProduksi;
 use App\Models\HasilProduct;
 
+use DB;
+
 class PengambilanBahanBakuController extends Controller
 {
     /**
@@ -25,11 +27,11 @@ class PengambilanBahanBakuController extends Controller
     {
         $mesin = Mesin::All();
         $bahan_baku = BahanBaku::all();
-        $supplier = Supplier::all();
+        
         $product = Product::select('kode_product', 'nama_product')->get();
         $data = PengambilanBahanBaku::all();
         
-        return view('/operator-mesin/pengambilan-bahan-baku')->with(compact('data', 'product', 'mesin', 'bahan_baku', 'supplier'));
+        return view('/operator-mesin/pengambilan-bahan-baku')->with(compact('data', 'product', 'mesin', 'bahan_baku'));
     }
 
     /**
@@ -112,11 +114,27 @@ class PengambilanBahanBakuController extends Controller
     /**
      * Get Supplier
      */
-    public function getSupplier()
+    public function getSupplier(Request $r)
     {
-        $supplier = Supplier::select('ID_SUPPLIER', 'NAMA_SUPPLIER')->get();
-        
+        $supplier = PenerimaanBahanBaku::select('penerimaan_bahan_baku.*', 's.NAMA_SUPPLIER')
+                    ->leftJoin('supplier as s', 's.ID_SUPPLIER', '=', 'penerimaan_bahan_baku.ID_SUPPLIER')
+                    ->where('penerimaan_bahan_baku.STOK_PENERIMAAN', '>', 0)
+                    ->where('penerimaan_bahan_baku.KODE_BAHAN_BAKU', '=', $r->KODE_BAHAN_BAKU)
+                    ->get();
+
         return response()->json(['success' => true,'data' => $supplier]);
+    }
+
+    /**
+     * Get Stock
+     */
+    public function getStock(Request $r)
+    {
+        $stock = PenerimaanBahanBaku::select('JUMLAH_KARUNG_SAK', 'STOK_PENERIMAAN')
+                    ->where('ID_SUPPLIER', '=', $r->ID_SUPPLIER)
+                    ->get();
+
+        return response()->json(['success' => true,'data' => $stock]);
     }
 
 }
