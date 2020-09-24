@@ -190,7 +190,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/pengiriman-barang/store')}}" method="POST">
+                <form action="{{url('/admin-gudang/pengiriman-barang/store')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id admin gudang yang bertugas --}}
@@ -201,18 +201,26 @@
 
                     <div class="form-group">
                         <label>Tanggal Pengiriman</label>
-                        <input type="date" name="TGL_KIRIM" class="form-control" required>
+                        <input type="date" name="TGL_KIRIM" class="form-control @error('TGL_KIRIM') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi tanggal kirim.
                     </div>
 
                     <div class="form-group">
                         <label>Kendaraan Pengirim</label>
-                        <input type="text" class="form-control" name="TIPE_KENDARAAN" required>
+                        <input type="text" class="form-control @error('TIPE_KENDARAAN') is-invalid @enderror" name="TIPE_KENDARAAN" required>
+                        <div class="invalid-feedback">
+                            Mohon isi tipe kendaraan dengan benar.
+                        <div>
                     </div>
 
                     <div class="form-group">
                         <label>Nomor Polisi</label>
-                        <input type="text" class="form-control" name="NOPOL" required>
+                        <input type="text" class="form-control @error('NOPOL') is-invalid @enderror" name="NOPOL" required>
                         <small class="form-text text-muted">contoh: W 2275 DV</small>
+                        <div class="invalid-feedback">
+                            Mohon isi nomor polisi dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">

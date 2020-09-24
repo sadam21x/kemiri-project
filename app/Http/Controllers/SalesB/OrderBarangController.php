@@ -9,6 +9,7 @@ use App\Models\DetilPenjualan;
 use App\Models\DepoAirMinum;
 use App\Models\JenisProduct;
 use App\Models\Product;
+use App\Models\PembayaranPenjualan;
 use DB;
 
 class OrderBarangController extends Controller

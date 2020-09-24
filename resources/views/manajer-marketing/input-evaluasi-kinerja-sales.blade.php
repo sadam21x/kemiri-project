@@ -16,9 +16,9 @@
         <div class="col-md-12">
             <div class="container">
                 @if($jabatan == "Sales A")
-                <form action="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/store') }}" method="post">
+                <form action="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/store') }}" method="post" class="needs-validation" novalidate>
                 @else
-                <form action="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/store') }}" method="post">
+                <form action="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/store') }}" method="post" class="needs-validation" novalidate>
                 @endif
                     @csrf
                     <input type="hidden" name="ID_MANAJER_MARKETING" value="1">
@@ -44,7 +44,10 @@
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label class="col-form-label">Evaluasi</label>
-                            <textarea name="EVALUASI_SALESA" rows="12" id="" class="tinymce-textarea"></textarea>
+                            <textarea name="EVALUASI_SALESA" rows="12" id="" class="tinymce-textarea @error('EVALUASI_SALESA') is-invalid @enderror"></textarea>
+                            <div class="invalid-feedback">
+                                Mohon isi evaluasi dengan benar.
+                            </div>
                         </div>
                     </div>
                     <div class="form-row mt-2">
@@ -79,7 +82,10 @@
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label class="col-form-label">Evaluasi</label>
-                            <textarea name="EVALUASI_SALESB" rows="12" id="" class="tinymce-textarea"></textarea>
+                            <textarea name="EVALUASI_SALESB" rows="12" id="" class="tinymce-textarea @error('EVALUASI_SALESB') is-invalid @enderror"></textarea>
+                            <div class="invalid-feedback">
+                                Mohon isi evaluasi dengan benar
+                            </div>
                         </div>
                     </div>
                     <div class="form-row mt-2">

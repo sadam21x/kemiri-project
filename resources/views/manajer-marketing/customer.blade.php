@@ -141,7 +141,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/manajer-marketing/customer/insert')}}" method="POST">
+                <form action="{{url('/manajer-marketing/customer/insert')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
@@ -151,14 +151,20 @@
                         <label for="" class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="nama_depo" id="" class="form-control" required>
+                        <input type="text" name="nama_depo" id="" class="form-control@error('nama_depo') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi nama depo dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_depo" id="" class="form-control"required>
+                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror"required>
+                        <div class="invalid-feedback">
+                            Mohon isi alamat dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -186,7 +192,9 @@
                         <label for="" class="col-form-label">
                             Contact Person
                         </label>
-                        <input type="text" name="nama_customer" id="" class="form-control" required>
+                        <input type="text" name="nama_customer" id="" class="form-control @error('nama_customer') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi nama customer dengan benar.
                     </div>
 
                     <div class="form-group">
@@ -224,7 +232,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/manajer-marketing/customer/edit')}}" method="POST">
+                <form action="{{url('/manajer-marketing/customer/edit')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id customer untuk update data --}}
@@ -234,14 +242,19 @@
                         <label class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="nama_depo" id="" class="form-control" value="{{$d->NAMA_DEPO}}">
+                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}">
+                        <div class="invalid-feedback">
+                            Mohon isi nama depo dengan benar.
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_depo" id="" class="form-control" value="{{$d->ALAMAT_DEPO}}">
+                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror" value="{{$d->ALAMAT_DEPO}}">
+                        <div class="invalid-feedback">
+                            Mohon isi alamat dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -270,7 +283,10 @@
                         <label class="col-form-label">
                             Contact Person
                         </label>
-                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control">
+                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control @error('nama_customer') is-invalid @enderror">
+                        <div class="invalid-feedback">
+                            Mohon isi nama customer dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
