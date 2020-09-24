@@ -19,11 +19,6 @@ class CreateUserTable extends Migration
             $table->integer('KODE_JABATAN')->index('FK_TERDAPAT545');
             $table->string('USERNAME_USER', 100);
             $table->string('PASSWORD_USER');
-            $table->string('NAMA_USER', 100);
-            $table->string('ALAMAT_USER', 100);
-            $table->tinyInteger('JENIS_KELAMIN_USER');
-            $table->string('NO_TELP_USER', 50)->nullable();
-            $table->string('EMAIL_USER', 75)->nullable();
             $table->string('FOTO_PROFILE')->nullable();
             $table->timestamps();
         });
