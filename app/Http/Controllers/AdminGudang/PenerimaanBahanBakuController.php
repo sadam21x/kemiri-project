@@ -34,9 +34,9 @@ class PenerimaanBahanBakuController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'id_supplier' => 'required|exist:App\Models\Supplier,id_supplier|integer',
-            'kode_bahan_baku' => 'required|exist:App\Models\BahanBaku,kode_bahan_baku|integer',
-            'id_admin_gudang' => 'required|exist:App\Models\AdminGudang,id_admin_gudang|integer',
+            'id_supplier' => 'required|exist:App\Models\Supplier,ID_SUPPLIER|integer',
+            'kode_bahan_baku' => 'required|exist:App\Models\BahanBaku,KODE_BAHAN_BAKU|integer',
+            'id_admin_gudang' => 'required|exist:App\Models\AdminGudang,ID_ADMIN_GUDANG|integer',
             'tgl_kedatangan' => 'required|date',
             'total_berat' => 'required|numeric|min:0',
             'jumlah_karung_sak' => 'required|numeric|min:0',
