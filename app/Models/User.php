@@ -33,20 +33,13 @@ class User extends Model
 	protected $primaryKey = 'ID_USER';
 
 	protected $casts = [
-		'KODE_JABATAN' => 'int',
-		'JENIS_KELAMIN_USER' => 'int'
+		'KODE_JABATAN' => 'int'
 	];
 
 	protected $fillable = [
-		'KODE_KOTA',
 		'KODE_JABATAN',
 		'USERNAME_USER',
 		'PASSWORD_USER',
-		'NAMA_USER',
-		'ALAMAT_USER',
-		'JENIS_KELAMIN_USER',
-		'NO_TELP_USER',
-		'EMAIL_USER'
 	];
 
 	public function indonesia_city()
