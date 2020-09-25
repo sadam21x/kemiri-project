@@ -22,13 +22,18 @@ use Illuminate\Database\Eloquent\Model;
 class Log extends Model
 {
 	protected $table = 'log';
-	];
+	protected $primaryKey = 'ID_USER_LOG';
 
 	protected $fillable = [
-    'ID_USER_LOG',
-    'ID_JABATAN_LOG',
-    'ID_PEGAWAI'
+    	'ID_USER_LOG',
+    	'ID_JABATAN_LOG',
+    	'ID_PEGAWAI'
 	];
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'ID_USER_LOG');
+	}
 
 
 }
