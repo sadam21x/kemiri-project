@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogTable extends Migration
+class AddForeignKeysToLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('log', function (Blueprint $table) {
-            $table->integer('ID_USER_LOG',true)->index('FK_USER');
-            $table->integer('ID_JABATAN_LOG');
-            $table->integer('ID_PEGAWAI');
-            $table->timestamps();
+        Schema::table('log', function (Blueprint $table) {
+            $table->foreign('ID_USER_LOG', 'FK_USER')->references('ID_USER')->on('user')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log');
+        Schema::table('log', function (Blueprint $table) {
+            $table->dropForeign('FK_USER');
+        });
     }
 }

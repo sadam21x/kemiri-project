@@ -14,8 +14,6 @@ class AddForeignKeysToUserTable extends Migration
     public function up()
     {
         Schema::table('user', function (Blueprint $table) {
-            // $table->foreign('KODE_KOTA', 'FK_MEMILIKI0384')->references('KODE_KOTA')->on('kota')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('KODE_KOTA', 'FK_MEMILIKI0384')->references('ID')->on('indonesia_cities')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('KODE_JABATAN', 'FK_TERDAPAT545')->references('KODE_JABATAN')->on('jabatan')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }

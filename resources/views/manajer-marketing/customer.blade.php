@@ -151,7 +151,7 @@
                         <label for="" class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="nama_depo" id="" class="form-control@error('nama_depo') is-invalid @enderror" required>
+                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi nama depo dengan benar.
                         </div>
@@ -242,7 +242,7 @@
                         <label class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}">
+                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}" required>
                         <div class="invalid-feedback">
                             Mohon isi nama depo dengan benar.
                     </div>
@@ -251,7 +251,7 @@
                         <label class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror" value="{{$d->ALAMAT_DEPO}}">
+                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror" value="{{$d->ALAMAT_DEPO}}" required>
                         <div class="invalid-feedback">
                             Mohon isi alamat dengan benar.
                         </div>
@@ -283,7 +283,7 @@
                         <label class="col-form-label">
                             Contact Person
                         </label>
-                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control @error('nama_customer') is-invalid @enderror">
+                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control @error('nama_customer') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi nama customer dengan benar.
                         </div>

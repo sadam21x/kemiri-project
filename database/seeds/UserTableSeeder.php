@@ -31,26 +31,27 @@ class UserTableSeeder extends Seeder
             $genders = $faker->randomElement($array = array('0', '1'));
             
             // insert database user
-            DB::table('user')->insert([
-                'kode_kota' => $id_kota,
+            $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
                 'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
                 'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
-                'nama_user' => $nama,
-                'alamat_user' => $faker->streetAddress,
-                'jenis_kelamin_user' => $genders,
-                'no_telp_user' => $faker->phoneNumber,
-                'email_user' => $faker->email
             ]);
 
             // insert database operator mesin
-            DB::table('operator_mesin')->insert([
+            $id_pegawai = DB::table('operator_mesin')->insertGetId([
                 'kode_kota' => $id_kota,
                 'nama_operator_mesin' =>$nama,
                 'alamat_operator_mesin' => $faker->streetAddress,
                 'jenis_kelamin_operator_mesin' => $genders,
                 'no_telp_operator_mesin' => $faker->phoneNumber,
                 'email_operator_mesin' => $faker->email
+            ]);
+
+            // insert database log
+            DB::table('log')->insertGetId([
+                'ID_USER_LOG' => $id_user,
+                'ID_JABATAN_LOG' => $id_jabatan,
+                'ID_PEGAWAI' => $id_pegawai,
             ]);
         }
 
@@ -70,26 +71,27 @@ class UserTableSeeder extends Seeder
             $genders = $faker->randomElement($array = array('0', '1'));
             
             // insert database user
-            DB::table('user')->insert([
-                'kode_kota' => $id_kota,
+            $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
                 'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
                 'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
-                'nama_user' => $nama,
-                'alamat_user' => $faker->streetAddress,
-                'jenis_kelamin_user' => $genders,
-                'no_telp_user' => $faker->phoneNumber,
-                'email_user' => $faker->email
             ]);
 
             // insert database sales b
-            DB::table('sales_b')->insert([
+            $id_pegawai = DB::table('sales_b')->insertGetId([
                 'kode_kota' => $id_kota,
                 'nama_sales_b' => $nama,
                 'alamat_sales_b' => $faker->streetAddress,
                 'jenis_kelamin_sales_b' => $genders,
                 'no_telp_sales_b' => $faker->phoneNumber,
                 'email_sales_b' => $faker->email
+            ]);
+
+            // insert database log
+            DB::table('log')->insert([
+                'ID_USER_LOG' => $id_user,
+                'ID_JABATAN_LOG' => $id_jabatan,
+                'ID_PEGAWAI' => $id_pegawai,
             ]);
         }
 
@@ -109,26 +111,27 @@ class UserTableSeeder extends Seeder
             $genders = $faker->randomElement($array = array('0', '1'));
             
             // insert database user
-            DB::table('user')->insert([
-                'kode_kota' => $id_kota,
+            $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
                 'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
                 'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
-                'nama_user' => $nama,
-                'alamat_user' => $faker->streetAddress,
-                'jenis_kelamin_user' => $genders,
-                'no_telp_user' => $faker->phoneNumber,
-                'email_user' => $faker->email
             ]);
 
             // insert sales a
-            DB::table('sales_a')->insert([
+            $id_pegawai = DB::table('sales_a')->insertGetId([
                 'kode_kota' => $id_kota,
                 'nama_sales_a' => $nama,
                 'alamat_sales_a' => $faker->streetAddress,
                 'jenis_kelamin_sales_a' => $genders,
                 'no_telp_sales_a' => $faker->phoneNumber,
                 'email_sales_a' => $faker->email
+            ]);
+
+            // insert database log
+            DB::table('log')->insert([
+                'ID_USER_LOG' => $id_user,
+                'ID_JABATAN_LOG' => $id_jabatan,
+                'ID_PEGAWAI' => $id_pegawai,
             ]);
         }
 
@@ -148,26 +151,26 @@ class UserTableSeeder extends Seeder
             $genders = $faker->randomElement($array = array('0', '1'));
             
             // insert database user
-            DB::table('user')->insert([
-                'kode_kota' => $id_kota,
+            $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
                 'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
                 'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
-                'nama_user' => $nama,
-                'alamat_user' => $faker->streetAddress,
-                'jenis_kelamin_user' => $genders,
-                'no_telp_user' => $faker->phoneNumber,
-                'email_user' => $faker->email
             ]);
 
             // insert database manajer marketing
-            DB::table('manajer_marketing')->insert([
+            $id_pegawai = DB::table('manajer_marketing')->insertGetId([
                 'kode_kota' => $id_kota,
                 'nama_manajer_marketing' => $nama,
                 'alamat_manajer_marketing' => $faker->streetAddress,
                 'jenis_kelamin_manajer_marketing' => $genders,
                 'no_telp_manajer_marketing' => $faker->phoneNumber,
                 'email_manajer_marketing' => $faker->email
+            ]);
+
+            DB::table('log')->insert([
+                'ID_USER_LOG' => $id_user,
+                'ID_JABATAN_LOG' => $id_jabatan,
+                'ID_PEGAWAI' => $id_pegawai,
             ]);
         }
 
@@ -181,32 +184,32 @@ class UserTableSeeder extends Seeder
             $id_kota = $this->generate_id_kota();
 
             // memanggil function generate_id_jabatan
-            $id_jabatan = 5;
+            $id_jabatan = 2;
 
             // generate jenis kelamin
             $genders = $faker->randomElement($array = array('0', '1'));
             
             // insert database user
-            DB::table('user')->insert([
-                'kode_kota' => $id_kota,
+            $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
                 'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
                 'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
-                'nama_user' => $nama,
-                'alamat_user' => $faker->streetAddress,
-                'jenis_kelamin_user' => $genders,
-                'no_telp_user' => $faker->phoneNumber,
-                'email_user' => $faker->email
             ]);
 
             // insert database admin gudang
-            DB::table('admin_gudang')->insert([
+            $id_pegawai = DB::table('admin_gudang')->insertGetId([
                 'kode_kota' => $id_kota,
                 'nama_admin_gudang' => $nama,
                 'alamat_admin_gudang' => $faker->streetAddress,
                 'jenis_kelamin_admin_gudang' => $genders,
                 'no_telp_admin_gudang' => $faker->phoneNumber,
                 'email_admin_gudang' => $faker->email
+            ]);
+
+            DB::table('log')->insert([
+                'ID_USER_LOG' => $id_user,
+                'ID_JABATAN_LOG' => $id_jabatan,
+                'ID_PEGAWAI' => $id_pegawai,
             ]);
         }
 
@@ -221,20 +224,16 @@ class UserTableSeeder extends Seeder
         $last = $faker->lastName;
         $name = $first." ".$last;
 
-        DB::table('user')->insert([
-            'kode_kota' => $kota,
-            'kode_jabatan' => 1,
+        $id_jabatan = 1;
+
+        $id_user = DB::table('user')->insertGetId([
+            'kode_jabatan' => $id_jabatan,
             'username_user' => substr(str_replace(' ', '',strtolower($name)),0,20),
             'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($name)),0,20)),
-            'nama_user' => $name,
-            'alamat_user' => $alamat,
-            'jenis_kelamin_user' => $gender,
-            'no_telp_user' => $notelp,
-            'email_user' => $email
         ]);
 
         // add owner
-        DB::table('owner')->insert([
+        $id_pegawai = DB::table('owner')->insertGetId([
             'kode_kota' => $kota,
             'nama_owner' => $name,
             'alamat_owner' => $alamat,
@@ -242,6 +241,12 @@ class UserTableSeeder extends Seeder
             'no_telp_owner' => $notelp,
             'email_owner' => $email
         ]);
+
+        DB::table('log')->insert([
+                'ID_USER_LOG' => $id_user,
+                'ID_JABATAN_LOG' => $id_jabatan,
+                'ID_PEGAWAI' => $id_pegawai,
+            ]);
     }
 
     /*
