@@ -92,7 +92,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Barang Produksi</label>
-                        <select class="form-control select-component" id="" name="product">
+                        <select class="form-control select-component" id="" name="product" required>
                             <option>Pilih barang yang akan diproduksi . . </option>
                             @foreach($product as $p)
                             <option value="{{$p->kode_product}}">{{$p->nama_product}}</option>
@@ -102,7 +102,7 @@
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Mesin yang digunakan</label>
-                        <select class="form-control select-component" id="" name="mesin">
+                        <select class="form-control select-component" id="" name="mesin" required>
                             <option>Pilih mesin . . </option>
                             @foreach($mesin as $m)
                             <option value="{{$m->KODE_MESIN}}">{{$m->NAMA_MESIN}} Moulding {{$m->moulding->NAMA_MOULDING}}</option>
@@ -114,7 +114,7 @@
                     
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
-                        <select class="form-control select-component kode-bahan-baku" id="bahan-baku0" name="bahan_baku">
+                        <select class="form-control select-component kode-bahan-baku" id="bahan-baku0" name="bahan_baku[]" required>
                             <option>Pilih bahan baku . . </option>
                             @foreach($bahan_baku as $b)
                             <option value="{{$b->KODE_BAHAN_BAKU}}">{{$b->NAMA_BAHAN_BAKU}}</option>
@@ -124,14 +124,14 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Supplier Bahan Baku</label>
-                        <select class="form-control select-component id-supplier" id="nama-supplier0" name="supplier">
+                        <select class="form-control select-component id-supplier" id="nama-supplier0" name="supplier[]" required>
                             <option>Pilih supplier . . </option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Kg)</label>
-                        <input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control">
+                        <input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku dengan benar.
                         </div>
@@ -139,7 +139,7 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Karung)</label>
-                        <input type="number" name="jumlah_karung_sak[]" id="total_sak0" class="form-control">
+                        <input type="number" name="jumlah_karung_sak[]" id="total_sak0" class="form-control" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku dengan benar.
                         </div>

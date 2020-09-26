@@ -54,6 +54,7 @@ $(document).ready(function() {
             },
             success: function (results) {
                 if (results.success === true) {
+                    no = 0;
                     $('#total_kg'+no).val(results.data[0].STOK_PENERIMAAN);
                     $('#total_sak'+no).val(results.data[0].JUMLAH_KARUNG_SAK);
                 }
@@ -67,7 +68,7 @@ $(document).ready(function() {
     // Elemen bahan baku
     var input_bahan_baku = '<div class="form-group">' +
                                 '<label class="col-form-label">Bahan Baku</label>' +
-                                '<select class="form-control select-component kode-bahan-baku" id="bahan_baku'+no+'" name="bahan_baku">' +
+                                '<select class="form-control select-component kode-bahan-baku" id="bahan_baku'+no+'" name="bahan_baku" required>' +
                                     '<option>Pilih bahan baku . . </option>' +
                                 '</select>' +
                             '</div>';
@@ -75,7 +76,7 @@ $(document).ready(function() {
     // Elemen supplier
     var input_supplier = '<div class="form-group">' +
                             '<label class="col-form-label">Supplier Bahan Baku</label>' +
-                            '<select class="form-control select-component id-supplier" id="nama-supplier'+no+'" name="supplier">' +
+                            '<select class="form-control select-component id-supplier" id="nama-supplier'+no+'" name="supplier" required>' +
                                 '<option>Pilih supplier . . </option>' +
                             '</select>' +
                         '</div>';
@@ -83,7 +84,7 @@ $(document).ready(function() {
     // Elemen jumlah bahan baku (Kg)
     var input_jumlah_kg = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Kg)</label>' +
-                                '<input type="number" name="jumlah_bahan_baku[]" id="total_kg'+no+'" class="form-control">' +
+                                '<input type="number" name="jumlah_bahan_baku[]" id="total_kg'+no+'" class="form-control" required>' +
                                 '<div class="invalid-feedback">\
                                     Mohon isi jumlah bahan baku dengan benar.\
                                 </div>'+
@@ -92,7 +93,7 @@ $(document).ready(function() {
     // Elemen jumlah bahan baku (Karung)
     var input_jumlah_karung = '<div class="form-group">' +
                                 '<label class="col-form-label">Jumlah Bahan Baku (Karung)</label>' +
-                                '<input type="number" name="jumlah_karung_sak[]" id="total_sak'+no+'" class="form-control">' +
+                                '<input type="number" name="jumlah_karung_sak[]" id="total_sak'+no+'" class="form-control" required>' +
                                 '<div class="invalid-feedback">\
                                     Mohon isi jumlah bahan baku dengan benar.\
                                 </div>'+
