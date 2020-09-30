@@ -18,7 +18,7 @@
 
             {{-- Start Sales A --}}
             <div class="judul-tabel">
-                <h5 class="">Daftar Sales A</h5>
+                <h5>Daftar Sales A</h5>
             </div>
 
             <div class="card">
@@ -34,16 +34,11 @@
                             <tr>
                                 <td>{{$d->ID_SALES_A}}</td>
                                 <td>{{$d->NAMA_SALES_A}}</td>
-                                <td colspan="2">
+                                <td>
                                     <a href="{{ url('/manajer-marketing/detail-sales-a/'.$d->ID_SALES_A) }}"
                                         class="btn btn-sm btn-linkedin mr-1">
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
-                                    </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/'.$d->ID_SALES_A.'/input') }}"
-                                        class="btn btn-sm btn-secondary mr-1">
-                                        <i class="fas fa-book-open mr-2"></i>
-                                        EVALUASI
                                     </a>
                                 </td>
                             </tr>
@@ -56,7 +51,7 @@
 
             {{-- Start Sales B --}}
             <div class="judul-tabel">
-                <h5 class="">Daftar Sales B</h5>
+                <h5>Daftar Sales B</h5>
             </div>
 
             <div class="card">
@@ -72,16 +67,11 @@
                             <tr>
                                 <td>{{$d->ID_SALES_B}}</td>
                                 <td>{{$d->NAMA_SALES_B}}</td>
-                                <td colspan="2">
+                                <td>
                                     <a href="{{ url('/manajer-marketing/detail-sales-b/'.$d->ID_SALES_B) }}"
                                         class="btn btn-sm btn-linkedin mr-1">
                                         <i class="fas fa-info-circle mr-2"></i>
                                         DETAIL
-                                    </a>
-                                    <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/'.$d->ID_SALES_B.'/input') }}"
-                                        class="btn btn-sm btn-secondary mr-1">
-                                        <i class="fas fa-book-open mr-2"></i>
-                                        EVALUASI
                                     </a>
                                 </td>
                             </tr>

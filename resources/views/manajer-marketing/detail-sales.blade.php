@@ -1,7 +1,7 @@
 @extends('layouts/manajer-marketing/main')
 @section('title', 'Detail Sales')
 @section('extra-css')
-    <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/manajer-marketing.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/manajer-marketing-detail-sales.css') }}">
 @endsection
@@ -119,41 +119,55 @@
 
         {{-- Start rekap kinerja --}}
         <div class="col-md-8 col-sm-12">
-            <div class="card-title">
+            <div class="card-title card-title-detail-kinerja-sales">
                 @if($jabatan == "Sales A")
                 Rekap Penginputan Customer
+
+                <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/'.$data->ID_SALES_A.'/input') }}"
+                    class="btn btn-sm btn-secondary mr-1">
+                    <i class="fas fa-book-open mr-2"></i>
+                    EVALUASI
+                </a>
+
                 @else
                 Rekap Penginputan Order
+
+                <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/'.$data->ID_SALES_B.'/input') }}"
+                    class="btn btn-sm btn-secondary mr-1">
+                    <i class="fas fa-book-open mr-2"></i>
+                    EVALUASI
+                </a>
                 @endif
-                
+
             </div>
 
             <div class="card">
                 <div class="card-body">
-                    <table
-                        class="table table-striped table-bordered rekap-table table-responsive-stack">
-                        <thead class="thead-dark">
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Customer</th>
-                        </thead>
-                        <tbody>
-                            @if($jabatan == "Sales A")
+                    <div class="table-responsive">
+                        <table class="table table-bordered rekap-table table-responsive-stack datatable-component">
+                            <thead class="thead-dark">
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Customer</th>
+                            </thead>
+                            <tbody>
+                                @if($jabatan == "Sales A")
                                 @foreach($data->depo_air_minums as $d)
                                 <tr>
                                     <td>{{$d->created_at}}</td>
                                     <td>{{$d->NAMA_DEPO}}</td>
                                 </tr>
                                 @endforeach
-                            @else
+                                @else
                                 @foreach($data->penjualans as $d)
                                 <tr>
                                     <td>{{$d->TGL_PENJUALAN}}</td>
                                     <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                 </tr>
                                 @endforeach
-                            @endif
-                        </tbody>
-                    </table>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -166,6 +180,6 @@
 @endsection
 
 @section('extra-script')
-    <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/manajer-marketing-detail-sales.js') }}"></script>
 @endsection
