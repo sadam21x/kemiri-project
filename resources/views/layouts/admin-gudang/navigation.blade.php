@@ -24,14 +24,6 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/admin-gudang/order-barang') }}" id="order-barang-menu" class="">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-cart-plus"></i>
-                    </span>
-                    <span>Order Barang</span>
-                </a>
-            </li>
-            <li>
                 <a href="{{ url('/admin-gudang/pengiriman-barang') }}" id="pengiriman-menu" class="">
                     <span class="nav-link-icon">
                         <i class="fas fa-truck"></i>

@@ -131,7 +131,16 @@
 
                     <div class="form-group">
                         <label class="col-form-label">Jumlah Bahan Baku (Kg)</label>
-                        <input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control" required>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    Stok saat ini: 356
+                                </div>
+                            </div>
+                            <input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control" required>
+                        </div>
+
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku dengan benar.
                         </div>

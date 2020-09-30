@@ -17,6 +17,7 @@
     <div class="row">
         <div class="col-md-12">
 
+            {{-- Start Riwayat Penerimaan bahan baku --}}
             <div class="judul-tabel mb-3">
                 <h5>Riwayat Penerimaan Bahan Baku</h5>
             </div>
@@ -35,38 +36,74 @@
                             </thead>
                             <tbody>
                                 @foreach($data as $d)
-                                <tr>
-                                    <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
-                                    <td>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
-                                    <td>
-                                    @if($d->STATUS_PEMBAYARAN)
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" checked>
-                                            <label class="custom-control-label label-bayar text-success" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Sudah Bayar
-                                            </label>
-                                        </div>
-                                        @else
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}">
-                                            <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Belum Bayar
-                                            </label>
-                                        </div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-penerimaan-bahan-baku-{{$d->KODE_PEMBAYARAN}}">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            DETAIL
-                                        </button>
-                                    </td>
-                                </tr>
+                                    @if(!($d->STATUS_PEMBAYARAN))
+                                        <tr>
+                                            <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                            <td>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
+                                            <td>
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}">
+                                                    <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Belum Bayar
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-penerimaan-bahan-baku-{{$d->KODE_PEMBAYARAN}}">
+                                                    <i class="fas fa-info-circle mr-2"></i>
+                                                    DETAIL
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            {{-- End of Riwayat Penerimaan bahan baku --}}
 
+            {{-- Start Riwayat Pembayaran --}}
+            <div class="judul-tabel mb-3">
+                <h5>Riwayat Pembayaran</h5>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-responsive-stack datatable-component">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Pembayaran</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                    @if($d->STATUS_PEMBAYARAN)
+                                        <tr>
+                                            <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                            <td>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
+                                            <td>
+                                                <div class="text-success">Sudah Bayar</div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-penerimaan-bahan-baku-{{$d->KODE_PEMBAYARAN}}">
+                                                    <i class="fas fa-info-circle mr-2"></i>
+                                                    DETAIL
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- End of Riwayat Pembayaran--}}
         </div>
     </div>
 

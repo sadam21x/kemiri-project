@@ -28,7 +28,7 @@
                     <span class="nav-link-icon">
                         <i class="fas fa-paste"></i>
                     </span>
-                    <span>Pencatatan Produksi</span>
+                    <span>Pencatatan Hasil Produksi</span>
                 </a>
             </li>
         </ul>

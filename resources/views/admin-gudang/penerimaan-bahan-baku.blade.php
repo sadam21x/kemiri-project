@@ -45,18 +45,12 @@
                                     <td>{{$d->ID_PENERIMAAN}}</td>
                                     <td>{{$d->TGL_KEDATANGAN}}</td>
                                     <td>{{$d->SUPPLIER}}</td>
-                                    <td colspan="2">
+                                    <td>
                                         <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
                                             data-toggle="modal"
                                             data-target="#modal-detail-penerimaan-{{$d->ID_PENERIMAAN}}">
                                             <i class="fas fa-info-circle mr-1"></i>
                                             DETAIL
-                                        </button>
-                                        <button class="btn btn-warning btn-sm tombol-edit-penerimaan"
-                                            data-toggle="modal"
-                                            data-target="#modal-edit-penerimaan-{{$d->id_penerimaan}}">
-                                            <i class="fas fa-edit mr-1"></i>
-                                            EDIT
                                         </button>
                                     </td>
                                 </tr>
@@ -87,7 +81,7 @@
 
                 <div class="container">
 
-                    <div class="my-3">
+                    <div class="mb-3">
                         <h5>ID Penerimaan</h5>
                         <h6>{{$d->ID_PENERIMAAN}}</h6>
                     </div>
@@ -127,6 +121,16 @@
                         <h6>{{$d->TOTAL_BERAT}}</h6>
                     </div>
 
+                    <div class="my-3">
+                        <h5>Jumlah Bahan Baku Bagus (Kg)</h5>
+                        <h6>120 Kg</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Jumlah Bahan Baku Bagus (Kg)</h5>
+                        <h6>3 Kg</h6>
+                    </div>
+
                 </div>
 
             </div>
@@ -153,7 +157,7 @@
                     <input type="hidden" name="id_admin_gudang" id="" value="1">
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Tanggal</label>
+                        <label>Tanggal</label>
                         <input type="date" name="tgl_kedatangan" id="" class="form-control @error('tgl_kedatangan') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi tanggal kedatangan.
@@ -161,7 +165,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Supplier</label>
+                        <label>Supplier</label>
                         <select class="form-control select-component @error('id_supplier') is-invalid @enderror" id="" name="id_supplier" required>
                             <option>Pilih supplier . . </option>
                             @foreach ($supplier as $s)
@@ -174,7 +178,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <label>Bahan Baku</label>
                         <select class="form-control select-component @error('kode_bahan_baku') is-invalid @enderror" id="" name="kode_bahan_baku" required>
                             <option>Pilih bahan baku . . </option>
                             @foreach ($bahanBaku as $b)
@@ -187,7 +191,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Jumlah Karung</label>
+                        <label>Jumlah Karung</label>
                         <input type="number" name="jumlah_karung_sak" id="in_karung" class="form-control input-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah karung dengan benar.
@@ -195,7 +199,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Berat per Karung (Kg)</label>
+                        <label>Berat per Karung (Kg)</label>
                         <input type="number" name="isi_karung" id="in_tiap_karung" class="form-control input-berat-karung @error('isi_karung') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi berat karung dengan benar.
@@ -203,8 +207,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Berat Total (Kg)</label>
+                        <label>Berat Total (Kg)</label>
                         <input type="number" name="total_berat" id="in_total" class="form-control input-berat-total" placeholder="0" readonly required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Bahan Baku Bagus (Kg)</label>
+                        <input type="number" class="form-control" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Bahan Baku Rusak (Kg)</label>
+                        <input type="number" class="form-control" min="0">
                     </div>
 
                     <div class="modal-footer">
@@ -237,7 +251,7 @@
                     <input type="hidden" name="id_penerimaan" id="" value="{{$d->id_penerimaan}}">
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Tanggal</label>
+                        <label>Tanggal</label>
                         <input type="date" name="tgl_kedatangan" id="" class="form-control @error('tgl_kedatangan') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi tanggal kedatangan.
@@ -245,7 +259,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Supplier</label>
+                        <label>Supplier</label>
                         <select class="form-control select-component" id="" name="id_supplier">
                             <option>Pilih supplier . . </option>
                             @foreach ($supplier as $s)
@@ -255,7 +269,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Bahan Baku</label>
+                        <label>Bahan Baku</label>
                         <select class="form-control select-component" id="" name="kode_bahan_baku">
                             <option>Pilih bahan baku . . </option>
                             @foreach ($bahanBaku as $b)
@@ -265,7 +279,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Jumlah Karung</label>
+                        <label>Jumlah Karung</label>
                         <input type="number" name="jumlah_karung_sak" id="karung" class="form-control edit-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah karung dengan benar.
@@ -273,7 +287,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Berat per Karung (Kg)</label>
+                        <label>Berat per Karung (Kg)</label>
                         <input type="number" name="isi_karung" id="isi" class="form-control edit-berat-karung @error('isi_karung') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi berat karung dengan benar.
@@ -281,8 +295,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="col-form-label">Berat Total (Kg)</label>
+                        <label>Berat Total (Kg)</label>
                         <input type="number" name="total_berat" id="total_berat" class="form-control edit-berat-total" value="" placeholder="0" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Bahan Baku Bagus (Kg)</label>
+                        <input type="number" class="form-control" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Bahan Baku Rusak (Kg)</label>
+                        <input type="number" class="form-control" min="0">
                     </div>
 
                     <div class="modal-footer">

@@ -50,6 +50,11 @@ table td {
     margin-top: 2.5em;
 }
 
+.card-title-detail-kinerja-sales {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media only screen and (max-width: 600px) {
 
     .tombol-tambah-customer {
@@ -66,6 +71,14 @@ table td {
 
     .judul-tabel button {
         margin-top: 10px;
+    }
+
+    .card-title-detail-kinerja-sales {
+        display: block;
+    }
+
+    .card-title-detail-kinerja-sales > .btn {
+        margin-top: 20px;
     }
 
 }
