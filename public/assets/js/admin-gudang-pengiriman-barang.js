@@ -8,6 +8,9 @@ $(document).ready(function() {
     const pengirimanBarangTable = document.getElementById("pengiriman-barang-table");
     $(pengirimanBarangTable).DataTable();
 
+    const orderBarangTable = document.getElementById("order-barang-table");
+    $(orderBarangTable).DataTable();
+
     // Form validation
     (function() {
         'use strict';

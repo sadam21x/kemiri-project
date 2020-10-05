@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $d)
+                                @foreach($data_penjualan as $d)
                                 <tr>
                                     <td>{{$d->ID_PENJUALAN}}</td>
                                     <td>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL))}}</td>
@@ -100,7 +100,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $d)
+                                @foreach($data_pengiriman as $d)
                                 @php $hari_ini = date("d/m/Y");
                                 $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL));
                                 @endphp
@@ -143,7 +143,7 @@
 
 </div>
 <!-- End of Content -->
-@foreach($data as $d)
+@foreach($data_pengiriman as $d)
 {{-- Start Detail Pengiriman Modal --}}
 <div class="modal fade" id="modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -236,6 +236,7 @@
 </div>
 {{-- End of Detail Pengiriman Modal--}}
 @endforeach
+@foreach($data_penjualan as $d)
 {{-- Start Detail Order Barang Modal --}}
 <div class="modal fade" id="modal-detail-order-barang-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -320,7 +321,7 @@
     </div>
 </div>
 {{-- End of Detail Order Barang Modal--}}
-
+@endforeach
 {{-- Start Pengiriman Modal --}}
 <div class="modal fade" id="modal-pengiriman-barang-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
