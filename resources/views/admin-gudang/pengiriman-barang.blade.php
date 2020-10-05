@@ -29,7 +29,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">ID Order</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Tanggal Penjualan</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
@@ -39,7 +39,7 @@
                                 @foreach($data_penjualan as $d)
                                 <tr>
                                     <td>{{$d->ID_PENJUALAN}}</td>
-                                    <td>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL))}}</td>
+                                    <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
                                     <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                     <td>
                                         @if($d->STATUS_PEMBAYARAN == 1 && $d->KODE_PENGIRIMAN == null)
@@ -221,8 +221,18 @@
                         <h6>{{ number_format(floatval($d->pembayaran_penjualan->penjualan->ONGKOS_KIRIM) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
 
-                    <div class="mt-5 d-flex justify-content-center">
-                        <a href="{{url('/surat-jalan/'.$d->ID_PENJUALAN)}}" class="btn btn-md btn-google">
+                    <div class="my-3">
+                        <h5>Kendaraan Pengirim</h5>
+                        <h6>{{ $d->TIPE_KENDARAAN}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Nomor Polisi</h5>
+                        <h6>{{ $d->NOPOL}}</h6>
+                    </div>
+
+                    <div class="my-4 d-flex justify-content-center">
+                        <a href="{{url('/surat-jalan').'/'.$d->pembayaran_penjualan->penjualan->ID_PENJUALAN}}" class="btn btn-md btn-google">
                             <i class="far fa-file-alt mr-2"></i>
                             SURAT JALAN
                         </a>
@@ -302,16 +312,6 @@
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
                         <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Kendaraan Pengirim</h5>
-                        <h6>{{ $d->TIPE_KENDARAAN}}</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Nomor Polisi</h5>
-                        <h6>{{ $d->NOPOL}}</h6>
                     </div>
 
                 </div>
