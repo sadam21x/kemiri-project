@@ -24,13 +24,10 @@ Route::post('/admin-gudang/supplier/insert', 'AdminGudang\SupplierController@cre
 // Route pengiriman
 Route::get('/admin-gudang/pengiriman-barang','AdminGudang\PengirimanBarangController@index');
 Route::get('/admin-gudang/pengiriman-barang/edit', 'AdminGudang\PengirimanBarangController@edit');
-Route::post('/admin-gudang/pengiriman-barang/store', 'AdminGudang\OrderBarangController@store');
+Route::post('/admin-gudang/pengiriman-barang/store', 'AdminGudang\PengirimanBarangController@store');
 
 // Route customer
 Route::get('/admin-gudang/customer', 'AdminGudang\CustomerController@index');
-
-// Route order barang
-Route::get('/admin-gudang/order-barang', 'AdminGudang\OrderBarangController@index');
 
 // handle ajax request data kota sesuai provinsi yang dipilih
 Route::post('/admin-gudang/req-data-kota', function() {

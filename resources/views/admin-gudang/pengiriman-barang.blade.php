@@ -7,7 +7,7 @@
 
 @section('content')
 <!-- Start Content -->
-<div class="content ">
+<div class="content">
     <div class="page-header">
         <h4>Pengiriman Barang</h4>
         <hr>
@@ -140,7 +140,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- End of Content -->
 @foreach($data_pengiriman as $d)
@@ -344,9 +343,10 @@
 
                     <div class="form-group">
                         <label>Tanggal Pengiriman</label>
-                        <input type="date" name="TGL_KIRIM" class="form-control @error('TGL_KIRIM') is-invalid @enderror" required>
+                        <input type="date" name="TGL_KIRIM" class="form-control @error('TGL_KIRIM') is-invalid @enderror" required value="@php date('m/d/Y') @endphp">
                         <div class="invalid-feedback">
                             Mohon isi tanggal kirim.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -354,16 +354,16 @@
                         <input type="text" class="form-control @error('TIPE_KENDARAAN') is-invalid @enderror" name="TIPE_KENDARAAN" required>
                         <div class="invalid-feedback">
                             Mohon isi tipe kendaraan dengan benar.
-                        <div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Nomor Polisi</label>
                         <input type="text" class="form-control @error('NOPOL') is-invalid @enderror" name="NOPOL" required>
-                        <small class="form-text text-muted">contoh: W 2275 DV</small>
                         <div class="invalid-feedback">
                             Mohon isi nomor polisi dengan benar.
                         </div>
+                        <small class="form-text text-muted">contoh: W 2275 DV</small>
                     </div>
 
                     <div class="form-group">
