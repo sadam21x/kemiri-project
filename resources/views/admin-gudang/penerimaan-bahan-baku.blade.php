@@ -167,7 +167,7 @@
                     <div class="form-group">
                         <label>Supplier</label>
                         <select class="form-control select-component @error('id_supplier') is-invalid @enderror" id="" name="id_supplier" required>
-                            <option>Pilih supplier . . </option>
+                            <option selected disabled>Pilih supplier . . </option>
                             @foreach ($supplier as $s)
                                 <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
                             @endforeach
@@ -180,7 +180,7 @@
                     <div class="form-group">
                         <label>Bahan Baku</label>
                         <select class="form-control select-component @error('kode_bahan_baku') is-invalid @enderror" id="" name="kode_bahan_baku" required>
-                            <option>Pilih bahan baku . . </option>
+                            <option selected disabled>Pilih bahan baku . . </option>
                             @foreach ($bahanBaku as $b)
                                 <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
                             @endforeach
@@ -209,16 +209,25 @@
                     <div class="form-group">
                         <label>Berat Total (Kg)</label>
                         <input type="number" name="total_berat" id="in_total" class="form-control input-berat-total" placeholder="0" readonly required>
+                        <div class="invalid-feedback">
+                            Mohon isi berat karung dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Jumlah Bahan Baku Bagus (Kg)</label>
                         <input type="number" class="form-control" min="0">
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah bahan baku bagus dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Jumlah Bahan Baku Rusak (Kg)</label>
                         <input type="number" class="form-control" min="0">
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah bahan baku rusak dengan benar.
+                        </div>
                     </div>
 
                     <div class="modal-footer">
