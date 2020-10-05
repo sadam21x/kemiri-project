@@ -9,15 +9,20 @@ $(document).ready(function() {
     $(pengambilanBahanBakuTable).DataTable();
 
     // Select2
-    const selectComponent = document.getElementsByClassName("select-component");
-    $(selectComponent).select2();
+    // const selectComponent = document.getElementsByClassName("select-component");
+    $('.select-component').select2();
+
+    validation();
 
     var no = 0;
 
     // ambil supplier 1
-    $('.kode-bahan-baku').change(function(){
+    $(document).on('change','.kode-bahan-baku',function(){
+        var no = $(this).attr('id').substr(10);
+        var selectid = $(this).attr('id');
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = $(this).val();
+
         $.ajax({
             type: 'POST',
             url: "/operator-mesin/pengambilan-bahan-baku/getSupplier",
@@ -28,6 +33,8 @@ $(document).ready(function() {
             success: function (results) {
                 if (results.success === true) {
                     $("#nama-supplier"+no).empty();
+                    $('#total_kg'+no).val("");
+                    $('#total_sak'+no).val("");
                     results.data.forEach(addOption)
                     function addOption(item, index, arr){
                         let text = item.NAMA_SUPPLIER;
@@ -36,14 +43,48 @@ $(document).ready(function() {
                         $(o).html(text);
                         $("#nama-supplier"+no).append(o);
                     }
+                    //update stock ketika supplier keganti
+                    $.ajax({
+                        type: 'POST',
+                        url: "/operator-mesin/pengambilan-bahan-baku/getStock",
+                        data: {
+                            _token: token,
+                            ID_SUPPLIER : $("#nama-supplier"+no).val()
+                        },
+                        success: function (results) {
+                            if (results.success === true) {
+                                $('#total_kg'+no).val(results.data[0].STOK_PENERIMAAN);
+                                $('#total_sak'+no).val(results.data[0].JUMLAH_KARUNG_SAK);
+                                $('#stok'+no).html("Stok saat ini: "+results.data[0].STOK_PENERIMAAN);
+                                $("#total_kg"+no).attr({
+                                   "max" : results.data[0].STOK_PENERIMAAN,
+                                   "min" : 1
+                                });
+                                $("#total_sak"+no).attr({
+                                   "max" : results.data[0].JUMLAH_KARUNG_SAK,
+                                   "min" : 0
+                                });
+                            }
+                        }
+                    });
                 }
             }
         });
+
+        // $('.kode-bahan-baku option').prop('disabled',false);
+
+        // $('.kode-bahan-baku').each(function(){
+        //     var thisid = $(this).attr('id');
+        //     if(thisid != selectid){
+        //         $('#'+thisid+' option[value="'+ id +'"]').prop('disabled', true);
+        //     }
+        // });
     });
 
     // ambil stock 1
-    $('.id-supplier').change(function(){
+    $(document).on('change','.id-supplier',function(){
         var token = $('meta[name="csrf-token"]').attr('content');
+        var no = $(this).attr('id').substr(13);
         var id = $(this).val();
         $.ajax({
             type: 'POST',
@@ -54,9 +95,17 @@ $(document).ready(function() {
             },
             success: function (results) {
                 if (results.success === true) {
-                    no = 0;
                     $('#total_kg'+no).val(results.data[0].STOK_PENERIMAAN);
                     $('#total_sak'+no).val(results.data[0].JUMLAH_KARUNG_SAK);
+                    $('#stok'+no).html("Stok saat ini: "+results.data[0].STOK_PENERIMAAN);
+                    $("#total_kg"+no).attr({
+                       "max" : results.data[0].STOK_PENERIMAAN,
+                       "min" : 1
+                    });
+                    $("#total_sak"+no).attr({
+                       "max" : results.data[0].JUMLAH_KARUNG_SAK,
+                       "min" : 0
+                    });
                 }
             }
         });
@@ -69,16 +118,22 @@ $(document).ready(function() {
     var input_bahan_baku = '<div class="form-group">' +
                                 '<label class="col-form-label">Bahan Baku</label>' +
                                 '<select class="form-control select-component kode-bahan-baku" id="bahan_baku'+no+'" name="bahan_baku" required>' +
-                                    '<option>Pilih bahan baku . . </option>' +
+                                    '<option selected disabled>Pilih bahan baku . . </option>' +
                                 '</select>' +
+                                '<div class="invalid-feedback">'+
+                                    'Mohon pilih bahan baku.'+
+                                '</div>'+
                             '</div>';
 
     // Elemen supplier
     var input_supplier = '<div class="form-group">' +
                             '<label class="col-form-label">Supplier Bahan Baku</label>' +
                             '<select class="form-control select-component id-supplier" id="nama-supplier'+no+'" name="supplier" required>' +
-                                '<option>Pilih supplier . . </option>' +
+                                '<option selected disabled>Pilih supplier . . </option>' +
                             '</select>' +
+                            '<div class="invalid-feedback">'+
+                                'Mohon pilih supplier.'+
+                            '</div>'+
                         '</div>';
 
     // Elemen jumlah bahan baku (Kg)
@@ -86,15 +141,15 @@ $(document).ready(function() {
                                 '<label class="col-form-label">Jumlah Bahan Baku (Kg)</label>' +
                                 '<div class="input-group">' +
                                     '<div class="input-group-prepend">' +
-                                        '<div class="input-group-text">' +
-                                            'Stok saat ini: 356' +
+                                        '<div class="input-group-text" id="stok'+no+'">' +
+                                            'Stok saat ini: -' +
                                         '</div>' +
                                     '</div>' +
-                                    '<input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control" required>' +
+                                    '<input type="number" name="jumlah_bahan_baku[]" id="total_kg'+no+'" class="form-control" required>' +
+                                    '<div class="invalid-feedback">\
+                                        Mohon isi jumlah bahan baku dengan benar.\
+                                    </div>'+
                                 '</div>' +
-                                '<div class="invalid-feedback">\
-                                    Mohon isi jumlah bahan baku dengan benar.\
-                                </div>'+
                             '</div>';
 
     // Elemen jumlah bahan baku (Karung)
@@ -115,29 +170,27 @@ $(document).ready(function() {
     // Garis pembatas
     var garis_rambut = '<hr>';
 
-    // $('.tambah-bahan-baku-btn').click(function(){
-        // Hapus modal button saat ini untuk digantikan yang baru
-        $('.modal-footer').remove();
-        
-        // Tambah input field bahan baku
-        $('.modal-body-pengambilan-bahan-baku').append(
-            garis_rambut,
-            input_bahan_baku,
-            input_supplier,
-            input_jumlah_kg,
-            input_jumlah_karung,
-            modal_button
-        );
-    // });
+    // Hapus modal button saat ini untuk digantikan yang baru
+    $('.modal-footer').remove();
+    
+    // Tambah input field bahan baku
+    $('.modal-body-pengambilan-bahan-baku').append(
+        garis_rambut,
+        input_bahan_baku,
+        input_supplier,
+        input_jumlah_kg,
+        input_jumlah_karung,
+        modal_button
+    );
+
+    $('.select-component').select2();
 
     //ambil bahan baku
-
         $.ajax({
             type: 'GET',
             url: "/operator-mesin/pengambilan-bahan-baku/getBahanBaku",
             success: function (results) {
                 if (results.success === true) {
-                    // $("#bahan_baku").empty();
                     results.data.forEach(addOption)
                     function addOption(item, index, arr){
                         let text = item.NAMA_BAHAN_BAKU;
@@ -149,69 +202,25 @@ $(document).ready(function() {
                 }
             }
         });
-
-    // ambil supplier 2
-        $('.kode-bahan-baku').change(function(){
-            var token = $('meta[name="csrf-token"]').attr('content');
-            var id = $(this).val();
-            $.ajax({
-                type: 'POST',
-                url: "/operator-mesin/pengambilan-bahan-baku/getSupplier",
-                data: {
-                    _token: token,
-                    KODE_BAHAN_BAKU : id
-                },
-                success: function (results) {
-                    if (results.success === true) {
-                        $("#nama-supplier"+no).empty();
-                        results.data.forEach(addOption)
-                        function addOption(item, index, arr){
-                            let text = item.NAMA_SUPPLIER;
-                            let val = item.ID_SUPPLIER;
-                            var o = new Option(text, val);
-                            $(o).html(text);
-                            $("#nama-supplier"+no).append(o);
-                        }
-                    }
-                }
-            });
-        });
-
-    // ambil stock 2
-        $('.id-supplier').change(function(){
-            var token = $('meta[name="csrf-token"]').attr('content');
-            var id = $(this).val();
-            $.ajax({
-                type: 'POST',
-                url: "/operator-mesin/pengambilan-bahan-baku/getStock",
-                data: {
-                    _token: token,
-                    ID_SUPPLIER : id
-                },
-                success: function (results) {
-                    if (results.success === true) {
-                        $('#total_kg'+no).val(results.data[0].STOK_PENERIMAAN);
-                        $('#total_sak'+no).val(results.data[0].JUMLAH_KARUNG_SAK);
-                    }
-                }
-            });
-        });
     });
+
+    validation();
+    
 });
 
-//validation
-'use strict';
-window.addEventListener('load', function() {
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
-var forms = document.getElementsByClassName('needs-validation');
-// Loop over them and prevent submission
-var validation = Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {
-    if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    form.classList.add('was-validated');
-    }, false);
-});
-}, false);
+function validation(){
+    //validation
+    'use strict';
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+        }, false);
+    });
+}
