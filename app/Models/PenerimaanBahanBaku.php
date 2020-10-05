@@ -46,10 +46,6 @@ class PenerimaanBahanBaku extends Model
         'STOK_PENERIMAAN' => 'float'
 	];
 
-	protected $dates = [
-		'TGL_KEDATANGAN'
-	];
-
 	protected $fillable = [
 		'ID_SUPPLIER',
 		'KODE_BAHAN_BAKU',

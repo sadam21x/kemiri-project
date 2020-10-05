@@ -43,7 +43,7 @@
                                 @foreach($data as $d)
                                 <tr>
                                     <td>{{$d->ID_PENERIMAAN}}</td>
-                                    <td>{{$d->TGL_KEDATANGAN}}</td>
+                                    <td>@php echo $d->TGL_KEDATANGAN @endphp</td>
                                     <td>{{$d->SUPPLIER}}</td>
                                     <td>
                                         <button class="btn btn-linkedin btn-sm tombol-detail-penerimaan"
@@ -88,7 +88,7 @@
 
                     <div class="my-3">
                         <h5>Tanggal</h5>
-                        <h6>{{$d->TGL_PENERIMAAN}}</h6>
+                        <h6>@php echo $d->TGL_KEDATANGAN @endphp</h6>
                     </div>
 
                     <div class="my-3">
