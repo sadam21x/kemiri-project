@@ -1,0 +1,16 @@
+.card-1 {
+    border: 0.5px solid black;
+    box-shadow: 5px 6px #888888;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .chart-container {
+        display: block;
+    }
+}
