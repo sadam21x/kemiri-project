@@ -20,15 +20,16 @@
 
             <div class="d-flex justify-content-center">
                 <h5 class="card-title">
+                    Per Tanggal
                 @php
-                    echo "1" . date("/m/Y") . " - " . date("d/m/Y");
+                    echo "01" . date("/m/Y") . " - " . date("d/m/Y");
                 @endphp
                 </h5>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card card-1">
                         <div class="card-body">
                             <h6 class="card-title">
                                 Jumlah Transaksi
@@ -48,7 +49,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card card-1">
                         <div class="card-body">
                             <h6 class="card-title">
                                 Jumlah Biaya Transaksi
@@ -68,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="judul-tabel mb-3">
+            <div class="judul-tabel mt-3">
                 <h5>Daftar Transaksi</h5>
             </div>
 

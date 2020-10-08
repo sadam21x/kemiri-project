@@ -20,7 +20,7 @@
 
             <div class="d-flex justify-content-center">
                 <h5 class="card-title">
-                    Perkembangan Penjualan Barang @php echo date("Y"); @endphp
+                    Statistik Penjualan Tahun @php echo date("Y"); @endphp
                 </h5>
             </div>
 
@@ -34,8 +34,9 @@
 
             <div class="d-flex justify-content-center">
                 <h5 class="card-title">
+                Per Tanggal
                 @php
-                    echo "1" . date("/m/Y") . " - " . date("d/m/Y");
+                    echo "01" . date("/m/Y") . " - " . date("d/m/Y");
                 @endphp
                 </h5>
             </div>
