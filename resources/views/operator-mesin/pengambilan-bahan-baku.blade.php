@@ -93,21 +93,27 @@
                     <div class="form-group">
                         <label for="" class="col-form-label">Barang Produksi</label>
                         <select class="form-control select-component" id="" name="product" required>
-                            <option>Pilih barang yang akan diproduksi . . </option>
+                            <option selected disabled>Pilih barang yang akan diproduksi . . </option>
                             @foreach($product as $p)
                             <option value="{{$p->kode_product}}">{{$p->nama_product}}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih barang yang akan diproduksi.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Mesin yang digunakan</label>
                         <select class="form-control select-component" id="" name="mesin" required>
-                            <option>Pilih mesin . . </option>
+                            <option selected disabled>Pilih mesin . . </option>
                             @foreach($mesin as $m)
                             <option value="{{$m->KODE_MESIN}}">{{$m->NAMA_MESIN}} Moulding {{$m->moulding->NAMA_MOULDING}}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih mesin.
+                        </div>
                     </div>
 
                     <hr>
@@ -115,18 +121,24 @@
                     <div class="form-group">
                         <label class="col-form-label">Bahan Baku</label>
                         <select class="form-control select-component kode-bahan-baku" id="bahan-baku0" name="bahan_baku[]" required>
-                            <option>Pilih bahan baku . . </option>
+                            <option selected disabled>Pilih bahan baku . . </option>
                             @foreach($bahan_baku as $b)
                             <option value="{{$b->KODE_BAHAN_BAKU}}">{{$b->NAMA_BAHAN_BAKU}}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih bahan baku.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">Supplier Bahan Baku</label>
                         <select class="form-control select-component id-supplier" id="nama-supplier0" name="supplier[]" required>
-                            <option>Pilih supplier . . </option>
+                            <option selected disabled>Pilih supplier . . </option>
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih supplier bahan baku.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -134,15 +146,14 @@
 
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    Stok saat ini: 356
+                                <div class="input-group-text" id="stok0">
+                                    Stok saat ini: -
                                 </div>
                             </div>
                             <input type="number" name="jumlah_bahan_baku[]" id="total_kg0" class="form-control" required>
-                        </div>
-
-                        <div class="invalid-feedback">
-                            Mohon isi jumlah bahan baku dengan benar.
+                            <div class="invalid-feedback">
+                                Mohon isi jumlah bahan baku dengan benar.
+                            </div>
                         </div>
                     </div>
 

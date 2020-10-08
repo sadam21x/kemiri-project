@@ -29,7 +29,7 @@
 
     <div class="nomor-surat-container">
         <h6 class="">SURAT JALAN</h6>
-        <h6 class="nomor-surat">No. {{$data->pembayaran_penjualans->pengirimen->KODE_PENGIRIMAN}}</h6>
+        <h6 class="nomor-surat">No. {{$no_surat}}</h6>
     </div>
 
     <table class="detail-customer">

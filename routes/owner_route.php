@@ -1,5 +1,8 @@
 <?php
 
+Route::view('/owner/laporan/transaksi-supplier', 'owner/transaksi-supplier');
+Route::view('/owner/laporan/transaksi-customer', 'owner/transaksi-customer');
+
 // Route dashboard
 Route::view('/owner', 'owner/dashboard');
 

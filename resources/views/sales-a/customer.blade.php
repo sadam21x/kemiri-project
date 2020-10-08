@@ -44,12 +44,12 @@
                                     <td colspan="2">
                                         <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal"
                                             data-target="#modal-detail-customer-{{$d->KODE_DEPO}}">
-                                            <i class="fas fa-info-circle mr-1"></i>
+                                            <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
                                         <button class="btn btn-sm btn-warning tombol-edit-customer" data-toggle="modal"
                                             data-target="#modal-edit-customer-{{$d->KODE_DEPO}}">
-                                            <i class="fas fa-edit mr-1"></i>
+                                            <i class="fas fa-edit mr-2"></i>
                                             EDIT
                                         </button>
                                     </td>

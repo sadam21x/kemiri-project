@@ -7,7 +7,7 @@
 
 @section('content')
 <!-- Start Content -->
-<div class="content ">
+<div class="content">
     <div class="page-header">
         <h4>Pengiriman Barang</h4>
         <hr>
@@ -29,17 +29,17 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">ID Order</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Tanggal Penjualan</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $d)
+                                @foreach($data_penjualan as $d)
                                 <tr>
                                     <td>{{$d->ID_PENJUALAN}}</td>
-                                    <td>{{date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL))}}</td>
+                                    <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
                                     <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                     <td>
                                         @if($d->STATUS_PEMBAYARAN == 1 && $d->KODE_PENGIRIMAN == null)
@@ -100,7 +100,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $d)
+                                @foreach($data_pengiriman as $d)
                                 @php $hari_ini = date("d/m/Y");
                                 $tglkirim = date("d/m/Y",strtotime($d->TGL_KIRIM_RIIL));
                                 @endphp
@@ -140,10 +140,9 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- End of Content -->
-@foreach($data as $d)
+@foreach($data_pengiriman as $d)
 {{-- Start Detail Pengiriman Modal --}}
 <div class="modal fade" id="modal-detail-pengiriman-barang-{{$d->KODE_PENGIRIMAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -221,8 +220,18 @@
                         <h6>{{ number_format(floatval($d->pembayaran_penjualan->penjualan->ONGKOS_KIRIM) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
 
-                    <div class="mt-5 d-flex justify-content-center">
-                        <a href="{{url('/surat-jalan/'.$d->ID_PENJUALAN)}}" class="btn btn-md btn-google">
+                    <div class="my-3">
+                        <h5>Kendaraan Pengirim</h5>
+                        <h6>{{ $d->TIPE_KENDARAAN}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Nomor Polisi</h5>
+                        <h6>{{ $d->NOPOL}}</h6>
+                    </div>
+
+                    <div class="my-4 d-flex justify-content-center">
+                        <a href="{{url('/surat-jalan').'/'.$d->pembayaran_penjualan->penjualan->ID_PENJUALAN}}" class="btn btn-md btn-google">
                             <i class="far fa-file-alt mr-2"></i>
                             SURAT JALAN
                         </a>
@@ -236,6 +245,7 @@
 </div>
 {{-- End of Detail Pengiriman Modal--}}
 @endforeach
+@foreach($data_penjualan as $d)
 {{-- Start Detail Order Barang Modal --}}
 <div class="modal fade" id="modal-detail-order-barang-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -303,16 +313,6 @@
                         <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
                     </div>
 
-                    <div class="my-3">
-                        <h5>Kendaraan Pengirim</h5>
-                        <h6>{{ $d->TIPE_KENDARAAN}}</h6>
-                    </div>
-
-                    <div class="my-3">
-                        <h5>Nomor Polisi</h5>
-                        <h6>{{ $d->NOPOL}}</h6>
-                    </div>
-
                 </div>
 
             </div>
@@ -320,7 +320,7 @@
     </div>
 </div>
 {{-- End of Detail Order Barang Modal--}}
-
+@endforeach
 {{-- Start Pengiriman Modal --}}
 <div class="modal fade" id="modal-pengiriman-barang-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -343,9 +343,10 @@
 
                     <div class="form-group">
                         <label>Tanggal Pengiriman</label>
-                        <input type="date" name="TGL_KIRIM" class="form-control @error('TGL_KIRIM') is-invalid @enderror" required>
+                        <input type="date" name="TGL_KIRIM" class="form-control @error('TGL_KIRIM') is-invalid @enderror" required value="@php date('m/d/Y') @endphp">
                         <div class="invalid-feedback">
                             Mohon isi tanggal kirim.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -353,16 +354,16 @@
                         <input type="text" class="form-control @error('TIPE_KENDARAAN') is-invalid @enderror" name="TIPE_KENDARAAN" required>
                         <div class="invalid-feedback">
                             Mohon isi tipe kendaraan dengan benar.
-                        <div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Nomor Polisi</label>
                         <input type="text" class="form-control @error('NOPOL') is-invalid @enderror" name="NOPOL" required>
-                        <small class="form-text text-muted">contoh: W 2275 DV</small>
                         <div class="invalid-feedback">
                             Mohon isi nomor polisi dengan benar.
                         </div>
+                        <small class="form-text text-muted">contoh: W 2275 DV</small>
                     </div>
 
                     <div class="form-group">

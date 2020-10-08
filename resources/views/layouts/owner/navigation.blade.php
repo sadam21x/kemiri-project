@@ -56,6 +56,23 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="#" id="laporan-menu">
+                    <span class="nav-link-icon">
+                        <i class="far fa-chart-bar"></i>
+                    </span>
+                    <span>Laporan</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ url('/owner/laporan/transaksi-supplier') }}">Transaksi Supplier</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/owner/laporan/transaksi-customer') }}">Transaksi Customer</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
