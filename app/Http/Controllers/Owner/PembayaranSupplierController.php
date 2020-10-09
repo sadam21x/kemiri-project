@@ -32,6 +32,6 @@ class PembayaranSupplierController extends Controller
         	}
         	$data->save();
         });
-    	return response()->json(["success" => true, "data" => $data]);
+        return response()->json(["success" => true, "data" => $data]);
     }
 }

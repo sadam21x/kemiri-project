@@ -49,10 +49,12 @@
                                         <i class="fas fa-check ml-1"></i>
                                     </div>
                                 @else
-                                    <div class="konfirmasi-" id="{{$d->ID_PENJUALAN}}">
-                                    <button type="button" class="btn btn-sm btn-success konfirmasi" id="{{$d->ID_PENJUALAN}}">
-                                        KONFIRMASI
-                                    </button>
+                                    <div class="custom-konfirmasi" id="{{$d->ID_PENJUALAN}}">
+                                        <label class="label-konfirmasi-{{$d->ID_PENJUALAN}}" for="label-konfirmasi" id="label-konfirmasi-{{$d->ID_PENJUALAN}}">
+                                            <button type="button" class="btn btn-sm btn-success konfirmasi-{{$d->ID_PENJUALAN}}" id="konfirmasi-{{$d->ID_PENJUALAN}}">
+                                                KONFIRMASI
+                                            </button>
+                                        </label>
                                     </div>
                                 @endif
                                 </td>

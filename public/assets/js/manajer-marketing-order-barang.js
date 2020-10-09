@@ -8,8 +8,15 @@ $(document).ready(function() {
     const orderBarangTable = document.getElementById("order-barang-table");
     $(orderBarangTable).DataTable();
 
-    $(".konfirmasi").each(function(){
-    	$(this).on("click",function(){
+    // Element
+    var El = '<div>' +
+                '<span>KONFIRMASI</span>' +
+                 '<i class="fas fa-check ml-1"></i>' +
+            '</div>'
+
+    $(".custom-konfirmasi").each(function(){
+    	$(this).on("click",function(e){
+            e.stopPropagation();
     		let id = $(this).attr("id");
     		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	    	$.ajax({
@@ -24,6 +31,16 @@ $(document).ready(function() {
 						swal("Berhasil!", 
 							"Status Konfirmasi berhasil disimpan!", 
                             "success");
+
+                            let id_konfirmasi = $(".konfirmasi-"+id).attr("id").slice(11);
+                            if(id_konfirmasi == id){
+                                $(".konfirmasi-"+id).remove();
+                            }
+
+                            let id_label = $(".label-konfirmasi-"+id).attr("id").slice(17);
+                            if(id_label == id){
+                                $(".label-konfirmasi-"+id).append(El);
+                            }
 	                } else {
 						swal("Gagal!", 
 							"Status konfirmasi gagal disimpan!", 
@@ -33,28 +50,5 @@ $(document).ready(function() {
 	            }
 	        });
     	});
-    });
-
-    // Element
-    var El = '<div>' +
-                '<span>KONFIRMASI</span>' +
-                 '<i class="fas fa-check ml-1"></i>' +
-            '</div>'
-
-    $(".konfirmasi").on("click", function(){
-        let id = $(this).attr("id");
-        let idb = $(".konfirmasi-").attr("id");
-        if(idb == id){
-            $(this).remove();
-        }
-        console.log(this);
-    });
-
-
-    $(".konfirmasi-").on("click", function(){
-        let id = $(this).attr("id")
-        if($(".konfirmasi-").attr("id") == id){
-            $(this).append(El);
-        }
     });
 });

@@ -210,8 +210,10 @@ $(document).ready(function() {
       return totalbayar;
   }
 
-  // Form validation
-  (function() {
+  
+});
+// Form validation
+(function() {
     'use strict';
     window.addEventListener('load', function() {
       // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -228,4 +230,3 @@ $(document).ready(function() {
       });
     }, false);
   })();
-});

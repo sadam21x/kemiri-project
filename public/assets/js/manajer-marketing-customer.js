@@ -43,6 +43,7 @@ $(document).ready(function() {
             }
         });
     });
+    
 });
 
 // Form validation
@@ -63,3 +64,4 @@ $(document).ready(function() {
     });
   }, false);
 })();
+
