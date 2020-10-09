@@ -146,7 +146,7 @@
                     <div class="mt-5 d-flex justify-content-center">
                         <a href="{{url('/surat-jalan/'.$d->ID_PENJUALAN)}}" class="btn btn-md btn-google">
                             <i class="far fa-file-alt mr-2"></i>
-                            SURAT JALAN
+                            NOTA PENJUALAN
                         </a>
                     </div>
 

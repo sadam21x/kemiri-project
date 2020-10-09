@@ -60,7 +60,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -172,28 +171,34 @@
                         <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi alamat dengan benar.
-                        <div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="provinsi" required>
+                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon isi provinsi dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="kota" required>
+                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
                             <option>Pilih kota . . </option>
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon isi kota dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -251,7 +256,7 @@
                         <label class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}">
+                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}" required>
                         <div class="invalid-feedback">
                             Mohon isi nama depo dengan benar.
                         </div>
@@ -261,7 +266,7 @@
                         <label class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror" value="{{$d->ALAMAT_DEPO}}">
+                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror" value="{{$d->ALAMAT_DEPO}}" required>
                         <div class="invalid-feedback">
                             Mohon isi alamat dengan benar.
                         </div>
@@ -271,29 +276,35 @@
                         <label class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="provinsi">
+                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
                             <option>Pilih Provinsi . .</option>
                             @foreach ($provinsi as $id => $name)
                                 <!-- <option value="{{ $id }}" selected>{{$d->PROVINSI}}</option> -->
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon isi provinsi dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="kota">
-                            <option value="{{ $id }}">{{$d->KOTA}}</option>
+                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
+                            <option>Pilih Provinsi . .</option>
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon isi kota dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-form-label">
                             Contact Person
                         </label>
-                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control @error('nama_customer') is-invalid @enderror">
+                        <input type="text" name="nama_customer" id="" value="{{$d->NAMA_CUSTOMER}}" class="form-control @error('nama_customer') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi nama customer dengan benar.
                         </div>

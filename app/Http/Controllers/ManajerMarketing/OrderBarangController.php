@@ -102,7 +102,7 @@ class OrderBarangController extends Controller
     public function changeStatus(Request $request)
     {
     	$request->validate([
-    		'ID_KONFIRMASI_PENJUALAN' => 'required|exist:App\Models\KonfirmasiPenjualan,ID_KONFIRMASI_PENJUALAN|integer'
+    		'ID_KONFIRMASI_PENJUALAN' => 'required|exists:App\Models\KonfirmasiPenjualan,ID_KONFIRMASI_PENJUALAN|integer'
     	]);
 
     	$konfirmasi = KonfirmasiPenjualan::find($request->ID_KONFIRMASI_PENJUALAN);
