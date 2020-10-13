@@ -33,11 +33,11 @@
                     <div class="dashboard-notifikasi">
                         <h6>
                             <i class="fas fa-circle mr-2 text-google"></i>
-                            7 Transaksi supplier belum dibayar
+                            {{ $data_transaksi[0] }} Transaksi supplier belum dibayar
                         </h6>
                         <h6>
                             <i class="fas fa-circle mr-2 text-google"></i>
-                            10 Pembayaran customer belum dikonfirmasi
+                            {{ $data_transaksi[1] }} Pembayaran customer belum dikonfirmasi
                         </h6>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR 4.260.000</div>
+                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{ number_format($pemasukan,'0',',','.') }}</div>
                     </div>
                 </div>
             </div>

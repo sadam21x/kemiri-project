@@ -1,10 +1,10 @@
 <?php
 
 Route::view('/owner/laporan/transaksi-supplier', 'owner/transaksi-supplier');
-Route::view('/owner/laporan/transaksi-customer', 'owner/transaksi-customer');
+Route::get('/owner/laporan/transaksi-customer', 'Owner\LaporanCustomerController@LaporanCustomer');
 
 // Route dashboard
-Route::view('/owner', 'owner/dashboard');
+Route::get('/owner', 'DashboardController@Owner');
 
 // Route baru, bisa dimodif
 Route::get('/owner/edit-profil', function() {
@@ -32,6 +32,7 @@ Route::post('/owner/pegawai/store', 'Owner\PegawaiController@store');
 
 // Route pembayaran
 Route::get('/owner/pembayaran-supplier', 'Owner\PembayaranSupplierController@index');
+Route::get('/owner/pembayaran-supplier/get', 'Owner\PembayaranSupplierController@indexAjax');
 Route::post('/owner/pembayaran-supplier/update', 'Owner\PembayaranSupplierController@update');
 
 Route::get('/owner/pembayaran-customer', 'Owner\PembayaranCustomerController@index');

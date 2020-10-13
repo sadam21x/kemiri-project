@@ -56,7 +56,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">37 Transaksi</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$data_transaksi[1]}} Transaksi</div>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR 4.560.000</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{number_format($data_transaksi[0]->sum('TOTAL_PENJUALAN'),0,',','.')}}</div>
                             </div>
                         </div>
                     </div>
@@ -100,17 +100,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data_transaksi[0] as $d)
+                                @php 
+                                    $TOTAL = $d->TOTAL_PENJUALAN;
+                                    $ONGKIR = $d->ONGKOS_KIRIM;
+                                    $BIAYA_TRANSAKSI = $TOTAL - $ONGKIR;
+                                @endphp
                                 <tr>
-                                    <td>12/08/2020</td>
-                                    <td>Depo Air Minum Permata</td>
-                                    <td>3.750.000</td>
+                                    <td>{{date('d-m-Y',strtotime($d->TGL_PENJUALAN))}}</td>
+                                    <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
+                                    <td>{{number_format($BIAYA_TRANSAKSI,0,',','.')}}</td>
                                     <td>
-                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal" data-target="#modal-detail-transaksi">
+                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal" data-target="#modal-detail-transaksi-{{$d->ID_PENJUALAN}}">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -122,9 +129,9 @@
 
 </div>
 <!-- ./ Content -->
-
+@foreach($data_transaksi[0] as $d)
 {{-- Start Modal Detail Transaksi --}}
-<div class="modal fade" id="modal-detail-transaksi" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-transaksi-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -139,17 +146,17 @@
 
                     <div class="mb-3">
                         <h5>Tanggal</h5>
-                        <h6>12/08/2020</h6>
+                        <h6>{{date('d-m-Y',strtotime($d->TGL_PENJUALAN))}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Customer</h5>
-                        <h6>Depo Air Minum Permata</h6>
+                        <h6>{{$d->depo_air_minum->NAMA_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Alamat</h5>
-                        <h6>Jl. Airlangga No. 4-6 Surabaya</h6>
+                        <h6>{{$d->depo_air_minum->ALAMAT_DEPO}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -164,33 +171,30 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($d->detil_penjualans as $dt)
                                 <tr>
-                                    <td>Tutup Galon A</td>
-                                    <td>5000</td>
-                                    <td>400.000</td>
+                                    <td>{{$dt->product->NAMA_PRODUCT}}</td>
+                                    <td>{{number_format($dt->JUMLAH_PCS,0,',','.')}}</td>
+                                    <td>{{$dt->HARGA_BARANG}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Tutup Galon B</td>
-                                    <td>7000</td>
-                                    <td>375.000</td>
-                                </tr>
-                                <tr>
-                                    <td>Tutup Galon C</td>
-                                    <td>2000</td>
-                                    <td>90.000</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah Barang (pcs)</h5>
-                        <h6>9.000</h6>
+                        <h6>{{ number_format($d->detil_penjualans->sum('JUMLAH_PCS'),0,',','.') }}</h6>
                     </div>
 
+                    @php 
+                        $TOTAL = $d->TOTAL_PENJUALAN;
+                        $ONGKIR = $d->ONGKOS_KIRIM;
+                        $BIAYA_TRANSAKSI = $TOTAL - $ONGKIR;
+                    @endphp
                     <div class="my-3">
                         <h5>Biaya Transaksi (IDR)</h5>
-                        <h6>875.000</h6>
+                        <h6>{{ number_format($BIAYA_TRANSAKSI,0,',','.') }}</h6>
                     </div>
 
                 </div>
@@ -200,6 +204,7 @@
     </div>
 </div>
 {{-- End of Modal Detail Transaksi --}}
+@endforeach
 @endsection
 
 @section('extra-script')
