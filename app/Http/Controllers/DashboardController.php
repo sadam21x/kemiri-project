@@ -146,5 +146,27 @@ class DashboardController extends Controller
         $customer = DepoAirMinum::select('NAMA_CUSTOMER', 'ALAMAT_DEPO')->get();
         
         return view('admin-gudang.dashboard')->with(compact('StockPlastikBekas', 'StockPlastikVirgin', 'StockPewarna', 'data_penjualan', 'Order', 'supplier', 'customer', 'pengiriman'));
-    }
+	}
+	
+	public function Owner(){
+		//tanggal pertama bulan ini
+    	$date = Carbon::now()->startOfMonth();
+
+	    //tanggal terakhir bulan ini
+	    $date_end = Carbon::now()->endOfMonth();
+
+    	//total penjualan bulan ini
+		$pemasukan = Penjualan::whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->sum('TOTAL_PENJUALAN');
+
+		$data_transaksi = [];
+		
+		$data_transaksi[0] = PembayaranPenjualan::where('STATUS_PEMBAYARAN', '=', 0)->count('KODE_PEMBAYARAN_PENJUALAN');
+
+		$data_transaksi[1] = PembayaranPenjualan::join('penjualan as p', 'p.ID_PENJUALAN', '=', 'pembayaran_penjualan.ID_PENJUALAN')
+		->where('pembayaran_penjualan.STATUS_PEMBAYARAN', '=', 0)
+		->where('p.STATUS_PENJUALAN', '=', 1)
+		->count('pembayaran_penjualan.KODE_PEMBAYARAN_PENJUALAN');
+
+		return view('owner/dashboard')->with(compact('pemasukan', 'data_transaksi'));
+	}
 }
