@@ -174,7 +174,6 @@ class DashboardController extends Controller
 
     public function manajer_marketing()
     {
-        // Carbon::locale('id_ID');
         //tanggal pertama bulan ini
         $date = Carbon::now()->startOfMonth();
 
