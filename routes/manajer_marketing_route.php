@@ -1,7 +1,7 @@
 <?php
 
 // Route dashboard
-Route::view('/manajer-marketing', 'manajer-marketing/dashboard');
+Route::get('/manajer-marketing', 'DashboardController@manajer_marketing');
 
 // Route baru, bisa dimodif
 Route::get('/manajer-marketing/edit-profil', function() {

@@ -70,15 +70,16 @@
 
         </div>
     </div>
-
 </div>
 <!-- ./ Content -->
 @endsection
 
 @section('extra-script')
     <script src="{{ asset('/assets/js/google-chart-loader.js') }}"></script>
-    
     <script>
+        var data_penjualan_bulanan = <?= json_encode($data_penjualanproduct); ?>;
+        var data_penjualan_tahunan = <?= json_encode($data_penjualan); ?>;
+        var data_penjualan_keseluruhan = <?= json_encode($data_penjualan_keseluruhan); ?>;
         const menu = document.getElementById("dashboard-menu");
         menu.classList.add("active");
 
@@ -95,16 +96,21 @@
         // function - statistik penjualan produk per bulan
         function penjualanProdukBulanan() {
 
-            var data = new google.visualization.arrayToDataTable([
-                ["Element", "Produk Terjual (pcs)", { role: "style" } ],
-                ['Tutup Galon Tipe A', 10000, "blue"],
-                ['Tutup Galon Tipe B', 7000, "blue"],
-                ['Tutup Galon Tipe C', 12000, "blue"],
-                ['Tutup Galon Tipe D', 2000, "blue"],
-                ['Tutup Galon Tipe E', 5000, "blue"]
-            ]);
+            var data=[];
+            var Header= ["Element", "Produk Terjual (pcs)", { role: "style" } ];
+            data.push(Header);
+            for (var i = 0; i < data_penjualan_bulanan.length; i++) {
+              var temp=[];
+              temp.push(data_penjualan_bulanan[i].NAMA_PRODUCT);
+              temp.push(Number(data_penjualan_bulanan[i].JUMLAH_PCS));
+              temp.push("blue");
 
-            var view = new google.visualization.DataView(data);
+              data.push(temp);
+            }
+
+            var chartdata = new google.visualization.arrayToDataTable(data);
+
+            var view = new google.visualization.DataView(chartdata);
             view.setColumns([0, 1,
                                 { calc: "stringify",
                                     sourceColumn: 1,
@@ -124,23 +130,31 @@
             chart.draw(view, options);
         }
 
+
+
         // function - chart perkembangan penjualan produk sepanjang tahun
         function penjualanProdukTahunan() {
-            var data = google.visualization.arrayToDataTable([
-                ['Bulan', 'Tutup Galon A', 'Tutup Galon B', 'Tutup Galon C'],
-                ['Januari', 1000, 400, 600],
-                ['Februari', 1170, 460, 760],
-                ['Maret', 660, 1120, 550],
-                ['April', 1030, 540, 1200],
-                ['Mei', 1000, 400, 600],
-                ['Juni', 1170, 460, 760],
-                ['Juli', 660, 1120, 550],
-                ['Agustus', 1030, 540, 1200],
-                ['September', 1000, 400, 600],
-                ['Oktober', 0, 0, 0],
-                ['November', 0, 0, 0],
-                ['Desember', 0, 0, 0]
-            ]);
+
+            var beforedata=[];
+            var header= [];
+            header.push("Bulan");
+            const lengthproduk = Number(Object.keys(data_penjualan_tahunan[1]).length)-1;
+            for (var i = 0; i < lengthproduk; i++) {
+                var namaproduk = data_penjualan_tahunan[1][i].NAMA_PRODUCT;
+                header.push(namaproduk);
+            }
+            beforedata.push(header);
+            
+            for (var i = 1; i <= Object.keys(data_penjualan_tahunan).length; i++) {
+                var temp=[];
+                temp.push(data_penjualan_tahunan[i]["bulan"]);
+                for (var j = 0; j < lengthproduk; j++) {
+                    temp.push(Number(data_penjualan_tahunan[i][j].JUMLAH_PCS));
+                }
+                beforedata.push(temp);
+            }
+
+            var data = new google.visualization.arrayToDataTable(beforedata);
 
             var options = {
                 vAxis: {
@@ -158,24 +172,19 @@
         // function - perkembangan penjualan keseluruhan produk sepanjang tahun
         function penjualanKeseluruhanTahunan() {
 
+            var beforedata=[];
+            
+            for (var i = 1; i <= 12; i++) {
+                var row= [];
+                row.push(data_penjualan_keseluruhan[i]["bulan"]);
+                row.push(Number(data_penjualan_keseluruhan[i][0].JUMLAH_PCS));
+                beforedata.push(row);
+            }
+
             var data = new google.visualization.DataTable();
             data.addColumn('string', '');
             data.addColumn('number', 'Produk Terjual (pcs)');
-
-            data.addRows([
-                ['Januari', 37000],
-                ['Februari', 67000],
-                ['Maret', 45000],
-                ['April', 55250],
-                ['Mei', 35050],
-                ['Juni', 81000],
-                ['Juli', 72890],
-                ['Agustus', 77650],
-                ['September', 54545],
-                ['Oktober', 0],
-                ['November', 0],
-                ['Desember', 0],    
-            ]);
+            data.addRows(beforedata);
 
             var options = {
                 width: 900,
