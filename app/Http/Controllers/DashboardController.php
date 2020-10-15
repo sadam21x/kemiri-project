@@ -13,6 +13,8 @@ use App\Models\PenerimaanBahanBaku;
 use App\Models\Supplier;
 use Illuminate\Support\Carbon;
 use DB;
+use App\Models\Product;
+use App\Models\DetilPenjualan;
 
 class DashboardController extends Controller
 {
@@ -169,4 +171,51 @@ class DashboardController extends Controller
 
 		return view('owner/dashboard')->with(compact('pemasukan', 'data_transaksi'));
 	}
+
+    public function manajer_marketing()
+    {
+        //tanggal pertama bulan ini
+        $date = Carbon::now()->startOfMonth();
+
+        //tanggal terakhir bulan ini
+        $date_end = Carbon::now()->endOfMonth();
+
+        //total penjualan bulan ini
+        $data_penjualanproduct = Product::select('product.KODE_PRODUCT','product.NAMA_PRODUCT',DB::raw('COALESCE(SUM(d.JUMLAH_PCS),0) AS JUMLAH_PCS'))->leftJoin('detil_penjualan as d','d.KODE_PRODUCT','=','product.KODE_PRODUCT')->leftJoin('penjualan as p','p.ID_PENJUALAN','=','d.ID_PENJUALAN')->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->groupBy('product.KODE_PRODUCT','product.NAMA_PRODUCT')->get();
+
+        $data_penjualan = [];
+
+        for($i=1;$i<=12;$i++)
+        {
+            
+            $date = Carbon::create(date("Y"), $i, 1, 12, 0, 0)->startOfMonth();
+            $date_end = Carbon::create(date("Y"), $i, 1, 12, 0, 0)->endOfMonth();
+
+            $data_penjualan[$i] = Product::select('product.KODE_PRODUCT','product.NAMA_PRODUCT',DB::raw('
+                CASE WHEN d.ID_PENJUALAN IN(
+                    SELECT pp.ID_PENJUALAN FROM penjualan p 
+                    JOIN pembayaran_penjualan pp on pp.ID_PENJUALAN = p.ID_PENJUALAN 
+                    WHERE pp.STATUS_PEMBAYARAN = 1 AND DATE(TGL_PENJUALAN) BETWEEN "'.date("Y-m-d",strtotime($date)).'" AND "'.date("Y-m-d",strtotime($date_end)).'")
+                        THEN SUM(d.JUMLAH_PCS)
+                        ELSE 0
+                END AS JUMLAH_PCS'))->leftJoin('detil_penjualan as d','d.KODE_PRODUCT','=','product.KODE_PRODUCT')->groupBy('product.KODE_PRODUCT','product.NAMA_PRODUCT')->get();
+
+            $data_penjualan[$i]["bulan"] = $date->locale('id_ID')->monthName;
+        }
+
+        for($i=1;$i<=12;$i++)
+        {
+            
+            $date = Carbon::create(date("Y"), $i, 1, 12, 0, 0)->startOfMonth();
+            $date_end = Carbon::create(date("Y"), $i, 1, 12, 0, 0)->endOfMonth();
+
+            $data_penjualan_keseluruhan[$i] = DetilPenjualan::select(DB::raw('
+                COALESCE(SUM(JUMLAH_PCS),0) AS JUMLAH_PCS'))->join('penjualan as p','p.ID_PENJUALAN','=','detil_penjualan.ID_PENJUALAN')->join('pembayaran_penjualan as pp','pp.ID_PENJUALAN','=','p.ID_PENJUALAN')->where('pp.STATUS_PEMBAYARAN','=',1)->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->get();
+
+            $data_penjualan_keseluruhan[$i]["bulan"] = $date->locale('id_ID')->monthName;
+        }
+
+        return view('manajer-marketing/dashboard')->with(compact('data_penjualanproduct','data_penjualan','data_penjualan_keseluruhan'));
+
+    }
 }

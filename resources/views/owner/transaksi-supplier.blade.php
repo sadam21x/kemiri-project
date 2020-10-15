@@ -42,7 +42,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">37 Transaksi</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">{{$jumlah_transaksi}} Transaksi</div>
                             </div>
                         </div>
                     </div>
@@ -86,17 +86,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($penerimaan as $d)
                                 <tr>
-                                    <td>12/08/2020</td>
-                                    <td>UD. Permata Sari</td>
+                                    <td>{{date('d/m/Y',strtotime($d->TGL_KEDATANGAN))}}</td>
+                                    <td>{{$d->supplier->NAMA_SUPPLIER}}</td>
                                     <td>3.750.000</td>
                                     <td>
-                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal" data-target="#modal-detail-transaksi">
+                                        <button class="btn btn-linkedin btn-sm" data-toggle="modal" data-target="#modal-detail-transaksi-{{$d->ID_PENERIMAAN}}">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -108,9 +110,9 @@
 
 </div>
 <!-- ./ Content -->
-
+@foreach($penerimaan as $d)
 {{-- Start Modal Detail Transaksi --}}
-<div class="modal fade" id="modal-detail-transaksi" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-detail-transaksi-{{$d->ID_PENERIMAAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -125,22 +127,22 @@
 
                     <div class="mb-3">
                         <h5>Tanggal</h5>
-                        <h6>12/08/2020</h6>
+                        <h6>{{date('d/m/Y',strtotime($d->TGL_KEDATANGAN))}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Supplier</h5>
-                        <h6>UD. Permata Sari</h6>
+                        <h6>{{$d->supplier->NAMA_SUPPLIER}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Barang</h5>
-                        <h6>Plastik Virgin</h6>
+                        <h6>{{$d->bahan_baku->NAMA_BAHAN_BAKU}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Jumlah (Kg)</h5>
-                        <h6>500</h6>
+                        <h6>{{$d->TOTAL_BERAT}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -155,6 +157,8 @@
     </div>
 </div>
 {{-- End of Modal Detail Transaksi --}}
+@endforeach
+
 @endsection
 
 @section('extra-script')

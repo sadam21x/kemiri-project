@@ -1,6 +1,6 @@
 <?php
 
-Route::view('/owner/laporan/transaksi-supplier', 'owner/transaksi-supplier');
+Route::get('/owner/laporan/transaksi-supplier', 'Owner\LaporanSupplierController@index');
 Route::get('/owner/laporan/transaksi-customer', 'Owner\LaporanCustomerController@LaporanCustomer');
 
 // Route dashboard
