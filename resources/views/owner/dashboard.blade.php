@@ -59,7 +59,10 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{ number_format($pemasukan,'0',',','.') }}</div>
+                        @php
+                            $total_pemasukan = $pemasukan->sum('TOTAL_PENJUALAN') - $pemasukan->sum('ONGKOS_KIRIM');
+                        @endphp
+                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{ number_format($total_pemasukan,'0',',','.') }}</div>
                     </div>
                 </div>
             </div>
@@ -114,6 +117,8 @@
     <script src="{{ asset('/assets/js/google-chart-loader.js') }}"></script>
 
     <script>
+        var data_penjualan_keseluruhan = <?= json_encode($data_penjualan_keseluruhan); ?>;
+
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {
             'packages': ['corechart', 'line']
@@ -129,20 +134,19 @@
             data.addColumn('string', '');
             data.addColumn('number', 'Produk Terjual (pcs)');
 
-            data.addRows([
-                ['Januari', 37000],
-                ['Februari', 67000],
-                ['Maret', 45000],
-                ['April', 55250],
-                ['Mei', 35050],
-                ['Juni', 81000],
-                ['Juli', 72890],
-                ['Agustus', 77650],
-                ['September', 54545],
-                ['Oktober', 0],
-                ['November', 0],
-                ['Desember', 0],
-            ]);
+            var beforedata=[];
+            
+            for (var i = 1; i <= 12; i++) {
+                var row= [];
+                row.push(data_penjualan_keseluruhan[i]["bulan"]);
+                row.push(Number(data_penjualan_keseluruhan[i][0].JUMLAH_PCS));
+                beforedata.push(row);
+            }
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', '');
+            data.addColumn('number', 'Produk Terjual (pcs)');
+            data.addRows(beforedata);
 
             var options = {
                 width: 900,

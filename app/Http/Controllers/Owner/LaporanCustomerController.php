@@ -13,15 +13,15 @@ use DB;
 class LaporanCustomerController extends Controller
 {
     public function LaporanCustomer(){
-        $data_transaksi = [];
-
-        $data_transaksi[0] = Penjualan::select('*')->get();
-
         //tanggal pertama bulan ini
     	$date = Carbon::now()->startOfMonth();
 
 	    //tanggal terakhir bulan ini
-	    $date_end = Carbon::now()->endOfMonth();
+        $date_end = Carbon::now()->endOfMonth();
+
+        $data_transaksi = [];
+
+        $data_transaksi[0] = Penjualan::select('*')->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->get();
 
     	//total penjualan bulan ini
         $data_transaksi[1] = PembayaranPenjualan::whereBetween(DB::raw('DATE(TGL_PEMBAYARAN)'),[$date,$date_end])
