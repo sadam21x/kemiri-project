@@ -18,12 +18,10 @@ class LaporanCustomerController extends Controller
 
 	    //tanggal terakhir bulan ini
         $date_end = Carbon::now()->endOfMonth();
-        
-        $pemasukan = Penjualan::select('*')->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->get();
 
         $data_transaksi = [];
 
-        $data_transaksi[0] = Penjualan::select('*')->get();
+        $data_transaksi[0] = Penjualan::select('*')->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->get();
 
     	//total penjualan bulan ini
         $data_transaksi[1] = PembayaranPenjualan::whereBetween(DB::raw('DATE(TGL_PEMBAYARAN)'),[$date,$date_end])
@@ -31,6 +29,6 @@ class LaporanCustomerController extends Controller
                             ->where('p.STATUS_PENJUALAN', '=', 1)
                             ->count('KODE_PEMBAYARAN_PENJUALAN');
 
-        return view('owner/transaksi-customer')->with(compact('data_transaksi', 'pemasukan'));
+        return view('owner/transaksi-customer')->with(compact('data_transaksi'));
     }
 }

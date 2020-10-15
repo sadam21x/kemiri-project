@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 @php
-                                    $total_pemasukan = $pemasukan->sum('TOTAL_PENJUALAN') - $pemasukan->sum('ONGKOS_KIRIM');
+                                    $total_pemasukan = $data_transaksi[0]->sum('TOTAL_PENJUALAN') - $data_transaksi[0]->sum('ONGKOS_KIRIM');
                                 @endphp
                                 <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{number_format($total_pemasukan,0,',','.')}}</div>
                             </div>
