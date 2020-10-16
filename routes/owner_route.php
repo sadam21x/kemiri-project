@@ -32,7 +32,6 @@ Route::post('/owner/pegawai/store', 'Owner\PegawaiController@store');
 
 // Route pembayaran
 Route::get('/owner/pembayaran-supplier', 'Owner\PembayaranSupplierController@index');
-Route::get('/owner/pembayaran-supplier/get', 'Owner\PembayaranSupplierController@indexAjax');
 Route::post('/owner/pembayaran-supplier/update', 'Owner\PembayaranSupplierController@update');
 
 Route::get('/owner/pembayaran-customer', 'Owner\PembayaranCustomerController@index');
