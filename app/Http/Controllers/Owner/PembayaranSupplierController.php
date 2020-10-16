@@ -16,13 +16,6 @@ class PembayaranSupplierController extends Controller
         return view('owner.pembayaran-supplier')->with(compact("data"));
     }
 
-    public function indexAjax()
-    {
-        $data = PembayaranPenerimaanBahanBaku::all();
-       
-        return response()->json(["success" => true, "data" => $data]);
-    }
-
     public function update(Request $request)
     {
         //tested by dea (14/9/2020 16:40)

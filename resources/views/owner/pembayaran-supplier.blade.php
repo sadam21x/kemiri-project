@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-responsive-stack datatable-component">
+                        <table class="table table-bordered table-responsive-stack datatable-component" id="belum-bayar">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Tanggal</th>
@@ -38,9 +38,9 @@
                                 @foreach($data as $d)
                                     @if(!($d->STATUS_PEMBAYARAN))
                                             <tr id="{{$d->KODE_PEMBAYARAN}}">
-                                            <td id="tanggal-{{$d->KODE_PEMBAYARAN}}" value="{{date('Y-m-d',strtotime($d->TGL_PEMBAYARAN))}}">{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
-                                            <td id="nama_supplier-{{$d->KODE_PEMBAYARAN}}" value="{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}">{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
-                                            <td id="status">
+                                            <td id="tanggal-{{$d->KODE_PEMBAYARAN}}">{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                            <td id="nama_supplier-{{$d->KODE_PEMBAYARAN}}">{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
+                                            <td id="status-{{$d->KODE_PEMBAYARAN}}">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}">
                                                     <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Belum Bayar
