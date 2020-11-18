@@ -92,12 +92,12 @@
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Metode Kirim</label>
                             <select name="METODE_KIRIM" id="" class="form-control @error('METODE_KIRIM') is-invalid @enderror" required>
-                                <option>Ambil Sendiri</option>
-                                <option>Truk/Kontainer Kemiri</option>
-                                <option>POS Indonesia</option>
-                                <option>JNE</option>
-                                <option>J&T</option>
-                                <option>TIKI</option>
+                                <option value="Ambil Sendiri">Ambil Sendiri</option>
+                                <option value="Truk/Kontainer Kemiri">Truk/Kontainer Kemiri</option>
+                                <option value="POS Indonesia">POS Indonesia</option>
+                                <option value="JNE">JNE</option>
+                                <option value="J&T">J&T</option>
+                                <option value="TIKI">TIKI</option>
                             </select>
                             <div class="invalid-feedback">
                                 Mohon pilih metode kirim.
@@ -139,7 +139,7 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Ongkos Kirim (IDR)</label>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim" value="0">
+                                <input type="text" readonly class="form-control-plaintext" id="ongkos-kirim" value="0" onClick="this.select();">
                             </div>
                         </div>
 

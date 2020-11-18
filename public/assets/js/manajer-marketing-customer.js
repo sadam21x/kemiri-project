@@ -43,7 +43,67 @@ $(document).ready(function() {
             }
         });
     });
-    
+
+    // Tampilkan data kota sesuai provinsi yang dipilih
+    $('.edit-provinsi').on('change', function () {
+        const id_provinsi = $(this).val();
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var url = '/manajer-marketing/req-data-kota';
+
+        $.ajax({
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': token
+            },
+            url: url,
+            data: {id : id_provinsi},
+            dataType: 'json',
+            success: function(data){
+                $('.edit-kota').empty();
+
+                $.each(data, function (id, name) {
+                    $('.edit-kota').append(new Option(name, id));
+                });
+            }
+        });
+    });
+
+    $(".tombol-edit-customer").on("click", function(){
+        var kode_depo = $(this).attr('id').slice(14);
+
+        const id_provinsi = $("#edit-provinsi-"+kode_depo).val();
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var url = '/manajer-marketing/req-data-kota';
+
+        $.ajax({
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': token
+            },
+            url: url,
+            data: {id : id_provinsi},
+            dataType: 'json',
+            success: function(data){
+                $('#edit-kota-'+kode_depo).empty();
+
+                $.each(data, function (id, name) {
+                    $('#edit-kota-'+kode_depo).append(new Option(name, id));
+                });
+            }
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: '/manajer-marketing/getKota/'+kode_depo,
+            success: function(data){
+                console.log('kode_depo ='+kode_depo);
+                console.log('data ='+data);
+                $('#edit-kota-'+kode_depo+' option[value="'+data+'"]').attr('selected',true);
+                $('#edit-kota-'+kode_depo).val(data).trigger('change');
+            }
+        });
+    });
+
 });
 
 // Form validation

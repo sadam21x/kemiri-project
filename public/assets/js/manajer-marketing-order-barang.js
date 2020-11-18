@@ -41,6 +41,18 @@ $(document).ready(function() {
                             if(id_label == id){
                                 $(".label-konfirmasi-"+id).append(El);
                             }
+
+                        // let row = $("#"+id).remove().clone();
+
+                        // // move tr
+                        // row.detach();
+
+                        // $(".tabel-riwayat tbody").append(row);
+
+                        // $('tr#'+id+' .custom-switch').remove();
+                        // $('tr#'+id+' td#status-'+id).addClass('text-success');
+                        // $('tr#'+id+' #status-'+id+' span').after('Sudah Bayar');
+
 	                } else {
 						swal("Gagal!", 
 							"Status konfirmasi gagal disimpan!", 
