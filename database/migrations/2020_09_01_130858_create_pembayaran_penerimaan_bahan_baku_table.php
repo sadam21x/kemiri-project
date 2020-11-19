@@ -18,6 +18,7 @@ class CreatePembayaranPenerimaanBahanBakuTable extends Migration
             $table->integer('ID_PENERIMAAN')->index('FK_MEMILIKI99');
             $table->integer('ID_OWNER')->index('FK_MELAKUKAN1123')->nullable();
             $table->date('TGL_PEMBAYARAN')->nullable();
+            $table->integer('BIAYA_TRANSAKSI');
             $table->tinyInteger('STATUS_PEMBAYARAN');
             $table->timestamps();
         });

@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>{{$d->KODE_DEPO}}</td>
                                     <td>{{$d->NAMA_DEPO}}</td>
-                                    <td>{{$d->ALAMAT_DEPO}}, {{$d->KOTA}}</td>
+                                    <td>{{$d->ALAMAT_DEPO}}, {{ $d->indonesia_city->name }}</td>
                                     <td colspan="2">
                                         <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal"
                                             data-target="#modal-detail-customer-{{$d->KODE_DEPO}}">
@@ -48,7 +48,7 @@
                                             DETAIL
                                         </button>
                                         <button class="btn btn-sm btn-warning tombol-edit-customer" data-toggle="modal"
-                                            data-target="#modal-edit-customer-{{$d->KODE_DEPO}}">
+                                            data-target="#modal-edit-customer-{{$d->KODE_DEPO}}" id="edit-customer-{{$d->KODE_DEPO}}">
                                             <i class="fas fa-edit mr-2"></i>
                                             EDIT
                                         </button>
@@ -96,12 +96,12 @@
 
                     <div class="my-3">
                         <h5>Kota/Kabupaten</h5>
-                        <h6>{{$d->KOTA}}</h6>
+                        <h6>{{ $d->indonesia_city->name }}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Provinsi</h5>
-                        <h6>{{$d->PROVINSI}}</h6>
+                        <h6>{{ $d->indonesia_city->indonesia_province->name }}</h6>
                     </div>
 
                     <div class="my-3">
@@ -148,7 +148,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/sales-a/customer/insert')}}" method="POST" class="needs-validation" novalidate>
+                <form action="{{url('/sales-a/customer/insert')}}" method="POST" class="needs-validation" novalidate id="insert-form-customer">
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
@@ -180,7 +180,7 @@
                         </label>
                         <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
                             <option>Pilih provinsi . . </option>
-                            @foreach ($provinsi as $id => $name)
+                            @foreach ($province as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
@@ -224,7 +224,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="button" class="btn btn-google" onclick="document.getElementById('insert-form-customer').reset(); $('#modal-tambah-customer').modal('toggle');">BATAL</button>
                         <button type="submit" class="btn btn-linkedin">SIMPAN</button>
                     </div>
 
@@ -251,12 +251,12 @@
 
                     {{-- Hidden id customer untuk update data --}}
                     <input type="hidden" name="kode_depo" value="{{$d->KODE_DEPO}}">
-
+                    
                     <div class="form-group">
                         <label class="col-form-label">
                             Nama Customer/Depo
                         </label>
-                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}" required>
+                        <input type="text" name="nama_depo" class="form-control @error('nama_depo') is-invalid @enderror" value="{{$d->NAMA_DEPO}}" required>
                         <div class="invalid-feedback">
                             Mohon isi nama depo dengan benar.
                         </div>
@@ -276,11 +276,14 @@
                         <label class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
+                        <select class="form-control select-component edit-provinsi @error('provinsi') is-invalid @enderror" id="edit-provinsi-{{$d->KODE_DEPO}}" name="provinsi" required>
                             <option>Pilih Provinsi . .</option>
-                            @foreach ($provinsi as $id => $name)
-                                <!-- <option value="{{ $id }}" selected>{{$d->PROVINSI}}</option> -->
+                            @foreach ($province as $id => $name)
+                                @if($id == $d->indonesia_city->indonesia_province->id)
+                                <option value="{{ $d->indonesia_city->indonesia_province->id }}" selected="true">{{$d->indonesia_city->indonesia_province->name}}</option>
+                                @else
                                 <option value="{{ $id }}">{{ $name }}</option>
+                                @endif
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
@@ -292,7 +295,7 @@
                         <label class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
+                        <select class="form-control select-component edit-kota @error('kota') is-invalid @enderror" id="edit-kota-{{$d->KODE_DEPO}}" name="kota" required>
                             <option>Pilih Provinsi . .</option>
                         </select>
                         <div class="invalid-feedback">
@@ -314,7 +317,7 @@
                         <label class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_depo" id="" value="{{$d->NO_TELP_DEPO}}" class="form-control num-without-style">
+                        <input type="text" name="no_telp_depo" id="" value="{{$d->NO_TELP_DEPO}}" class="form-control">
                     </div>
 
                     <div class="form-group">

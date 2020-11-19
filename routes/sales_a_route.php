@@ -15,6 +15,7 @@ Route::get('/sales-a/edit-profil', function() {
 Route::get('/sales-a/customer', 'SalesA\CustomerController@index');
 Route::post('/sales-a/customer/insert', 'SalesA\CustomerController@create');
 Route::post('/sales-a/customer/edit', 'SalesA\CustomerController@update');
+Route::get('/sales-a/getKota/{kode_depo}', 'SalesA\CustomerController@getKota');
 
 // handle ajax request data kota sesuai provinsi yang dipilih
 Route::post('/sales-a/req-data-kota', function() {

@@ -42,6 +42,7 @@ class PembayaranPenerimaanBahanBaku extends Model
 		'ID_PENERIMAAN',
 		'ID_OWNER',
 		'TGL_PEMBAYARAN',
+        'BIAYA_TRANSAKSI',
 		'STATUS_PEMBAYARAN'
 	];
 

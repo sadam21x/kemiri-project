@@ -16,9 +16,7 @@ class CustomerController extends Controller
     public function index()
     {
         $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
-        $data = DepoAirMinum::select('depo_air_minum.*','k.name AS KOTA','p.name AS PROVINSI')
-                ->join('indonesia_cities as k','k.id','=','depo_air_minum.KODE_KOTA')
-                ->join('indonesia_provinces as p','p.id','=','k.province_id')->get();
+        $data = DepoAirMinum::all();
 
         return view('manajer-marketing/customer', compact('data', 'provinsi'));
     }
@@ -32,7 +30,7 @@ class CustomerController extends Controller
     {
         $r->validate([
             'kota' => 'required|exists:App\Models\IndonesiaCity,id|integer',
-            'id_manajer_marketing' => 'required|exist:App\Models\ManajerMarketing,id_manajer_marketing|integer',
+            'id_manajer_marketing' => 'required|exists:App\Models\ManajerMarketing,id_manajer_marketing|integer',
             'nama_customer' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
             'nama_depo' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
             'alamat_depo' => 'required|string|max:100',
@@ -59,9 +57,11 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function getKota($kode_depo)
+    { 
+        $depo = DepoAirMinum::where('KODE_DEPO',$kode_depo);
+
+        return $depo->value('KODE_KOTA');
     }
 
     /**

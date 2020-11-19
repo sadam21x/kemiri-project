@@ -15,6 +15,7 @@ Route::get('/manajer-marketing/edit-profil', function() {
 Route::get('/manajer-marketing/customer', 'ManajerMarketing\CustomerController@index');
 Route::post('/manajer-marketing/customer/insert', 'ManajerMarketing\CustomerController@create');
 Route::post('/manajer-marketing/customer/edit', 'ManajerMarketing\CustomerController@update');
+Route::get('/manajer-marketing/getKota/{kode_depo}', 'ManajerMarketing\CustomerController@getKota');
 
 // Route order barang
 Route::get('/manajer-marketing/order-barang', 'ManajerMarketing\OrderBarangController@index');
