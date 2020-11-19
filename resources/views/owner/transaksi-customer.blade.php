@@ -76,10 +76,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                @php
-                                    $total_pemasukan = $data_transaksi[0]->sum('TOTAL_PENJUALAN') - $data_transaksi[0]->sum('ONGKOS_KIRIM');
-                                @endphp
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{number_format($total_pemasukan,0,',','.')}}</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{number_format(floatval($data_transaksi[0]->sum('TOTAL_PENJUALAN')-$data_transaksi[0]->sum('ONGKOS_KIRIM')),0,',','.')}}</div>
                             </div>
                         </div>
                     </div>
@@ -104,15 +101,10 @@
                             </thead>
                             <tbody>
                                 @foreach($data_transaksi[0] as $d)
-                                @php 
-                                    $TOTAL = $d->TOTAL_PENJUALAN;
-                                    $ONGKIR = $d->ONGKOS_KIRIM;
-                                    $BIAYA_TRANSAKSI = $TOTAL - $ONGKIR;
-                                @endphp
                                 <tr>
                                     <td>{{date('d-m-Y',strtotime($d->TGL_PENJUALAN))}}</td>
                                     <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
-                                    <td>{{number_format($BIAYA_TRANSAKSI,0,',','.')}}</td>
+                                    <td>{{number_format(floatval($d->TOTAL_PENJUALAN-$d->ONGKOS_KIRIM),0,',','.')}}</td>
                                     <td>
                                         <button class="btn btn-linkedin btn-sm" data-toggle="modal" data-target="#modal-detail-transaksi-{{$d->ID_PENJUALAN}}">
                                             <i class="fas fa-info-circle mr-2"></i>

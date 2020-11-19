@@ -132,7 +132,7 @@
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format(floatval($d->penjualan->TOTAL_PENJUALAN-$d->ONGKOS_KIRIM),0,',','.')}}</h6>
+                        <h6>{{ number_format(floatval($d->penjualan->TOTAL_PENJUALAN-$d->penjualan->ONGKOS_KIRIM),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">

@@ -23,10 +23,10 @@ $(document).ready(function() {
             success: function(results){
                 if (results.data.STATUS_PEMBAYARAN == 1){
                     let row = $("#"+id).remove().clone();
-
+                    // $('#belum-bayar').DataTable().ajax.reload();
                     // move tr
                     row.detach();
-
+                    
                     $(".tabel-riwayat tbody").append(row);
 
                     $('tr#'+id+' .custom-switch').remove();

@@ -56,7 +56,7 @@
 
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control @error('NAMA') is-invalid @enderror" name="NAMA" required id="nama">
+                    <input type="text" value="{{ old('NAMA') }}" class="form-control @error('NAMA') is-invalid @enderror" name="NAMA" required id="nama">
                     <div class="invalid-feedback">
                         Mohon isi nama dengan benar.
                     </div>
@@ -83,7 +83,7 @@
                 <div class="form-group">
                     <label>Jabatan</label>
                     <select class="form-control @error('KODE_JABATAN') is-invalid @enderror" name="KODE_JABATAN" required>
-                        <option selected disabled>Pilih jabatan...</option>
+                        <option value="{{ old('KODE_JABATAN') }}" selected disabled>Pilih jabatan...</option>
                         <option value="2">Admin Gudang</option>
                         <option value="3">Manajer Marketing</option>
                         <option value="6">Operator Mesin</option>
@@ -97,7 +97,7 @@
 
                 <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control @error('ALAMAT') is-invalid @enderror" name="ALAMAT" required maxlength="100" minlength="8">
+                    <input type="text" value="{{ old('ALAMAT') }}" class="form-control @error('ALAMAT') is-invalid @enderror" name="ALAMAT" required maxlength="100" minlength="8">
                     <div class="invalid-feedback">
                         Mohon isi alamat pegawai dengan benar.
                     </div>
@@ -106,7 +106,7 @@
                 <div class="form-group">
                     <label>Provinsi</label>
                     <select class="form-control select-component select-provinsi @error('PROVINSI') is-invalid @enderror" name="PROVINSI" required>
-                        <option disabled>Pilih provinsi . . </option>
+                        <option value="{{ old('PROVINSI') }}" disabled>Pilih provinsi . . </option>
                         @foreach ($provinsi as $id => $name)
                             <option value="{{ $id }}">{{ $name }}</option>
                         @endforeach
@@ -119,7 +119,7 @@
                 <div class="form-group">
                     <label>Kabupaten/Kota</label>
                     <select class="form-control select-component select-kota @error('KODE_KOTA') is-invalid @enderror" name="KODE_KOTA" required>
-                        <option disabled>Pilih kota . . </option>
+                        <option value="{{ old('KODE_KOTA') }}" disabled>Pilih kota . . </option>
                     </select>
                     <div class="invalid-feedback">
                         Mohon pilih kota alamat pegawai.
@@ -128,7 +128,7 @@
 
                 <div class="form-group">
                     <label>Nomor Telepon</label>
-                    <input type="number" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP">
+                    <input type="number" value="{{ old('NO_TELP') }}" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP">
                     <div class="invalid-feedback">
                         Mohon isi nomor telepon pegawai dengan benar.
                     </div>
@@ -136,7 +136,7 @@
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control @error('EMAIL') is-invalid @enderror" name="EMAIL">
+                    <input type="email" value="{{ old('EMAIL') }}" class="form-control @error('EMAIL') is-invalid @enderror" name="EMAIL">
                     <div class="invalid-feedback">
                         Mohon isi email yang valid.
                     </div>
@@ -144,7 +144,7 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100">
+                    <input type="text" value="{{ old('USERNAME_USER') }}" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
