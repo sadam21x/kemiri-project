@@ -14,17 +14,16 @@
         <hr>
     </div>
 
-    <div class="row">
-        
+    <div class="row">     
         <div class="col-md-12">
             <div class="judul-tabel mb-3">
-                <h5>Rekap Daftar Customer Yang Telah Di Input</h5>
+                <h5>Rekap Input Customer (@php echo date('F Y'); @endphp)</h5>
             </div>
 
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">ID Customer</th>
                                 <th scope="col">Nama Customer</th>
@@ -36,6 +35,37 @@
                                     <td>{{$d->KODE_DEPO}}</td>
                                     <td>{{$d->NAMA_DEPO}}</td>
                                     <td>{{$d->ALAMAT_DEPO}}, {{$d->indonesia_city->name}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">     
+        <div class="col-md-12">
+            <div class="judul-tabel mb-3">
+                <h5>Rekap Input Customer (Total)</h5>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
+                            <thead class="thead-dark">
+                                <th scope="col">ID Customer</th>
+                                <th scope="col">Nama Customer</th>
+                                <th scope="col">Alamat</th>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d2)
+                                <tr>
+                                    <td>{{$d2->KODE_DEPO}}</td>
+                                    <td>{{$d2->NAMA_DEPO}}</td>
+                                    <td>{{$d2->ALAMAT_DEPO}}, {{$d2->indonesia_city->name}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

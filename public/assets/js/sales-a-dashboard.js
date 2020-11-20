@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
     const menu = document.getElementById("dashboard-menu");
-    menu.classList.add("active");  
+    menu.classList.add("active");
+    
+    $('.datatable-table').DataTable();
 
 });
