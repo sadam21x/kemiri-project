@@ -23,7 +23,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <table id="sales-a-table" class="table table-bordered table-stripped table-responsive-stack">
+                    <table id="sales-a-table" class="table table-bordered table-stripped table-responsive-stack datatable-table">
                         <thead class="thead-dark">
                             <th scope="col">ID Evaluasi</th>
                             <th scope="col">Tanggal</th>
@@ -57,7 +57,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <table id="sales-a-table" class="table table-bordered table-stripped table-responsive-stack">
+                    <table id="sales-a-table" class="table table-bordered table-stripped table-responsive-stack datatable-table">
                         <thead class="thead-dark">
                             <th scope="col">ID Evaluasi</th>
                             <th scope="col">Tanggal</th>

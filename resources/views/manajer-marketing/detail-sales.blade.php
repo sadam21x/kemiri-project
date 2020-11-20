@@ -123,11 +123,15 @@
                 @if($jabatan == "Sales A")
                 Rekap Penginputan Customer
 
-                <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/'.$data->ID_SALES_A.'/input') }}"
+                {{-- <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-a/'.$data->ID_SALES_A.'/input') }}"
                     class="btn btn-sm btn-secondary mr-1">
                     <i class="fas fa-book-open mr-2"></i>
                     EVALUASI
-                </a>
+                </a> --}}
+                <button class="btn btn-sm btn-secondary mr-1" data-toggle="modal" data-target="#evaluasi-modal">
+                    <i class="fas fa-book-open mr-2"></i>
+                    EVALUASI
+                </button>
 
                 @else
                 Rekap Penginputan Order
@@ -176,7 +180,42 @@
     </div>
 </div>
 {{-- End of Content --}}
-    
+
+{{-- Start Evaluasi Modal --}}
+<div class="modal fade" id="evaluasi-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Evaluasi Sales</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="d-flex justify-content-center">
+                        <p>
+                            Apakah Sales yang bersangkutan telah memenuhi target bulan ini
+                            (@php echo date('F Y') @endphp)?
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-sm btn-danger">
+                            <i class="fas fa-times-circle mr-2"></i>
+                            TIDAK
+                        </button>
+                        <button class="btn btn-sm btn-success ml-2">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            YA
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Evaluasi Modal --}}
 @endsection
 
 @section('extra-script')

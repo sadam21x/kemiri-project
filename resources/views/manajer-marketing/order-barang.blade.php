@@ -13,11 +13,12 @@
         <hr>
     </div>
 
+    {{-- List order barang belum dikonfirmasi --}}
     <div class="row">
         <div class="col-md-12">
 
             <div class="judul-tabel">
-                <h5>Riwayat Order Barang</h5>
+                <h5>Konfirmasi Order Barang</h5>
                 <a href="{{ url('/manajer-marketing/order-barang/input') }}" class="btn btn-sm btn-rounded bg-dribbble ml-auto">
                     <i class="fas fa-plus mr-1"></i>
                     TAMBAH BARU
@@ -26,7 +27,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <table id="order-barang-table" class="table table-bordered table-striped table-responsive-stack">
+                    <table id="order-barang-table" class="table table-bordered table-striped table-responsive-stack datatable-table">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">ID Order</th>
@@ -61,6 +62,65 @@
                                 <td colspan="2">
                                     <button class="btn btn-linkedin btn-sm" data-toggle="modal"
                                         data-target="#modal-detail-order-barang-{{$d->ID_PENJUALAN}}">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        DETAIL
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {{-- List order barang sudah dikonfirmasi --}}
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="judul-tabel">
+                <h5>Riwayat Order Barang</h5>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-responsive-stack datatable-table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ID Order</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Konfirmasi Order</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data2 as $d2)
+                            <tr>
+                                <td>{{$d2->ID_PENJUALAN}}</td>
+                                <td>{{date("d/m/Y",strtotime($d2->TGL_PENJUALAN))}}</td>
+                                <td>{{$d2->depo_air_minum->NAMA_DEPO}}</td>
+                                <td>
+                                @if($d2->STATUS_PENJUALAN == 1)
+                                    <div>
+                                        <span>KONFIRMASI</span>
+                                        <i class="fas fa-check ml-1"></i>
+                                    </div>
+                                @else
+                                    <div class="custom-konfirmasi" id="{{$d2->ID_PENJUALAN}}">
+                                        <label class="label-konfirmasi-{{$d2->ID_PENJUALAN}}" for="label-konfirmasi" id="label-konfirmasi-{{$d2->ID_PENJUALAN}}">
+                                            <button type="button" class="btn btn-sm btn-success konfirmasi-{{$d2->ID_PENJUALAN}}" id="konfirmasi-{{$d2->ID_PENJUALAN}}">
+                                                KONFIRMASI
+                                            </button>
+                                        </label>
+                                    </div>
+                                @endif
+                                </td>
+                                <td colspan="2">
+                                    <button class="btn btn-linkedin btn-sm" data-toggle="modal"
+                                        data-target="#modal-detail-order-barang-{{$d2->ID_PENJUALAN}}">
                                         <i class="fas fa-info-circle mr-1"></i>
                                         DETAIL
                                     </button>
