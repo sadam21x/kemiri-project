@@ -22,8 +22,9 @@ $(document).ready(function() {
             },
             success: function(results){
                 if (results.data.STATUS_PEMBAYARAN == 1){
-                    let row = $("#"+id).remove().clone();
-                    // $('#belum-bayar').DataTable().ajax.reload();
+                    let row = $("tr#"+id).remove().clone();
+                    // table.ajax.reload();
+                    row.removeColumn();
                     // move tr
                     row.detach();
                     

@@ -20,6 +20,7 @@ Route::post('/admin-gudang/penerimaan-bahan-baku/insert', 'AdminGudang\Penerimaa
 Route::get('/admin-gudang/supplier', 'AdminGudang\SupplierController@index');
 Route::post('/admin-gudang/supplier/edit', 'AdminGudang\SupplierController@update');
 Route::post('/admin-gudang/supplier/insert', 'AdminGudang\SupplierController@create');
+Route::get('/admin-gudang/supplier/getKota/{id_supplier}', 'AdminGudang\SupplierController@getKota');
 
 // Route pengiriman
 Route::get('/admin-gudang/pengiriman-barang','AdminGudang\PengirimanBarangController@index');

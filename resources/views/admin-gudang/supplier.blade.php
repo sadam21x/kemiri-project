@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>{{$d->ID_SUPPLIER}}</td>
                                     <td>{{$d->NAMA_SUPPLIER}}</td>
-                                    <td>{{$d->ALAMAT_SUPPLIER}}, {{$d->KOTA}}</td>
+                                    <td>{{$d->ALAMAT_SUPPLIER}}, {{ $d->indonesia_city->name }}</td>
                                     <td colspan="2">
                                         <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal"
                                             data-target="#modal-detail-supplier-{{$d->ID_SUPPLIER}}">
@@ -48,7 +48,7 @@
                                             DETAIL
                                         </button>
                                         <button class="btn btn-sm btn-warning tombol-edit-supplier" data-toggle="modal"
-                                            data-target="#modal-edit-supplier-{{$d->ID_SUPPLIER}}">
+                                            data-target="#modal-edit-supplier-{{$d->ID_SUPPLIER}}" id="edit-supplier-{{$d->ID_SUPPLIER}}">
                                             <i class="fas fa-edit mr-1"></i>
                                             EDIT
                                         </button>
@@ -145,54 +145,72 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/supplier/insert')}}" method="POST">
+                <form action="{{url('/admin-gudang/supplier/insert')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="nama_supplier" id="" class="form-control">
+                        <input type="text" name="nama_supplier" id="" class="form-control @error('nama_supplier') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi nama supplier dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_supplier" id="" class="form-control">
+                        <input type="text" name="alamat_supplier" id="" class="form-control @error('alamat_supplier') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi alamat dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="provinsi">
-                            <option>Pilih provinsi . . </option>
+                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
+                            <option selected disabled>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon isi provinsi dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="kota">
-                            <option>Pilih kota . . </option>
+                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
+                            <option selected disabled>Pilih kota . . </option>
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon isi kota dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_supplier" id="" class="form-control num-without-style">
+                        <input type="text" name="no_telp_supplier" id="" class="form-control num-without-style input-telp @error('no_telp_supplier') is-invalid @enderror">
+                        <div class="invalid-feedback">
+                            Mohon isi nomor telepon dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="email_supplier" id="" class="form-control">
+                        <input type="email" name="email_supplier" id="" class="form-control @error('email_supplier') is-invalid @enderror">
+                        <div class="invalid-feedback">
+                            Mohon isi email dengan benar.
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -218,7 +236,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/supplier/edit')}}" method="POST">
+                <form action="{{url('/admin-gudang/supplier/edit')}}" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id supplier untuk update supplier --}}
@@ -228,47 +246,69 @@
                         <label for="a" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="nama_supplier" id="a" class="form-control" value="{{$d->NAMA_SUPPLIER}}">
+                        <input type="text" name="nama_supplier" id="a" class="form-control @error('nama_supplier') is-invalid @enderror" value="{{$d->NAMA_SUPPLIER}}" required>
+                        <div class="invalid-feedback">
+                            Mohon isi nama supplier dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Alamat
                         </label>
-                        <input type="text" name="alamat_supplier" id="" class="form-control" value="{{$d->ALAMAT_SUPPLIER}}">
+                        <input type="text" name="alamat_supplier" id="" class="form-control @error('alamat_supplier') is-invalid @enderror" value="{{$d->ALAMAT_SUPPLIER}}" required>
+                        <div class="invalid-feedback">
+                            Mohon isi alamat supplier dengan benar.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Provinsi
                         </label>
-                        <select class="form-control select-component select-provinsi" id="" name="provinsi">
+                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="edit-provinsi-{{$d->ID_SUPPLIER}}" name="provinsi" required>
                             <option>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
+                            @if($id == $d->indonesia_city->indonesia_province->id)
+                                <option value="{{ $d->indonesia_city->indonesia_province->id }}" selected="true">{{$d->indonesia_city->indonesia_province->name}}</option>
+                                @else
                                 <option value="{{ $id }}">{{ $name }}</option>
+                                @endif
                             @endforeach
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih provinsi.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Kabupaten/Kota
                         </label>
-                        <select class="form-control select-component select-kota" id="" name="kota">
+                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="edit-kota-{{$d->ID_SUPPLIER}}" name="kota" required>
                             <option>Pilih kota . . </option>
                         </select>
+                        <div class="invalid-feedback">
+                            Mohon pilih kota.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_supplier" id="" class="form-control num-without-style" value="{{$d->NO_TELP_SUPPLIER}}">
+                        <input type="text" name="no_telp_supplier" id="" class="form-control num-without-style input-telp @error('no_telp_supplier') is-invalid @enderror" value="{{$d->NO_TELP_SUPPLIER}}">
+                        <div class="invalid-feedback">
+                            Mohon isi nomor telepon dengan benar
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="email_supplier" id="" class="form-control" value="{{$d->EMAIL_SUPPLIER}}">
+                        <input type="email" name="email_supplier" id="" class="form-control @error('email_supplier') is-invalid @enderror" value="{{$d->EMAIL_SUPPLIER}}">
+                        <div class="invalid-feedback">
+                            Mohon isi email dengan benar.
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -288,5 +328,6 @@
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-supplier.js') }}"></script>
 @endsection

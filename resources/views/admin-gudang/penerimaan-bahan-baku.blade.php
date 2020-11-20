@@ -192,7 +192,7 @@
 
                     <div class="form-group">
                         <label>Jumlah Karung</label>
-                        <input type="number" name="jumlah_karung_sak" id="in_karung" class="form-control input-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
+                        <input type="text" name="jumlah_karung_sak" id="in_karung" class="form-control input-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah karung dengan benar.
                         </div> 
@@ -200,7 +200,7 @@
 
                     <div class="form-group">
                         <label>Berat per Karung (Kg)</label>
-                        <input type="number" name="isi_karung" id="in_tiap_karung" class="form-control input-berat-karung @error('isi_karung') is-invalid @enderror" required>
+                        <input type="text" name="isi_karung" id="in_tiap_karung" class="form-control input-berat-karung @error('isi_karung') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi berat karung dengan benar.
                         </div>
@@ -208,7 +208,7 @@
 
                     <div class="form-group">
                         <label>Berat Total (Kg)</label>
-                        <input type="number" name="total_berat" id="in_total" class="form-control input-berat-total" placeholder="0" readonly required>
+                        <input type="text" name="total_berat" id="in_total" class="form-control input-berat-total @error('total_berat') is-invalid @enderror" placeholder="0" readonly required>
                         <div class="invalid-feedback">
                             Mohon isi berat karung dengan benar.
                         </div>
@@ -216,7 +216,7 @@
 
                     <div class="form-group">
                         <label>Jumlah Bahan Baku Bagus (Kg)</label>
-                        <input type="number" class="form-control" min="0">
+                        <input type="text" class="form-control input-bagus @error('bagus') is-invalid @enderror" name="bagus" min="0" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku bagus dengan benar.
                         </div>
@@ -224,7 +224,7 @@
 
                     <div class="form-group">
                         <label>Jumlah Bahan Baku Rusak (Kg)</label>
-                        <input type="number" class="form-control" min="0">
+                        <input type="number" class="form-control input-rusak @error('rusak') is-invalid @enderror" min="0" name="rusak" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku rusak dengan benar.
                         </div>
@@ -336,5 +336,6 @@
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-penerimaan.js') }}"></script>
 @endsection
