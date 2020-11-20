@@ -43,6 +43,13 @@ $(document).ready(function() {
 
     });
 
+    // Input mask
+    $('.input-jumlah-karung').mask("00000000000000");
+    $('.input-berat-karung').mask("00000000000000");
+    $('.input-berat-total').mask("00000000000000");
+    $('.input-bagus').mask("00000000000000");
+    $('.input-rusak').mask("00000000000000");
+
     // Form Validate
     'use strict';
     // Fetch all the forms we want to apply custom Bootstrap validation styles to

@@ -16,9 +16,7 @@ class SupplierController extends Controller
     public function index()
     {
         $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
-        $data = Supplier::select('supplier.*', 'k.name AS KOTA','p.name AS PROVINSI')
-                ->join('indonesia_cities as k','k.id','=','supplier.KODE_KOTA')
-                ->join('indonesia_provinces as p','p.id','=','k.province_id')->get();
+        $data = Supplier::all();
         return view('/admin-gudang/supplier')->with(compact('data', 'provinsi'));
     }
 
@@ -116,5 +114,12 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getKota($id_supplier)
+    { 
+        $depo = Supplier::where('ID_SUPPLIER',$id_supplier);
+
+        return $depo->value('KODE_KOTA');
     }
 }
