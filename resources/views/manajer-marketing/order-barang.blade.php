@@ -39,25 +39,18 @@
                         </thead>
                         <tbody>
                             @foreach($data as $d)
-                            <tr>
+                            <tr id="{{$d->ID_PENJUALAN}}">
                                 <td>{{$d->ID_PENJUALAN}}</td>
                                 <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
                                 <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
-                                <td>
-                                @if($d->STATUS_PENJUALAN == 1)
-                                    <div>
-                                        <span>KONFIRMASI</span>
-                                        <i class="fas fa-check ml-1"></i>
-                                    </div>
-                                @else
-                                    <div class="custom-konfirmasi" id="{{$d->ID_PENJUALAN}}">
+                                <td id="status-{{$d->ID_PENJUALAN}}">
+                                    <div class="custom-konfirmasi" id="tombol-{{$d->ID_PENJUALAN}}">
                                         <label class="label-konfirmasi-{{$d->ID_PENJUALAN}}" for="label-konfirmasi" id="label-konfirmasi-{{$d->ID_PENJUALAN}}">
-                                            <button type="button" class="btn btn-sm btn-success konfirmasi-{{$d->ID_PENJUALAN}}" id="konfirmasi-{{$d->ID_PENJUALAN}}">
+                                            <button type="button" class="btn btn-sm btn-success" id="konfirmasi-{{$d->ID_PENJUALAN}}">
                                                 KONFIRMASI
                                             </button>
                                         </label>
                                     </div>
-                                @endif
                                 </td>
                                 <td colspan="2">
                                     <button class="btn btn-linkedin btn-sm" data-toggle="modal"
@@ -86,7 +79,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-bordered table-striped table-responsive-stack datatable-table">
+                    <table class="table table-bordered table-striped table-responsive-stack datatable-table" id="tabel-riwayat">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">ID Order</th>
@@ -103,20 +96,10 @@
                                 <td>{{date("d/m/Y",strtotime($d2->TGL_PENJUALAN))}}</td>
                                 <td>{{$d2->depo_air_minum->NAMA_DEPO}}</td>
                                 <td>
-                                @if($d2->STATUS_PENJUALAN == 1)
                                     <div>
                                         <span>KONFIRMASI</span>
                                         <i class="fas fa-check ml-1"></i>
                                     </div>
-                                @else
-                                    <div class="custom-konfirmasi" id="{{$d2->ID_PENJUALAN}}">
-                                        <label class="label-konfirmasi-{{$d2->ID_PENJUALAN}}" for="label-konfirmasi" id="label-konfirmasi-{{$d2->ID_PENJUALAN}}">
-                                            <button type="button" class="btn btn-sm btn-success konfirmasi-{{$d2->ID_PENJUALAN}}" id="konfirmasi-{{$d2->ID_PENJUALAN}}">
-                                                KONFIRMASI
-                                            </button>
-                                        </label>
-                                    </div>
-                                @endif
                                 </td>
                                 <td colspan="2">
                                     <button class="btn btn-linkedin btn-sm" data-toggle="modal"
