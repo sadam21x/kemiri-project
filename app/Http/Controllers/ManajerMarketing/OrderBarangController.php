@@ -17,11 +17,15 @@ class OrderBarangController extends Controller
 {
     public function index()
     {
-        $data = Penjualan::select('penjualan.*','p.KODE_PENGIRIMAN','pp.KODE_PEMBAYARAN_PENJUALAN')
+        $data = Penjualan::where('STATUS_PENJUALAN', 0)->select('penjualan.*','p.KODE_PENGIRIMAN','pp.KODE_PEMBAYARAN_PENJUALAN')
         ->leftjoin('pembayaran_penjualan as pp','penjualan.ID_PENJUALAN','=','pp.ID_PENJUALAN')
         ->leftJoin('pengiriman as p','p.KODE_PEMBAYARAN_PENJUALAN','=','pp.KODE_PEMBAYARAN_PENJUALAN')
         ->get();
-    	return view('manajer-marketing.order-barang')->with(compact("data"));
+        $data2 = Penjualan::where('STATUS_PENJUALAN', 1)->select('penjualan.*','p.KODE_PENGIRIMAN','pp.KODE_PEMBAYARAN_PENJUALAN')
+        ->leftjoin('pembayaran_penjualan as pp','penjualan.ID_PENJUALAN','=','pp.ID_PENJUALAN')
+        ->leftJoin('pengiriman as p','p.KODE_PEMBAYARAN_PENJUALAN','=','pp.KODE_PEMBAYARAN_PENJUALAN')
+        ->get();
+    	return view('manajer-marketing.order-barang', compact('data', 'data2'));
     }
 
     public function insert()

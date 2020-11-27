@@ -6,7 +6,7 @@ $(document).ready(function() {
  
     // Datatable
     const orderBarangTable = document.getElementById("order-barang-table");
-    $(orderBarangTable).DataTable();
+    $('.datatable-table').DataTable();
 
     // Element
     var El = '<div>' +
