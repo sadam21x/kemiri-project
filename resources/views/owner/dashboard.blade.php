@@ -59,10 +59,7 @@
                                 </span>
                             </div>
                         </div>
-                        @php
-                            $total_pemasukan = $pemasukan->sum('TOTAL_PENJUALAN') - $pemasukan->sum('ONGKOS_KIRIM');
-                        @endphp
-                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{ number_format($total_pemasukan,'0',',','.') }}</div>
+                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{ number_format(floatval($pemasukan->sum('TOTAL_PENJUALAN')-$pemasukan->sum('ONGKOS_KIRIM')),'0',',','.') }}</div>
                     </div>
                 </div>
             </div>
@@ -83,7 +80,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR 1.260.000</div>
+                        <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{ number_format($pengeluaran),'0',',','.' }}</div>
                     </div>
                 </div>
             </div>
