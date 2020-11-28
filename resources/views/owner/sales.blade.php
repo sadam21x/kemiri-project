@@ -46,6 +46,10 @@
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
+                                        <a href="{{ url('/owner/edit-pegawai') }}" class="btn btn-sm btn-warning" target="_blank">
+                                            <i class="fas fa-users-cog mr-2"></i>
+                                            EDIT
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

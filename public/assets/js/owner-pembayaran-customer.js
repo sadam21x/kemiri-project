@@ -23,9 +23,18 @@ $(document).ready(function() {
             },
             success: function(results){
                 if (results.data.STATUS_PEMBAYARAN == 1){
-                    $('#label-'+id).html('Sudah Bayar');
-                    $('#label-'+id).removeClass('text-danger');
-                    $('#label-'+id).addClass('text-success');
+                    let row = $("tr#"+id).remove().clone();
+                    // table.ajax.reload();
+                    // row.removeColumn();
+                    // move tr
+                    row.detach();
+                    
+                    $(".tabel-riwayat tbody").append(row);
+
+                    $('tr#'+id+' .custom-switch').remove();
+                    $('tr#'+id+' td#status-'+id).addClass('text-success');
+                    $('tr#'+id+' #status-'+id+' span').after('Sudah Bayar');
+
                     Swal.fire({
                       position: 'center',
                       icon: 'success',
@@ -34,6 +43,7 @@ $(document).ready(function() {
                       showConfirmButton: false,
                       timer: 2000
                     });
+                    
                 }
                 else {
                     $('#label-'+id).html('Belum Bayar');

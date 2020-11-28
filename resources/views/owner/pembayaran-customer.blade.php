@@ -17,8 +17,9 @@
     <div class="row">
         <div class="col-md-12">
 
+            {{-- Start Order Barang --}}
             <div class="judul-tabel mb-3">
-                <h5>Riwayat Order</h5>
+                <h5>Order Barang</h5>
             </div>
 
             <div class="card">
@@ -35,39 +36,74 @@
                             </thead>
                             <tbody>
                                 @foreach($data as $d)
-                                <tr>
-                                    <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
-                                    <td>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</td>
-                                    <td>
-                                        @if($d->STATUS_PEMBAYARAN)
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" checked>
-                                            <label class="custom-control-label label-bayar text-success" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Sudah Bayar
-                                            </label>
-                                        </div>
-                                        @else
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
-                                            <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Belum Bayar
-                                            </label>
-                                        </div>
-                                        @endif
-                                        
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            DETAIL
-                                        </button>
-                                    </td>
-                                </tr>
+                                    @if(!($d->STATUS_PEMBAYARAN))
+                                    <tr id="{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
+                                        <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                        <td>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</td>
+                                        <td id="status-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
+                                                <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Belum Bayar
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
+                                                <i class="fas fa-info-circle mr-2"></i>
+                                                DETAIL
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+            {{-- End of Order Barang --}}
 
+            {{-- Start Riwayat Order Barang --}}
+            <div class="judul-tabel mb-3">
+                <h5>Riwayat Order Barang</h5>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table tabel-riwayat table-bordered table-responsive-stack datatable-component">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Konfirmasi Pembayaran</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $d)
+                                    @if($d->STATUS_PEMBAYARAN)
+                                    <tr>
+                                        <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                        <td>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</td>
+                                        <td>
+                                            <div class="text-success">Sudah Bayar</div>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
+                                                <i class="fas fa-info-circle mr-2"></i>
+                                                DETAIL
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{-- End of Riwayat Order Barang --}}
         </div>
     </div>
 
