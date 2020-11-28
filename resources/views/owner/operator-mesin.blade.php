@@ -41,11 +41,15 @@
                                 <tr>
                                     <td>{{$d->ID_OPERATOR_MESIN}}</td>
                                     <td>{{$d->NAMA_OPERATOR_MESIN}}</td>
-                                    <td>
+                                    <td colspan="2">
                                         <button class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-pegawai-{{$d->ID_OPERATOR_MESIN}}">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
+                                        <a href="{{ url('/owner/edit-pegawai') }}" class="btn btn-sm btn-warning" target="_blank">
+                                            <i class="fas fa-users-cog mr-2"></i>
+                                            EDIT
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

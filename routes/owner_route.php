@@ -6,16 +6,20 @@ Route::get('/owner/laporan/transaksi-customer', 'Owner\LaporanCustomerController
 // Route dashboard
 Route::get('/owner', 'DashboardController@Owner');
 
-// Route baru, bisa dimodif
 Route::get('/owner/edit-profil', function() {
     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
 
     return view('owner/edit-profil', compact('provinsi'));
 });
-// End Route baru, bisa dimodif
 
 // Route pegawai
 Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
+
+Route::get('/owner/edit-pegawai', function() {
+    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+
+    return view('owner/edit-pegawai', compact('provinsi'));
+});
 
 Route::get('/owner/tambah-pegawai', function() {
     $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
