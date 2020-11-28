@@ -38,8 +38,8 @@
                                 @foreach($data as $d)
                                     @if(!($d->STATUS_PEMBAYARAN))
                                             <tr id="{{$d->KODE_PEMBAYARAN}}">
-                                            <td id="tanggal-{{$d->KODE_PEMBAYARAN}}">{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
-                                            <td id="nama_supplier-{{$d->KODE_PEMBAYARAN}}">{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
+                                            <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
+                                            <td>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
                                             <td id="status-{{$d->KODE_PEMBAYARAN}}">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}">

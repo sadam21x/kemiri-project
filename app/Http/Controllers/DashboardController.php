@@ -15,6 +15,7 @@ use Illuminate\Support\Carbon;
 use DB;
 use App\Models\Product;
 use App\Models\DetilPenjualan;
+use App\Models\PembayaranPenerimaanBahanBaku;
 
 class DashboardController extends Controller
 {
@@ -160,9 +161,12 @@ class DashboardController extends Controller
     	//total penjualan bulan ini
         $pemasukan = Penjualan::select('*')->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->get();
 
+        //total pengeluaran bulan ini
+        $pengeluaran = PembayaranPenerimaanBahanBaku::select('*')->whereBetween(DB::raw('DATE(TGL_PEMBAYARAN)'),[$date,$date_end])->sum('BIAYA_TRANSAKSI');
+
 		$data_transaksi = [];
 		
-		$data_transaksi[0] = PembayaranPenjualan::where('STATUS_PEMBAYARAN', '=', 0)->count('KODE_PEMBAYARAN_PENJUALAN');
+		$data_transaksi[0] = PembayaranPenerimaanBahanBaku::where('STATUS_PEMBAYARAN', '=', 0)->count('KODE_PEMBAYARAN');
 
 		$data_transaksi[1] = PembayaranPenjualan::join('penjualan as p', 'p.ID_PENJUALAN', '=', 'pembayaran_penjualan.ID_PENJUALAN')
 		->where('pembayaran_penjualan.STATUS_PEMBAYARAN', '=', 0)
@@ -202,7 +206,7 @@ class DashboardController extends Controller
             $data_penjualan_keseluruhan[$i]["bulan"] = $date->locale('id_ID')->monthName;
         }
 
-		return view('owner/dashboard')->with(compact('pemasukan', 'data_transaksi', 'data_penjualan_keseluruhan'));
+		return view('owner/dashboard')->with(compact('pemasukan', 'data_transaksi', 'data_penjualan_keseluruhan', 'pengeluaran'));
 	}
 
     public function manajer_marketing()

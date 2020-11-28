@@ -37,10 +37,10 @@
                             <tbody>
                                 @foreach($data as $d)
                                     @if(!($d->STATUS_PEMBAYARAN))
-                                    <tr>
+                                    <tr id="{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
                                         <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
                                         <td>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</td>
-                                        <td>
+                                        <td id="status-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">
                                                 <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Belum Bayar
@@ -71,7 +71,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-responsive-stack datatable-component">
+                        <table class="table tabel-riwayat table-bordered table-responsive-stack datatable-component">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Tanggal</th>
@@ -87,11 +87,7 @@
                                         <td>{{date("Y-m-d",strtotime($d->TGL_PEMBAYARAN))}}</td>
                                         <td>{{$d->penjualan->depo_air_minum->NAMA_DEPO}}</td>
                                         <td>
-                                            <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" checked>
-                                                <label class="custom-control-label label-bayar text-success" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN_PENJUALAN}}" id="label-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">Sudah Bayar
-                                                </label>
-                                            </div>
+                                            <div class="text-success">Sudah Bayar</div>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-linkedin" data-toggle="modal" data-target="#modal-detail-order-barang-{{$d->KODE_PEMBAYARAN_PENJUALAN}}">

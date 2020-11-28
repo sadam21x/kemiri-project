@@ -24,7 +24,7 @@ $(document).ready(function() {
                 if (results.data.STATUS_PEMBAYARAN == 1){
                     let row = $("tr#"+id).remove().clone();
                     // table.ajax.reload();
-                    row.removeColumn();
+                    // row.removeColumn();
                     // move tr
                     row.detach();
                     
