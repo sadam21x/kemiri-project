@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div class="d-flex justify-content-center">
+            {{-- <div class="d-flex justify-content-center">
                 <h5 class="card-title">
                     Statistik Penjualan Tahun @php echo date("Y"); @endphp
                 </h5>
@@ -30,7 +30,7 @@
                         <div id="chart-penjualan-keseluruhan-tahunan"></div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="d-flex justify-content-center">
                 <h5 class="card-title">
@@ -205,9 +205,9 @@
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/owner-laporan-transaksi.js') }}"></script>
-    <script src="{{ asset('/assets/js/google-chart-loader.js') }}"></script>
+    {{-- <script src="{{ asset('/assets/js/google-chart-loader.js') }}"></script> --}}
 
-    <script>
+    {{-- <script>
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {
             'packages': ['corechart', 'line']
@@ -247,5 +247,5 @@
             var chart = new google.charts.Line(chart_div);
             chart.draw(data, google.charts.Line.convertOptions(options));
         }
-    </script>
+    </script> --}}
 @endsection
