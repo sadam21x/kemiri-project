@@ -20,7 +20,17 @@ $(document).ready(function() {
         $('.select-kota').empty();
     });
 
+    //tombol batal
+    $('.batal_insert').click(function(){
+        $('#form_input_supplier').trigger('reset');
+    });
+
+    $('.batal_edit').click(function(){
+        $('#form_edit_supplier').trigger('reset');
+    });
+
     // Input mask
+    $('.nama_supplier').inputmask('Regex', {regex: "^[a-zA-Z ]{1,50}"});
     $('.input-telp').mask("(+62) 000 0000 00000")
 
     // Tampilkan data kota sesuai provinsi yang dipilih

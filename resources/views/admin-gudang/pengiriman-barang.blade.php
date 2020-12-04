@@ -37,6 +37,7 @@
                             </thead>
                             <tbody>
                                 @foreach($data_penjualan as $d)
+                                @if($d->STATUS_PEMBAYARAN == 1 && $d->KODE_PENGIRIMAN == null || (date("Y-m-d") < date("Y-m-d",strtotime($d->TGL_KIRIM_RIIL))))
                                 <tr>
                                     <td>{{$d->ID_PENJUALAN}}</td>
                                     <td>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</td>
@@ -51,11 +52,6 @@
                                         <div class="badge badge-secondary">
                                             MENUNGGU PENGIRIMAN
                                             <i class="fas fa-exclamation-circle ml-1"></i>
-                                        </div>
-                                        @elseif(date("Y-m-d") > date("Y-m-d",strtotime($d->TGL_KIRIM_RIIL)))
-                                        <div class="badge badge-success">
-                                            TELAH DIKIRIM
-                                            <i class="fas fa-check ml-1"></i>
                                         </div>
                                         @endif
                                     </td>
@@ -73,6 +69,7 @@
                                         @endif
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -207,7 +204,7 @@
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG'),0,',','.')}}</h6>
+                        <h6>{{ number_format(floatval($d->pembayaran_penjualan->penjualan->TOTAL_PENJUALAN) - floatval($d->pembayaran_penjualan->penjualan->ONGKOS_KIRIM),0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -217,7 +214,7 @@
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>{{ number_format(floatval($d->pembayaran_penjualan->penjualan->ONGKOS_KIRIM) + floatval($d->pembayaran_penjualan->penjualan->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
+                        <h6>{{ number_format($d->pembayaran_penjualan->penjualan->TOTAL_PENJUALAN,0,',','.')}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -300,7 +297,7 @@
 
                     <div class="my-3">
                         <h5>Total Harga Produk (IDR)</h5>
-                        <h6>{{ number_format($d->detil_penjualans->sum('HARGA_BARANG'),0,',','.')}}</h6>
+                        <h6>{{ number_format(floatval($d->TOTAL_PENJUALAN) - floatval($d->ONGKOS_KIRIM),0,',','.') }}</h6>
                     </div>
 
                     <div class="my-3">
@@ -310,7 +307,7 @@
 
                     <div class="my-3">
                         <h5>Total Bayar (IDR)</h5>
-                        <h6>{{ number_format(floatval($d->ONGKOS_KIRIM) + floatval($d->detil_penjualans->sum('HARGA_BARANG')),0,',','.')}}</h6>
+                        <h6>{{ number_format($d->TOTAL_PENJUALAN,0,',','.')}}</h6>
                     </div>
 
                 </div>
@@ -332,7 +329,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/pengiriman-barang/store')}}" method="POST" class="needs-validation" novalidate>
+                <form action="{{url('/admin-gudang/pengiriman-barang/store')}}" id="form_pengiriman" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id admin gudang yang bertugas --}}
@@ -420,7 +417,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="button" class="btn btn-google batal" data-dismiss="modal">BATAL</button>
                         <button type="submit" class="btn btn-linkedin">SIMPAN</button>
                     </div>
 
