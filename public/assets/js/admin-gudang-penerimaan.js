@@ -43,12 +43,17 @@ $(document).ready(function() {
 
     });
 
+    //tombol batal
+    $('.batal').click(function(){
+        $('#form_input_penerimaan').trigger('reset');
+    });
+
     // Input mask
-    $('.input-jumlah-karung').mask("00000000000000");
-    $('.input-berat-karung').mask("00000000000000");
-    $('.input-berat-total').mask("00000000000000");
-    $('.input-bagus').mask("00000000000000");
-    $('.input-rusak').mask("00000000000000");
+    $('.input-jumlah-karung').inputmask('Regex', {regex: "^[0-9]{1,16}"});
+    $('.input-berat-karung').inputmask('Regex', {regex: "^[0-9]{1,16}(\\.\\d{1,2})?$"});
+    $('.input-berat-total').inputmask('Regex', {regex: "^[0-9]{1,16}(\\.\\d{1,2})?$"});
+    $('.input-bagus').inputmask('Regex', {regex: "^[0-9]{1,16}(\\.\\d{1,2})?$"});
+    $('.input-rusak').inputmask('Regex', {regex: "^[0-9]{1,16}(\\.\\d{1,2})?$"});
 
     // Form Validate
     'use strict';

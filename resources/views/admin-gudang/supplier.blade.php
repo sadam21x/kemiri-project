@@ -97,12 +97,12 @@
 
                     <div class="my-3">
                         <h5>Kota/Kabupaten</h5>
-                        <h6>{{$d->KOTA}}</h6>
+                        <h6>{{$d->indonesia_city->name}}</h6>
                     </div>
 
                     <div class="my-3">
                         <h5>Provinsi</h5>
-                        <h6>{{$d->PROVINSI}}</h6>
+                        <h6>{{$d->indonesia_city->indonesia_province->name}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -145,14 +145,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/supplier/insert')}}" method="POST" class="needs-validation" novalidate>
+                <form action="{{url('/admin-gudang/supplier/insert')}}" id="form_input_supplier" method="POST" class="needs-validation" novalidate>
                     @csrf
                     
                     <div class="form-group">
                         <label for="" class="col-form-label">
                             Nama Supplier
                         </label>
-                        <input type="text" name="nama_supplier" id="" class="form-control @error('nama_supplier') is-invalid @enderror" required>
+                        <input type="text" name="nama_supplier" id="" class="form-control nama_supplier @error('nama_supplier') is-invalid @enderror" required>
                         <div class="invalid-feedback">
                             Mohon isi nama supplier dengan benar.
                         </div>
@@ -173,7 +173,7 @@
                             Provinsi
                         </label>
                         <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
-                            <option selected disabled>Pilih provinsi . . </option>
+                            <option selected value="" disabled>Pilih provinsi . . </option>
                             @foreach ($provinsi as $id => $name)
                                 <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
@@ -188,7 +188,7 @@
                             Kabupaten/Kota
                         </label>
                         <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
-                            <option selected disabled>Pilih kota . . </option>
+                            <option selected value="" disabled>Pilih kota . . </option>
                         </select>
                         <div class="invalid-feedback">
                             Mohon isi kota dengan benar.
@@ -214,7 +214,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="button" class="btn btn-google batal_insert" data-dismiss="modal">BATAL</button>
                         <button type="submit" class="btn btn-linkedin">SIMPAN</button>
                     </div>
 
@@ -236,7 +236,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/supplier/edit')}}" method="POST" class="needs-validation" novalidate>
+                <form action="{{url('/admin-gudang/supplier/edit')}}" id="form_edit_supplier" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id supplier untuk update supplier --}}
@@ -312,7 +312,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="button" class="btn btn-google batal_edit" data-dismiss="modal">BATAL</button>
                         <button type="submit" class="btn btn-linkedin">SIMPAN</button>
                     </div>
 
@@ -328,6 +328,8 @@
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/custom-form-inputmask.js') }}"></script>
+    <script src="{{ asset('/assets/bootstrap/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-supplier.js') }}"></script>
 @endsection
