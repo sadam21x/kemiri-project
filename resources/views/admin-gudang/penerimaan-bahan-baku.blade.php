@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="my-3">
-                        <h5>Jumlah Bahan Baku Bagus (Kg)</h5>
+                        <h5>Jumlah Bahan Baku Rusak (Kg)</h5>
                         <h6>3 Kg</h6>
                     </div>
 
@@ -150,7 +150,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/insert')}}" method="POST" class="needs-validation" novalidate>
+                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/insert')}}" id="form_input_penerimaan" method="POST" class="needs-validation" novalidate>
                     @csrf
 
                     {{-- Hidden id admin gudang yang melakukan input data penerimaan --}}
@@ -167,7 +167,7 @@
                     <div class="form-group">
                         <label>Supplier</label>
                         <select class="form-control select-component @error('id_supplier') is-invalid @enderror" id="" name="id_supplier" required>
-                            <option selected disabled>Pilih supplier . . </option>
+                            <option selected value="" disabled>Pilih supplier . . </option>
                             @foreach ($supplier as $s)
                                 <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
                             @endforeach
@@ -180,7 +180,7 @@
                     <div class="form-group">
                         <label>Bahan Baku</label>
                         <select class="form-control select-component @error('kode_bahan_baku') is-invalid @enderror" id="" name="kode_bahan_baku" required>
-                            <option selected disabled>Pilih bahan baku . . </option>
+                            <option selected value="" disabled>Pilih bahan baku . . </option>
                             @foreach ($bahanBaku as $b)
                                 <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
                             @endforeach
@@ -208,7 +208,7 @@
 
                     <div class="form-group">
                         <label>Berat Total (Kg)</label>
-                        <input type="text" name="total_berat" id="in_total" class="form-control input-berat-total @error('total_berat') is-invalid @enderror" placeholder="0" readonly required>
+                        <input type="text" name="total_berat" id="in_total" class="form-control input-berat-total @error('total_berat') is-invalid @enderror" placeholder="0" required>
                         <div class="invalid-feedback">
                             Mohon isi berat karung dengan benar.
                         </div>
@@ -224,14 +224,14 @@
 
                     <div class="form-group">
                         <label>Jumlah Bahan Baku Rusak (Kg)</label>
-                        <input type="number" class="form-control input-rusak @error('rusak') is-invalid @enderror" min="0" name="rusak" required>
+                        <input type="text" class="form-control input-rusak @error('rusak') is-invalid @enderror" min="0" name="rusak" required>
                         <div class="invalid-feedback">
                             Mohon isi jumlah bahan baku rusak dengan benar.
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="button" class="btn btn-google batal" data-dismiss="modal">BATAL</button>
                         <button type="submit" class="btn btn-linkedin">SIMPAN</button>
                     </div>
 
@@ -336,6 +336,7 @@
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/datepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
+    <script src="{{ asset('/assets/js/custom-form-inputmask.js') }}"></script>
+    <script src="{{ asset('/assets/bootstrap/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-penerimaan.js') }}"></script>
 @endsection

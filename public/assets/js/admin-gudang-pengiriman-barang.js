@@ -11,6 +11,11 @@ $(document).ready(function() {
     const orderBarangTable = document.getElementById("order-barang-table");
     $(orderBarangTable).DataTable();
 
+    //tombol batal
+    $('.batal').click(function(){
+      $('#form_pengiriman').trigger('reset');
+    });
+
     // Form validation
       // Fetch all the forms we want to apply custom Bootstrap validation styles to
       var forms = document.getElementsByClassName('needs-validation');
