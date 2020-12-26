@@ -83,6 +83,11 @@
                     </div>
 
                     <div class="my-3">
+                        <h5>Contact Person</h5>
+                        <h6>{{$d->NAMA_CUSTOMER}}</h6>
+                    </div>
+
+                    <div class="my-3">
                         <h5>Alamat</h5>
                         <h6>{{$d->ALAMAT_DEPO}}</h6>
                     </div>
