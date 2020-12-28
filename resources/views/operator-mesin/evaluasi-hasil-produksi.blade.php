@@ -336,7 +336,6 @@
     </div>
 </div>
 {{-- End of Detail Produksi Modal --}}
-
 @endforeach
 
 @endsection
