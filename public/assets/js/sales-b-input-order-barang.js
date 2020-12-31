@@ -104,7 +104,7 @@ $(document).ready(function() {
                     <input type="hidden" name="HARGA_BARANG[]" id="price-'+product["KODE_PRODUCT"]+'" value="'+product["HARGA_PRODUCT"]+'">'+product["HARGA_PRODUCT"]+'\
                 </td>\
                 <td>\
-                    <input type="number" name="JUMLAH_PCS[]" id="qty-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm quantity">\
+                    <input type="number" name="JUMLAH_PCS[]" id="qty-'+product["KODE_PRODUCT"]+'" value="1000" min="1" class="input-num-sm quantity" step="1000">\
                 </td>\
                 <td>\
                     <input type="number" name="JUMLAH_SAK[]" id="sak-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm sak">\
@@ -146,12 +146,16 @@ $(document).ready(function() {
 
     $(document).on("input",".quantity",function(){
         let id = $(this).attr('id').slice(4);
-        if($(this).val() < 1){
-           $(this).val(1);
+        let val = Number($(this).val());
+        var sak;
+        if(val < 1000){
+          sak = 1;
         }
         else{
-            hitungTotalHargaProduk(id);
+          sak = parseInt(val/1000);
         }
+        $(".sak#sak-"+id).val(sak);
+        hitungTotalHargaProduk(id);
     });
 
     $(document).on("input",".sak",function(){

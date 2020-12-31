@@ -17,7 +17,7 @@ $(document).ready(function() {
     $(".custom-konfirmasi").each(function(){
     	$(this).on("click",function(e){
             e.stopPropagation();
-    		let id = $(this).attr("id");
+    		let id = $(this).attr("id").slice(7);
     		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	    	$.ajax({
 	            type: 'POST',
@@ -32,26 +32,29 @@ $(document).ready(function() {
 							"Status Konfirmasi berhasil disimpan!", 
                             "success");
 
-                            let id_konfirmasi = $(".konfirmasi-"+id).attr("id").slice(11);
-                            if(id_konfirmasi == id){
-                                $(".konfirmasi-"+id).remove();
-                            }
+                        let id_konfirmasi = $("#konfirmasi-"+id).attr("id").slice(11);
+                        if(id_konfirmasi == id){
+                            $("#konfirmasi-"+id).remove();
+                        }
 
-                            let id_label = $(".label-konfirmasi-"+id).attr("id").slice(17);
-                            if(id_label == id){
-                                $(".label-konfirmasi-"+id).append(El);
-                            }
+                        let id_label = $(".label-konfirmasi-"+id).attr("id").slice(17);
+                        if(id_label == id){
+                            $(".label-konfirmasi-"+id).append(El);
+                        }
 
-                        // let row = $("#"+id).remove().clone();
+                        let row = $("#"+id).remove().clone();
 
-                        // // move tr
-                        // row.detach();
+                        // move tr
+                        row.detach();
 
-                        // $(".tabel-riwayat tbody").append(row);
+                        $("#tabel-riwayat tbody").append(row);
 
-                        // $('tr#'+id+' .custom-switch').remove();
-                        // $('tr#'+id+' td#status-'+id).addClass('text-success');
-                        // $('tr#'+id+' #status-'+id+' span').after('Sudah Bayar');
+                        $('tr#'+id+' td#status'+id+' #tombol-'+id).remove();
+                        $('tr#'+id+' td$status'+id).after(
+                            '<div>\
+                                <span>KONFIRMASI</span>\
+                                <i class="fas fa-check ml-1"></i>\
+                            </div>');
 
 	                } else {
 						swal("Gagal!", 

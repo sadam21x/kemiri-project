@@ -36,7 +36,7 @@
                                 @foreach($data as $d)
                                 <tr>
                                     <td>{{$d->ID_KONFIRMASI_PENJUALAN}}</td>
-                                    <td>{{$d->KODE_DEPO}}</td>
+                                    <td id="kodedepo-{{$d->ID_KONFIRMASI_PENJUALAN}}">{{$d->KODE_DEPO}}</td>
                                     <td>{{$d->depo_air_minum->NAMA_DEPO}}</td>
                                     <td>
                                         @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
@@ -55,7 +55,7 @@
                                         </div>
                                         @endif
                                     </td>
-                                    <td colspan="2">
+                                    <td colspan="2" id="aksi-{{$d->ID_KONFIRMASI_PENJUALAN}}">
                                         @if($d->STATUS_KONFIRMASI_PENJUALAN == 0)
                                         <button class="btn btn-sm btn-success btn-order my-2"
                                             id="{{$d->ID_KONFIRMASI_PENJUALAN}}">
