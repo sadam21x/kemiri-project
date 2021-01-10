@@ -14,7 +14,8 @@ $(document).ready(function() {
 
     $(".btn-order").each(function(){
     	$(this).on("click",function(){
-    		let id = $(this).attr("id");
+			let id = $(this).attr("id");
+			let kodedepo = $("#kodedepo-"+id).html();
     		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	    	$.ajax({
 	            type: 'POST',
@@ -28,6 +29,7 @@ $(document).ready(function() {
 						swal("Berhasil!", 
 							"Status Konfirmasi berhasil disimpan!", 
 							"success");
+						setTimeout(() => {  location.reload(); }, 2000);
 	                } else {
 						swal("Gagal!", 
 							"Status konfirmasi gagal disimpan!", 
@@ -59,6 +61,7 @@ $(document).ready(function() {
 						swal("Berhasil!", 
 							"Konfirmasi berhasil disimpan!", 
 							"success");
+							setTimeout(() => {  location.reload(); }, 2000);
 	                } else {
 						swal("Gagal!", 
 							"Konfirmasi gagal disimpan!", 
