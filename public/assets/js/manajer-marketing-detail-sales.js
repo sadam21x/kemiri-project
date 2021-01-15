@@ -8,4 +8,12 @@ $(document).ready(function() {
     const datatableComponent = document.getElementsByClassName("datatable-component");
     $(datatableComponent).DataTable();
 
+    $('.ya').on('click', function(){
+        document.getElementById('evaluasi').value = "Telah Memenuhi Target";
+    });
+
+    $('.tidak').on('click', function(){
+        document.getElementById('evaluasi').value = "Tidak Memenuhi Target";
+    });
+
 });

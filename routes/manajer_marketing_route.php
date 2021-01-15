@@ -31,9 +31,7 @@ Route::middleware(['auth', 'manajer-marketing'])->group(function () {
     Route::get('/manajer-marketing/evaluasi-kinerja-sales-a/{id}/input', 'ManajerMarketing\SalesController@insertA');
     Route::get('/manajer-marketing/evaluasi-kinerja-sales-b/{id}/input', 'ManajerMarketing\SalesController@insertB');
 
-    Route::post('/manajer-marketing/evaluasi-kinerja-sales-a/store', 'ManajerMarketing\SalesController@storeA');
-    Route::post('/manajer-marketing/evaluasi-kinerja-sales-b/store', 'ManajerMarketing\SalesController@storeB');
-
+    Route::post('/manajer-marketing/evaluasi-kinerja-sales/store', 'ManajerMarketing\SalesController@EvaluasiKinerjaSales');
 
     // Route sales
     Route::get('/manajer-marketing/sales', 'ManajerMarketing\SalesController@index');

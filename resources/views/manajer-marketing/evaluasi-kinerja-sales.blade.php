@@ -32,7 +32,15 @@
                         </thead>
                         <tbody>
                             @foreach($salesA as $a)
-                            <tr>
+                            @php
+                                if($a->EVALUASI_SALESA == "Tidak Memenuhi Target"){
+                                    $tr = 'table-danger';
+                                }
+                                elseif($a->EVALUASI_SALESA == "Telah Memenuhi Target"){
+                                    $tr = 'table-default';
+                                }
+                            @endphp
+                            <tr class="{{$tr}}">
                                 <td>{{$a->ID_EVALUASI_KINERJA_SALESA}}</td>
                                 <td>{{$a->TGL_EVALUASI_KINERJA_SALESA}}</td>
                                 <td>{{$a->nama_sales_a}}</td>
@@ -57,7 +65,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    <table id="sales-a-table" class="table table-bordered table-stripped table-responsive-stack datatable-table">
+                    <table id="sales-b-table" class="table table-bordered table-stripped table-responsive-stack datatable-table">
                         <thead class="thead-dark">
                             <th scope="col">ID Evaluasi</th>
                             <th scope="col">Tanggal</th>
@@ -66,7 +74,15 @@
                         </thead>
                         <tbody>
                             @foreach($salesB as $b)
-                            <tr>
+                            @php
+                                if($b->EVALUASI_SALESB == "Tidak Memenuhi Target"){
+                                    $tr = 'table-danger';
+                                }
+                                elseif($b->EVALUASI_SALESB == "Telah Memenuhi Target"){
+                                    $tr = 'table-default';
+                                }
+                            @endphp
+                            <tr class="{{$tr}}">
                                 <td>{{$b->ID_EVALUASI_KINERJA_SALESB}}</td>
                                 <td>{{$b->TGL_EVALUASI_KINERJA_SALESB}}</td>
                                 <td>{{$b->nama_sales_b}}</td>
@@ -178,7 +194,7 @@
 
                     <div class="my-3">
                         <h5>ID Sales</h5>
-                        <h6>{{$b->ID_SALES_A}}</h6>
+                        <h6>{{$b->ID_SALES_B}}</h6>
                     </div>
 
                     <div class="my-3">
@@ -188,7 +204,7 @@
 
                     <div class="my-3">
                         <h5>Jabatan</h5>
-                        <h6>Sales A</h6>
+                        <h6>Sales B</h6>
                     </div>
 
                     <div class="my-3">

@@ -128,19 +128,37 @@
                     <i class="fas fa-book-open mr-2"></i>
                     EVALUASI
                 </a> --}}
-                <button class="btn btn-sm btn-secondary mr-1" data-toggle="modal" data-target="#evaluasi-modal">
-                    <i class="fas fa-book-open mr-2"></i>
-                    EVALUASI
-                </button>
+                @if($evaluasi != 0)
+                    <button class="btn btn-sm btn-secondary mr-1 disabled">
+                        <i class="fas fa-book-open mr-2"></i>
+                        EVALUASI
+                    </button>
+                @else
+                    <button class="btn btn-sm btn-secondary mr-1" data-toggle="modal" data-target="#evaluasi-modal">
+                        <i class="fas fa-book-open mr-2"></i>
+                        EVALUASI
+                    </button>
+                @endif
 
                 @else
                 Rekap Penginputan Order
 
-                <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/'.$data->ID_SALES_B.'/input') }}"
+                {{-- <a href="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/'.$data->ID_SALES_B.'/input') }}"
                     class="btn btn-sm btn-secondary mr-1">
                     <i class="fas fa-book-open mr-2"></i>
                     EVALUASI
-                </a>
+                </a> --}}
+                @if($evaluasi != 0)
+                    <button class="btn btn-sm btn-secondary mr-1 disabled">
+                        <i class="fas fa-book-open mr-2"></i>
+                        EVALUASI
+                    </button>
+                @else
+                    <button class="btn btn-sm btn-secondary mr-1" data-toggle="modal" data-target="#evaluasi-modal">
+                        <i class="fas fa-book-open mr-2"></i>
+                        EVALUASI
+                    </button>
+                @endif
                 @endif
 
             </div>
@@ -192,20 +210,32 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="">
+                <form action="{{ url('/manajer-marketing/evaluasi-kinerja-sales/store') }}" method="POST">
+                @csrf
                     <div class="d-flex justify-content-center">
                         <p>
                             Apakah Sales yang bersangkutan telah memenuhi target bulan ini
                             (@php echo date('F Y') @endphp)?
                         </p>
                     </div>
+                    @php
+                        if($jabatan == "Sales A"){
+                            $id = $data->ID_SALES_A;
+                        }
+                        else{
+                            $id = $data->ID_SALES_B;
+                        }
+                    @endphp
+                    <input type="hidden" value="{{$jabatan}}" name="jabatan">
+                    <input type="hidden" value="{{$id}}" name="id_sales">
+                    <input type="hidden" value="" name="evaluasi" id="evaluasi">
 
                     <div class="d-flex justify-content-center mt-3">
-                        <button class="btn btn-sm btn-danger">
+                        <button class="btn btn-sm btn-danger tidak">
                             <i class="fas fa-times-circle mr-2"></i>
                             TIDAK
                         </button>
-                        <button class="btn btn-sm btn-success ml-2">
+                        <button class="btn btn-sm btn-success ml-2 ya">
                             <i class="fas fa-check-circle mr-2"></i>
                             YA
                         </button>

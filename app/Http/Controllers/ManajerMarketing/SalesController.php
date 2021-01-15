@@ -8,6 +8,8 @@ use App\Models\SalesA;
 use App\Models\SalesB;
 use App\Models\EvaluasiKinerjaSalesa;
 use App\Models\EvaluasiKinerjaSalesb;
+use Illuminate\Support\Carbon;
+use DB;
 
 class SalesController extends Controller
 {
@@ -20,18 +22,60 @@ class SalesController extends Controller
 
     public function viewA($id)
     {
+        //tanggal pertama bulan ini
+    	$date = Carbon::now()->startOfMonth();
+
+	    //tanggal terakhir bulan ini
+	    $date_end = Carbon::now()->endOfMonth();
+
     	$data = SalesA::find($id);
-    	$jabatan = "Sales A";
-    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan"));
+        $jabatan = "Sales A";
+        $evaluasi = EvaluasiKinerjaSalesa::select('ID_EVALUASI_KINERJA_SALESA')
+                    ->where('ID_SALES_A', '=', $id)
+                    ->whereBetween(DB::raw('DATE(TGL_EVALUASI_KINERJA_SALESA)'),[$date,$date_end])
+                    ->count();
+    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan","evaluasi"));
     }
 
     public function viewB($id)
     {
+        //tanggal pertama bulan ini
+    	$date = Carbon::now()->startOfMonth();
+
+	    //tanggal terakhir bulan ini
+        $date_end = Carbon::now()->endOfMonth();
+        
     	$data = SalesB::find($id);
-    	$jabatan = "Sales B";
-    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan"));
+        $jabatan = "Sales B";
+        $evaluasi = EvaluasiKinerjaSalesa::select('ID_EVALUASI_KINERJA_SALESA')
+                    ->where('ID_SALES_A', '=', $id)
+                    ->whereBetween(DB::raw('DATE(TGL_EVALUASI_KINERJA_SALESA)'),[$date,$date_end])
+                    ->count();
+    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan","evaluasi"));
     }
 
+    public function EvaluasiKinerjaSales(Request $request){
+        if($request->jabatan == "Sales A"){
+            EvaluasiKinerjaSalesa::insert([
+                'ID_MANAJER_MARKETING' => 1,
+                'ID_SALES_A' => $request->id_sales,
+                'TGL_EVALUASI_KINERJA_SALESA' => date("Y-m-d"),
+                'EVALUASI_SALESA' => $request->evaluasi
+            ]);
+        }
+        else{
+            EvaluasiKinerjaSalesb::insert([
+                'ID_MANAJER_MARKETING' => 1,
+                'ID_SALES_B' => $request->id_sales,
+                'TGL_EVALUASI_KINERJA_SALESB' => date("Y-m-d"),
+                'EVALUASI_SALESB' => $request->evaluasi
+            ]);
+        }
+
+        return redirect('/manajer-marketing/evaluasi-kinerja-sales');
+    }
+
+    // Tutup
     public function insertA($id)
     {
         $data = SalesA::find($id);
