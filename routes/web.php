@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::redirect('/', '/login');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::view('/login', 'login');
+Route::get('/logout', 'HomeController@logout')->name('logout');
 
 Route::any('/aktor', function () {
     return view('aktor');
@@ -29,3 +30,6 @@ Route::post('/req-data-kota', function() {
 
     return response()->json($kota);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

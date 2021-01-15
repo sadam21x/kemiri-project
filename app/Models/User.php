@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
@@ -14,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_USER
  * @property string $KODE_KOTA
  * @property int $KODE_JABATAN
- * @property string $USERNAME_USER
- * @property string $PASSWORD_USER
+ * @property string $username
+ * @property string $password
  * @property string $NAMA_USER
  * @property string $ALAMAT_USER
  * @property int $JENIS_KELAMIN_USER
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
 	protected $table = 'user';
 	protected $primaryKey = 'ID_USER';
@@ -38,8 +39,8 @@ class User extends Model
 
 	protected $fillable = [
 		'KODE_JABATAN',
-		'USERNAME_USER',
-		'PASSWORD_USER',
+		'username',
+		'password',
 	];
 
 	public function indonesia_city()

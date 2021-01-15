@@ -1,50 +1,54 @@
 <?php
 
-Route::get('/owner/laporan/transaksi-supplier', 'Owner\LaporanSupplierController@index');
-Route::get('/owner/laporan/transaksi-customer', 'Owner\LaporanCustomerController@LaporanCustomer');
+Route::middleware(['auth', 'owner'])->group(function () {
 
-// Route dashboard
-Route::get('/owner', 'DashboardController@Owner');
+    Route::get('/owner/laporan/transaksi-supplier', 'Owner\LaporanSupplierController@index');
+    Route::get('/owner/laporan/transaksi-customer', 'Owner\LaporanCustomerController@LaporanCustomer');
 
-Route::get('/owner/edit-profil', function() {
-    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+    // Route dashboard
+    Route::get('/owner', 'DashboardController@Owner')->name('owner');
 
-    return view('owner/edit-profil', compact('provinsi'));
-});
+    Route::get('/owner/edit-profil', function() {
+        $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
 
-// Route pegawai
-Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
+        return view('owner/edit-profil', compact('provinsi'));
+    });
 
-Route::get('/owner/edit-pegawai', function() {
-    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+    // Route pegawai
+    Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
 
-    return view('owner/edit-pegawai', compact('provinsi'));
-});
+    Route::get('/owner/edit-pegawai', function() {
+        $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
 
-Route::get('/owner/tambah-pegawai', function() {
-    $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
-    return view('owner/tambah-pegawai', compact('provinsi'));
-});
+        return view('owner/edit-pegawai', compact('provinsi'));
+    });
 
-Route::get('/owner/sales', 'Owner\PegawaiController@indexSales');
-Route::get('/owner/sales-a/detail/{id}', 'Owner\PegawaiController@viewSalesA');
-Route::get('/owner/sales-b/detail/{id}', 'Owner\PegawaiController@viewSalesB');
-Route::get('/owner/admin-gudang', 'Owner\PegawaiController@indexAdminGudang');
-Route::get('/owner/manajer-marketing', 'Owner\PegawaiController@indexManajerMarketing');
-Route::get('/owner/operator-mesin', 'Owner\PegawaiController@indexOperatorMesin');
-Route::post('/owner/pegawai/store', 'Owner\PegawaiController@store');
+    Route::get('/owner/tambah-pegawai', function() {
+        $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
+        return view('owner/tambah-pegawai', compact('provinsi'));
+    });
 
-// Route pembayaran
-Route::get('/owner/pembayaran-supplier', 'Owner\PembayaranSupplierController@index');
-Route::post('/owner/pembayaran-supplier/update', 'Owner\PembayaranSupplierController@update');
+    Route::get('/owner/sales', 'Owner\PegawaiController@indexSales');
+    Route::get('/owner/sales-a/detail/{id}', 'Owner\PegawaiController@viewSalesA');
+    Route::get('/owner/sales-b/detail/{id}', 'Owner\PegawaiController@viewSalesB');
+    Route::get('/owner/admin-gudang', 'Owner\PegawaiController@indexAdminGudang');
+    Route::get('/owner/manajer-marketing', 'Owner\PegawaiController@indexManajerMarketing');
+    Route::get('/owner/operator-mesin', 'Owner\PegawaiController@indexOperatorMesin');
+    Route::post('/owner/pegawai/store', 'Owner\PegawaiController@store');
 
-Route::get('/owner/pembayaran-customer', 'Owner\PembayaranCustomerController@index');
-Route::post('/owner/pembayaran-customer/update', 'Owner\PembayaranCustomerController@update');
+    // Route pembayaran
+    Route::get('/owner/pembayaran-supplier', 'Owner\PembayaranSupplierController@index');
+    Route::post('/owner/pembayaran-supplier/update', 'Owner\PembayaranSupplierController@update');
 
-// handle ajax request data kota sesuai provinsi yang dipilih
-Route::post('/owner/req-data-kota', function() {
-    $id_provinsi = $_POST['id'];
-    $kota = \Laravolt\Indonesia\Models\City::where('province_id', $id_provinsi)->pluck('name', 'id');
+    Route::get('/owner/pembayaran-customer', 'Owner\PembayaranCustomerController@index');
+    Route::post('/owner/pembayaran-customer/update', 'Owner\PembayaranCustomerController@update');
 
-    return response()->json($kota);
+    // handle ajax request data kota sesuai provinsi yang dipilih
+    Route::post('/owner/req-data-kota', function() {
+        $id_provinsi = $_POST['id'];
+        $kota = \Laravolt\Indonesia\Models\City::where('province_id', $id_provinsi)->pluck('name', 'id');
+
+        return response()->json($kota);
+    });
+
 });
