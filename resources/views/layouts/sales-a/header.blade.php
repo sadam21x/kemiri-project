@@ -38,7 +38,7 @@
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
-                            <span class="ml-2 d-sm-inline d-none">Nuri Maulida</span>
+                            <span class="ml-2 d-sm-inline d-none">{{ Auth::user()->username }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
                             <div class="text-center py-4">
@@ -46,7 +46,7 @@
                                     <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}"
                                          class="rounded-circle" alt="image">
                                 </figure>
-                                <h5 class="text-center">Nuri Maulida</h5>
+                                <h5 class="text-center">{{ Auth::user()->username }}</h5>
                                 <div class="mb-3 small text-center text-muted">SALES A</div>
                             </div>
                             <div class="list-group">
@@ -54,7 +54,7 @@
                                     <i class="fas fa-user mr-1"></i>
                                     Profil Saya
                                 </a>
-                                <a href="" class="list-group-item text-danger">
+                                <a href="{{ route('logout') }}" class="list-group-item text-danger">
                                    <i class="fas fa-sign-out-alt mr-1"></i>
                                    Logout
                                 </a>

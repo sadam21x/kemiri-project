@@ -1,35 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Auth;
+use Session;
 use App\Models\User;
 
-class LoginController extends Controller
+class HomeController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -37,10 +16,16 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('auth');
     }
 
-    public function redirectTo(){
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
         if (Auth::user()->KODE_JABATAN == 1) {
             return redirect()->route('owner');
         } 
@@ -59,6 +44,24 @@ class LoginController extends Controller
         else if (Auth::user()->KODE_JABATAN == 6) {
             return redirect()->route('operator-mesin');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect('login');
+    }
+
+    public function changepass(Request $req){
+
+        $id = Auth::user()->id_pegawai;
+
+        $pegawai = Pegawai::find($id);
+        $pegawai->password = bcrypt($req->password);
+        $pegawai->save();
+
+        return redirect('/');
     }
 
     public function username()
