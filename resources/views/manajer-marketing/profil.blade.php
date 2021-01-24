@@ -17,11 +17,18 @@
 
                     <div class="card card-pegawai">
                         <div class="card-img-top" style="background-image: url({{ asset('/assets/img/login-bg-3.png') }});">
+                            @if(Auth::user()->FOTO_PROFILE == null)
                             <figure class="avatar avatar-xl">
                                 <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="avatar">
                             </figure>
+                            @else
+                            <figure class="avatar avatar-xl">
+                                <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}" class="rounded-circle" alt="avatar">
+                            </figure>
+                            @endif
+                            @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
                             <div class="badge badge-dark nama-user">
-                                Deni Ariawan Samudra
+                                {{$data->NAMA_MANAJER_MARKETING}}
                             </div>
                         </div>
 
@@ -29,7 +36,7 @@
                             <table class="profil-table">
                                 <tr>
                                     <td class="label-detail">ID</td>
-                                    <td>MJM001</td>
+                                    <td>{{$data->ID_MANAJER_MARKETING}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Jabatan</td>
@@ -38,28 +45,32 @@
                                 <tr>
                                     <td class="label-detail">Jenis Kelamin</td>
                                     <td>
+                                        @if($data->JENIS_KELAMIN_MANAJER_MARKETING == 1)
                                         Pria
+                                        @else
+                                        Wanita
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Alamat</td>
-                                    <td>Jl. Mayjend D.I. Pandjaitan No. 72</td>
+                                    <td>{{$data->ALAMAT_MANAJER_MARKETING}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Kota/Kabupaten</td>
-                                    <td>Semarang</td>
+                                    <td>{{$data->NAMA_KOTA}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Provinsi</td>
-                                    <td>Jawa Tengah</td>
+                                    <td>{{$data->NAMA_PROVINSI}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Telepon</td>
-                                    <td>085639203992</td>
+                                    <td>{{$data->NO_TELP_MANAJER_MARKETING}}</td>
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Email</td>
-                                    <td>deniariawan@gmail.com</td>
+                                    <td>{{$data->EMAIL_MANAJER_MARKETING}}</td>
                                 </tr>
                             </table>
                         </div>

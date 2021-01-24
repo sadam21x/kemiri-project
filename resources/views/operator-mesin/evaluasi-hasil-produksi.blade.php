@@ -336,6 +336,165 @@
     </div>
 </div>
 {{-- End of Detail Produksi Modal --}}
+
+@if($d->HASIL_BAGUS_KG != null)
+{{-- Start Edit Pencatatan Produksi Modal --}}
+<div class="modal fade" id="modal-edit-pencatatan-produksi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Pencatatan Produksi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('/operator-mesin/evaluasi-hasil-produksi/update')}}" method="POST" class="needs-validation" novalidate>
+                    @csrf
+                    <input type="hidden" name="KODE_PRODUKSI" id="" value="{{$d->KODE_PRODUKSI}}">
+
+                    <div class="form-group">
+                        <label>Kode Produksi</label>
+                        <input type="text" name="" id="" value="{{$d->KODE_PENGAMBILAN_BAHAN_BAKU}}" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tanggal Produksi</label>
+                        <input type="text" value="{{date('d/m/Y - H:i:s',strtotime($d->pengambilan_bahan_baku->WAKTU_PENGAMBILAN))}}" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Barang Yang Produksi</label>
+                        <input type="text" name="" id="" value="{{$d->hasil_product->product->NAMA_PRODUCT}}" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mesin</label>
+                        <input type="text" name="" id="" value="{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}" class="form-control" readonly>
+                    </div>
+
+                    @foreach($d->pengambilan_bahan_baku->detail_pengambilans as $b)
+                    <div class="form-group">
+                        <label>Bahan Baku {{$loop->iteration}}</label>
+                        <input type="text" value="{{$b->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}}" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Supplier Bahan Baku {{$loop->iteration}}</label>
+                        <input type="text" value="{{$b->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}" class="form-control" readonly>
+                    </div>
+                    @endforeach
+
+                    <div class="form-group">
+                        <label>Jumlah Produk Hasil Bagus (Kg)</label>
+                        <input type="number" name="HASIL_BAGUS_KG" min="1" class="form-control @error('HASIL_BAGUS_KG') is-invalid @enderror" required value="{{ $d->HASIL_BAGUS_KG }}">
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah hasil bagus dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Produk Hasil Rusak (Kg)</label>
+                        <input type="number" name="HASIL_RUSAK_KG" min="0" class="form-control @error('HASIL_RUSAK_KG') is-invalid @enderror" required value="{{ $d->HASIL_RUSAK_KG }}">
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah hasil rusak dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Evaluasi Produk Hasil</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_PRODUCT" id="eval-produk-jelek"
+                                value="jelek" required @if($d->EVALUASI_PRODUCT == "jelek") checked @endif>
+                            <label class="form-check-label" for="eval-produk-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_PRODUCT" id="eval-produk-sedang"
+                                value="sedang" required @if($d->EVALUASI_PRODUCT == "sedang") checked @endif>
+                            <label class="form-check-label" for="eval-produk-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_PRODUCT" id="eval-produk-bagus"
+                                value="bagus" required @if($d->EVALUASI_PRODUCT == "bagus") checked @endif>
+                            <label class="form-check-label" for="eval-produk-bagus">Bagus</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Evaluasi Mesin</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_MESIN" id="eval-mesin-jelek"
+                                value="jelek" required @if($d->EVALUASI_MESIN == "jelek") checked @endif>
+                            <label class="form-check-label" for="eval-mesin-jelek">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_MESIN" id="eval-mesin-sedang"
+                                value="sedang" required @if($d->EVALUASI_MESIN == "sedang") checked @endif>
+                            <label class="form-check-label" for="eval-mesin-sedang">Sedang</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_MESIN" id="eval-mesin-bagus"
+                                value="bagus" required @if($d->EVALUASI_MESIN == "bagus") checked @endif>
+                            <label class="form-check-label" for="eval-mesin-bagus">Bagus</label>
+                        </div>
+                    </div>
+
+                    @php $d->EVALUASI_BAHAN_BAKU = str_replace("[","",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = str_replace("]","",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = str_replace(" ","",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = explode(",",$d->EVALUASI_BAHAN_BAKU); @endphp
+
+                    @foreach($d->pengambilan_bahan_baku->detail_pengambilans as $b)
+
+                    <div class="form-group">
+                        <label>Evaluasi Bahan Baku {{$loop->iteration}} ({{$b->penerimaan_bahan_baku->bahan_baku->NAMA_BAHAN_BAKU}})</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_BAHAN_BAKU_{{$loop->iteration}}" id="eval-bahan-baku-jelek-{{$loop->iteration}}"
+                                value="jelek" required @if($d->EVALUASI_BAHAN_BAKU[$loop->index] == '"jelek"') checked @endif>
+                            <label class="form-check-label" for="eval-bahan-baku-jelek-{{$loop->iteration}}">Jelek</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_BAHAN_BAKU_{{$loop->iteration}}" id="eval-bahan-baku-sedang-{{$loop->iteration}}"
+                                value="sedang" required @if($d->EVALUASI_BAHAN_BAKU[$loop->index] == '"sedang"') checked @endif>
+                            <label class="form-check-label" for="eval-bahan-baku-sedang-{{$loop->iteration}}">Sedang</label>
+                        </div>
+                        @if($d->EVALUASI_BAHAN_BAKU[$loop->index] == "bagus") hasilnya bagus @endif
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EVALUASI_BAHAN_BAKU_{{$loop->iteration}}" id="eval-bahan-baku-bagus-{{$loop->iteration}}"
+                                value="bagus" required @if($d->EVALUASI_BAHAN_BAKU[$loop->index] == '"bagus"') checked @endif>
+                            <label class="form-check-label" for="eval-bahan-baku-bagus-{{$loop->iteration}}">Bagus</label>
+                        </div>
+                    </div>
+
+                    @endforeach
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="submit" class="btn btn-linkedin">SIMPAN</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Pencatatan Produksi Modall --}}
+@endif
+
 @endforeach
 
 @endsection
