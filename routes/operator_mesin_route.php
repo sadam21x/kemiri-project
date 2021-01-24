@@ -7,7 +7,7 @@ Route::middleware(['auth', 'operator-mesin'])->group(function () {
     // Route baru, bisa dimodif
     Route::get('/operator-mesin/edit-profil', function() {
         $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
-
+        
         return view('operator-mesin/edit-profil', compact('provinsi'));
     });
     // End Route baru, bisa dimodif
