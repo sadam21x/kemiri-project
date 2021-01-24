@@ -16,8 +16,8 @@ class CreateUserTable extends Migration
         Schema::create('user', function (Blueprint $table) {
             $table->integer('ID_USER', true);
             $table->integer('KODE_JABATAN')->index('FK_TERDAPAT545');
-            $table->string('USERNAME_USER', 100);
-            $table->string('PASSWORD_USER');
+            $table->string('username', 100);
+            $table->string('password');
             $table->string('FOTO_PROFILE')->nullable();
             $table->timestamps();
         });
