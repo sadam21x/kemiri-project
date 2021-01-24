@@ -145,7 +145,8 @@
                     @csrf
 
                     {{-- Hidden id sales yang menginput data --}}
-                    <input type="hidden" name="id_manajer_marketing" value="1">
+                    @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
+                    <input type="hidden" name="id_manajer_marketing" value="{{$data->ID_MANAJER_MARKETING}}">
 
                     <div class="form-group">
                         <label for="" class="col-form-label">

@@ -154,7 +154,8 @@
                     @csrf
 
                     {{-- Hidden id admin gudang yang melakukan input data penerimaan --}}
-                    <input type="hidden" name="id_admin_gudang" id="" value="1">
+                    @php $data = Auth::user()->admin_gudang(Auth::user()->ID_USER); @endphp
+                    <input type="hidden" name="id_admin_gudang" id="" value="{{$data->ID_ADMIN_GUDANG}}">
 
                     <div class="form-group">
                         <label>Tanggal</label>

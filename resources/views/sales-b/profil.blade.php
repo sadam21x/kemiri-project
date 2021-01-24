@@ -26,7 +26,7 @@
                                 <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}" class="rounded-circle" alt="avatar">
                             </figure>
                             @endif
-                            @php $data = Auth::user()->sales_a(Auth::user()->ID_USER); @endphp
+                            @php $data = Auth::user()->sales_b(Auth::user()->ID_USER); @endphp
                             <div class="badge badge-dark nama-user">
                                 {{$data->NAMA_SALES_B}}
                             </div>
