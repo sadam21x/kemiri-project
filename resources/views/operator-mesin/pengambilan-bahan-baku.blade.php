@@ -81,7 +81,7 @@
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="id_operator_mesin" id="" value="{{ Auth::user()->operator_mesin(Auth::user())->ID_OPERATOR_MESIN }}">
+                    <input type="hidden" name="id_operator_mesin" id="" value="{{ Auth::user()->operator_mesin(Auth::user()->ID_USER)->ID_OPERATOR_MESIN }}">
                     
                     <div class="form-group">
                         <button type="button" class="btn btn-sm rounded btn-twitter tambah-bahan-baku-btn">
