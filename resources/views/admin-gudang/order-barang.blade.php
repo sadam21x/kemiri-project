@@ -194,7 +194,8 @@
                     @csrf
 
                     {{-- Hidden id admin gudang yang bertugas --}}
-                    <input type="hidden" name="ID_ADMIN_GUDANG" value="1">
+                    @php $data = Auth::user()->admin_gudang(Auth::user()->ID_USER); @endphp
+                    <input type="hidden" name="ID_ADMIN_GUDANG" value="{{$data->ID_ADMIN_GUDANG}}">
 
                     <input type="hidden" name="KODE_PEMBAYARAN_PENJUALAN" value="@if($d->pembayaran_penjualan != null){{$d->pembayaran_penjualan->KODE_PEMBAYARAN_PENJUALAN}} @endif">
 

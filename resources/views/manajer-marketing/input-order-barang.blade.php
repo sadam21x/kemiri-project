@@ -20,8 +20,8 @@
             {{-- Start form order barang --}}
             <form action="{{url('/manajer-marketing/order-barang/input/store')}}" method="post" class="needs-validation" novalidate>
                 @csrf
-
-                <input type="hidden" value="1" name="ID_MANAJER_MARKETING">
+                @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
+                <input type="hidden" value="{{$data->ID_MANAJER_MARKETING}}" name="ID_MANAJER_MARKETING">
 
                 <div class="form-row row-customer">
                     <div class="form-group col-md-4">

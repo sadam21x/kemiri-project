@@ -38,15 +38,21 @@
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
-                            <span class="ml-2 d-sm-inline d-none">{{ Auth::user()->username }}</span>
+                            @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
+                            <span class="ml-2 d-sm-inline d-none">{{ $data->NAMA_MANAJER_MARKETING }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
                             <div class="text-center py-4">
+                                @if(Auth::user()->FOTO_PROFILE == null)
                                 <figure class="avatar avatar-lg mb-3 border-0">
-                                    <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}"
-                                         class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}" class="rounded-circle" alt="image">
                                 </figure>
-                                <h5 class="text-center">{{ Auth::user()->username }}</h5>
+                                @else
+                                <figure class="avatar avatar-xl">
+                                    <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}" class="rounded-circle" alt="image">
+                                </figure>
+                                @endif
+                                <h5 class="text-center">{{ $data->NAMA_MANAJER_MARKETING }}</h5>
                                 <div class="mb-3 small text-center text-muted">MANAJER MARKETING</div>
                             </div>
                             <div class="list-group">

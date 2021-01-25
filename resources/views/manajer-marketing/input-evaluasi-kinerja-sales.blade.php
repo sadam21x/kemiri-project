@@ -21,7 +21,8 @@
                 <form action="{{ url('/manajer-marketing/evaluasi-kinerja-sales-b/store') }}" method="post" class="needs-validation" novalidate>
                 @endif
                     @csrf
-                    <input type="hidden" name="ID_MANAJER_MARKETING" value="1">
+                    @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
+                    <input type="hidden" name="ID_MANAJER_MARKETING" value="{{$data->ID_MANAJER_MARKETING}}">
                     @if($jabatan == "Sales A")
                     <div class="form-row">
                         <div class="form-group col-md-2 col-sm-12">
