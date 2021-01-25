@@ -36,7 +36,6 @@ class ProsesProduksi extends Model
 		'KODE_PENGAMBILAN_BAHAN_BAKU' => 'int',
 		'HASIL_BAGUS_KG' => 'float',
 		'HASIL_RUSAK_KG' => 'float',
-		'EVALUASI_BAHAN_BAKU' => 'array'
 	];
 
 	protected $dates = [

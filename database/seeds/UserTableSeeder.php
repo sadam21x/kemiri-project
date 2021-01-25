@@ -33,8 +33,8 @@ class UserTableSeeder extends Seeder
             // insert database user
             $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
-                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
-                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'username' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
             ]);
 
             // insert database operator mesin
@@ -73,8 +73,8 @@ class UserTableSeeder extends Seeder
             // insert database user
             $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
-                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
-                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'username' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
             ]);
 
             // insert database sales b
@@ -113,8 +113,8 @@ class UserTableSeeder extends Seeder
             // insert database user
             $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
-                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
-                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'username' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
             ]);
 
             // insert sales a
@@ -153,8 +153,8 @@ class UserTableSeeder extends Seeder
             // insert database user
             $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
-                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
-                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'username' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
             ]);
 
             // insert database manajer marketing
@@ -192,8 +192,8 @@ class UserTableSeeder extends Seeder
             // insert database user
             $id_user = DB::table('user')->insertGetId([
                 'kode_jabatan' => $id_jabatan,
-                'username_user' => substr(str_replace(' ', '',strtolower($nama)),0,20),
-                'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
+                'username' => substr(str_replace(' ', '',strtolower($nama)),0,20),
+                'password' => bcrypt(substr(str_replace(' ', '',strtolower($nama)),0,20)),
             ]);
 
             // insert database admin gudang
@@ -228,8 +228,8 @@ class UserTableSeeder extends Seeder
 
         $id_user = DB::table('user')->insertGetId([
             'kode_jabatan' => $id_jabatan,
-            'username_user' => substr(str_replace(' ', '',strtolower($name)),0,20),
-            'password_user' => bcrypt(substr(str_replace(' ', '',strtolower($name)),0,20)),
+            'username' => substr(str_replace(' ', '',strtolower($name)),0,20),
+            'password' => bcrypt(substr(str_replace(' ', '',strtolower($name)),0,20)),
         ]);
 
         // add owner
