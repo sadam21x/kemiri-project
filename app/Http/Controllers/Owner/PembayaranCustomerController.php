@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PembayaranPenjualan;
 use DB;
+use Auth;
 
 class PembayaranCustomerController extends Controller
 {
@@ -30,7 +31,7 @@ class PembayaranCustomerController extends Controller
         	else{
         		$data->STATUS_PEMBAYARAN = 1;
         	}
-            $data->ID_OWNER = 1;
+            $data->ID_OWNER = Auth::user()->owner(Auth::user()->ID_USER)->ID_OWNER;
             $data->TGL_PEMBAYARAN = date("Y-m-d");
         	$data->save();
         });
