@@ -12,8 +12,6 @@ $(document).ready(function() {
     // const selectComponent = document.getElementsByClassName("select-component");
     $('.select-component').select2();
 
-    validation();
-
     var no = 0;
 
     // ambil supplier 1
@@ -117,7 +115,7 @@ $(document).ready(function() {
     // Elemen bahan baku
     var input_bahan_baku = '<div class="form-group">' +
                                 '<label class="col-form-label">Bahan Baku</label>' +
-                                '<select class="form-control select-component kode-bahan-baku" id="bahan_baku'+no+'" name="bahan_baku" required>' +
+                                '<select class="form-control select-component kode-bahan-baku" id="bahan_baku'+no+'" name="bahan_baku[]" required>' +
                                     '<option selected disabled>Pilih bahan baku . . </option>' +
                                 '</select>' +
                                 '<div class="invalid-feedback">'+
@@ -128,7 +126,7 @@ $(document).ready(function() {
     // Elemen supplier
     var input_supplier = '<div class="form-group">' +
                             '<label class="col-form-label">Supplier Bahan Baku</label>' +
-                            '<select class="form-control select-component id-supplier" id="nama-supplier'+no+'" name="supplier" required>' +
+                            '<select class="form-control select-component id-supplier" id="nama-supplier'+no+'" name="supplier[]" required>' +
                                 '<option selected disabled>Pilih supplier . . </option>' +
                             '</select>' +
                             '<div class="invalid-feedback">'+
@@ -162,19 +160,19 @@ $(document).ready(function() {
                             '</div>';
    
     // Elemen modal button
-    var modal_button = '<div class="modal-footer">' +
+    var modal_button = '<div class="modal-footer" id="footer-input">' +
                             '<button type="button" class="btn btn-sm btn-google" data-dismiss="modal">BATAL</button>' +
-                            '<button type="submit" class="btn btn-sm btn-linkedin">SIMPAN</button>' +
+                            '<input type="submit" class="btn btn-sm btn-linkedin" value="SIMPAN">' +
                         '</div>';
                     
     // Garis pembatas
     var garis_rambut = '<hr>';
 
     // Hapus modal button saat ini untuk digantikan yang baru
-    $('.modal-footer').remove();
+    $('#footer-input').remove();
     
     // Tambah input field bahan baku
-    $('.modal-body-pengambilan-bahan-baku').append(
+    $('.modal-body-pengambilan-bahan-baku form').append(
         garis_rambut,
         input_bahan_baku,
         input_supplier,
@@ -203,24 +201,22 @@ $(document).ready(function() {
             }
         });
     });
-
-    validation();
-    
-});
-
-function validation(){
-    //validation
-    'use strict';
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        form.classList.add('was-validated');
+    // Form validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
         }, false);
-    });
-}
+      })();
+});

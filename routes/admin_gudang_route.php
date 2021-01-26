@@ -10,6 +10,7 @@ Route::middleware(['auth', 'admin-gudang'])->group(function () {
 
         return view('admin-gudang/edit-profil', compact('provinsi'));
     });
+    Route::post('/admin-gudang/edit-profil', 'ProfileController@editPegawai');
     // End Route baru, bisa dimodif
 
     // Route penerimaan

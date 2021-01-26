@@ -10,6 +10,7 @@ Route::middleware(['auth', 'sales-a'])->group(function () {
 
         return view('sales-a/edit-profil', compact('provinsi'));
     });
+    Route::post('/sales-a/edit-profil', 'ProfileController@editPegawai');
     // End Route baru, bisa dimodif
 
     // Route customer

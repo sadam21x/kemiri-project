@@ -38,18 +38,6 @@ $(document).ready(function() {
         }
     });
 
-    // Tampil/sembunyikan password
-    const togglePassword = document.querySelector('#togglePassword');
-    const passwordField = document.querySelector('.input_password');
-    const konfirmasiPasswordField = document.querySelector('.input_konfirmasi_password');
-
-    togglePassword.addEventListener('click', function (e) {
-        const typepass = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        const typepassconf = konfirmasiPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordField.setAttribute('type', typepass);
-        konfirmasiPasswordField.setAttribute('type', typepassconf);
-    });
-
     // Tampilkan data kota sesuai provinsi yang dipilih
     $('.select-provinsi').on('change', function () {
         const id_provinsi = $(this).val();
@@ -73,6 +61,7 @@ $(document).ready(function() {
             }
         });
     });
+
     //mengambil angka terakhir di nama file avatar
     $(document).on("click",".slick-slide",function(){
         let src = Number($(".slick-current").attr('data-slick-index'));
@@ -92,6 +81,7 @@ $(document).ready(function() {
         }
         $("#foto-profile").val(src);
     });
+
 });
 //validation
 'use strict';

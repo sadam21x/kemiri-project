@@ -19,11 +19,14 @@
     <div class="row">
         <div class="col-md-5 col-sm-12 form-tambah-sales-col">
 
-            <form action="" method="post" class="needs-validation" novalidate>
+        @php $data = Auth::user()->owner(Auth::user()->ID_USER); @endphp
+            <form action="{{ url('/owner/edit-profil') }}" method="post" class="needs-validation" novalidate>
                 @csrf
 
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
+                    <input type="hidden" name="KODE_JABATAN" value="1">
+
                     <label>Pilih Avatar</label>
 
                     <div class="select-avatar-show my-3">
@@ -57,7 +60,7 @@
 
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control @error('NAMA') is-invalid @enderror" name="NAMA" required id="nama">
+                    <input type="text" class="form-control @error('NAMA') is-invalid @enderror" name="NAMA" required id="nama" value="{{ $data->NAMA_OWNER }}">
                     <div class="invalid-feedback">
                         Mohon isi nama dengan benar.
                     </div>
@@ -66,19 +69,17 @@
                 <label>Jenis Kelamin</label>
                 <div class="form-group">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_pria" value="1" required>
+                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_pria" value="1" required @if($data->JENIS_KELAMIN_OWNER == 1) checked @endif >
                         <label class="form-check-label" for="jk_pria">Pria</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_wanita" value="0" required>
+                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_wanita" value="0" required @if($data->JENIS_KELAMIN_OWNER == 0) checked @endif >
                         <label class="form-check-label" for="jk_wanita">Wanita</label>
                         <div class="invalid-feedback">
                             Silahkan pilih jenis kelamin pegawai.
                         </div>
                     </div>
-
-                    
                 </div>
 
                 <div class="form-group">
@@ -88,18 +89,24 @@
 
                 <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control @error('ALAMAT') is-invalid @enderror" name="ALAMAT" required maxlength="100" minlength="8">
+                    <input type="text" class="form-control @error('ALAMAT') is-invalid @enderror" name="ALAMAT" required maxlength="100" minlength="8" value="{{ $data->ALAMAT_OWNER }}">
                     <div class="invalid-feedback">
                         Mohon isi alamat pegawai dengan benar.
                     </div>
                 </div>
+
+                @php 
+                $kota = \App\Models\Owner::find($data->ID_OWNER);
+                $kota = $kota->indonesia_city;
+                $pilihan_kota = \App\Models\IndonesiaCity::where('province_id',$kota->province_id)->pluck('name', 'id');
+                @endphp
 
                 <div class="form-group">
                     <label>Provinsi</label>
                     <select class="form-control select-component select-provinsi @error('PROVINSI') is-invalid @enderror" name="PROVINSI" required>
                         <option disabled>Pilih provinsi . . </option>
                         @foreach ($provinsi as $id => $name)
-                            <option value="{{ $id }}">{{ $name }}</option>
+                            <option value="{{ $id }}" @if($kota->province_id == $id) selected @endif >{{ $name }}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -111,6 +118,9 @@
                     <label>Kabupaten/Kota</label>
                     <select class="form-control select-component select-kota @error('KODE_KOTA') is-invalid @enderror" name="KODE_KOTA" required>
                         <option disabled>Pilih kota . . </option>
+                        @foreach ($pilihan_kota as $id => $name)
+                            <option value="{{ $id }}" @if($data->KODE_KOTA == $id) selected @endif >{{ $name }}</option>
+                        @endforeach
                     </select>
                     <div class="invalid-feedback">
                         Mohon pilih kota alamat pegawai.
@@ -119,7 +129,7 @@
 
                 <div class="form-group">
                     <label>Nomor Telepon</label>
-                    <input type="number" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP">
+                    <input type="text" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP" value="{{ $data->NO_TELP_OWNER }}">
                     <div class="invalid-feedback">
                         Mohon isi nomor telepon pegawai dengan benar.
                     </div>
@@ -127,7 +137,7 @@
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control @error('EMAIL') is-invalid @enderror" name="EMAIL">
+                    <input type="email" class="form-control @error('EMAIL') is-invalid @enderror" name="EMAIL" value="{{ $data->EMAIL_OWNER }}">
                     <div class="invalid-feedback">
                         Mohon isi email yang valid.
                     </div>
@@ -135,29 +145,10 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control input_password @error('PASSWORD_USER') is-invalid @enderror" name="PASSWORD_USER" required>
-                    <div class="invalid-feedback">
-                        Mohon isi password dengan minimal 8 karakter.
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Konfirmasi Password</label>
-                    <input type="password" class="form-control input_konfirmasi_password" name="KONFIRMASI_PASSWORD" required>
-                    <span id='pesan_konfirmasi_password'></span>
-                </div>
-
-                <div class="form-group form-check my-3 ml-1">
-                    <input type="checkbox" class="form-check-input mt-1" id="togglePassword">
-                    <label class="form-check-label" for="togglePassword">Tampilkan Password</label>
                 </div>
 
                 <div class="d-flex justify-content-center mt-5">
