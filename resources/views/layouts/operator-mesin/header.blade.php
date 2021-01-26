@@ -57,7 +57,7 @@
                                         <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="image">
                                 </figure>
                                 @else
-                                <figure class="avatar avatar-xl">
+                                <figure class="avatar avatar-lg mb-3 border-0">
                                     <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}" class="rounded-circle" alt="image">
                                 </figure>
                                 @endif
