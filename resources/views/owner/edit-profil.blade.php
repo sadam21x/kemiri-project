@@ -25,7 +25,7 @@
 
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
-                    <input type="hidden" name="KODE_JABATAN" value="6">
+                    <input type="hidden" name="KODE_JABATAN" value="1">
 
                     <label>Pilih Avatar</label>
 
@@ -96,7 +96,7 @@
                 </div>
 
                 @php 
-                $kota = \App\Models\OperatorMesin::find($data->ID_OWNER);
+                $kota = \App\Models\Owner::find($data->ID_OWNER);
                 $kota = $kota->indonesia_city;
                 $pilihan_kota = \App\Models\IndonesiaCity::where('province_id',$kota->province_id)->pluck('name', 'id');
                 @endphp
