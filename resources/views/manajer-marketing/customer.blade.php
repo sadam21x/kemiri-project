@@ -129,106 +129,6 @@
     </div>
 </div>
 {{-- End of Detail Customer Modal --}}
-@endforeach
-{{-- Start Input Customer Modal --}}
-<div class="modal fade" id="modal-tambah-customer" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-secondary">
-                <h5 class="modal-title">Tambah Customer</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="fas fa-times-circle text-danger"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{url('/manajer-marketing/customer/insert')}}" method="POST" class="needs-validation" novalidate id="insert-form-customer">
-                    @csrf
-
-                    {{-- Hidden id sales yang menginput data --}}
-                    @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
-                    <input type="hidden" name="id_manajer_marketing" value="{{$data->ID_MANAJER_MARKETING}}">
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">
-                            Nama Customer/Depo
-                        </label>
-                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" required value="{{ @old('nama_depo') }}">
-                        <div class="invalid-feedback">
-                            Mohon isi nama depo dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">
-                            Alamat
-                        </label>
-                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror"required value="{{ @old('alamat_depo') }}">
-                        <div class="invalid-feedback">
-                            Mohon isi alamat dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">
-                            Provinsi
-                        </label>
-                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
-                            <option>Pilih provinsi . . </option>
-                            @foreach ($provinsi as $id => $name)
-                                <option value="{{ $id }}">{{ $name }}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback">
-                            Mohon isi provinsi dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">
-                            Kabupaten/Kota
-                        </label>
-                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
-                            <option>Pilih kota . . </option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Mohon isi kota dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">
-                            Contact Person
-                        </label>
-                        <input type="text" name="nama_customer" id="" class="form-control @error('nama_customer') is-invalid @enderror" required value="{{ @old('nama_customer') }}">
-                        <div class="invalid-feedback">
-                            Mohon isi nama customer dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">
-                            No. Telepon
-                        </label>
-                        <input type="number" name="no_telp_depo" id="" class="form-control num-without-style" value="{{ @old('no_telp_depo') }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Email</label>
-                        <input type="email" name="email_depo" id="" class="form-control" value="{{ @old('email_depo') }}">
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-google" onclick="document.getElementById('insert-form-customer').reset(); $('#modal-tambah-customer').modal('toggle');">BATAL</button>
-                        <button type="submit" class="btn btn-linkedin">SIMPAN</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End of Input Customer Modal --}}
-@foreach($data as $d)
 {{-- Start Edit Customer Modal --}}
 <div class="modal fade" id="modal-edit-customer-{{$d->KODE_DEPO}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -331,6 +231,107 @@
 </div>
 {{-- End of Edit Customer Modal --}}
 @endforeach
+{{-- Start Input Customer Modal --}}
+<div class="modal fade" id="modal-tambah-customer" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Tambah Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('/manajer-marketing/customer/insert')}}" method="POST" class="needs-validation" novalidate id="insert-form-customer">
+                    @csrf
+
+                    {{-- Hidden id sales yang menginput data --}}
+                    @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
+                    <input type="hidden" name="id_manajer_marketing" value="{{$data->ID_MANAJER_MARKETING}}">
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">
+                            Nama Customer/Depo
+                        </label>
+                        <input type="text" name="nama_depo" id="" class="form-control @error('nama_depo') is-invalid @enderror" required value="{{ @old('nama_depo') }}">
+                        <div class="invalid-feedback">
+                            Mohon isi nama depo dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">
+                            Alamat
+                        </label>
+                        <input type="text" name="alamat_depo" id="" class="form-control @error('alamat_depo') is-invalid @enderror"required value="{{ @old('alamat_depo') }}">
+                        <div class="invalid-feedback">
+                            Mohon isi alamat dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">
+                            Provinsi
+                        </label>
+                        <select class="form-control select-component select-provinsi @error('provinsi') is-invalid @enderror" id="" name="provinsi" required>
+                            <option>Pilih provinsi . . </option>
+                            @foreach ($provinsi as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="invalid-feedback">
+                            Mohon isi provinsi dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">
+                            Kabupaten/Kota
+                        </label>
+                        <select class="form-control select-component select-kota @error('kota') is-invalid @enderror" id="" name="kota" required>
+                            <option>Pilih kota . . </option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Mohon isi kota dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">
+                            Contact Person
+                        </label>
+                        <input type="text" name="nama_customer" id="" class="form-control @error('nama_customer') is-invalid @enderror" required value="{{ @old('nama_customer') }}">
+                        <div class="invalid-feedback">
+                            Mohon isi nama customer dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">
+                            No. Telepon
+                        </label>
+                        <input type="number" name="no_telp_depo" id="" class="form-control num-without-style" value="{{ @old('no_telp_depo') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-form-label">Email</label>
+                        <input type="email" name="email_depo" id="" class="form-control" value="{{ @old('email_depo') }}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-google" onclick="document.getElementById('insert-form-customer').reset(); $('#modal-tambah-customer').modal('toggle');">BATAL</button>
+                        <button type="submit" class="btn btn-linkedin">SIMPAN</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Input Customer Modal --}}
+
+
+
 @endsection
 
 @section('extra-script')
