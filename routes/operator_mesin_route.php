@@ -10,6 +10,7 @@ Route::middleware(['auth', 'operator-mesin'])->group(function () {
         
         return view('operator-mesin/edit-profil', compact('provinsi'));
     });
+    Route::post('/operator-mesin/edit-profil', 'ProfileController@editPegawai');
     // End Route baru, bisa dimodif
 
     // Route pengambilan bahan baku

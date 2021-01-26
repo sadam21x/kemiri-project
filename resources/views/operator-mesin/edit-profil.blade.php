@@ -19,11 +19,13 @@
     <div class="row">
         <div class="col-md-5 col-sm-12 form-tambah-sales-col">
             @php $data = Auth::user()->operator_mesin(Auth::user()->ID_USER); @endphp
-            <form action="" method="post" class="needs-validation" novalidate>
+            <form action="{{ url('/operator-mesin/edit-profil') }}" method="post" class="needs-validation" novalidate>
                 @csrf
 
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
+                    <input type="hidden" name="KODE_JABATAN" value="6">
+
                     <label>Pilih Avatar</label>
 
                     <div class="select-avatar-show my-3">
@@ -77,8 +79,6 @@
                             Silahkan pilih jenis kelamin pegawai.
                         </div>
                     </div>
-
-                    
                 </div>
 
                 <div class="form-group">
@@ -105,7 +105,7 @@
                     <select class="form-control select-component select-provinsi @error('PROVINSI') is-invalid @enderror" name="PROVINSI" required>
                         <option disabled>Pilih provinsi . . </option>
                         @foreach ($provinsi as $id => $name)
-                            <option value="{{ $id }}" @if($kota->province_id == $id) checked @endif >{{ $name }}</option>
+                            <option value="{{ $id }}" @if($kota->province_id == $id) selected @endif >{{ $name }}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -118,7 +118,7 @@
                     <select class="form-control select-component select-kota @error('KODE_KOTA') is-invalid @enderror" name="KODE_KOTA" required>
                         <option disabled>Pilih kota . . </option>
                         @foreach ($pilihan_kota as $id => $name)
-                            <option value="{{ $id }}" @if($data->KODE_KOTA == $id) checked @endif >{{ $name }}</option>
+                            <option value="{{ $id }}" @if($data->KODE_KOTA == $id) selected @endif >{{ $name }}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -128,7 +128,7 @@
 
                 <div class="form-group">
                     <label>Nomor Telepon</label>
-                    <input type="number" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP">
+                    <input type="text" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP" value="{{ $data->NO_TELP_OPERATOR_MESIN }}">
                     <div class="invalid-feedback">
                         Mohon isi nomor telepon pegawai dengan benar.
                     </div>
@@ -136,7 +136,7 @@
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control @error('EMAIL') is-invalid @enderror" name="EMAIL">
+                    <input type="email" class="form-control @error('EMAIL') is-invalid @enderror" name="EMAIL" value="{{ $data->EMAIL_OPERATOR_MESIN }}">
                     <div class="invalid-feedback">
                         Mohon isi email yang valid.
                     </div>
@@ -144,15 +144,10 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
-                </div>
-
-                <div class="form-group form-check my-3 ml-1">
-                    <input type="checkbox" class="form-check-input mt-1" id="togglePassword">
-                    <label class="form-check-label" for="togglePassword">Tampilkan Password</label>
                 </div>
 
                 <div class="d-flex justify-content-center mt-5">
