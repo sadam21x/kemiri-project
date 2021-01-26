@@ -30,15 +30,23 @@
 
             <div class="header-body-right">
                 <ul class="navbar-nav">
-
+                @php $data = Auth::user()->admin_gudang(Auth::user()->ID_USER); @endphp
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" title="User menu" data-toggle="dropdown">
+                            @if(Auth::user()->FOTO_PROFILE == null)
                             <figure class="avatar avatar-sm">
-                                <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}"
+                                <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
-                            @php $data = Auth::user()->admin_gudang(Auth::user()->ID_USER); @endphp
+                            @else
+                            <figure class="avatar avatar-sm">
+                                <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}"
+                                     class="rounded-circle"
+                                     alt="avatar">
+                            </figure>
+                            @endif
+                            
                             <span class="ml-2 d-sm-inline d-none">{{ $data->NAMA_ADMIN_GUDANG }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
