@@ -53,7 +53,7 @@
                             <div class="text-center py-4">
                                 @if(Auth::user()->FOTO_PROFILE == null)
                                 <figure class="avatar avatar-lg mb-3 border-0">
-                                        <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="image">
                                 </figure>
                                 @else
                                 <figure class="avatar avatar-xl">
