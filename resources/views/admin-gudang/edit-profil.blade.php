@@ -83,7 +83,7 @@
 
                 <div class="form-group">
                     <label>Jabatan</label>
-                    <input type="text" value="Operator Mesin" class="form-control" readonly>
+                    <input type="text" value="Admin Gudang" class="form-control" readonly>
                 </div>
 
                 <div class="form-group">
