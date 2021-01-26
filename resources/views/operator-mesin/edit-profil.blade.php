@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-5 col-sm-12 form-tambah-sales-col">
-
+            @php $data = Auth::user()->operator_mesin(Auth::user()->ID_USER); @endphp
             <form action="" method="post" class="needs-validation" novalidate>
                 @csrf
 
@@ -57,7 +57,7 @@
 
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control @error('NAMA') is-invalid @enderror" name="NAMA" required id="nama">
+                    <input type="text" class="form-control @error('NAMA') is-invalid @enderror" name="NAMA" required id="nama" value="{{ $data->NAMA_OPERATOR_MESIN }}">
                     <div class="invalid-feedback">
                         Mohon isi nama dengan benar.
                     </div>
@@ -66,12 +66,12 @@
                 <label>Jenis Kelamin</label>
                 <div class="form-group">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_pria" value="1" required>
+                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_pria" value="1" required @if($data->JENIS_KELAMIN_OPERATOR_MESIN == 1) checked @endif >
                         <label class="form-check-label" for="jk_pria">Pria</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_wanita" value="0" required>
+                        <input class="form-check-input @error('JENIS_KELAMIN') is-invalid @enderror" type="radio" name="JENIS_KELAMIN" id="jk_wanita" value="0" required @if($data->JENIS_KELAMIN_OPERATOR_MESIN == 0) checked @endif >
                         <label class="form-check-label" for="jk_wanita">Wanita</label>
                         <div class="invalid-feedback">
                             Silahkan pilih jenis kelamin pegawai.
@@ -88,18 +88,24 @@
 
                 <div class="form-group">
                     <label>Alamat</label>
-                    <input type="text" class="form-control @error('ALAMAT') is-invalid @enderror" name="ALAMAT" required maxlength="100" minlength="8">
+                    <input type="text" class="form-control @error('ALAMAT') is-invalid @enderror" name="ALAMAT" required maxlength="100" minlength="8" value="{{ $data->ALAMAT_OPERATOR_MESIN }}">
                     <div class="invalid-feedback">
                         Mohon isi alamat pegawai dengan benar.
                     </div>
                 </div>
+
+                @php 
+                $kota = \App\Models\OperatorMesin::find($data->ID_OPERATOR_MESIN);
+                $kota = $kota->indonesia_city;
+                $pilihan_kota = \App\Models\IndonesiaCity::where('province_id',$kota->province_id)->pluck('name', 'id');
+                @endphp
 
                 <div class="form-group">
                     <label>Provinsi</label>
                     <select class="form-control select-component select-provinsi @error('PROVINSI') is-invalid @enderror" name="PROVINSI" required>
                         <option disabled>Pilih provinsi . . </option>
                         @foreach ($provinsi as $id => $name)
-                            <option value="{{ $id }}">{{ $name }}</option>
+                            <option value="{{ $id }}" @if($kota->province_id == $id) checked @endif >{{ $name }}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -111,6 +117,9 @@
                     <label>Kabupaten/Kota</label>
                     <select class="form-control select-component select-kota @error('KODE_KOTA') is-invalid @enderror" name="KODE_KOTA" required>
                         <option disabled>Pilih kota . . </option>
+                        @foreach ($pilihan_kota as $id => $name)
+                            <option value="{{ $id }}" @if($data->KODE_KOTA == $id) checked @endif >{{ $name }}</option>
+                        @endforeach
                     </select>
                     <div class="invalid-feedback">
                         Mohon pilih kota alamat pegawai.
@@ -139,20 +148,6 @@
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control input_password @error('PASSWORD_USER') is-invalid @enderror" name="PASSWORD_USER" required>
-                    <div class="invalid-feedback">
-                        Mohon isi password dengan minimal 8 karakter.
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Konfirmasi Password</label>
-                    <input type="password" class="form-control input_konfirmasi_password" name="KONFIRMASI_PASSWORD" required>
-                    <span id='pesan_konfirmasi_password'></span>
                 </div>
 
                 <div class="form-group form-check my-3 ml-1">
