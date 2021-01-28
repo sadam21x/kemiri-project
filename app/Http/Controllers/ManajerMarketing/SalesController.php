@@ -9,7 +9,7 @@ use App\Models\SalesB;
 use App\Models\EvaluasiKinerjaSalesa;
 use App\Models\EvaluasiKinerjaSalesb;
 use Illuminate\Support\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
@@ -30,11 +30,12 @@ class SalesController extends Controller
 
     	$data = SalesA::find($id);
         $jabatan = "Sales A";
+        $jenis_kelamin = DB::table('sales_a')->where('ID_SALES_A', $id)->value('JENIS_KELAMIN_SALES_A');
         $evaluasi = EvaluasiKinerjaSalesa::select('ID_EVALUASI_KINERJA_SALESA')
                     ->where('ID_SALES_A', '=', $id)
                     ->whereBetween(DB::raw('DATE(TGL_EVALUASI_KINERJA_SALESA)'),[$date,$date_end])
                     ->count();
-    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan","evaluasi"));
+    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan","evaluasi", "jenis_kelamin"));
     }
 
     public function viewB($id)
@@ -47,11 +48,12 @@ class SalesController extends Controller
         
     	$data = SalesB::find($id);
         $jabatan = "Sales B";
+        $jenis_kelamin = DB::table('sales_b')->where('ID_SALES_B', $id)->value('JENIS_KELAMIN_SALES_B');
         $evaluasi = EvaluasiKinerjaSalesa::select('ID_EVALUASI_KINERJA_SALESA')
                     ->where('ID_SALES_A', '=', $id)
                     ->whereBetween(DB::raw('DATE(TGL_EVALUASI_KINERJA_SALESA)'),[$date,$date_end])
                     ->count();
-    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan","evaluasi"));
+    	return view('/manajer-marketing/detail-sales')->with(compact("data","jabatan","evaluasi", "jenis_kelamin"));
     }
 
     public function EvaluasiKinerjaSales(Request $request){

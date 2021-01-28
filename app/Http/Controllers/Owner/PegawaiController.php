@@ -24,15 +24,17 @@ class PegawaiController extends Controller
     public function viewSalesA($id)
     {
     	$data = SalesA::find($id);
-    	$jabatan = "Sales A";
-    	return view('/owner/detail-sales')->with(compact("data","jabatan"));
+        $jabatan = "Sales A";
+        $jenis_kelamin = DB::table('sales_a')->where('ID_SALES_A', $id)->value('JENIS_KELAMIN_SALES_A');
+    	return view('/owner/detail-sales')->with(compact("data","jabatan","jenis_kelamin"));
     }
 
     public function viewSalesB($id)
     {
     	$data = SalesB::find($id);
-    	$jabatan = "Sales B";
-    	return view('/owner/detail-sales')->with(compact("data","jabatan"));
+        $jabatan = "Sales B";
+        $jenis_kelamin = DB::table('sales_b')->where('ID_SALES_B', $id)->value('JENIS_KELAMIN_SALES_B');
+    	return view('/owner/detail-sales')->with(compact("data","jabatan","jenis_kelamin"));
     }
 
     public function indexOperatorMesin(){
