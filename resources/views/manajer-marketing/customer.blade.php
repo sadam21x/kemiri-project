@@ -310,7 +310,7 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_depo" id="" class="form-control num-without-style" value="{{ @old('no_telp_depo') }}">
+                        <input type="text" name="no_telp_depo" id="" class="form-control num-without-style" value="{{ @old('no_telp_depo') }}">
                     </div>
 
                     <div class="form-group">

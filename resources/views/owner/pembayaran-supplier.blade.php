@@ -42,7 +42,7 @@
                                             <td>{{$d->penerimaan_bahan_baku->supplier->NAMA_SUPPLIER}}</td>
                                             <td id="status-{{$d->KODE_PEMBAYARAN}}">
                                                 <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}">
+                                                    <input type="checkbox" class="custom-control-input switch-bayar" id="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" unchecked>
                                                     <label class="custom-control-label label-bayar text-danger" for="konfirmasi-bayar-{{$d->KODE_PEMBAYARAN}}" id="label-{{$d->KODE_PEMBAYARAN}}">Belum Bayar
                                                     </label>
                                                 </div>

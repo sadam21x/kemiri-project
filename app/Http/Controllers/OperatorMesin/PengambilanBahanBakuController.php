@@ -41,7 +41,7 @@ class PengambilanBahanBakuController extends Controller
      */
     public function create(Request $r)
     {
-        echo "masuk ke controller";
+        // echo "masuk ke controller";
 
         $r->validate([
             'id_operator_mesin' => 'required|exists:App\Models\OperatorMesin,ID_OPERATOR_MESIN',
@@ -58,7 +58,7 @@ class PengambilanBahanBakuController extends Controller
 
             $nama_produk = Product::where(['KODE_PRODUCT' => $r->product])->value("NAMA_PRODUCT");
 
-            echo "<br> Nama Produk : ".$nama_produk;
+            // echo "<br> Nama Produk : ".$nama_produk;
 
             $id = PengambilanBahanBaku::insertGetId([
                 'ID_OPERATOR_MESIN' => $r->id_operator_mesin,
@@ -78,17 +78,17 @@ class PengambilanBahanBakuController extends Controller
                     'jumlah_karung_sak['.$i.']' => 'integer'
                 ]);
 
-                echo "<br> Validated supplier[".$i."] : ".$r->supplier[$i];
-                echo "<br> Validated bahan_baku[".$i."] : ".$r->bahan_baku[$i];
-                echo "<br> Validated jumlah_bahan_baku[".$i."] : ".$r->jumlah_bahan_baku[$i];
-                echo "<br> Validated jumlah_karung_sak[".$i."] : ".$r->jumlah_karung_sak[$i];
+                // echo "<br> Validated supplier[".$i."] : ".$r->supplier[$i];
+                // echo "<br> Validated bahan_baku[".$i."] : ".$r->bahan_baku[$i];
+                // echo "<br> Validated jumlah_bahan_baku[".$i."] : ".$r->jumlah_bahan_baku[$i];
+                // echo "<br> Validated jumlah_karung_sak[".$i."] : ".$r->jumlah_karung_sak[$i];
 
                 $idp = PenerimaanBahanBaku::where([
                     'KODE_BAHAN_BAKU' => $r->bahan_baku[$i],
                     'ID_SUPPLIER' => $r->supplier[$i],
                 ])->value('ID_PENERIMAAN');
 
-                echo "<br> Id Penerimaan Bahan Baku : ".$idp;
+                // echo "<br> Id Penerimaan Bahan Baku : ".$idp;
 
                 DetailPengambilan::insert([
                     'ID_PENERIMAAN' => $idp,
@@ -100,7 +100,7 @@ class PengambilanBahanBakuController extends Controller
                 $i++;
             }
 
-            echo "<br> Id Pengambilan Bahan Baku : ".$id;
+            // echo "<br> Id Pengambilan Bahan Baku : ".$id;
 
             ProsesProduksi::insert([
                 'KODE_PENGAMBILAN_BAHAN_BAKU' => $id,
@@ -109,18 +109,18 @@ class PengambilanBahanBakuController extends Controller
 
             $kode_produksi = ProsesProduksi::where(['KODE_PENGAMBILAN_BAHAN_BAKU' => $id])->orderBy('TGL_PRODUKSI','DESC')->value('KODE_PRODUKSI');
 
-            echo "<br> Kode Produksi : ".$kode_produksi;
+            // echo "<br> Kode Produksi : ".$kode_produksi;
 
             HasilProduct::insert([
                 'KODE_PRODUKSI' => $kode_produksi,
                 'KODE_PRODUCT' => $r->product
             ]);
 
-            echo "<br> Berhasil diinputkan hasil product.";
+            // echo "<br> Berhasil diinputkan hasil product.";
 
         });
 
-        // return redirect('/operator-mesin/pengambilan-bahan-baku');
+        return redirect('/operator-mesin/pengambilan-bahan-baku');
     }
 
     /**
