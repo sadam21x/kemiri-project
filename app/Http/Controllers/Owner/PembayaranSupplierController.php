@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PembayaranPenerimaanBahanBaku;
 use DB;
+use Auth;
 
 class PembayaranSupplierController extends Controller
 {
@@ -26,11 +27,12 @@ class PembayaranSupplierController extends Controller
         DB::transaction(function() use ($request,&$data){
         	$data = PembayaranPenerimaanBahanBaku::find($request->id);
         	if($data->STATUS_PEMBAYARAN){
-        		$data->STATUS_PEMBAYARAN = 0;
+                $data->STATUS_PEMBAYARAN = 0;
         	}
         	else{
         		$data->STATUS_PEMBAYARAN = 1;
-        	}
+            }
+            $data->ID_OWNER = Auth::user()->owner(Auth::user()->ID_USER)->ID_OWNER;
         	$data->save();
         });
         return response()->json(["success" => true, "data" => $data]);

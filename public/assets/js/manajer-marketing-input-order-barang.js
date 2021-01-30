@@ -19,7 +19,7 @@ $(document).ready(function() {
     //ambil semua produk
     $.ajax({
       type: 'GET',
-      url: "/sales-b/order-barang/products/",
+      url: "/manajer-marketing/order-barang/products/",
       success: function (results) {
           if (results.success === true) {
               $("#product").empty();
@@ -41,7 +41,7 @@ $(document).ready(function() {
       if($(this).val() == "semua"){
           $.ajax({
               type: 'GET',
-              url: "/sales-b/order-barang/products/",
+              url: "/manajer-marketing/order-barang/products/",
               success: function (results) {
                   if (results.success === true) {
                       $("#product").empty();
@@ -61,7 +61,7 @@ $(document).ready(function() {
           var jenis = $(this).val();
           $.ajax({
               type: 'GET',
-              url: "/sales-b/order-barang/products/"+jenis,
+              url: "/manajer-marketing/order-barang/products/"+jenis,
               success: function (results) {
                   if (results.success === true) {
                       $("#product").empty();
