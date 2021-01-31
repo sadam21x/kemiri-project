@@ -33,11 +33,20 @@
 
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" title="User menu" data-toggle="dropdown">
+                            @if(Auth::user()->FOTO_PROFILE == null)
                             <figure class="avatar avatar-sm">
-                                <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}"
+                                <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
+                            @else
+                            <figure class="avatar avatar-sm">
+                                <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}"
+                                     class="rounded-circle"
+                                     alt="avatar">
+                            </figure>
+                            @endif
+
                             @php $data = Auth::user()->operator_mesin(Auth::user()->ID_USER); @endphp
                             <span class="ml-2 d-sm-inline d-none">{{ $data->NAMA_OPERATOR_MESIN }}</span>
                         </a>
@@ -45,10 +54,10 @@
                             <div class="text-center py-4">
                                 @if(Auth::user()->FOTO_PROFILE == null)
                                 <figure class="avatar avatar-lg mb-3 border-0">
-                                        <img src="{{ asset('/assets/gogi/assets/media/image/user/man_avatar3.jpg') }}" class="rounded-circle" alt="image">
+                                        <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="image">
                                 </figure>
                                 @else
-                                <figure class="avatar avatar-xl">
+                                <figure class="avatar avatar-lg mb-3 border-0">
                                     <img src="{{ asset(Auth::user()->FOTO_PROFILE) }}" class="rounded-circle" alt="image">
                                 </figure>
                                 @endif

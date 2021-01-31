@@ -138,6 +138,93 @@
     </div>
 </div>
 {{-- End of Detail Penerimaan Bahan Baku Modal--}}
+{{-- Start Edit Penerimaan Bahan Baku Modal --}}
+<div class="modal fade" id="modal-edit-penerimaan-{{$d->ID_PENERIMAAN}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Edit Penerimaan Bahan Baku</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/edit')}}" method="POST" class="needs-validation" novalidate>
+                    @csrf
+
+                    {{-- Hidden id penerimaan bahan baku untuk update penerimaan --}}
+                    <input type="hidden" name="id_penerimaan" id="" value="{{$d->id_penerimaan}}">
+
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="date" name="tgl_kedatangan" id="" class="form-control @error('tgl_kedatangan') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi tanggal kedatangan.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Supplier</label>
+                        <select class="form-control select-component" id="" name="id_supplier">
+                            <option>Pilih supplier . . </option>
+                            @foreach ($supplier as $s)
+                                <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bahan Baku</label>
+                        <select class="form-control select-component" id="" name="kode_bahan_baku">
+                            <option>Pilih bahan baku . . </option>
+                            @foreach ($bahanBaku as $b)
+                                <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Karung</label>
+                        <input type="number" name="jumlah_karung_sak" id="karung" class="form-control edit-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi jumlah karung dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berat per Karung (Kg)</label>
+                        <input type="number" name="isi_karung" id="isi" class="form-control edit-berat-karung @error('isi_karung') is-invalid @enderror" required>
+                        <div class="invalid-feedback">
+                            Mohon isi berat karung dengan benar.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Berat Total (Kg)</label>
+                        <input type="number" name="total_berat" id="total_berat" class="form-control edit-berat-total" value="" placeholder="0" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Bahan Baku Bagus (Kg)</label>
+                        <input type="number" class="form-control" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah Bahan Baku Rusak (Kg)</label>
+                        <input type="number" class="form-control" min="0">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
+                        <button type="submit" class="btn btn-linkedin">SIMPAN</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Edit Penerimaan Bahan Baku Modal --}}
 @endforeach
 {{-- Start Input Penerimaan Bahan Baku Modal --}}
 <div class="modal fade" id="modal-input-penerimaan" tabindex="-1" role="dialog" aria-hidden="true">
@@ -242,95 +329,6 @@
     </div>
 </div>
 {{-- End of Input Penerimaan Bahan Baku Modal --}}
-@foreach($data as $d)
-{{-- Start Edit Penerimaan Bahan Baku Modal --}}
-<div class="modal fade" id="modal-edit-penerimaan-{{$d->id_penerimaan}}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-secondary">
-                <h5 class="modal-title">Edit Penerimaan Bahan Baku</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="fas fa-times-circle text-danger"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{url('/admin-gudang/penerimaan-bahan-baku/edit')}}" method="POST" class="needs-validation" novalidate>
-                    @csrf
-
-                    {{-- Hidden id penerimaan bahan baku untuk update penerimaan --}}
-                    <input type="hidden" name="id_penerimaan" id="" value="{{$d->id_penerimaan}}">
-
-                    <div class="form-group">
-                        <label>Tanggal</label>
-                        <input type="date" name="tgl_kedatangan" id="" class="form-control @error('tgl_kedatangan') is-invalid @enderror" required>
-                        <div class="invalid-feedback">
-                            Mohon isi tanggal kedatangan.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Supplier</label>
-                        <select class="form-control select-component" id="" name="id_supplier">
-                            <option>Pilih supplier . . </option>
-                            @foreach ($supplier as $s)
-                                <option value="{{ $s->id_supplier }}">{{ $s->nama_supplier }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Bahan Baku</label>
-                        <select class="form-control select-component" id="" name="kode_bahan_baku">
-                            <option>Pilih bahan baku . . </option>
-                            @foreach ($bahanBaku as $b)
-                                <option value="{{ $b->kode_bahan_baku }}">{{ $b->nama_bahan_baku }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Jumlah Karung</label>
-                        <input type="number" name="jumlah_karung_sak" id="karung" class="form-control edit-jumlah-karung @error('jumlah_karung_sak') is-invalid @enderror" required>
-                        <div class="invalid-feedback">
-                            Mohon isi jumlah karung dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Berat per Karung (Kg)</label>
-                        <input type="number" name="isi_karung" id="isi" class="form-control edit-berat-karung @error('isi_karung') is-invalid @enderror" required>
-                        <div class="invalid-feedback">
-                            Mohon isi berat karung dengan benar.
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Berat Total (Kg)</label>
-                        <input type="number" name="total_berat" id="total_berat" class="form-control edit-berat-total" value="" placeholder="0" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Jumlah Bahan Baku Bagus (Kg)</label>
-                        <input type="number" class="form-control" min="0">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Jumlah Bahan Baku Rusak (Kg)</label>
-                        <input type="number" class="form-control" min="0">
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
-                        <button type="submit" class="btn btn-linkedin">SIMPAN</button>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End of Edit Penerimaan Bahan Baku Modal --}}
-@endforeach
 @endsection
 
 @section('extra-script')

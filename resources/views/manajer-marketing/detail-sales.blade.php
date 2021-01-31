@@ -20,7 +20,15 @@
             <div class="card" style="">
                 <div class="card-img-top" style="background-image: url({{ asset('/assets/img/login-bg-3.png') }});">
                     <figure class="avatar avatar-xl">
-                        <img src="{{ asset('/assets/img/ikan1-spongebob.png') }}" class="rounded-circle" alt="avatar">
+                        @if($data->FOTO_PROFILE != null)
+                        <img src="{{ asset($data->FOTO_PROFILE) }}" class="rounded-circle" alt="avatar">
+                        @else
+                            @if($jenis_kelamin == 0)
+                                <img src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" alt="avatar">
+                            @else
+                                <img src="{{ asset('/assets/img/avatar/avatar-4.png') }}" class="rounded-circle" alt="avatar">
+                            @endif
+                        @endif
                     </figure>
                     <div class="badge badge-dark nama-sales">
                         @if($jabatan == "Sales A")

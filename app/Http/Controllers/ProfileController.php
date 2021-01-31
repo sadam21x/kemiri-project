@@ -3,73 +3,88 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Auth;
+use App\Models\SalesA;
+use App\Models\SalesB;
+use App\Models\OperatorMesin;
+use App\Models\ManajerMarketing;
+use App\Models\AdminGudang;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
 
-    public function editPegawai(Request $req){
+    public function editPegawai(Request $request){
         $request->validate([
-            'NAMA' => 'required|string|regex:/^[a-zA-Z ]+$/',
-            'JENIS_KELAMIN' => 'required|boolean',
+            'NAMA' => 'required|regex:/^[a-zA-Z ]+$/',
+            'JENIS_KELAMIN' => 'required|integer',
             'KODE_JABATAN' => 'required|exists:App\Models\Jabatan,KODE_JABATAN|integer',
-            'ALAMAT' => 'required|string|min:8|max:100',
+            'ALAMAT' => 'required|between:8,100',
             'PROVINSI' => 'required|exists:App\Models\IndonesiaProvince,id|integer',
             'KODE_KOTA' => 'required|exists:App\Models\IndonesiaCity,id|integer',
-            'USERNAME_USER' => 'required|string|min:5|max:100',
-            'PASSWORD_USER' => 'required|string|min:8',
-            'KONFIRMASI_PASSWORD' => 'required|same:PASSWORD_USER',
-            'FOTO_PROFILE' => 'required|integer|min:1|max:12',
-            'NO_TELP' => 'nullable|string|regex:/^[0-9+]+$/',
-            'EMAIL' => 'nullable|string|email',
+            'USERNAME_USER' => 'required|between:5,100',
+            'FOTO_PROFILE' => 'required|integer|between:1,12',
+            'NO_TELP' => 'nullable|regex:/^[0-9+ +()]+$/',
+            'EMAIL' => 'nullable|email',
         ]);
 
-        $data = User::find($req->ID_USER);
-
         $foto = '/assets/img/avatar/avatar-'.$request->FOTO_PROFILE.'.png';
+        $request->JENIS_KELAMIN = intval($request->JENIS_KELAMIN);
         
         DB::transaction(function() use ($request,$foto){
             // input ke sales A
             if($request->KODE_JABATAN == 4){
 
-                $pegawai = SalesA::update([
+                $id = Auth::user()->sales_a(Auth::user()->ID_USER)->ID_SALES_A;
+                $pegawai = SalesA::where('ID_SALES_A',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_SALES_A' => ucwords($request->NAMA),
                     'ALAMAT_SALES_A' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_SALES_A' => $request->JENIS_KELAMIN,
                     'NO_TELP_SALES_A' => $request->NO_TELP,
                     'EMAIL_SALES_A' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
             // input ke sales B
             elseif($request->KODE_JABATAN == 5){
 
-                $pegawai = SalesB::update([
+                $id = Auth::user()->sales_b(Auth::user()->ID_USER)->ID_SALES_B;
+                $pegawai = SalesB::where('ID_SALES_B',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_SALES_B' => ucwords($request->NAMA),
                     'ALAMAT_SALES_B' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_SALES_B' => $request->JENIS_KELAMIN,
                     'NO_TELP_SALES_B' => $request->NO_TELP,
                     'EMAIL_SALES_B' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
 
             elseif($request->KODE_JABATAN == 6){
 
-                //tested by dea (14/9/2020 16:40)
-
                 //insert operator mesin
-                $pegawai = OperatorMesin::update([
+                $id = Auth::user()->operator_mesin(Auth::user()->ID_USER)->ID_OPERATOR_MESIN;
+                $pegawai = OperatorMesin::where('ID_OPERATOR_MESIN',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_OPERATOR_MESIN' => ucwords($request->NAMA),
                     'ALAMAT_OPERATOR_MESIN' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_OPERATOR_MESIN' => $request->JENIS_KELAMIN,
                     'NO_TELP_OPERATOR_MESIN' => $request->NO_TELP,
                     'EMAIL_OPERATOR_MESIN' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
@@ -77,62 +92,52 @@ class ProfileController extends Controller
             elseif($request->KODE_JABATAN == 3){
 
                 //insert manajer marketing
-                $pegawai = ManajerMarketing::update([
+                $id = Auth::user()->manajer_marketing(Auth::user()->ID_USER)->ID_MANAJER_MARKETING;
+                $pegawai = ManajerMarketing::where('ID_MANAJER_MARKETING',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_MANAJER_MARKETING' => ucwords($request->NAMA),
                     'ALAMAT_MANAJER_MARKETING' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_MANAJER_MARKETING' => $request->JENIS_KELAMIN,
                     'NO_TELP_MANAJER_MARKETING' => $request->NO_TELP,
                     'EMAIL_MANAJER_MARKETING' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
             elseif($request->KODE_JABATAN == 2){
 
-                //tested by dea (14/9/2020 16:40)
-
                 //insert admin gudang
-                $pegawai = AdminGudang::update([
+                $id = Auth::user()->admin_gudang(Auth::user()->ID_USER)->ID_ADMIN_GUDANG;
+                $pegawai = AdminGudang::where('ID_ADMIN_GUDANG',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_ADMIN_GUDANG' => ucwords($request->NAMA),
                     'ALAMAT_ADMIN_GUDANG' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_ADMIN_GUDANG' => $request->JENIS_KELAMIN,
                     'NO_TELP_ADMIN_GUDANG' => $request->NO_TELP,
                     'EMAIL_ADMIN_GUDANG' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
+            
+            $id_user = Auth::user()->ID_USER;
+            $user = User::where('ID_USER',$id_user);
 
-            //tested by dea (14/9/2020 16:40)
-
-            $user = User::update([
-                'KODE_KOTA' => $request->KODE_KOTA,
+            $user->update([
                 'KODE_JABATAN' => $request->KODE_JABATAN,
-                'USERNAME_USER' => strtolower($request->USERNAME_USER),
-                'PASSWORD_USER' => bcrypt($request->PASSWORD_USER),
-                'NAMA_USER' => ucwords($request->NAMA),
-                'ALAMAT_USER' => ucwords($request->ALAMAT),
-                'JENIS_KELAMIN_USER' => $request->JENIS_KELAMIN,
-                'NO_TELP_USER' => $request->NO_TELP,
-                'EMAIL_USER' => strtolower($request->EMAIL),
-                'FOTO_PROFILE' => $foto
+                'username' => strtolower($request->USERNAME_USER),
+                'FOTO_PROFILE' => $foto,
+                'updated_at' => date('Y-m-d H:i:s')
             ]);
 
         });
 
-        if($request->KODE_JABATAN == 4 || $request->KODE_JABATAN == 5){
-            return redirect('/owner/sales');
-        }
-        elseif($request->KODE_JABATAN == 6){
-            return redirect('/owner/operator-mesin');
-        }
-        elseif($request->KODE_JABATAN == 3){
-            return redirect('/owner/manajer-marketing');
-        }
-        elseif($request->KODE_JABATAN == 2){
-            return redirect('/owner/admin-gudang');
-        }
+        return redirect('home');
     }
 }

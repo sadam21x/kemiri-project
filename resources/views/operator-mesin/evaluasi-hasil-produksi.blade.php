@@ -268,6 +268,8 @@
                         <h6>{{$d->pengambilan_bahan_baku->mesin->NAMA_MESIN}}</h6>
                     </div>
 
+                   
+
                     @foreach($d->pengambilan_bahan_baku->detail_pengambilans as $b)
                     <div class="my-3">
                         <h5>Bahan Baku {{$loop->iteration}}</h5>
@@ -316,7 +318,18 @@
                             N/A
                             @endif</h6>
                     </div>
+
                     @if($d->EVALUASI_BAHAN_BAKU != "")
+
+                    @php 
+                    $evaluasi = $d->EVALUASI_BAHAN_BAKU;
+
+                    $d->EVALUASI_BAHAN_BAKU = str_replace("[","",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = str_replace("]","",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = str_replace(" ","",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = str_replace('"',"",$d->EVALUASI_BAHAN_BAKU);
+                    $d->EVALUASI_BAHAN_BAKU = explode(",",$d->EVALUASI_BAHAN_BAKU);
+                    @endphp
                         @foreach($d->pengambilan_bahan_baku->detail_pengambilans as $e)
                         <div class="my-3">
                             <h5>Evaluasi Bahan Baku {{$loop->iteration}}</h5>
@@ -338,6 +351,7 @@
 {{-- End of Detail Produksi Modal --}}
 
 @if($d->HASIL_BAGUS_KG != null)
+@php $d->EVALUASI_BAHAN_BAKU = $evaluasi; @endphp
 {{-- Start Edit Pencatatan Produksi Modal --}}
 <div class="modal fade" id="modal-edit-pencatatan-produksi-{{$d->KODE_PRODUKSI}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">

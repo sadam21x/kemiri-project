@@ -50,7 +50,7 @@ class HomeController extends Controller
     {
         Auth::logout();
         Session::flush();
-        return redirect('login');
+        return redirect()->route('login');
     }
 
     public function changepass(Request $req){

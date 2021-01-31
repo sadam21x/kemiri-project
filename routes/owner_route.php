@@ -13,6 +13,7 @@ Route::middleware(['auth', 'owner'])->group(function () {
 
         return view('owner/edit-profil', compact('provinsi'));
     });
+    Route::post('/owner/edit-profil', 'ProfileController@editPegawai');
 
     // Route pegawai
     Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');

@@ -24,15 +24,17 @@ class PegawaiController extends Controller
     public function viewSalesA($id)
     {
     	$data = SalesA::find($id);
-    	$jabatan = "Sales A";
-    	return view('/owner/detail-sales')->with(compact("data","jabatan"));
+        $jabatan = "Sales A";
+        $jenis_kelamin = DB::table('sales_a')->where('ID_SALES_A', $id)->value('JENIS_KELAMIN_SALES_A');
+    	return view('/owner/detail-sales')->with(compact("data","jabatan","jenis_kelamin"));
     }
 
     public function viewSalesB($id)
     {
     	$data = SalesB::find($id);
-    	$jabatan = "Sales B";
-    	return view('/owner/detail-sales')->with(compact("data","jabatan"));
+        $jabatan = "Sales B";
+        $jenis_kelamin = DB::table('sales_b')->where('ID_SALES_B', $id)->value('JENIS_KELAMIN_SALES_B');
+    	return view('/owner/detail-sales')->with(compact("data","jabatan","jenis_kelamin"));
     }
 
     public function indexOperatorMesin(){
@@ -101,8 +103,6 @@ class PegawaiController extends Controller
 
             elseif($request->KODE_JABATAN == 6){
 
-                //tested by dea (14/9/2020 16:40)
-
                 //insert operator mesin
                 $pegawai = OperatorMesin::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
@@ -132,8 +132,6 @@ class PegawaiController extends Controller
             }
             elseif($request->KODE_JABATAN == 2){
 
-                //tested by dea (14/9/2020 16:40)
-
                 //insert admin gudang
                 $pegawai = AdminGudang::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
@@ -147,19 +145,12 @@ class PegawaiController extends Controller
 
             }
 
-            //tested by dea (14/9/2020 16:40)
-
             $user = User::insert([
-                'KODE_KOTA' => $request->KODE_KOTA,
                 'KODE_JABATAN' => $request->KODE_JABATAN,
-                'USERNAME_USER' => strtolower($request->USERNAME_USER),
-                'PASSWORD_USER' => bcrypt($request->PASSWORD_USER),
-                'NAMA_USER' => ucwords($request->NAMA),
-                'ALAMAT_USER' => ucwords($request->ALAMAT),
-                'JENIS_KELAMIN_USER' => $request->JENIS_KELAMIN,
-                'NO_TELP_USER' => $request->NO_TELP,
-                'EMAIL_USER' => strtolower($request->EMAIL),
-                'FOTO_PROFILE' => $foto
+                'username' => strtolower($request->USERNAME_USER),
+                'password' => bcrypt($request->PASSWORD_USER),
+                'FOTO_PROFILE' => $foto,
+                'created_at' => date('Y-m-d H:i:s')
             ]);
 
         });

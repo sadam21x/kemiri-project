@@ -81,7 +81,7 @@
                     @csrf
 
                     {{-- Hidden id operator mesin yang melakukan input data --}}
-                    <input type="hidden" name="id_operator_mesin" id="" value="1">
+                    <input type="hidden" name="id_operator_mesin" value="{{ Auth::user()->operator_mesin(Auth::user()->ID_USER)->ID_OPERATOR_MESIN }}">
                     
                     <div class="form-group">
                         <button type="button" class="btn btn-sm rounded btn-twitter tambah-bahan-baku-btn">
@@ -164,11 +164,11 @@
                             Mohon isi jumlah bahan baku dengan benar.
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    
+                    <div class="modal-footer" id="footer-input">
                         <button type="button" class="btn btn-sm btn-google" data-dismiss="modal">BATAL</button>
-                        <button type="submit" class="btn btn-sm btn-linkedin">SIMPAN</button>
+                        <input type="submit" class="btn btn-sm btn-linkedin" value="SIMPAN">
                     </div>
-
                 </form>
             </div>
         </div>
