@@ -171,9 +171,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
                                 <div class="container">
-
                                     <div class="my-3">
                                         <h5>Apakah anda yakin untuk menyimpan transaksi ini?</h5>
                                     </div>
@@ -182,9 +180,7 @@
                                         <button type="button" class="btn btn-google" data-dismiss="modal">BATAL</button>
                                         <button type="submit" class="btn btn-linkedin">SIMPAN</button>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
