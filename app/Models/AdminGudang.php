@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Log;
 
 /**
  * Class AdminGudang
@@ -57,5 +58,13 @@ class AdminGudang extends Model
 	public function pengirimen()
 	{
 		return $this->hasMany(Pengiriman::class, 'ID_ADMIN_GUDANG');
+	}
+
+	public function getid_user()
+	{
+		return Log::where([
+			'ID_PEGAWAI' => $this->ID_ADMIN_GUDANG,
+			'ID_JABATAN_LOG' => 2,
+		])->value('ID_USER_LOG');
 	}
 }

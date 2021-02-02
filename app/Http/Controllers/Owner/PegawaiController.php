@@ -65,7 +65,7 @@ class PegawaiController extends Controller
             'PASSWORD_USER' => 'required|string|min:8',
             'KONFIRMASI_PASSWORD' => 'required|same:PASSWORD_USER',
             'FOTO_PROFILE' => 'required|integer|min:1|max:12',
-            'NO_TELP' => 'nullable|string|regex:/^[0-9+]+$/',
+            'NO_TELP' => 'nullable|string|regex:/^[0-9 +]+$/',
             'EMAIL' => 'nullable|string|email',
         ]);
 

@@ -18,10 +18,10 @@ Route::middleware(['auth', 'owner'])->group(function () {
     // Route pegawai
     Route::view('/owner/detail-pegawai', 'owner/detail-pegawai');
 
-    Route::get('/owner/edit-pegawai', function() {
+    Route::get('/owner/edit-pegawai/{id}', function($id) {
         $provinsi = \Laravolt\Indonesia\Models\Province::pluck('name', 'id');
-
-        return view('owner/edit-pegawai', compact('provinsi'));
+        $jenis = \App\Models\User::find($id)->jabatan()->value('NAMA_JABATAN');
+        return view('owner/edit-pegawai', compact('provinsi','id','jenis'));
     });
 
     Route::get('/owner/tambah-pegawai', function() {
