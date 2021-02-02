@@ -30,22 +30,22 @@ class CustomerController extends Controller
     {
         $r->validate([
             'kota' => 'required|exists:App\Models\IndonesiaCity,id|integer',
-            'id_manajer_marketing' => 'required|exists:App\Models\ManajerMarketing,id_manajer_marketing|integer',
+            'id_manajer_marketing' => 'required|exists:App\Models\ManajerMarketing,ID_MANAJER_MARKETING|integer',
             'nama_customer' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
-            'nama_depo' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
+            'nama_depo' => 'required|string|max:50|regex:/^[a-zA-Z .]+$/',
             'alamat_depo' => 'required|string|max:100',
-            'no_telp_depo' => 'nullable|string|max:50|regex:/^[0-9 ]+$/',
+            'no_telp_depo' => 'nullable|string|max:50|regex:/^[0-9 +]+$/',
             'email_depo' => 'nullable|string|email'
         ]);
 
         $depo_air_minum = new DepoAirMinum;
-        $depo_air_minum->nama_depo = $r->nama_depo;
-        $depo_air_minum->alamat_depo = $r->alamat_depo;
-        $depo_air_minum->id_manajer_marketing = $r->id_manajer_marketing;
-        $depo_air_minum->kode_kota = $r->kota;
-        $depo_air_minum->no_telp_depo = $r->no_telp_depo;
-        $depo_air_minum->email_depo = $r->email_depo;
-        $depo_air_minum->nama_customer = $r->nama_customer;
+        $depo_air_minum->NAMA_DEPO = $r->nama_depo;
+        $depo_air_minum->ALAMAT_DEPO = $r->alamat_depo;
+        $depo_air_minum->ID_MANAJER_MARKETING = $r->id_manajer_marketing;
+        $depo_air_minum->KODE_KOTA = $r->kota;
+        $depo_air_minum->NO_TELP_DEPO = $r->no_telp_depo;
+        $depo_air_minum->EMAIL_DEPO = $r->email_depo;
+        $depo_air_minum->NAMA_CUSTOMER = $r->nama_customer;
         $depo_air_minum->save();
 
         return redirect('/manajer-marketing/customer');
@@ -97,21 +97,20 @@ class CustomerController extends Controller
     {
         $r->validate([
             'kota' => 'required|exists:App\Models\IndonesiaCity,id|integer',
-            'id_manajer_marketing' => 'required|exist:App\Models\ManajerMarketing,id_manajer_marketing|integer',
             'nama_customer' => 'required|string|max:50|regex:/^[a-zA-Z ]+$/',
-            'nama_depo' => 'required|string|max:50',
+            'nama_depo' => 'required|string|max:50|regex:/^[a-zA-Z .]+$/',
             'alamat_depo' => 'required|string|max:100',
-            'no_telp_depo' => 'nullable|string|max:50|regex:/^[0-9 ]+$/',
+            'no_telp_depo' => 'nullable|string|max:50|regex:/^[0-9 +]+$/',
             'email_depo' => 'nullable|string|email'
         ]);
 
         $depo_air_minum = DepoAirMinum::find($r->kode_depo);
-        $depo_air_minum->nama_depo = $r->nama_depo;
-        $depo_air_minum->alamat_depo = $r->alamat_depo;
-        $depo_air_minum->kode_kota = $r->kota;
-        $depo_air_minum->no_telp_depo = $r->no_telp_depo;
-        $depo_air_minum->email_depo = $r->email_depo;
-        $depo_air_minum->nama_customer = $r->nama_customer;
+        $depo_air_minum->NAMA_DEPO = $r->nama_depo;
+        $depo_air_minum->ALAMAT_DEPO = $r->alamat_depo;
+        $depo_air_minum->KODE_KOTA = $r->kota;
+        $depo_air_minum->NO_TELP_DEPO = $r->no_telp_depo;
+        $depo_air_minum->EMAIL_DEPO = $r->email_depo;
+        $depo_air_minum->NAMA_CUSTOMER = $r->nama_customer;
         $depo_air_minum->save();
 
         return redirect('/manajer-marketing/customer');
