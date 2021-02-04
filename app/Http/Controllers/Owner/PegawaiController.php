@@ -63,7 +63,7 @@ class PegawaiController extends Controller
             'KODE_KOTA' => 'required|exists:App\Models\IndonesiaCity,id|integer',
             'USERNAME_USER' => 'required|between:5,100',
             'FOTO_PROFILE' => 'required|integer|between:1,12',
-            'NO_TELP' => 'nullable|regex:/^[0-9+ +()]+$/',
+            'NO_TELP' => 'nullable|regex:/^[0-9 +()-]+$/',
             'EMAIL' => 'nullable|email',
         ]);
 

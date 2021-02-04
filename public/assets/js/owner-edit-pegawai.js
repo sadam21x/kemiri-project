@@ -80,7 +80,7 @@ $(document).ready(function() {
             src = 1;
         }
         $("#foto-profile").val(src);
-    });
+    }); 
 
 });
 //validation

@@ -47,7 +47,7 @@
                                             DETAIL
                                         </button>
 
-                                        <a href="{{ url('/owner/edit-pegawai',$d->getid_user()) }}" class="btn btn-sm btn-warning" target="_blank">
+                                        <a href="{{ url('/owner/edit-pegawai',$d->getid_user()) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-users-cog mr-2"></i>
                                             EDIT
                                         </a>
