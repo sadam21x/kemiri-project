@@ -5,7 +5,9 @@ $(document).ready(function() {
     menu.classList.add("active");
 
     // datatable
-    $('.datatable-component').DataTable();
+    $('.datatable-component').DataTable({
+        "order": [[ 0, "desc" ]]
+    });
     
 
     // Modifikasi switch konfirmasi pembayaran

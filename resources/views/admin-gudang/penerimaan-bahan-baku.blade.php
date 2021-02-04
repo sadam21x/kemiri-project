@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach($data as $d)
                                 <tr>
-                                    <td>{{$d->ID_PENERIMAAN}}</td>
+                                    <td>{{ $d->ID_PENERIMAAN }}</td>
                                     <td>@php echo $d->TGL_KEDATANGAN @endphp</td>
                                     <td>{{$d->SUPPLIER}}</td>
                                     <td>
@@ -337,5 +337,7 @@
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/custom-form-inputmask.js') }}"></script>
     <script src="{{ asset('/assets/bootstrap/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-penerimaan.js') }}"></script>
+    
 @endsection

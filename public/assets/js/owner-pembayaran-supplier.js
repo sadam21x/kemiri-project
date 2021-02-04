@@ -5,7 +5,9 @@ $(document).ready(function() {
     menu.classList.add("active");
 
     // datatable
-    var table = $('.datatable-component').DataTable();
+    var table = $('.datatable-component').DataTable({
+        "order": [[ 0, "desc" ]]
+    });
 
     $('.switch-bayar').change(function(e) {
         e.stopPropagation();

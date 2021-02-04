@@ -6,7 +6,12 @@ $(document).ready(function() {
 
     // Datatable
     const pengambilanBahanBakuTable = document.getElementById("pengambilan-bahan-baku-table");
-    $(pengambilanBahanBakuTable).DataTable();
+    $(pengambilanBahanBakuTable).DataTable({
+        "order": [[ 0, "desc" ]],
+        "columnDefs": [
+            { "type": "any-number", "targets": 0 }
+        ],
+    });
 
     // Select2
     // const selectComponent = document.getElementsByClassName("select-component");

@@ -6,10 +6,20 @@ $(document).ready(function() {
  
     // Datatable
     const pengirimanBarangTable = document.getElementById("pengiriman-barang-table");
-    $(pengirimanBarangTable).DataTable();
+    $(pengirimanBarangTable).DataTable({
+      "order": [[ 0, "desc" ]],
+      "columnDefs": [
+          { "type": "any-number", "targets": 0 }
+      ],
+  });
 
     const orderBarangTable = document.getElementById("order-barang-table");
-    $(orderBarangTable).DataTable();
+    $(orderBarangTable).DataTable({
+      "order": [[ 0, "desc" ]],
+      "columnDefs": [
+          { "type": "any-number", "targets": 0 }
+      ],
+  });
 
     //tombol batal
     $('.batal').click(function(){

@@ -13,7 +13,12 @@ $(document).ready(function() {
  
     // Datatable
     const penerimaanBahanBakuTable = document.getElementById("penerimaan-bahan-baku-table");
-    $(penerimaanBahanBakuTable).DataTable();
+    $(penerimaanBahanBakuTable).DataTable({
+      "order": [[ 0, "desc" ]],
+      "columnDefs": [
+          { "type": "any-number", "targets": 0 }
+      ],
+  });
 
     // Select2
     const selectComponent = document.getElementsByClassName("select-component");

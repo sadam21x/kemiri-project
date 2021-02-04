@@ -331,5 +331,6 @@
     <script src="{{ asset('/assets/js/custom-form-inputmask.js') }}"></script>
     <script src="{{ asset('/assets/bootstrap/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-supplier.js') }}"></script>
 @endsection

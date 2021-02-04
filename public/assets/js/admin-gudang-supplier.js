@@ -6,7 +6,12 @@ $(document).ready(function() {
 
     // Datatable
     const supplierTable = document.getElementById("supplier-table");
-    $(supplierTable).DataTable();
+    $(supplierTable).DataTable({
+        "order": [[ 0, "desc" ]],
+      "columnDefs": [
+          { "type": "any-number", "targets": 0 }
+      ],
+    });
 
     // Select2
     const selectComponent = document.getElementsByClassName("select-component");

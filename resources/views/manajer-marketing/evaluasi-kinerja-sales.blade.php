@@ -225,5 +225,6 @@
 
 @section('extra-script')
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/js/manajer-marketing-evaluasi-sales.js') }}"></script>
 @endsection

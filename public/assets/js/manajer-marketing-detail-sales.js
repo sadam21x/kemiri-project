@@ -6,7 +6,12 @@ $(document).ready(function() {
 
     // Datatable
     const datatableComponent = document.getElementsByClassName("datatable-component");
-    $(datatableComponent).DataTable();
+    $(datatableComponent).DataTable({
+        "order": [[ 0, "desc" ]],
+        "columnDefs": [
+            { "type": "any-number", "targets": 0 }
+        ],
+    });
 
     $('.ya').on('click', function(){
         document.getElementById('evaluasi').value = "Telah Memenuhi Target";
