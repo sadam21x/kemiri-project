@@ -215,7 +215,7 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_depo" id="" class="form-control num-without-style">
+                        <input type="text" name="no_telp_depo" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
