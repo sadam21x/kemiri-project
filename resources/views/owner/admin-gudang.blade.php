@@ -105,7 +105,7 @@
                                 <tr>
                                     <td class="label-detail">Jenis Kelamin</td>
                                     <td>
-                                        @if($d->JENIS_KELAMIN_OPERATOR_MESIN)
+                                        @if($d->JENIS_KELAMIN_ADMIN_GUDANG)
                                             Pria
                                         @else
                                             Wanita

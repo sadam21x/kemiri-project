@@ -55,48 +55,55 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'NAMA' => 'required|string|regex:/^[a-zA-Z ]+$/',
-            'JENIS_KELAMIN' => 'required|boolean',
+            'NAMA' => 'required|regex:/^[a-zA-Z ]+$/',
+            'JENIS_KELAMIN' => 'required|integer',
             'KODE_JABATAN' => 'required|exists:App\Models\Jabatan,KODE_JABATAN|integer',
-            'ALAMAT' => 'required|string|min:8|max:100',
+            'ALAMAT' => 'required|between:8,100',
             'PROVINSI' => 'required|exists:App\Models\IndonesiaProvince,id|integer',
             'KODE_KOTA' => 'required|exists:App\Models\IndonesiaCity,id|integer',
-            'USERNAME_USER' => 'required|string|min:5|max:100',
-            'PASSWORD_USER' => 'required|string|min:8',
-            'KONFIRMASI_PASSWORD' => 'required|same:PASSWORD_USER',
-            'FOTO_PROFILE' => 'required|integer|min:1|max:12',
-            'NO_TELP' => 'nullable|string|regex:/^[0-9 +]+$/',
-            'EMAIL' => 'nullable|string|email',
+            'USERNAME_USER' => 'required|between:5,100',
+            'FOTO_PROFILE' => 'required|integer|between:1,12',
+            'NO_TELP' => 'nullable|regex:/^[0-9+ +()]+$/',
+            'EMAIL' => 'nullable|email',
         ]);
 
         $foto = '/assets/img/avatar/avatar-'.$request->FOTO_PROFILE.'.png';
+        $request->JENIS_KELAMIN = intval($request->JENIS_KELAMIN);
         
         DB::transaction(function() use ($request,$foto){
             // input ke sales A
             if($request->KODE_JABATAN == 4){
 
-                $pegawai = SalesA::insert([
+                $id = $request->ID;
+                $pegawai = SalesA::where('ID_SALES_A',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_SALES_A' => ucwords($request->NAMA),
                     'ALAMAT_SALES_A' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_SALES_A' => $request->JENIS_KELAMIN,
                     'NO_TELP_SALES_A' => $request->NO_TELP,
                     'EMAIL_SALES_A' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
             // input ke sales B
             elseif($request->KODE_JABATAN == 5){
 
-                $pegawai = SalesB::insert([
+                $id = $request->ID;
+                $pegawai = SalesB::where('ID_SALES_B',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_SALES_B' => ucwords($request->NAMA),
                     'ALAMAT_SALES_B' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_SALES_B' => $request->JENIS_KELAMIN,
                     'NO_TELP_SALES_B' => $request->NO_TELP,
                     'EMAIL_SALES_B' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
@@ -104,14 +111,18 @@ class PegawaiController extends Controller
             elseif($request->KODE_JABATAN == 6){
 
                 //insert operator mesin
-                $pegawai = OperatorMesin::insert([
+                $id = $request->ID;
+                $pegawai = OperatorMesin::where('ID_OPERATOR_MESIN',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_OPERATOR_MESIN' => ucwords($request->NAMA),
                     'ALAMAT_OPERATOR_MESIN' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_OPERATOR_MESIN' => $request->JENIS_KELAMIN,
                     'NO_TELP_OPERATOR_MESIN' => $request->NO_TELP,
                     'EMAIL_OPERATOR_MESIN' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
@@ -119,38 +130,48 @@ class PegawaiController extends Controller
             elseif($request->KODE_JABATAN == 3){
 
                 //insert manajer marketing
-                $pegawai = ManajerMarketing::insert([
+                $id = $request->ID;
+                $pegawai = ManajerMarketing::where('ID_MANAJER_MARKETING',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_MANAJER_MARKETING' => ucwords($request->NAMA),
                     'ALAMAT_MANAJER_MARKETING' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_MANAJER_MARKETING' => $request->JENIS_KELAMIN,
                     'NO_TELP_MANAJER_MARKETING' => $request->NO_TELP,
                     'EMAIL_MANAJER_MARKETING' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
             elseif($request->KODE_JABATAN == 2){
 
                 //insert admin gudang
-                $pegawai = AdminGudang::insert([
+                $id = $request->ID;
+                $pegawai = AdminGudang::where('ID_ADMIN_GUDANG',$id);
+
+                $pegawai->update([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_ADMIN_GUDANG' => ucwords($request->NAMA),
                     'ALAMAT_ADMIN_GUDANG' => ucwords($request->ALAMAT),
                     'JENIS_KELAMIN_ADMIN_GUDANG' => $request->JENIS_KELAMIN,
                     'NO_TELP_ADMIN_GUDANG' => $request->NO_TELP,
                     'EMAIL_ADMIN_GUDANG' => strtolower($request->EMAIL),
-                    'FOTO_PROFILE' => $foto
+                    'FOTO_PROFILE' => $foto,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
+            
+            $id_user = $request->ID_USER;
+            $user = User::where('ID_USER',$id_user);
 
-            $user = User::insert([
+            $user->update([
                 'KODE_JABATAN' => $request->KODE_JABATAN,
                 'username' => strtolower($request->USERNAME_USER),
-                'password' => bcrypt($request->PASSWORD_USER),
                 'FOTO_PROFILE' => $foto,
-                'created_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s')
             ]);
 
         });

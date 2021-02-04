@@ -64,4 +64,12 @@ class ManajerMarketing extends Model
 	{
 		return $this->hasMany(Penjualan::class, 'ID_MANAJER_MARKETING');
 	}
+
+	public function getid_user()
+	{
+		return Log::where([
+			'ID_PEGAWAI' => $this->ID_MANAJER_MARKETING,
+			'ID_JABATAN_LOG' => 3,
+		])->value('ID_USER_LOG');
+	}
 }

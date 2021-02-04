@@ -52,4 +52,12 @@ class OperatorMesin extends Model
 	{
 		return $this->hasMany(PengambilanBahanBaku::class, 'ID_OPERATOR_MESIN');
 	}
+
+	public function getid_user()
+	{
+		return Log::where([
+			'ID_PEGAWAI' => $this->ID_OPERATOR_MESIN,
+			'ID_JABATAN_LOG' => 6,
+		])->value('ID_USER_LOG');
+	}
 }

@@ -21,12 +21,13 @@
 
             <form action="{{url('/owner/pegawai/store')}}" method="post" class="needs-validation" novalidate>
                 @csrf
-                
+                <input type="hidden" name="ID_USER" value="{{ Request::segment(3) }}">
                 @if($jenis == "Admin Gudang")
-                @php $data = Auth::user()->admin_gudang(Auth::user()->ID_USER); @endphp
+                @php $data = \App\Models\User::find(Request::segment(3))->admin_gudang(Request::segment(3)); @endphp
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
                     <input type="hidden" name="KODE_JABATAN" value="2">
+                    <input type="hidden" name="ID" value="{{ $data->ID_ADMIN_GUDANG }}">
 
                     <label>Pilih Avatar</label>
 
@@ -146,16 +147,17 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ $data->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
                 </div>
                 @elseif($jenis == "Manajer Marketing")
-                @php $data = Auth::user()->manajer_marketing(Auth::user()->ID_USER); @endphp
+                @php $data = \App\Models\User::find(Request::segment(3))->manajer_marketing(Request::segment(3)); @endphp
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
                     <input type="hidden" name="KODE_JABATAN" value="3">
+                    <input type="hidden" name="ID" value="{{ $data->ID_MANAJER_MARKETING }}">
 
                     <label>Pilih Avatar</label>
 
@@ -275,16 +277,17 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ $data->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
                 </div>
                 @elseif($jenis == "Operator Mesin")
-                @php $data = Auth::user()->operator_mesin(Auth::user()->ID_USER); @endphp
+                @php $data = \App\Models\User::find(Request::segment(3))->operator_mesin(Request::segment(3)); @endphp
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
                     <input type="hidden" name="KODE_JABATAN" value="6">
+                    <input type="hidden" name="ID" value="{{ $data->ID_OPERATOR_MESIN }}">
 
                     <label>Pilih Avatar</label>
 
@@ -404,16 +407,17 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ $data->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
                 </div>
                 @elseif($jenis == "Sales A")
-                @php $data = Auth::user()->sales_a(Auth::user()->ID_USER); @endphp
+                @php $data = \App\Models\User::find(Request::segment(3))->sales_a(Request::segment(3)); @endphp
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
                     <input type="hidden" name="KODE_JABATAN" value="4">
+                    <input type="hidden" name="ID" value="{{ $data->ID_SALES_A }}">
 
                     <label>Pilih Avatar</label>
 
@@ -533,16 +537,17 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ $data->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
                 </div>
                 @elseif($jenis == "Sales B")
-                @php $data = Auth::user()->sales_b(Auth::user()->ID_USER); @endphp
+                @php $data = \App\Models\User::find(Request::segment(3))->sales_b(Request::segment(3)); @endphp
                 <div class="form-group mb-5">
                     <input type="hidden" name="FOTO_PROFILE" value="1" id="foto-profile" required>
                     <input type="hidden" name="KODE_JABATAN" value="5">
+                    <input type="hidden" name="ID" value="{{ $data->ID_SALES_B }}">
 
                     <label>Pilih Avatar</label>
 
@@ -662,7 +667,7 @@
 
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ Auth::user()->username }}">
+                    <input type="text" class="form-control @error('USERNAME_USER') is-invalid @enderror" name="USERNAME_USER" required minlength="5" maxlength="100" value="{{ $data->username }}">
                     <div class="invalid-feedback">
                         Username harus unik dengan minimal 5 karakter.
                     </div>
@@ -688,5 +693,5 @@
 @section('extra-script')
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/slick/slick.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/owner-tambah-pegawai.js') }}"></script>
+    <script src="{{ asset('/assets/js/edit-profil.js') }}"></script>
 @endsection
