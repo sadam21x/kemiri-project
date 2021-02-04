@@ -59,39 +59,6 @@ class PenerimaanBahanBakuController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -101,12 +68,12 @@ class PenerimaanBahanBakuController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'id_supplier' => 'required',
-            'kode_bahan_baku' => 'required',
-            'tgl_kedatangan' => 'required',
-            'total_berat' => 'required',
-            'jumlah_karung_sak' => 'required',
-            'isi_karung' => 'required'
+            'id_supplier' => 'required|exists:App\Models\Supplier,ID_SUPPLIER|integer',
+            'kode_bahan_baku' => 'required|exists:App\Models\BahanBaku,KODE_BAHAN_BAKU|integer',
+            'tgl_kedatangan' => 'required|date',
+            'total_berat' => 'required|numeric|min:0',
+            'jumlah_karung_sak' => 'required|numeric|min:0',
+            'isi_karung' => 'required|numeric|min:0'
         ]);
 
         $penerimaan_bahan_baku = PenerimaanBahanBaku::find($request->id_penerimaan);
@@ -121,16 +88,5 @@ class PenerimaanBahanBakuController extends Controller
         $penerimaan_bahan_baku->save();
 
         return redirect('/admin-gudang/penerimaan-bahan-baku');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

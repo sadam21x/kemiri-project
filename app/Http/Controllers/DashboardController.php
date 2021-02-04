@@ -218,7 +218,16 @@ class DashboardController extends Controller
         $date_end = Carbon::now()->endOfMonth();
 
         //total penjualan bulan ini
-        $data_penjualanproduct = Product::select('product.KODE_PRODUCT','product.NAMA_PRODUCT',DB::raw('COALESCE(SUM(d.JUMLAH_PCS),0) AS JUMLAH_PCS'))->leftJoin('detil_penjualan as d','d.KODE_PRODUCT','=','product.KODE_PRODUCT')->leftJoin('penjualan as p','p.ID_PENJUALAN','=','d.ID_PENJUALAN')->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])->groupBy('product.KODE_PRODUCT','product.NAMA_PRODUCT')->get();
+        $data_penjualanproduct = Product::select('product.KODE_PRODUCT','product.NAMA_PRODUCT',
+        DB::raw('COALESCE(SUM(d.JUMLAH_PCS),0) AS JUMLAH_PCS'))
+        ->leftJoin('detil_penjualan as d','d.KODE_PRODUCT','=','product.KODE_PRODUCT')
+        ->leftJoin('penjualan as p','p.ID_PENJUALAN','=','d.ID_PENJUALAN')
+        ->whereBetween(DB::raw('DATE(TGL_PENJUALAN)'),[$date,$date_end])
+        ->groupBy('product.KODE_PRODUCT','product.NAMA_PRODUCT')->get();
+
+        if(count($data_penjualanproduct) == 0){
+            $data_penjualanproduct = [0];
+        }
 
         $data_penjualan = [];
 
@@ -229,12 +238,12 @@ class DashboardController extends Controller
             $date_end = Carbon::create(date("Y"), $i, 1, 12, 0, 0)->endOfMonth();
 
             $data_penjualan[$i] = Product::select('product.KODE_PRODUCT','product.NAMA_PRODUCT',DB::raw('
-                CASE WHEN d.ID_PENJUALAN IN(
+                CASE 
+                    WHEN d.ID_PENJUALAN IN(
                     SELECT pp.ID_PENJUALAN FROM penjualan p 
                     JOIN pembayaran_penjualan pp on pp.ID_PENJUALAN = p.ID_PENJUALAN 
-                    WHERE pp.STATUS_PEMBAYARAN = 1 AND DATE(TGL_PENJUALAN) BETWEEN "'.date("Y-m-d",strtotime($date)).'" AND "'.date("Y-m-d",strtotime($date_end)).'")
-                        THEN SUM(d.JUMLAH_PCS)
-                        ELSE 0
+                    WHERE pp.STATUS_PEMBAYARAN = 1 AND DATE(TGL_PENJUALAN) BETWEEN "'.date("Y-m-d",strtotime($date)).'" AND "'.date("Y-m-d",strtotime($date_end)).'") THEN SUM(d.JUMLAH_PCS)
+                    ELSE 0
                 END AS JUMLAH_PCS'))->leftJoin('detil_penjualan as d','d.KODE_PRODUCT','=','product.KODE_PRODUCT')->groupBy('product.KODE_PRODUCT','product.NAMA_PRODUCT')->get();
 
             $data_penjualan[$i]["bulan"] = $date->locale('id_ID')->monthName;
