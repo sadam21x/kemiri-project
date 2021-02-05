@@ -215,7 +215,7 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="number" name="no_telp_depo" id="" class="form-control num-without-style">
+                        <input type="text" name="no_telp_depo" id="" class="form-control num-without-style">
                     </div>
 
                     <div class="form-group">
@@ -341,6 +341,7 @@
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-a-customer.js') }}"></script>
 @endsection

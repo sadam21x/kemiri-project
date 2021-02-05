@@ -6,6 +6,11 @@ $(document).ready(function() {
 
     // Datatable
     const customerTable = document.getElementById("customer-table");
-    $(customerTable).DataTable();
+    $(customerTable).DataTable({
+        "order": [[ 0, "desc" ]],
+      "columnDefs": [
+          { "type": "any-number", "targets": 0 }
+      ],
+    });
 
 });

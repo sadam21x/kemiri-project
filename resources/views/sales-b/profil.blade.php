@@ -8,7 +8,7 @@
                 </a>
                 <h5 class="modal-title">Profil Saya</h5>
                 <button class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="Tutup">
-                    <i class="fas fa-circle text-danger"></i>
+                    <i class="fas fa-times-circle text-danger"></i>
                 </button>
             </div>
             <div class="modal-body">

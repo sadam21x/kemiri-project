@@ -132,5 +132,6 @@
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/js/admin-gudang-customer.js') }}"></script>
 @endsection

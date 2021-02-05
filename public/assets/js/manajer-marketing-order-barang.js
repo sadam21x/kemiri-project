@@ -6,7 +6,12 @@ $(document).ready(function() {
  
     // Datatable
     const orderBarangTable = document.getElementById("order-barang-table");
-    $('.datatable-table').DataTable();
+    $('.datatable-table').DataTable({
+        "order": [[ 0, "desc" ]],
+        "columnDefs": [
+            { "type": "any-number", "targets": 0 }
+        ],
+    });
 
     // Element
     var El = '<div>' +

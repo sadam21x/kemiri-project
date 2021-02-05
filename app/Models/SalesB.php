@@ -64,4 +64,12 @@ class SalesB extends Model
 	{
 		return $this->hasMany(Penjualan::class, 'ID_SALES_B');
 	}
+
+	public function getid_user()
+	{
+		return Log::where([
+			'ID_PEGAWAI' => $this->ID_SALES_B,
+			'ID_JABATAN_LOG' => 5,
+		])->value('ID_USER_LOG');
+	}
 }

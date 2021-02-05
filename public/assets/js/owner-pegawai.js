@@ -5,6 +5,11 @@ $(document).ready(function() {
     menu.classList.add("active");
 
     // Datatable
-    $('.datatable-component').DataTable();
+    $('.datatable-component').DataTable({
+        "order": [[ 0, "desc" ]],
+        "columnDefs": [
+            { "type": "any-number", "targets": 0 }
+        ],
+    });
 
 });

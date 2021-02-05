@@ -46,7 +46,8 @@
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </button>
-                                        <a href="{{ url('/owner/edit-pegawai') }}" class="btn btn-sm btn-warning" target="_blank">
+
+                                        <a href="{{ url('/owner/edit-pegawai',$d->getid_user()) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-users-cog mr-2"></i>
                                             EDIT
                                         </a>
@@ -104,7 +105,7 @@
                                 <tr>
                                     <td class="label-detail">Jenis Kelamin</td>
                                     <td>
-                                        @if($d->JENIS_KELAMIN_OPERATOR_MESIN)
+                                        @if($d->JENIS_KELAMIN_ADMIN_GUDANG)
                                             Pria
                                         @else
                                             Wanita
@@ -146,5 +147,6 @@
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/js/owner-pegawai.js') }}"></script>
 @endsection

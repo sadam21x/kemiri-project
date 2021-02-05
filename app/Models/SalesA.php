@@ -58,4 +58,12 @@ class SalesA extends Model
 	{
 		return $this->hasMany(EvaluasiKinerjaSalesa::class, 'ID_SALES_A');
 	}
+
+	public function getid_user()
+	{
+		return Log::where([
+			'ID_PEGAWAI' => $this->ID_SALES_A,
+			'ID_JABATAN_LOG' => 4,
+		])->value('ID_USER_LOG');
+	}
 }

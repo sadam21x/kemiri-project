@@ -6,6 +6,11 @@ $(document).ready(function() {
  
     // Datatable
     const orderBarangTable = document.getElementById("order-barang-table");
-    $(orderBarangTable).DataTable();
+    $(orderBarangTable).DataTable({
+        "order": [[ 0, "desc" ]],
+        "columnDefs": [
+            { "type": "any-number", "targets": 0 }
+        ],
+    });
 
 });
