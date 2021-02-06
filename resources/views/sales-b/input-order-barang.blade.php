@@ -99,7 +99,7 @@
                         </div>
                         <div class="form-group col-md-10 col-sm-12">
                             <label class="col-form-label">Ongkos Kirim (IDR)</label>
-                            <input type="number" name="ONGKOS_KIRIM" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style @error('ONGKOS_KIRIM') is-invalid @enderror">
+                            <input type="number" name="ONGKOS_KIRIM" id="input-ongkos-kirim" min="0" value="0" class="form-control num-without-style @error('ONGKOS_KIRIM') is-invalid @enderror" required>
                             <div class="invalid-feedback">
                                 Mohon isi ongkos kirim dengan benar.
                             </div>

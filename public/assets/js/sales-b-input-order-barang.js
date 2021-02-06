@@ -86,7 +86,7 @@ $(document).ready(function() {
 
         if($("#keranjang tbody tr#"+id).length){
             let qty = Number($("#qty-"+id).val());
-            $("#qty-"+id).val(Number(qty+1));
+            $("#qty-"+id).val(Number(qty+1000));
             hitungTotalHargaProduk(id);
         }
         else{
@@ -104,7 +104,7 @@ $(document).ready(function() {
                     <input type="hidden" name="HARGA_BARANG[]" id="price-'+product["KODE_PRODUCT"]+'" value="'+product["HARGA_PRODUCT"]+'">'+product["HARGA_PRODUCT"]+'\
                 </td>\
                 <td>\
-                    <input type="number" name="JUMLAH_PCS[]" id="qty-'+product["KODE_PRODUCT"]+'" value="1000" min="1" class="input-num-sm quantity" step="1000">\
+                    <input type="number" name="JUMLAH_PCS[]" id="qty-'+product["KODE_PRODUCT"]+'" value="1000" min="1000" class="input-num-sm quantity" step="1000">\
                 </td>\
                 <td>\
                     <input type="number" name="JUMLAH_SAK[]" id="sak-'+product["KODE_PRODUCT"]+'" value="1" min="1" class="input-num-sm sak">\
