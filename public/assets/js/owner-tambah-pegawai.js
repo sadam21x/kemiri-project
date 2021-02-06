@@ -12,6 +12,9 @@ $(document).ready(function() {
         }
     });
 
+    // Input mask
+    $('[data-input-mask="phone"]').mask('0000 0000 00000');
+
     // Select2
     const selectComponent = document.getElementsByClassName("select-component");
     $(selectComponent).select2();

@@ -211,7 +211,7 @@
                         <label class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="text" name="no_telp_depo" id="" value="{{$d->NO_TELP_DEPO}}" class="form-control">
+                        <input type="text" name="no_telp_depo" data-input-mask="phone" value="{{$d->NO_TELP_DEPO}}" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -310,7 +310,7 @@
                         <label for="" class="col-form-label">
                             No. Telepon
                         </label>
-                        <input type="text" name="no_telp_depo" id="" class="form-control num-without-style" value="{{ @old('no_telp_depo') }}">
+                        <input type="text" name="no_telp_depo" data-input-mask="phone" class="form-control num-without-style" value="{{ @old('no_telp_depo') }}">
                     </div>
 
                     <div class="form-group">
@@ -338,5 +338,6 @@
     <script src="{{ asset('/assets/gogi/vendors/dataTable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/dataTable/Sorting-1.10.20/any-number-sorting.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
     <script src="{{ asset('/assets/js/manajer-marketing-customer.js') }}"></script>
 @endsection

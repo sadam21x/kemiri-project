@@ -128,7 +128,7 @@
 
                 <div class="form-group">
                     <label>Nomor Telepon</label>
-                    <input type="text" min="0" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP" value="{{ $data->NO_TELP_OPERATOR_MESIN }}">
+                    <input type="text" min="0" data-input-mask="phone" class="form-control num-without-style @error('NO_TELP') is-invalid @enderror" name="NO_TELP" value="{{ $data->NO_TELP_OPERATOR_MESIN }}">
                     <div class="invalid-feedback">
                         Mohon isi nomor telepon pegawai dengan benar.
                     </div>
@@ -173,5 +173,6 @@
 @section('extra-script')
     <script src="{{ asset('/assets/gogi/vendors/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('/assets/gogi/vendors/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('/assets/gogi/vendors/input-mask/jquery.mask.js') }}"></script>
     <script src="{{ asset('/assets/js/edit-profil.js') }}"></script>
 @endsection

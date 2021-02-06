@@ -19,7 +19,6 @@ class PembayaranSupplierController extends Controller
 
     public function update(Request $request)
     {
-        //tested by dea (14/9/2020 16:40)
         $request->validate([
             'id' => 'required|integer|exists:App\Models\PembayaranPenerimaanBahanBaku,KODE_PEMBAYARAN'
         ]);
