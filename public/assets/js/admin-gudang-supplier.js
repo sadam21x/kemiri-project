@@ -36,7 +36,7 @@ $(document).ready(function() {
 
     // Input mask
     $('.nama_supplier').inputmask('Regex', {regex: "^[a-zA-Z ]{1,50}"});
-    $('.input-telp').mask("(+62) 000 0000 00000")
+    $('.input-telp').mask("0000 0000 00000")
 
     // Tampilkan data kota sesuai provinsi yang dipilih
     $('.select-provinsi').on('change', function () {

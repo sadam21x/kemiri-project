@@ -41,6 +41,11 @@
 				<span class="login100-form-title p-b-41">
                     <img src="{{ asset('/assets/img/logo-kemiri-180.png') }}">
 				</span>
+                @if (Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <i class="ti-info-alt mr-2"></i>{{ Session::get('error') }}
+                    </div>
+                @endif
                 <form action="{{ route('login') }}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
                     @csrf
 

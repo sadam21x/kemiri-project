@@ -44,6 +44,9 @@ class HomeController extends Controller
         else if (Auth::user()->KODE_JABATAN == 6) {
             return redirect()->route('operator-mesin');
         }
+        // else if (Auth::user() == null){
+        //     return redirect()->route('login')->with(['error' => 'Username/Password salah!']);
+        // }
     }
 
     public function logout()

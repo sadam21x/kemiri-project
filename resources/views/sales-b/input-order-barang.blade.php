@@ -28,7 +28,7 @@
                         @php $data = Auth::user()->sales_b(Auth::user()->ID_USER); @endphp
                         <input type="hidden" value="{{ $data->ID_SALES_B }}" name="ID_SALES_B">
                         <input type="hidden" value="{{$customer->KODE_DEPO}}" name="KODE_DEPO">
-                        <input type="text" class="form-control" readonly value="Aldi Ibrahimy">
+                        <input type="text" class="form-control" readonly value="{{ $data->NAMA_SALES_B }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label>Customer</label>
