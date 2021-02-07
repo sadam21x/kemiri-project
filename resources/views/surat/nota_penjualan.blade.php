@@ -121,9 +121,9 @@
         <tr>
             <td>.......................</td>
             @if ($data->ID_MANAJER_MARKETING != null || $data->ID_MANAJER_MARKETING != '')
-                <td>$data->ID_MANAJER_MARKETING</td>
+                <td>{{$data->manajer_marketing->NAMA_MANAJER_MARKETING}}</td>
             @else
-                <td>$data->ID_SALES_B</td>
+                <td>{{$data->sales_b->NAMA_SALES_B}}</td>
             @endif
         </tr>
     </table>
