@@ -1,7 +1,7 @@
 @extends('layouts/sales-b/main')
 @section('title', 'Dashboard')
 @section('extra-css')
-    
+    <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
 @endsection
 
 @section('content')
@@ -126,7 +126,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered datatable-table table-responsive-stack">
                             <thead class="thead-dark">
                                 <th scope="col">ID Customer</th>
                                 <th scope="col">Nama Customer</th>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">ID Customer</th>
                                 <th scope="col">Nama Customer</th>
@@ -185,7 +185,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">ID Customer</th>
                                 <th scope="col">Nama Customer</th>
@@ -213,5 +213,6 @@
 @endsection
 
 @section('extra-script')
+    <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sales-b-dashboard.js') }}"></script>
 @endsection
