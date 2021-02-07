@@ -96,7 +96,7 @@
         </tr>
         <tr>
             <td class="lighter-text">Total Bayar (IDR)</td>
-            <td>&nbsp; : {{ number_format($data->TOTAL_PENJUALAN,'0',',','.') }}</td>
+            <td>&nbsp; : {{ number_format($data->TOTAL_PENJUALAN),'0',',','.') }}</td>
         </tr>
     </table>
 
