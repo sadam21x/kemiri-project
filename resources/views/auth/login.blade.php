@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="{{ asset('/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/login_util.css') }}">
 
+    {{-- Fontawesome --}}
+    <link rel="stylesheet" href="{{ asset('/assets/fontawesome/css/all.min.css') }}">
+
     <style>
         @font-face {
             font-family: Ubuntu-Regular;
@@ -41,9 +44,9 @@
 				<span class="login100-form-title p-b-41">
                     <img src="{{ asset('/assets/img/logo-kemiri-180.png') }}">
 				</span>
-                @if (Session::has('error'))
+                @if($errors->any())
                     <div class="alert alert-danger alert-dismissible" role="alert">
-                        <i class="ti-info-alt mr-2"></i>{{ Session::get('error') }}
+                        <i class="fas fa-exclamation-triangle mr-2"></i>Gagal login. Pastikan username dan password benar.
                     </div>
                 @endif
                 <form action="{{ route('login') }}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
