@@ -1,11 +1,11 @@
 @extends('layouts/operator-mesin/main')
 @section('title', 'Dashboard')
-@section('extra-css')
-    
-@endsection
+@section('extra-css')  
     <link rel="stylesheet" href="{{ asset('/assets/datatable/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/operator-mesin.css') }}">
+@endsection
+
 @section('content')
 <!-- Content -->
 <div class="content">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">ID PENGAMBILAN BAHAN BAKU</th>
                                 <th scope="col">WAKTU PENGAMBILAN BAHAN BAKU</th>

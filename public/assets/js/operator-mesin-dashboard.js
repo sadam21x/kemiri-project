@@ -1,6 +1,2 @@
-$(document).ready(function() {
-
-    const menu = document.getElementById("dashboard-menu");
-    menu.classList.add("active");  
-
-});
+$('#dashboard-menu').addClass('active');
+$('.datatable-table').DataTable();

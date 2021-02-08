@@ -53,7 +53,7 @@
                     @csrf
 
 					<div class="wrap-input100">
-                        <input class="input100" type="text" name="username" id="username" placeholder="Username">
+                        <input class="input100" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
