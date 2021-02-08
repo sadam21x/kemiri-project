@@ -88,7 +88,7 @@
         </tr>
         <tr>
             <td class="lighter-text">Total Harga Produk (IDR)</td>
-            <td>&nbsp; : {{ number_format($data->detil_penjualans->sum('HARGA_BARANG'),'0',',','.') }}</td>
+            <td>&nbsp; : {{ number_format(floatval($data->TOTAL_PENJUALAN - $data->ONGKOS_KIRIM),'0',',','.') }}</td>
         </tr>
         <tr>
             <td class="lighter-text">Ongkos Kirim (IDR)</td>
@@ -96,7 +96,7 @@
         </tr>
         <tr>
             <td class="lighter-text">Total Bayar (IDR)</td>
-            <td>&nbsp; : {{ number_format($data->detil_penjualans->sum('HARGA_BARANG'),'0',',','.') }}</td>
+            <td>&nbsp; : {{ number_format($data->TOTAL_PENJUALAN,'0',',','.') }}</td>
         </tr>
     </table>
 
