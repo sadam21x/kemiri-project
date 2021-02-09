@@ -74,10 +74,7 @@ class PegawaiController extends Controller
             // input ke sales A
             if($request->KODE_JABATAN == 4){
 
-                $id = $request->ID;
-                $pegawai = SalesA::where('ID_SALES_A',$id);
-
-                $pegawai->update([
+                SalesA::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_SALES_A' => ucwords($request->NAMA),
                     'ALAMAT_SALES_A' => ucwords($request->ALAMAT),
@@ -85,17 +82,14 @@ class PegawaiController extends Controller
                     'NO_TELP_SALES_A' => $request->NO_TELP,
                     'EMAIL_SALES_A' => strtolower($request->EMAIL),
                     'FOTO_PROFILE' => $foto,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
             // input ke sales B
             elseif($request->KODE_JABATAN == 5){
 
-                $id = $request->ID;
-                $pegawai = SalesB::where('ID_SALES_B',$id);
-
-                $pegawai->update([
+                SalesB::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_SALES_B' => ucwords($request->NAMA),
                     'ALAMAT_SALES_B' => ucwords($request->ALAMAT),
@@ -103,18 +97,14 @@ class PegawaiController extends Controller
                     'NO_TELP_SALES_B' => $request->NO_TELP,
                     'EMAIL_SALES_B' => strtolower($request->EMAIL),
                     'FOTO_PROFILE' => $foto,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
 
             elseif($request->KODE_JABATAN == 6){
 
-                //insert operator mesin
-                $id = $request->ID;
-                $pegawai = OperatorMesin::where('ID_OPERATOR_MESIN',$id);
-
-                $pegawai->update([
+                OperatorMesin::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_OPERATOR_MESIN' => ucwords($request->NAMA),
                     'ALAMAT_OPERATOR_MESIN' => ucwords($request->ALAMAT),
@@ -122,7 +112,7 @@ class PegawaiController extends Controller
                     'NO_TELP_OPERATOR_MESIN' => $request->NO_TELP,
                     'EMAIL_OPERATOR_MESIN' => strtolower($request->EMAIL),
                     'FOTO_PROFILE' => $foto,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
@@ -130,10 +120,8 @@ class PegawaiController extends Controller
             elseif($request->KODE_JABATAN == 3){
 
                 //insert manajer marketing
-                $id = $request->ID;
-                $pegawai = ManajerMarketing::where('ID_MANAJER_MARKETING',$id);
 
-                $pegawai->update([
+                ManajerMarketing::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_MANAJER_MARKETING' => ucwords($request->NAMA),
                     'ALAMAT_MANAJER_MARKETING' => ucwords($request->ALAMAT),
@@ -141,17 +129,15 @@ class PegawaiController extends Controller
                     'NO_TELP_MANAJER_MARKETING' => $request->NO_TELP,
                     'EMAIL_MANAJER_MARKETING' => strtolower($request->EMAIL),
                     'FOTO_PROFILE' => $foto,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
             elseif($request->KODE_JABATAN == 2){
 
                 //insert admin gudang
-                $id = $request->ID;
-                $pegawai = AdminGudang::where('ID_ADMIN_GUDANG',$id);
 
-                $pegawai->update([
+                AdminGudang::insert([
                     'KODE_KOTA' => $request->KODE_KOTA,
                     'NAMA_ADMIN_GUDANG' => ucwords($request->NAMA),
                     'ALAMAT_ADMIN_GUDANG' => ucwords($request->ALAMAT),
@@ -159,19 +145,16 @@ class PegawaiController extends Controller
                     'NO_TELP_ADMIN_GUDANG' => $request->NO_TELP,
                     'EMAIL_ADMIN_GUDANG' => strtolower($request->EMAIL),
                     'FOTO_PROFILE' => $foto,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'created_at' => date('Y-m-d H:i:s')
                 ]);
 
             }
-            
-            $id_user = $request->ID_USER;
-            $user = User::where('ID_USER',$id_user);
 
-            $user->update([
+            User::insert([
                 'KODE_JABATAN' => $request->KODE_JABATAN,
                 'username' => strtolower($request->USERNAME_USER),
                 'FOTO_PROFILE' => $foto,
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => date('Y-m-d H:i:s')
             ]);
 
         });
