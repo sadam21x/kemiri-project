@@ -70,7 +70,7 @@
                                 </tr>
                                 <tr>
                                     <td class="label-detail">Email</td>
-                                    <td>{{$data->EMAIL_MANAJER_MARKETING}}</td>
+                                    <td>{{$data->EMAIL_OWNER}}</td>
                                 </tr>
                             </table>
                         </div>
