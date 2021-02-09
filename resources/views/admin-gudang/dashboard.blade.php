@@ -21,7 +21,7 @@
                 <div class="col-md">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Jumlah Stock Plastik Bekas</h6>
+                            <h6 class="card-title text-center">Jumlah Stock Plastik Bekas</h6>
                             <div class="d-flex align-items-center">
                                 <div>
                                     <div class="avatar">
@@ -37,7 +37,7 @@
                 <div class="col-md">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Jumlah Stock Plastik Virgin</h6>
+                            <h6 class="card-title text-center">Jumlah Stock Plastik Virgin</h6>
                             <div class="d-flex align-items-center">
                                 <div>
                                     <div class="avatar">
@@ -53,7 +53,7 @@
                 <div class="col-md">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">Jumlah Stock Pewarna</h6>
+                            <h6 class="card-title text-center">Jumlah Stock Pewarna</h6>
                             <div class="d-flex align-items-center">
                                 <div>
                                     <div class="avatar">
@@ -103,7 +103,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Supplier</th>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Customer</th>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Customer</th>
@@ -181,7 +181,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">Nama Supplier</th>
                                 <th scope="col">Alamat</th>
@@ -206,7 +206,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="customer-table" class="table table-bordered table-responsive-stack">
+                        <table id="customer-table" class="table table-bordered table-responsive-stack datatable-table">
                             <thead class="thead-dark">
                                 <th scope="col">Nama Customer</th>
                                 <th scope="col">Alamat</th>
