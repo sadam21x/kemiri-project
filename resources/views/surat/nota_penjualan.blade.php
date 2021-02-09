@@ -88,7 +88,7 @@
         </tr>
         <tr>
             <td class="lighter-text">Total Harga Produk (IDR)</td>
-            <td>&nbsp; : {{ number_format($data->detil_penjualans->sum('HARGA_BARANG'),'0',',','.') }}</td>
+            <td>&nbsp; : {{ number_format(floatval($data->TOTAL_PENJUALAN - $data->ONGKOS_KIRIM),'0',',','.') }}</td>
         </tr>
         <tr>
             <td class="lighter-text">Ongkos Kirim (IDR)</td>
@@ -96,7 +96,7 @@
         </tr>
         <tr>
             <td class="lighter-text">Total Bayar (IDR)</td>
-            <td>&nbsp; : {{ number_format($data->detil_penjualans->sum('HARGA_BARANG'),'0',',','.') }}</td>
+            <td>&nbsp; : {{ number_format($data->TOTAL_PENJUALAN,'0',',','.') }}</td>
         </tr>
     </table>
 
@@ -121,9 +121,9 @@
         <tr>
             <td>.......................</td>
             @if ($data->ID_MANAJER_MARKETING != null || $data->ID_MANAJER_MARKETING != '')
-                <td>$data->ID_MANAJER_MARKETING</td>
+                <td>{{$data->manajer_marketing->NAMA_MANAJER_MARKETING}}</td>
             @else
-                <td>$data->ID_SALES_B</td>
+                <td>{{$data->sales_b->NAMA_SALES_B}}</td>
             @endif
         </tr>
     </table>

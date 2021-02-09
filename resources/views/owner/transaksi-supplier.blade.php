@@ -62,7 +62,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR 4.560.000</div>
+                                <div class="font-weight-bold ml-1 font-size-30 ml-3">IDR {{number_format($pembayaran,0,',','.')}}</div>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                 <tr>
                                     <td>{{date('d/m/Y',strtotime($d->TGL_KEDATANGAN))}}</td>
                                     <td>{{$d->supplier->NAMA_SUPPLIER}}</td>
-                                    <td>3.750.000</td>
+                                    <td>{{number_format($d->BIAYA_TRANSAKSI,0,',','.')}}</td>
                                     <td>
                                         <button class="btn btn-linkedin btn-sm" data-toggle="modal" data-target="#modal-detail-transaksi-{{$d->ID_PENERIMAAN}}">
                                             <i class="fas fa-info-circle mr-2"></i>
@@ -147,7 +147,7 @@
 
                     <div class="my-3">
                         <h5>Biaya Transaksi (IDR)</h5>
-                        <h6>3.750.000</h6>
+                        <h6>{{number_format($d->BIAYA_TRANSAKSI,0,',','.')}}</h6>
                     </div>
 
                 </div>

@@ -103,7 +103,7 @@
                                 </td>
                                 <td colspan="2">
                                     <button class="btn btn-linkedin btn-sm" data-toggle="modal"
-                                        data-target="#modal-detail-order-barang-{{$d2->ID_PENJUALAN}}">
+                                        data-target="#modal-detail-order-barang-konfirmasi-{{$d2->ID_PENJUALAN}}">
                                         <i class="fas fa-info-circle mr-1"></i>
                                         DETAIL
                                     </button>
@@ -123,6 +123,92 @@
 @foreach($data as $d)
 {{-- Start Detail Order Barang Modal --}}
 <div class="modal fade" id="modal-detail-order-barang-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Detail Order Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+
+                    <div class="mb-3">
+                        <h5>ID Order</h5>
+                        <h6>{{$d->ID_PENJUALAN}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Tanggal</h5>
+                        <h6>{{date("d/m/Y",strtotime($d->TGL_PENJUALAN))}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Staff Sales</h5>
+                        <h6>
+                            @if($d->ID_SALES_B != null)
+                            {{$d->sales_b->NAMA_SALES_B}}
+                            @else
+                            N\A
+                            @endif
+                        </h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Customer</h5>
+                        <h6>{{$d->depo_air_minum->NAMA_DEPO}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Produk</h5>
+                        <table class="table table-stripped table-bordered">
+                            <thead class="thead-dark">
+                                <th scope="col">Produk</th>
+                                <th scope="col">Jumlah (pcs)</th>
+                            </thead>
+                            <tbody>
+                                @foreach($d->detil_penjualans as $detilp)
+                                <tr>
+                                    <td>{{$detilp->product->NAMA_PRODUCT}}</td>
+                                    <td>{{$detilp->JUMLAH_PCS}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Total Item (pcs)</h5>
+                        <h6>{{ $d->detil_penjualans->sum('JUMLAH_PCS')}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Total Harga Produk (IDR)</h5>
+                        <h6>{{ number_format(floatval($d->TOTAL_PENJUALAN) - floatval($d->ONGKOS_KIRIM),0,',','.')}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Ongkos Kirim (IDR)</h5>
+                        <h6>{{number_format($d->ONGKOS_KIRIM,0,',','.')}}</h6>
+                    </div>
+
+                    <div class="my-3">
+                        <h5>Total Bayar (IDR)</h5>
+                        <h6>{{ number_format(floatval($d->TOTAL_PENJUALAN),0,',','.')}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Detail Order Barang Modal--}}
+@endforeach
+
+@foreach($data2 as $d)
+{{-- Start Detail Order Barang Modal --}}
+<div class="modal fade" id="modal-detail-order-barang-konfirmasi-{{$d->ID_PENJUALAN}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
