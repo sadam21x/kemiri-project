@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,8 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $NAMA_SALES_A
  * @property string $ALAMAT_SALES_A
  * @property int $JENIS_KELAMIN_SALES_A
- * @property string $NO_TELP_SALES_A
+ * @property string|null $NO_TELP_SALES_A
  * @property string|null $EMAIL_SALES_A
+ * @property string|null $FOTO_PROFILE
+ * @property bool|null $STATUS_SALES_A
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property IndonesiaCity $indonesia_city
  * @property Collection|DepoAirMinum[] $depo_air_minums
@@ -32,7 +37,8 @@ class SalesA extends Model
 	protected $primaryKey = 'ID_SALES_A';
 
 	protected $casts = [
-		'JENIS_KELAMIN_SALES_A' => 'int'
+		'JENIS_KELAMIN_SALES_A' => 'int',
+		'STATUS_SALES_A' => 'bool'
 	];
 
 	protected $fillable = [
@@ -41,7 +47,9 @@ class SalesA extends Model
 		'ALAMAT_SALES_A',
 		'JENIS_KELAMIN_SALES_A',
 		'NO_TELP_SALES_A',
-		'EMAIL_SALES_A'
+		'EMAIL_SALES_A',
+		'FOTO_PROFILE',
+		'STATUS_SALES_A'
 	];
 
 	public function indonesia_city()
@@ -57,13 +65,5 @@ class SalesA extends Model
 	public function evaluasi_kinerja_salesas()
 	{
 		return $this->hasMany(EvaluasiKinerjaSalesa::class, 'ID_SALES_A');
-	}
-
-	public function getid_user()
-	{
-		return Log::where([
-			'ID_PEGAWAI' => $this->ID_SALES_A,
-			'ID_JABATAN_LOG' => 4,
-		])->value('ID_USER_LOG');
 	}
 }

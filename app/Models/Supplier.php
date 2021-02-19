@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,8 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $KODE_KOTA
  * @property string $NAMA_SUPPLIER
  * @property string $ALAMAT_SUPPLIER
- * @property string $NO_TELP_SUPPLIER
+ * @property string|null $NO_TELP_SUPPLIER
  * @property string|null $EMAIL_SUPPLIER
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property IndonesiaCity $indonesia_city
  * @property Collection|PenerimaanBahanBaku[] $penerimaan_bahan_bakus

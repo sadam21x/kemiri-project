@@ -30,7 +30,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Collection|SalesA[] $sales_as
  * @property Collection|SalesB[] $sales_bs
  * @property Collection|Supplier[] $suppliers
- * @property Collection|User[] $users
  *
  * @package App\Models
  */
@@ -93,10 +92,5 @@ class IndonesiaCity extends Model
 	public function suppliers()
 	{
 		return $this->hasMany(Supplier::class, 'KODE_KOTA');
-	}
-
-	public function users()
-	{
-		return $this->hasMany(User::class, 'KODE_KOTA');
 	}
 }

@@ -14,9 +14,12 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $KODE_PEMBAYARAN
  * @property int $ID_PENERIMAAN
- * @property int $ID_OWNER
- * @property Carbon $TGL_PEMBAYARAN
+ * @property int|null $ID_OWNER
+ * @property Carbon|null $TGL_PEMBAYARAN
+ * @property int $BIAYA_TRANSAKSI
  * @property int $STATUS_PEMBAYARAN
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property Owner $owner
  * @property PenerimaanBahanBaku $penerimaan_bahan_baku
@@ -31,6 +34,7 @@ class PembayaranPenerimaanBahanBaku extends Model
 	protected $casts = [
 		'ID_PENERIMAAN' => 'int',
 		'ID_OWNER' => 'int',
+		'BIAYA_TRANSAKSI' => 'int',
 		'STATUS_PEMBAYARAN' => 'int'
 	];
 
@@ -42,7 +46,7 @@ class PembayaranPenerimaanBahanBaku extends Model
 		'ID_PENERIMAAN',
 		'ID_OWNER',
 		'TGL_PEMBAYARAN',
-        'BIAYA_TRANSAKSI',
+		'BIAYA_TRANSAKSI',
 		'STATUS_PEMBAYARAN'
 	];
 

@@ -14,19 +14,24 @@ use Illuminate\Database\Eloquent\Model;
  * Class Penjualan
  * 
  * @property int $ID_PENJUALAN
- * @property int $ID_MANAJER_MARKETING
- * @property int $ID_KONFIRMASI_PENJUALAN
+ * @property int $KODE_DEPO
+ * @property int|null $ID_MANAJER_MARKETING
  * @property int|null $ID_SALES_B
+ * @property int|null $ID_OWNER
+ * @property int|null $ID_METODE_KIRIM
  * @property Carbon $TGL_PENJUALAN
  * @property Carbon $TGL_KIRIM
- * @property string $METODE_KIRIM
  * @property int $ONGKOS_KIRIM
  * @property int $TOTAL_PENJUALAN
  * @property int $STATUS_PENJUALAN
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property ManajerMarketing $manajer_marketing
  * @property SalesB $sales_b
- * @property KonfirmasiPenjualan $konfirmasi_penjualan
+ * @property MetodeKirim $metode_kirim
+ * @property Owner $owner
+ * @property DepoAirMinum $depo_air_minum
  * @property Collection|DetilPenjualan[] $detil_penjualans
  * @property Collection|PembayaranPenjualan[] $pembayaran_penjualans
  *
@@ -38,9 +43,11 @@ class Penjualan extends Model
 	protected $primaryKey = 'ID_PENJUALAN';
 
 	protected $casts = [
-		'ID_MANAJER_MARKETING' => 'int',
 		'KODE_DEPO' => 'int',
+		'ID_MANAJER_MARKETING' => 'int',
 		'ID_SALES_B' => 'int',
+		'ID_OWNER' => 'int',
+		'ID_METODE_KIRIM' => 'int',
 		'ONGKOS_KIRIM' => 'int',
 		'TOTAL_PENJUALAN' => 'int',
 		'STATUS_PENJUALAN' => 'int'
@@ -52,12 +59,13 @@ class Penjualan extends Model
 	];
 
 	protected $fillable = [
-		'ID_MANAJER_MARKETING',
 		'KODE_DEPO',
+		'ID_MANAJER_MARKETING',
 		'ID_SALES_B',
+		'ID_OWNER',
+		'ID_METODE_KIRIM',
 		'TGL_PENJUALAN',
 		'TGL_KIRIM',
-		'METODE_KIRIM',
 		'ONGKOS_KIRIM',
 		'TOTAL_PENJUALAN',
 		'STATUS_PENJUALAN'
@@ -73,6 +81,16 @@ class Penjualan extends Model
 		return $this->belongsTo(SalesB::class, 'ID_SALES_B');
 	}
 
+	public function metode_kirim()
+	{
+		return $this->belongsTo(MetodeKirim::class, 'ID_METODE_KIRIM');
+	}
+
+	public function owner()
+	{
+		return $this->belongsTo(Owner::class, 'ID_OWNER');
+	}
+
 	public function depo_air_minum()
 	{
 		return $this->belongsTo(DepoAirMinum::class, 'KODE_DEPO');
@@ -85,6 +103,6 @@ class Penjualan extends Model
 
 	public function pembayaran_penjualans()
 	{
-		return $this->hasOne(PembayaranPenjualan::class, 'ID_PENJUALAN');
+		return $this->hasMany(PembayaranPenjualan::class, 'ID_PENJUALAN');
 	}
 }

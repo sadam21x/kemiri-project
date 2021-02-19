@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $NAMA_PRODUCT
  * @property float $HARGA_PRODUCT
  * @property int $STOK_PRODUCT
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property JenisProduct $jenis_product
  * @property Collection|DetilPenjualan[] $detil_penjualans

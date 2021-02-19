@@ -15,8 +15,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $KODE_PENGIRIMAN
  * @property int $KODE_PEMBAYARAN_PENJUALAN
  * @property int $ID_ADMIN_GUDANG
+ * @property int|null $ID_OWNER
  * @property Carbon $TGL_KIRIM_RIIL
+ * @property string $TIPE_KENDARAAN
+ * @property string $NOPOL
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
+ * @property Owner $owner
  * @property AdminGudang $admin_gudang
  * @property PembayaranPenjualan $pembayaran_penjualan
  *
@@ -29,7 +35,8 @@ class Pengiriman extends Model
 
 	protected $casts = [
 		'KODE_PEMBAYARAN_PENJUALAN' => 'int',
-		'ID_ADMIN_GUDANG' => 'int'
+		'ID_ADMIN_GUDANG' => 'int',
+		'ID_OWNER' => 'int'
 	];
 
 	protected $dates = [
@@ -39,10 +46,16 @@ class Pengiriman extends Model
 	protected $fillable = [
 		'KODE_PEMBAYARAN_PENJUALAN',
 		'ID_ADMIN_GUDANG',
+		'ID_OWNER',
 		'TGL_KIRIM_RIIL',
-        'TIPE_KENDARAAN',
-        'NOPOL'
+		'TIPE_KENDARAAN',
+		'NOPOL'
 	];
+
+	public function owner()
+	{
+		return $this->belongsTo(Owner::class, 'ID_OWNER');
+	}
 
 	public function admin_gudang()
 	{

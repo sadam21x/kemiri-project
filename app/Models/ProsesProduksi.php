@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $EVALUASI_PRODUCT
  * @property string|null $EVALUASI_MESIN
  * @property string|null $EVALUASI_BAHAN_BAKU
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property PengambilanBahanBaku $pengambilan_bahan_baku
  * @property Collection|HasilProduct[] $hasil_products
@@ -35,7 +37,7 @@ class ProsesProduksi extends Model
 	protected $casts = [
 		'KODE_PENGAMBILAN_BAHAN_BAKU' => 'int',
 		'HASIL_BAGUS_KG' => 'float',
-		'HASIL_RUSAK_KG' => 'float',
+		'HASIL_RUSAK_KG' => 'float'
 	];
 
 	protected $dates = [
@@ -57,8 +59,8 @@ class ProsesProduksi extends Model
 		return $this->belongsTo(PengambilanBahanBaku::class, 'KODE_PENGAMBILAN_BAHAN_BAKU');
 	}
 
-	public function hasil_product()
+	public function hasil_products()
 	{
-		return $this->hasOne(HasilProduct::class, 'KODE_PRODUKSI');
+		return $this->hasMany(HasilProduct::class, 'KODE_PRODUKSI');
 	}
 }

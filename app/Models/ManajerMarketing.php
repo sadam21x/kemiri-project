@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,10 +18,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $NAMA_MANAJER_MARKETING
  * @property string $ALAMAT_MANAJER_MARKETING
  * @property int $JENIS_KELAMIN_MANAJER_MARKETING
- * @property string $NO_TELP_MANAJER_MARKETING
+ * @property string|null $NO_TELP_MANAJER_MARKETING
  * @property string|null $EMAIL_MANAJER_MARKETING
+ * @property string|null $FOTO_PROFILE
+ * @property bool|null $STATUS_MANAGER_MARKETING
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property IndonesiaCity $indonesia_city
+ * @property Collection|DepoAirMinum[] $depo_air_minums
  * @property Collection|EvaluasiKinerjaSalesa[] $evaluasi_kinerja_salesas
  * @property Collection|EvaluasiKinerjaSalesb[] $evaluasi_kinerja_salesbs
  * @property Collection|Penjualan[] $penjualans
@@ -33,7 +39,8 @@ class ManajerMarketing extends Model
 	protected $primaryKey = 'ID_MANAJER_MARKETING';
 
 	protected $casts = [
-		'JENIS_KELAMIN_MANAJER_MARKETING' => 'int'
+		'JENIS_KELAMIN_MANAJER_MARKETING' => 'int',
+		'STATUS_MANAGER_MARKETING' => 'bool'
 	];
 
 	protected $fillable = [
@@ -42,12 +49,19 @@ class ManajerMarketing extends Model
 		'ALAMAT_MANAJER_MARKETING',
 		'JENIS_KELAMIN_MANAJER_MARKETING',
 		'NO_TELP_MANAJER_MARKETING',
-		'EMAIL_MANAJER_MARKETING'
+		'EMAIL_MANAJER_MARKETING',
+		'FOTO_PROFILE',
+		'STATUS_MANAGER_MARKETING'
 	];
 
 	public function indonesia_city()
 	{
 		return $this->belongsTo(IndonesiaCity::class, 'KODE_KOTA');
+	}
+
+	public function depo_air_minums()
+	{
+		return $this->hasMany(DepoAirMinum::class, 'ID_MANAJER_MARKETING');
 	}
 
 	public function evaluasi_kinerja_salesas()
@@ -63,13 +77,5 @@ class ManajerMarketing extends Model
 	public function penjualans()
 	{
 		return $this->hasMany(Penjualan::class, 'ID_MANAJER_MARKETING');
-	}
-
-	public function getid_user()
-	{
-		return Log::where([
-			'ID_PEGAWAI' => $this->ID_MANAJER_MARKETING,
-			'ID_JABATAN_LOG' => 3,
-		])->value('ID_USER_LOG');
 	}
 }

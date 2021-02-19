@@ -15,11 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_EVALUASI_KINERJA_SALESB
  * @property int $ID_SALES_B
  * @property int $ID_MANAJER_MARKETING
+ * @property int|null $ID_OWNER
  * @property Carbon $TGL_EVALUASI_KINERJA_SALESB
  * @property string $EVALUASI_SALESB
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property ManajerMarketing $manajer_marketing
  * @property SalesB $sales_b
+ * @property Owner $owner
  *
  * @package App\Models
  */
@@ -30,7 +34,8 @@ class EvaluasiKinerjaSalesb extends Model
 
 	protected $casts = [
 		'ID_SALES_B' => 'int',
-		'ID_MANAJER_MARKETING' => 'int'
+		'ID_MANAJER_MARKETING' => 'int',
+		'ID_OWNER' => 'int'
 	];
 
 	protected $dates = [
@@ -40,6 +45,7 @@ class EvaluasiKinerjaSalesb extends Model
 	protected $fillable = [
 		'ID_SALES_B',
 		'ID_MANAJER_MARKETING',
+		'ID_OWNER',
 		'TGL_EVALUASI_KINERJA_SALESB',
 		'EVALUASI_SALESB'
 	];
@@ -52,5 +58,10 @@ class EvaluasiKinerjaSalesb extends Model
 	public function sales_b()
 	{
 		return $this->belongsTo(SalesB::class, 'ID_SALES_B');
+	}
+
+	public function owner()
+	{
+		return $this->belongsTo(Owner::class, 'ID_OWNER');
 	}
 }

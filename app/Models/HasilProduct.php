@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $KODE_PRODUCT
  * @property float|null $HASIL_BAGUS_PCS
  * @property float|null $HASIL_RUSAK_PCS
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property Product $product
  * @property ProsesProduksi $proses_produksi

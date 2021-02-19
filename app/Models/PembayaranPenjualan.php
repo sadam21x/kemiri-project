@@ -15,9 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $KODE_PEMBAYARAN_PENJUALAN
  * @property int $ID_PENJUALAN
- * @property int $ID_OWNER
- * @property Carbon $TGL_PEMBAYARAN
+ * @property int|null $ID_OWNER
+ * @property Carbon|null $TGL_PEMBAYARAN
  * @property int $STATUS_PEMBAYARAN
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property Owner $owner
  * @property Penjualan $penjualan
@@ -59,6 +61,6 @@ class PembayaranPenjualan extends Model
 
 	public function pengirimen()
 	{
-		return $this->hasOne(Pengiriman::class, 'KODE_PEMBAYARAN_PENJUALAN');
+		return $this->hasMany(Pengiriman::class, 'KODE_PEMBAYARAN_PENJUALAN');
 	}
 }

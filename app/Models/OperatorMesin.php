@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $JENIS_KELAMIN_OPERATOR_MESIN
  * @property string|null $NO_TELP_OPERATOR_MESIN
  * @property string|null $EMAIL_OPERATOR_MESIN
+ * @property string|null $FOTO_PROFILE
+ * @property bool|null $STATUS_OPERATOR_MESIN
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property IndonesiaCity $indonesia_city
  * @property Collection|PengambilanBahanBaku[] $pengambilan_bahan_bakus
@@ -31,7 +36,8 @@ class OperatorMesin extends Model
 	protected $primaryKey = 'ID_OPERATOR_MESIN';
 
 	protected $casts = [
-		'JENIS_KELAMIN_OPERATOR_MESIN' => 'int'
+		'JENIS_KELAMIN_OPERATOR_MESIN' => 'int',
+		'STATUS_OPERATOR_MESIN' => 'bool'
 	];
 
 	protected $fillable = [
@@ -40,7 +46,9 @@ class OperatorMesin extends Model
 		'ALAMAT_OPERATOR_MESIN',
 		'JENIS_KELAMIN_OPERATOR_MESIN',
 		'NO_TELP_OPERATOR_MESIN',
-		'EMAIL_OPERATOR_MESIN'
+		'EMAIL_OPERATOR_MESIN',
+		'FOTO_PROFILE',
+		'STATUS_OPERATOR_MESIN'
 	];
 
 	public function indonesia_city()
@@ -51,13 +59,5 @@ class OperatorMesin extends Model
 	public function pengambilan_bahan_bakus()
 	{
 		return $this->hasMany(PengambilanBahanBaku::class, 'ID_OPERATOR_MESIN');
-	}
-
-	public function getid_user()
-	{
-		return Log::where([
-			'ID_PEGAWAI' => $this->ID_OPERATOR_MESIN,
-			'ID_JABATAN_LOG' => 6,
-		])->value('ID_USER_LOG');
 	}
 }

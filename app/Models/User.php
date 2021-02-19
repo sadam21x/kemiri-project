@@ -41,6 +41,8 @@ class User extends Authenticatable
 		'KODE_JABATAN',
 		'username',
 		'password',
+		'FOTO_PROFILE',
+		'STATUS_USER',
 	];
 
 	public function indonesia_city()

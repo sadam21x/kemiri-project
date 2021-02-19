@@ -15,11 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $KODE_PENGAMBILAN_BAHAN_BAKU
  * @property int $ID_OPERATOR_MESIN
+ * @property int|null $ID_OWNER
  * @property int $KODE_MESIN
  * @property Carbon $WAKTU_PENGAMBILAN
  * @property string $HASIL_PRODUK
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property OperatorMesin $operator_mesin
+ * @property Owner $owner
  * @property Mesin $mesin
  * @property Collection|DetailPengambilan[] $detail_pengambilans
  * @property Collection|ProsesProduksi[] $proses_produksis
@@ -33,7 +37,8 @@ class PengambilanBahanBaku extends Model
 
 	protected $casts = [
 		'ID_OPERATOR_MESIN' => 'int',
-		'KODE_MESIN' => 'int',
+		'ID_OWNER' => 'int',
+		'KODE_MESIN' => 'int'
 	];
 
 	protected $dates = [
@@ -42,6 +47,7 @@ class PengambilanBahanBaku extends Model
 
 	protected $fillable = [
 		'ID_OPERATOR_MESIN',
+		'ID_OWNER',
 		'KODE_MESIN',
 		'WAKTU_PENGAMBILAN',
 		'HASIL_PRODUK'
@@ -50,6 +56,11 @@ class PengambilanBahanBaku extends Model
 	public function operator_mesin()
 	{
 		return $this->belongsTo(OperatorMesin::class, 'ID_OPERATOR_MESIN');
+	}
+
+	public function owner()
+	{
+		return $this->belongsTo(Owner::class, 'ID_OWNER');
 	}
 
 	public function mesin()

@@ -6,9 +6,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Log;
 
 /**
  * Class AdminGudang
@@ -20,6 +20,10 @@ use App\Models\Log;
  * @property int $JENIS_KELAMIN_ADMIN_GUDANG
  * @property string|null $NO_TELP_ADMIN_GUDANG
  * @property string|null $EMAIL_ADMIN_GUDANG
+ * @property string|null $FOTO_PROFILE
+ * @property bool|null $STATUS_ADMIN_GUDANG
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property IndonesiaCity $indonesia_city
  * @property Collection|PenerimaanBahanBaku[] $penerimaan_bahan_bakus
@@ -33,7 +37,8 @@ class AdminGudang extends Model
 	protected $primaryKey = 'ID_ADMIN_GUDANG';
 
 	protected $casts = [
-		'JENIS_KELAMIN_ADMIN_GUDANG' => 'int'
+		'JENIS_KELAMIN_ADMIN_GUDANG' => 'int',
+		'STATUS_ADMIN_GUDANG' => 'bool'
 	];
 
 	protected $fillable = [
@@ -42,7 +47,9 @@ class AdminGudang extends Model
 		'ALAMAT_ADMIN_GUDANG',
 		'JENIS_KELAMIN_ADMIN_GUDANG',
 		'NO_TELP_ADMIN_GUDANG',
-		'EMAIL_ADMIN_GUDANG'
+		'EMAIL_ADMIN_GUDANG',
+		'FOTO_PROFILE',
+		'STATUS_ADMIN_GUDANG'
 	];
 
 	public function indonesia_city()
@@ -58,13 +65,5 @@ class AdminGudang extends Model
 	public function pengirimen()
 	{
 		return $this->hasMany(Pengiriman::class, 'ID_ADMIN_GUDANG');
-	}
-
-	public function getid_user()
-	{
-		return Log::where([
-			'ID_PEGAWAI' => $this->ID_ADMIN_GUDANG,
-			'ID_JABATAN_LOG' => 2,
-		])->value('ID_USER_LOG');
 	}
 }

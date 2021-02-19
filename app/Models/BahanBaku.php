@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_JENIS_BAHAN_BAKU
  * @property string $NAMA_BAHAN_BAKU
  * @property float $STOK_BAHAN_BAKU
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * 
  * @property JenisBahanBaku $jenis_bahan_baku
  * @property Collection|PenerimaanBahanBaku[] $penerimaan_bahan_bakus
